@@ -1,7 +1,8 @@
 # Laboratorio No. 01 — Robótica Industrial 2026-I
 ## Trayectorias, Entradas y Salidas Digitales
 
-> **Universidad Nacional de Colombia**  
+> **Universidad Nacional de Colombia**
+> Facultad de Ingeniería
 > Departamento de Ingeniería Mecánica y Mecatrónica
 
 ---
