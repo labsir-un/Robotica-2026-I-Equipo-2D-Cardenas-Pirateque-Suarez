@@ -33,7 +33,7 @@ El escenario de aplicación se inspira en la automatización de la industria ali
 
 La estrategia de resolución se dividió en dos fases: la preparación del entorno de trabajo (físico y virtual) y la arquitectura de control en lenguaje RAPID.
 
-Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un marcador. En el entorno de simulación, se estableció un *WorkObject* con dimensiones de 25×20×7 cm para representar la superficie de trabajo. Sobre estas coordenadas geométricas se diseñaron las trayectorias correspondientes a la decoración y a la escritura de los nombres.
+Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un marcador. En el entorno de simulación, se estableció un *WorkObject* con dimensiones de **25×20×7 cm** para representar la superficie de trabajo. Sobre estas coordenadas geométricas se diseñaron las trayectorias correspondientes a la decoración y a la escritura de los nombres.
 
 <div align="center">
 <table>
@@ -54,15 +54,19 @@ Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un ma
 </table>
 </div>
 
-La validación del sistema se realizó primero en RobotStudio. Tras calibrar el `ToolData` y el `WorkObject`, se programaron las secuencias de movimiento con parámetros nominales de `v100` y `z1`. La lógica de interacción con el entorno se definió mediante el mapeo de las siguientes señales digitales:
+La validación del sistema se realizó primero en RobotStudio. Tras calibrar el `ToolData` y el `WorkObject`, se programaron las secuencias de movimiento con parámetros nominales de `v100` y `z10`. La lógica de interacción con el entorno se definió mediante el mapeo de las siguientes señales digitales, integrando rutinas de apoyo y seguridad:
 
-* **DI_01:** Inicia el ciclo principal. Activa la banda transportadora durante 3 segundos para el posicionamiento de la pieza, ejecuta la rutina de interpolación (decoración) y, al retornar el robot a su posición Home, reactiva la banda por 5 segundos para la evacuación del producto.
-* **DI_02:** Desplaza el manipulador a una pose segura de mantenimiento (facilitando el cambio de herramienta) y pausa el sistema por un máximo de 10 segundos o hasta recibir una nueva confirmación.
-* **DI_03:** Controla el retroceso manual de la banda transportadora durante 3 segundos para la calibración inicial de la posición del objeto.
-* **DO_01:** Señalización óptica (piloto) activa durante la ejecución de la trayectoria de decoración.
-* **DO_03:** Señalización óptica (piloto) activa mientras el robot permanece en la pose de mantenimiento.
+* **Rutina de Decoración (DI_01):** Al activarse esta condición, se enciende el **indicador de Luz 1 (DO_01)**. El sistema habilita el avance de la banda, realiza una espera de 3 segundos para el posicionamiento, ejecuta la trayectoria de decoración y finaliza con el retiro del pastel mediante la reactivación de la banda antes de retornar a *Home*.
+* **Apoyo Físico / Ubicación (DI_01 y DI_02):** Rutina diseñada para el posicionamiento del robot en la posición donde debe ir el pastel. Durante su ejecución, se activan simultáneamente las salidas **Luz 1 y Luz 2 (DO_01 y DO_02)** para indicar la intervención en la celda.
+* **Modo Mantenimiento (DI_02):** Traslada el manipulador a una zona segura y activa la **Luz 2 (DO_02)**. El sistema permanece en espera hasta detectar un segundo accionamiento de la señal o cumplir un tiempo límite de 10 segundos para retomar el bucle principal.
+* **Reinicio Secuencial (DI_03):** Implementación de una lógica de doble estado para la gestión de la banda transportadora: 
+    * **1er Accionamiento:** Posicionamiento en zona de decorado.
+    * **2do Accionamiento:** Retorno a posición inicial. 
+    Esta rutina activa el **indicador de Luz 3 (DO_03)** y habilita el retroceso de la banda por 3 segundos, a la par que traslada el manipulador al *Home*.
+* **Retorno Directo a Home (DI_02 y DI_03):** Condición de seguridad que permite el traslado inmediato del manipulador a su posición base.
+* **Gestión de Indicadores (DO):** Se definieron tres salidas digitales (`DO_01`, `DO_02`, `DO_03`) para señalizar visualmente cada estado de la operación y garantizar la seguridad del operario durante las rutinas de apoyo y mantenimiento.
 
-Finalizada la simulación, la lógica fue transferida a la celda de manufactura real, donde se ajustaron las calibraciones del TCP y del objeto de trabajo para compensar las tolerancias de fabricación y la topología física del laboratorio.
+Finalizada la simulación, la lógica fue transferida a la estación de manufactura real, donde se ajustaron las calibraciones del TCP y del objeto de trabajo para compensar las tolerancias de fabricación y la topología física del laboratorio.
 
 <div align="center">
     <img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
