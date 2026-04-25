@@ -60,10 +60,10 @@ La validación del sistema se realizó primero en RobotStudio. Tras calibrar el 
 * **Apoyo Físico / Ubicación (DI_01 y DI_02):** Rutina diseñada para el posicionamiento del robot en la posición donde debe ir el pastel. Durante su ejecución, se activan simultáneamente las salidas **Luz 1 y Luz 2 (DO_01 y DO_02)** para indicar la intervención en la celda.
 * **Modo Mantenimiento (DI_02):** Traslada el manipulador a una zona segura y activa la **Luz 2 (DO_02)**. El sistema permanece en espera hasta detectar un segundo accionamiento de la señal o cumplir un tiempo límite de 10 segundos para retomar el bucle principal.
 * **Reinicio Secuencial (DI_03):** Implementación de una lógica de doble estado para la gestión de la banda transportadora: 
-    * **1er Accionamiento:** Posicionamiento en zona de decorado.
-    * **2do Accionamiento:** Retorno a posición inicial.
-    <br>
-    Esta rutina activa el **indicador de Luz 3 (DO_03)** y habilita el retroceso de la banda por 3 segundos, a la par que traslada el manipulador al *Home*.
+  * **1er Accionamiento:** Posicionamiento en zona de decorado.
+  * **2do Accionamiento:** Retorno a posición inicial. 
+  
+  Esta rutina activa el **indicador de Luz 3 (DO_03)** y habilita el retroceso de la banda por 3 segundos, a la par que traslada el manipulador al *Home*.
 
 * **Retorno Directo a Home (DI_02 y DI_03):** Condición de seguridad que permite el traslado inmediato del manipulador a su posición base.
 
