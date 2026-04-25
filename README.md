@@ -62,12 +62,26 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 - **Carrera:** Ingeniería Mecatrónica
 - **Correo institucional:** dpirateque@unal.edu.co
 - **Usuario de GitHub:** [DavidPirateque](https://github.com/DavidPirateque)
-- **Rol en el equipo:** Ej. Integración ROS 2, documentación, simulación
-- **Intereses:** Robótica móvil, visión artificial, automatización
-- **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+- **Rol en el equipo:** Programación, organización de actividades y documentación técnica.
+- **Intereses:** Automatización industrial, robótica, gemelos digitales y sistemas de control.
+- **Descripción breve:** Estudiante de Ingeniería Mecatrónica con formación práctica en instrumentación, diseño mecánico y eletrónico, y automatización de procesos industriales. Experiencia en el desarrollo de hardware con microcontroladores, programación de PLCs y uso de entornos de simulación industrial (Siemens NX). Conocimientos aplicados en la implementación y sintonía de estrategias de control clásico para plantas físicas. Interesado en el área de soldadura, automatización, sistemas de control y su integración en robótica industrial y .
 
 ---
+
+### Integrante 1
+<div align="center">
+  <img src="./assets/integrantes/integrante1.jpg" alt="Foto integrante 1" style="border-radius: 50%; width: 180px;"><br>
+</div>
+
+- **Nombre completo:** David Santiago Pirateque Suarez
+- **Carrera:** Ingeniería Mecatrónica
+- **Correo institucional:** dpirateque@unal.edu.co
+- **Usuario de GitHub:** [DavidPirateque](https://github.com/DavidPirateque)
+- **Rol en el equipo:** Programación, organización de actividades y documentación técnica.
+- **Intereses:** Automatización industrial, robótica, manufactura aditiva y gemelos digitales.
+- **Descripción breve:** Estudiante de Ingeniería Mecatrónica con formación práctica en instrumentación, diseño mecatrónico y automatización de procesos. Experiencia en el desarrollo de hardware con microcontroladores, programación de PLCs, simulación industrial (Siemens NX) e implementación de estrategias de control PID para plantas físicas. Conocimientos complementarios en procesos de fabricación, soldadura, ensayos no destructivos (END) y manufactura aditiva. 
+
+
 
 ### Integrante 2
 <div align="center">
