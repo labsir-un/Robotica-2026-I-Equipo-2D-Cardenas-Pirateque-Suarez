@@ -61,15 +61,23 @@ La validación del sistema se realizó primero en RobotStudio. Tras calibrar el 
 * **Modo Mantenimiento (DI_02):** Traslada el manipulador a una zona segura y activa la **Luz 2 (DO_02)**. El sistema permanece en espera hasta detectar un segundo accionamiento de la señal o cumplir un tiempo límite de 10 segundos para retomar el bucle principal.
 * **Reinicio Secuencial (DI_03):** Implementación de una lógica de doble estado para la gestión de la banda transportadora: 
     * **1er Accionamiento:** Posicionamiento en zona de decorado.
-    * **2do Accionamiento:** Retorno a posición inicial. 
+    * **2do Accionamiento:** Retorno a posición inicial.
+    <br>
     Esta rutina activa el **indicador de Luz 3 (DO_03)** y habilita el retroceso de la banda por 3 segundos, a la par que traslada el manipulador al *Home*.
+
 * **Retorno Directo a Home (DI_02 y DI_03):** Condición de seguridad que permite el traslado inmediato del manipulador a su posición base.
+
 * **Gestión de Indicadores (DO):** Se definieron tres salidas digitales (`DO_01`, `DO_02`, `DO_03`) para señalizar visualmente cada estado de la operación y garantizar la seguridad del operario durante las rutinas de apoyo y mantenimiento.
 
+<br>
+
 <div align="center">
-<img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
-<b>Figura 5. Entorno de simulación en RobotStudio.</b>
+  <img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;">
+  <br>
+  <b>Figura 5. Entorno de simulación en RobotStudio.</b>
 </div>
+
+<br>
 
 Es pertinente señalar que, dentro del entorno virtual de RobotStudio, la cinemática de la banda transportadora fue emulada mediante el uso de *Smart Components*. Específicamente, se implementó el bloque `LinearMove2` para generar el desplazamiento directo del *WorkObject*. 
 
