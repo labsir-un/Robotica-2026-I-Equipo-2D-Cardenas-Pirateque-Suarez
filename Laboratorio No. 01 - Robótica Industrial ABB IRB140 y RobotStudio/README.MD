@@ -17,7 +17,7 @@
 
 ## 1. Introducción
 
-En el presente laboratorio se abordan los principios fundamentales de la robótica industrial mediante la programación de trayectorias, el diseño y calibración de herramientas (ToolData), y la integración de señales de control a través de entradas y salidas digitales (E/S). La práctica se desarrolla sobre un manipulador ABB IRB 140 controlado por la unidad IRC5, operando en conjunto con una banda transportadora. Este entorno físico se replica computacionalmente mediante el uso de gemelos digitales en el software RobotStudio, permitiendo la validación previa de la lógica de control.
+En el presente laboratorio se estudian los principios fundamentales de la robótica industrial mediante la programación de trayectorias, el diseño y calibración de herramientas (ToolData), y la integración de señales de control a través de entradas y salidas digitales (E/S). La práctica se desarrolla sobre un manipulador ABB IRB 140 controlado por la unidad IRC5, operando en conjunto con una banda transportadora. Este entorno físico se replica computacionalmente mediante el uso de gemelos digitales en el software RobotStudio, permitiendo la validación previa de la lógica de control.
 
 El escenario de aplicación se inspira en la automatización de la industria alimentaria, proponiendo la ejecución de una rutina de decoración sobre una superficie virtual (torta). Para la resolución de este problema, se establecieron los siguientes requerimientos técnicos:
 
@@ -75,39 +75,7 @@ Finalizada la simulación, la lógica fue transferida a la celda de manufactura 
 
 El siguiente diagrama ilustra la arquitectura lógica implementada en el controlador, detallando el ciclo de escaneo de señales y las decisiones operativas de la estación.
 
-```mermaid
-flowchart TD
-    A([Inicio de Programa]) --> B[Bucle Principal / Ciclo Infinito]
-    
-    B --> C1[Reset de salidas DO_01 y DO_03]
-    C1 --> C2[Posicionamiento en HOME]
-    
-    C2 --> D{¿DI_03 == 1?}
-    
-    D -->|Sí| E[Activar BWD_Conveyor por 3s]
-    E --> F[Desactivar BWD_Conveyor]
-    F --> B
-    
-    D -->|No| G{¿DI_02 == 1?}
-    
-    G -->|Sí| H[Interpolación a pose de Mantenimiento]
-    H --> I[Set DO_03 ON]
-    I --> J{¿DI_02 == 0?}
-    J -->|Sí| K[WaitTime 10s]
-    K --> J
-    J -->|No| L[Reset DO_03 OFF]
-    L --> B
-    
-    G -->|No| M{¿DI_01 == 1?}
-    
-    M -->|Sí| N[Set DO_01 ON]
-    N --> O[Activar FWD_Conveyor por 3s]
-    O --> P[Posicionamiento de aproximación]
-    P --> Q[Ejecución de Rutinas: Path_170, Path_190, Path_200, Path_210]
-    Q --> R[Retorno a HOME]
-    R --> S[Activar FWD_Conveyor por 5s]
-    S --> T[Reset DO_01 OFF]
-    T --> B
-    
-    M -->|No| U[Mantener en HOME]
-    U --> B
+<div align="center">
+  <img src="images/nombre_de_tu_imagen.png" alt="Diagrama de Flujo" width="600px"><br>
+  <b>Figura 5. Diagrama de flujo de la rutina principal y subrutinas.</b>
+</div>
