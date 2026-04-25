@@ -45,7 +45,7 @@ Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un ma
     <b>Figura 3. Planificación de rutas de decoración</b>
   </div>
   <div style="display: inline-block; vertical-align: top; margin: 5px;">
-    <img src="Images/disenopas.png" width="230"><br>
+    <img src="Images/DisenoCADPastel.png" width="230"><br>
     <b>Figura 4. Modelado CAD del Pastel</b>
   </div>
 </div>
