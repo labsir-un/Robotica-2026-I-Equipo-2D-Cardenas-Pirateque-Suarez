@@ -61,7 +61,7 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 - **Nombre completo:** David Santiago Pirateque Suarez
 - **Carrera:** Ingeniería Mecatrónica
 - **Correo institucional:** dpirateque@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/DavidPirateque)
+- **Usuario de GitHub:** [DavidPirateque](https://github.com/DavidPirateque)
 - **Rol en el equipo:** Ej. Integración ROS 2, documentación, simulación
 - **Intereses:** Robótica móvil, visión artificial, automatización
 - **Descripción breve:**  
