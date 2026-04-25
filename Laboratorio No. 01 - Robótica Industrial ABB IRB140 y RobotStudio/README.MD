@@ -37,15 +37,15 @@ Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un ma
 
 <div align="center" style="display: flex; justify-content: center; flex-wrap: nowrap;">
   <div style="display: inline-block; vertical-align: top; margin: 5px;">
-    <img src="images/disenomar.png" width="230"><br>
+    <img src="Images/DisenoCADHerramienta.png" width="230"><br>
     <b>Figura 2. Diseño 3D de la Herramienta</b>
   </div>
   <div style="display: inline-block; vertical-align: top; margin: 5px;">
-    <img src="images/Dibujopastel.png" width="230"><br>
+    <img src="Images/Dibujopastel.png" width="230"><br>
     <b>Figura 3. Planificación de rutas de decoración</b>
   </div>
   <div style="display: inline-block; vertical-align: top; margin: 5px;">
-    <img src="images/disenopas.png" width="230"><br>
+    <img src="Images/disenopas.png" width="230"><br>
     <b>Figura 4. Modelado CAD del Pastel</b>
   </div>
 </div>
