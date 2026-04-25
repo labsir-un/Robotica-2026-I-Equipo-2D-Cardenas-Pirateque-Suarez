@@ -5,37 +5,13 @@
     <img src="https://imgur.com/Os03JoE.png" alt="Escudo UNAL" width="350px">
 </picture>
 
-<h3>Curso de Robótica 2026-I</h3>
-
-<h1>Compilado de Informes de Laboratorio de Robótica</h1>
-<h2>Laboratorio No. 01: Robótica Industrial - Trayectorias, Entradas y Salidas Digitales</h2>
-
+<h1>Laboratorio No. 01: Robótica Industrial - Trayectorias, Entradas y Salidas Digitales</h1>
 <h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
 <br>
 <img src="images/abbs.jpeg" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
 <b>Figura 1. Celda de manufactura con manipuladores ABB IRB 140.</b>
 </div>
-
----
-
-## Integrantes del equipo
-
-### Integrante 1
-<div align="center">
-  <img src="./assets/integrantes/integrante1.jpg" alt="Foto integrante 1" style="border-radius: 50%; width: 180px;"><br>
-</div>
-
-- **Nombre completo:** David Santiago Pirateque Suarez
-- **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** dpirateque@unal.edu.co
-- **Usuario de GitHub:** [DavidPirateque](https://github.com/DavidPirateque)
-- **Rol en el equipo:** Programación, organización de actividades y documentación técnica.
-- **Intereses:** Automatización industrial, robótica, manufactura aditiva y gemelos digitales.
-- **Descripción breve:**
-  Estudiante de Ingeniería Mecatrónica con sólida formación en instrumentación, automatización de procesos y diseño mecatrónico. Experiencia práctica en el desarrollo de hardware con microcontroladores, programación de PLCs, simulación industrial (Siemens NX) e implementación de estrategias de control PID en plantas físicas. Cuenta con bases complementarias en procesos de fabricación, incluyendo soldadura, ensayos no destructivos (END) y manufactura aditiva de metales. Actualmente orientando estas competencias técnicas hacia las áreas de automatización, sistemas de control, inteligencia artificial y robótica.
-
-*(Nota: Añadir aquí los bloques de los demás integrantes siguiendo esta misma estructura).*
 
 ---
 
