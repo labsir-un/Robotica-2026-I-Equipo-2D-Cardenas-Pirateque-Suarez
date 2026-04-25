@@ -65,8 +65,8 @@ La validación del sistema se realizó primero en RobotStudio. Tras calibrar el 
 Finalizada la simulación, la lógica fue transferida a la celda de manufactura real, donde se ajustaron las calibraciones del TCP y del objeto de trabajo para compensar las tolerancias de fabricación y la topología física del laboratorio.
 
 <div align="center">
-<img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
-<b>Figura 5. Entorno de simulación en RobotStudio.</b>
+    <img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
+    <b>Figura 5. Entorno de simulación en RobotStudio.</b>
 </div>
 
 ---
@@ -76,6 +76,6 @@ Finalizada la simulación, la lógica fue transferida a la celda de manufactura 
 El siguiente diagrama ilustra la arquitectura lógica implementada en el controlador, detallando el ciclo de escaneo de señales y las decisiones operativas de la estación.
 
 <div align="center">
-  <img src="images/DiagramaFlujo_AccionesRobot.png" alt="Diagrama de Flujo" width="1000px"><br>
-  <b>Figura 5. Diagrama de flujo de la rutina principal y subrutinas.</b>
+<img src="images/DiagramaFlujo_AccionesRobot.png" alt="Diagrama de Flujo" width="1000px"><br>
+<b>Figura 5. Diagrama de flujo de la rutina principal y subrutinas.</b>
 </div>
