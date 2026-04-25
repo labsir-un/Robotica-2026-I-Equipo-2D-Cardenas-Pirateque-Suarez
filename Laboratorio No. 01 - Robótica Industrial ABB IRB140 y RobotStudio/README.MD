@@ -36,7 +36,7 @@ La estrategia de resolución se dividió en dos fases: la preparación del entor
 Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un marcador. En el entorno de simulación, se estableció un *WorkObject* con dimensiones de **25×20×7 cm** para representar la superficie de trabajo, **el cual fue posicionado espacialmente sobre la banda transportadora principal de la celda.** Sobre estas coordenadas geométricas se diseñaron las trayectorias correspondientes a la decoración y a la escritura de los nombres.
 
 <p align="center">
-  <img src="Images/disenomar.png" width="250" /> <img src="Images/Dibujopastel.png" width="250" /> <img src="Images/DisenoCADPastel.png" width="250" />
+  <img src="DisenoCADHerramienta.png" width="250" /> <img src="Images/Dibujopastel.png" width="250" /> <img src="Images/DisenoCADPastel.png" width="250" />
   <br>
   <b>Figura 2.</b> Modelado de herramienta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 3.</b> Diseño de trayectorias &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 4.</b> Modelado del WorkObject
 </p>
