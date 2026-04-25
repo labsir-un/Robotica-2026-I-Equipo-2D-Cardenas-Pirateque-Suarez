@@ -76,6 +76,6 @@ Finalizada la simulación, la lógica fue transferida a la celda de manufactura 
 El siguiente diagrama ilustra la arquitectura lógica implementada en el controlador, detallando el ciclo de escaneo de señales y las decisiones operativas de la estación.
 
 <div align="center">
-  <img src="images/nombre_de_tu_imagen.png" alt="Diagrama de Flujo" width="600px"><br>
+  <img src="images/DiagramaFlujo_AccionesRobot.jpg" alt="Diagrama de Flujo" width="600px"><br>
   <b>Figura 5. Diagrama de flujo de la rutina principal y subrutinas.</b>
 </div>
