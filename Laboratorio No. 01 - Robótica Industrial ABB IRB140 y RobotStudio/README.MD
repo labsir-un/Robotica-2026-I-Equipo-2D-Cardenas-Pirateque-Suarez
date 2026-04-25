@@ -64,7 +64,8 @@ La validación del sistema se realizó primero en RobotStudio. Tras calibrar el 
 
 * **Reinicio Secuencial (DI_03):** Implementación de una lógica de doble estado para la gestión de la banda transportadora: 
   * **1er Accionamiento:** Posicionamiento en zona de decorado.
-  * **2do Accionamiento:** Retorno a posición inicial. 
+  * **2do Accionamiento:** Retorno a posición inicial.
+
   Esta rutina activa el **indicador de Luz 3 (DO_03)** y habilita el retroceso de la banda por 3 segundos, a la par que traslada el manipulador al *Home*.
 
 * **Retorno Directo a Home (DI_02 y DI_03):** Condición de seguridad que permite el traslado inmediato del manipulador a su posición base.
