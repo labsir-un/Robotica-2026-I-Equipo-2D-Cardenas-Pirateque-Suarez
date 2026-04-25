@@ -57,8 +57,11 @@ Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un ma
 La validación del sistema se realizó primero en RobotStudio. Tras calibrar el `ToolData` y el `WorkObject`, se programaron las secuencias de movimiento con parámetros nominales de `v150` y `z5`, es decir, velocidad de 150mm/s y tolerancia de 5mm, **lo cual garantiza un trazo fluido sin comprometer la precisión requerida en los contornos curvos de las letras.** La lógica de interacción con el entorno se definió mediante el mapeo de las siguientes señales digitales, integrando rutinas de apoyo y seguridad:
 
 * **Rutina de Decoración (DI_01):** Al activarse esta condición, se enciende el **indicador de Luz 1 (DO_01)**. El sistema habilita el avance de la banda, realiza una espera de 3 segundos para el posicionamiento, ejecuta la trayectoria de decoración y finaliza con el retiro del pastel mediante la reactivación de la banda antes de retornar a *Home*.
+
 * **Apoyo Físico / Ubicación (DI_01 y DI_02):** Rutina diseñada para el posicionamiento del robot en la posición donde debe ir el pastel. Durante su ejecución, se activan simultáneamente las salidas **Luz 1 y Luz 2 (DO_01 y DO_02)** para indicar la intervención en la celda.
-* **Modo Mantenimiento (DI_02):** Traslada el manipulador a una zona segura y activa la **Luz 2 (DO_02)**. El sistema permanece en espera hasta detectar un segundo accionamiento de la señal o cumplir un tiempo límite de 10 segundos para retomar el bucle principal.
+
+* **Modo Mantenimiento (DI_02):** Traslada el manipulador a una zona segura de mantenimiento y activa la **Luz 2 (DO_02)**. Al finalizar la rutina, se apaga el indicador y el sistema retorna al bucle de ejecución continua.
+
 * **Reinicio Secuencial (DI_03):** Implementación de una lógica de doble estado para la gestión de la banda transportadora: 
   * **1er Accionamiento:** Posicionamiento en zona de decorado.
   * **2do Accionamiento:** Retorno a posición inicial. 
