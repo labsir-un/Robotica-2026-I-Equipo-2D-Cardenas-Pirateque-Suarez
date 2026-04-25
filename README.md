@@ -63,8 +63,9 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 - **Correo institucional:** dpirateque@unal.edu.co
 - **Usuario de GitHub:** [DavidPirateque](https://github.com/DavidPirateque)
 - **Rol en el equipo:** Programación, organización de actividades y documentación técnica.
-- **Intereses:** Automatización industrial, robótica, gemelos digitales y sistemas de control.
-- **Descripción breve:** Estudiante de Ingeniería Mecatrónica con formación práctica en instrumentación, diseño mecánico y eletrónico, y automatización de procesos industriales. Experiencia en el desarrollo de hardware con microcontroladores, programación de PLCs y uso de entornos de simulación industrial (Siemens NX). Conocimientos aplicados en la implementación y sintonía de estrategias de control clásico para plantas físicas. Interesado en el área de soldadura, automatización, sistemas de control y su integración en robótica industrial y .
+- **Intereses:** Automatización industrial, robótica movil e industrial, IA, gemelos digitales.
+- **Descripción breve:**
+  Estudiante de Ingeniería Mecatrónica con formación práctica en instrumentación, diseño mecánico y eletrónico, y automatización de procesos. Experiencia en el desarrollo de hardware con microcontroladores, programación de PLCs y uso de entornos de simulación industrial. Conocimientos aplicados en la implementación y sintonía de estrategias de control clásico para plantas físicas. Conocimientos complementarios en procesos de fabricación, soldadura, ensayos no destructivos (END) y manufactura aditiva. Orientado a las areas de automatización industrial, sistemas de control de movimiento preciso y su integración con inteligencia artificial y robótica movil e industrial.
 
 ---
 
@@ -79,7 +80,7 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 - **Usuario de GitHub:** [DavidPirateque](https://github.com/DavidPirateque)
 - **Rol en el equipo:** Programación, organización de actividades y documentación técnica.
 - **Intereses:** Automatización industrial, robótica, manufactura aditiva y gemelos digitales.
-- **Descripción breve:** Estudiante de Ingeniería Mecatrónica con formación práctica en instrumentación, diseño mecatrónico y automatización de procesos. Experiencia en el desarrollo de hardware con microcontroladores, programación de PLCs, simulación industrial (Siemens NX) e implementación de estrategias de control PID para plantas físicas. Conocimientos complementarios en procesos de fabricación, soldadura, ensayos no destructivos (END) y manufactura aditiva. 
+- **Descripción breve:** Estudiante de Ingeniería Mecatrónica con formación práctica en instrumentación, diseño mecatrónico y automatización de procesos. Experiencia en el desarrollo de hardware con microcontroladores, programación de PLCs, simulación industrial (Siemens NX) e implementación de estrategias de control PID para plantas físicas. 
 
 
 
