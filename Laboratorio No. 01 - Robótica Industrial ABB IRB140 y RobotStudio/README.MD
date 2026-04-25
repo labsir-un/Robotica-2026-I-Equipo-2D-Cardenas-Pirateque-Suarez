@@ -38,7 +38,7 @@ Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un ma
 <p align="center">
   <img src="images/disenomar.png" width="250" /> <img src="images/Dibujopastel.png" width="250" /> <img src="images/disenopas.png" width="250" />
   <br>
-  <b>Figura 2.</b> Diseño 3D de la Herramienta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 3.</b> Planificación de rutas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 4.</b> Modelado CAD del Pastel
+  <b>Figura 2.</b> Modelado de herramienta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 3.</b> Diseño de trayectorias &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 4.</b> Modelado del WorkObject
 </p>
 
 La validación del sistema se realizó primero en RobotStudio. Tras calibrar el `ToolData` y el `WorkObject`, se programaron las secuencias de movimiento con parámetros nominales de `v150` y `z5`, es decir, velocidad de 150mm/s y tolerancia de 5mm, **lo cual garantiza un trazo fluido sin comprometer la precisión requerida en los contornos curvos de las letras.** La lógica de interacción con el entorno se definió mediante el mapeo de las siguientes señales digitales, integrando rutinas de apoyo y seguridad:
