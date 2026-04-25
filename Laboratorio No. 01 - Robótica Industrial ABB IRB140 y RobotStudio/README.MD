@@ -33,7 +33,7 @@ El escenario de aplicación se inspira en la automatización de la industria ali
 
 La estrategia de resolución se dividió en dos fases: la preparación del entorno de trabajo (físico y virtual) y la arquitectura de control en lenguaje RAPID.
 
-Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un marcador. En el entorno de simulación, se estableció un *WorkObject* con dimensiones de **25×20×7 cm** para representar la superficie de trabajo. Sobre estas coordenadas geométricas se diseñaron las trayectorias correspondientes a la decoración y a la escritura de los nombres.
+Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un marcador. En el entorno de simulación, se estableció un *WorkObject* con dimensiones de **25×20×7 cm** para representar la superficie de trabajo, **el cual fue posicionado espacialmente sobre la banda transportadora principal de la celda.** Sobre estas coordenadas geométricas se diseñaron las trayectorias correspondientes a la decoración y a la escritura de los nombres.
 
 <div align="center">
 <table>
@@ -54,7 +54,7 @@ Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un ma
 </table>
 </div>
 
-La validación del sistema se realizó primero en RobotStudio. Tras calibrar el `ToolData` y el `WorkObject`, se programaron las secuencias de movimiento con parámetros nominales de `v100` y `z10`. La lógica de interacción con el entorno se definió mediante el mapeo de las siguientes señales digitales, integrando rutinas de apoyo y seguridad:
+La validación del sistema se realizó primero en RobotStudio. Tras calibrar el `ToolData` y el `WorkObject`, se programaron las secuencias de movimiento con parámetros nominales de `v150` y `z5`, es decir, velocidad de 150mm/s y tolerancia de 5mm, **lo cual garantiza un trazo fluido sin comprometer la precisión requerida en los contornos curvos de las letras.** La lógica de interacción con el entorno se definió mediante el mapeo de las siguientes señales digitales, integrando rutinas de apoyo y seguridad:
 
 * **Rutina de Decoración (DI_01):** Al activarse esta condición, se enciende el **indicador de Luz 1 (DO_01)**. El sistema habilita el avance de la banda, realiza una espera de 3 segundos para el posicionamiento, ejecuta la trayectoria de decoración y finaliza con el retiro del pastel mediante la reactivación de la banda antes de retornar a *Home*.
 * **Apoyo Físico / Ubicación (DI_01 y DI_02):** Rutina diseñada para el posicionamiento del robot en la posición donde debe ir el pastel. Durante su ejecución, se activan simultáneamente las salidas **Luz 1 y Luz 2 (DO_01 y DO_02)** para indicar la intervención en la celda.
@@ -66,11 +66,32 @@ La validación del sistema se realizó primero en RobotStudio. Tras calibrar el 
 * **Retorno Directo a Home (DI_02 y DI_03):** Condición de seguridad que permite el traslado inmediato del manipulador a su posición base.
 * **Gestión de Indicadores (DO):** Se definieron tres salidas digitales (`DO_01`, `DO_02`, `DO_03`) para señalizar visualmente cada estado de la operación y garantizar la seguridad del operario durante las rutinas de apoyo y mantenimiento.
 
-Finalizada la simulación, la lógica fue transferida a la estación de manufactura real, donde se ajustaron las calibraciones del TCP y del objeto de trabajo para compensar las tolerancias de fabricación y la topología física del laboratorio.
+<div align="center">
+<img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
+<b>Figura 5. Entorno de simulación en RobotStudio.</b>
+</div>
+
+Es pertinente señalar que, dentro del entorno virtual de RobotStudio, la cinemática de la banda transportadora fue emulada mediante el uso de *Smart Components*. Específicamente, se implementó el bloque `LinearMove2` para generar el desplazamiento directo del *WorkObject*. 
+
+Una vez corroborada la lógica computacional, se avanzó a la implementación en la celda física. Este proceso inició con la calibración del TCP del actuador y la definición del sistema de coordenadas de la pieza real. Al ejecutar el programa en RAPID, se requirió un ajuste iterativo para compensar las leves discrepancias de posicionamiento físico frente al modelo ideal, logrando finalmente la ejecución precisa de la trayectoria de decorado.
 
 <div align="center">
-    <img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
-    <b>Figura 5. Entorno de simulación en RobotStudio.</b>
+<table>
+  <tr>
+    <td align="center">
+      <img src="Images/Figura6_Herramienta.jpg" width="250"><br>
+      <b>Figura 6. Herramienta acoplada al manipulador</b>
+    </td>
+    <td align="center">
+      <img src="Images/Figura7_Decoracion.jpg" width="250"><br>
+      <b>Figura 7. Trazado final obtenido</b>
+    </td>
+    <td align="center">
+      <img src="Images/Figura8_Torta.jpg" width="250"><br>
+      <b>Figura 8. Objeto de trabajo en estación física</b>
+    </td>
+  </tr>
+</table>
 </div>
 
 ---
