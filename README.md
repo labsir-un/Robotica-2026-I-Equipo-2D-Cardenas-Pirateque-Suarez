@@ -13,8 +13,8 @@
 
 
 <h4>David Santiago Pirateque Suarez<br>
-    Nombre Jose Daniel Suarez Vasques<br>
-    Nombre David Felipe Cardenas Cubides</h4>
+     Jose Daniel Suarez Vasques<br>
+     David Felipe Cardenas Cubides</h4>
 
 <p>
   <img alt="Ubuntu 24.04 LTS" src="https://img.shields.io/badge/Ubuntu-24.04%20LTS-E95420?logo=ubuntu&logoColor=white">
