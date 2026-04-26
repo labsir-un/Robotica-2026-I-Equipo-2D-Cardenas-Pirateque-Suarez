@@ -139,6 +139,7 @@ El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda tr
 ## 5. Descripción de las funciones utilizadas
 
 Para el desarrollo de la arquitectura de control de la estación, se implementaron instrucciones de trayectoria y gestión de señales en lenguaje RAPID, complementadas con herramientas de emulación cinemática dentro del entorno virtual de RobotStudio.
+
 <br>
 
 ### 5.1. Funciones de movimiento
