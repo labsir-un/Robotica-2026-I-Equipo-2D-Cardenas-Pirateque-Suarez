@@ -9,7 +9,7 @@
 <h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
 <br>
-<img src="images/abbs.jpeg" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
+<img src="images/abbs.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
 <b>Figura 1. Celda de manufactura con manipuladores ABB IRB 140.</b>
 </div>
 
