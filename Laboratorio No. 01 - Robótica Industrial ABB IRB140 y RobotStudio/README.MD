@@ -140,6 +140,7 @@ El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda tr
 
 Para el desarrollo de la arquitectura de control de la estación, se implementaron instrucciones de trayectoria y gestión de señales en lenguaje RAPID, complementadas con herramientas de emulación cinemática dentro del entorno virtual de RobotStudio.
 <br>
+
 ### 5.1. Funciones de movimiento
 
 Estas instrucciones definen el comportamiento cinemático del Centro de Punto de Herramienta (TCP) del manipulador durante el ciclo de trabajo:
@@ -183,6 +184,7 @@ MoveC Target_9070, Target_9080, v150, z5, MyNewTool\WObj:=Workobject_1;
 * *(Los parámetros de velocidad, zona, herramienta y WorkObject mantienen la estructura previamente descrita).*
 
 <br>
+
 ### 5.2. Funciones de control
 
 El control lógico del flujo de operaciones y la sincronización con los actuadores externos (banda y balizas) se gestionó mediante las siguientes instrucciones booleanas y de temporización:
@@ -202,6 +204,7 @@ El control lógico del flujo de operaciones y la sincronización con los actuado
   WaitTime 3;
   ```
 <br>
+
 ### 5.3. Funciones de simulación (Smart Components)
 
 Dado que la banda transportadora física no es un eje acoplado directamente al controlador del robot, su cinemática debió ser emulada en RobotStudio. Para ello, se diseñó una lógica de estación basada en **Smart Components**, utilizando específicamente el bloque funcional `LinearMover2`.
