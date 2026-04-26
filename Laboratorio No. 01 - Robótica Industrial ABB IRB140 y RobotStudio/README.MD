@@ -139,9 +139,7 @@ El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda tr
 ## 5. Descripción de las funciones utilizadas
 
 Para el desarrollo de la arquitectura de control de la estación, se implementaron instrucciones de trayectoria y gestión de señales en lenguaje RAPID, complementadas con herramientas de emulación cinemática dentro del entorno virtual de RobotStudio.
-
 <br>
-
 ### 5.1. Funciones de movimiento
 
 Estas instrucciones definen el comportamiento cinemático del Centro de Punto de Herramienta (TCP) del manipulador durante el ciclo de trabajo:
@@ -185,7 +183,6 @@ MoveC Target_9070, Target_9080, v150, z5, MyNewTool\WObj:=Workobject_1;
 * *(Los parámetros de velocidad, zona, herramienta y WorkObject mantienen la estructura previamente descrita).*
 
 <br>
-
 ### 5.2. Funciones de control
 
 El control lógico del flujo de operaciones y la sincronización con los actuadores externos (banda y balizas) se gestionó mediante las siguientes instrucciones booleanas y de temporización:
@@ -204,9 +201,7 @@ El control lógico del flujo de operaciones y la sincronización con los actuado
   ```rapid
   WaitTime 3;
   ```
-
 <br>
-
 ### 5.3. Funciones de simulación (Smart Components)
 
 Dado que la banda transportadora física no es un eje acoplado directamente al controlador del robot, su cinemática debió ser emulada en RobotStudio. Para ello, se diseñó una lógica de estación basada en **Smart Components**, utilizando específicamente el bloque funcional `LinearMover2`.
@@ -215,9 +210,7 @@ Esta función permite parametrizar el desplazamiento vectorial de un objeto trid
 
 * **SmartComponent_1 (Avance):** Vinculado a la señal de entrada `DI_01`. Al activarse, traslada el objeto de trabajo una distancia de **621.80 mm** en dirección Y negativa (`[0.00, -1.00, 0.00]`) durante 3 segundos, simulando el ingreso de la pieza a la zona de decorado.
 * **SmartComponent_2 (Retroceso):** Vinculado a la rutina de reinicio secuencial. Ejecuta un movimiento inverso al desplazar el objeto en dirección Y positiva (`[0.00, 1.00, 0.00]`), devolviendo el pastel a su posición original.
-
 <br>
-
 <div align="center">
   <table>
     <tr>
@@ -236,7 +229,6 @@ Esta función permite parametrizar el desplazamiento vectorial de un objeto trid
     </tr>
   </table>
 </div>
-
 <br>
 
 ## 6. Codigo en RAPID del modulo utilizado
