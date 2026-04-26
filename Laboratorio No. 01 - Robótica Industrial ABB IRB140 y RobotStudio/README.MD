@@ -96,7 +96,7 @@ Una vez corroborada la lógica computacional, se avanzó a la implementación en
       <b>Figura 6. Herramienta acoplada al manipulador</b>
     </td>
     <td align="center">
-      <img src="Images/Figura7_Decoracion.jpg" width="250"><br>
+      <img src="Images/Figura7_Decoracion.png" width="250"><br>
       <b>Figura 7. Trazado final obtenido</b>
     </td>
     <td align="center">
