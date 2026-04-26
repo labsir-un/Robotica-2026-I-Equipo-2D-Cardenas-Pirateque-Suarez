@@ -110,7 +110,17 @@ Una vez corroborada la lógica computacional, se avanzó a la implementación en
 
 ## 3. Diagrama de Flujo de Acciones
 
-El siguiente diagrama ilustra la arquitectura lógica implementada en el controlador, detallando el ciclo de escaneo de señales y las decisiones operativas de la estación.
+## 3. Diagrama de Flujo de Acciones
+
+El siguiente diagrama detalla la arquitectura lógica de control implementada en lenguaje RAPID. A diferencia de una secuencia lineal básica, la programación se estructuró sobre un **bucle de ejecución continua** que evalúa de forma jerárquica el estado de las señales digitales para tomar decisiones operativas en tiempo real.
+
+Esta topología permite al controlador gestionar sincrónicamente los movimientos del manipulador, la activación de los actuadores externos (banda transportadora) y la señalización visual, dividiendo el proceso en cinco estados principales:
+
+* **Operación Nominal:** Secuencia principal que coordina el posicionamiento de la banda, la ejecución de la trayectoria de decoración y la evacuación de la pieza.
+* **Intervención Manual:** Rutina de apoyo físico que habilita la inserción segura del pastel en la celda de trabajo.
+* **Protocolo de Mantenimiento:** Desplazamiento preventivo a una zona segura para facilitar cambios de herramienta o inspecciones.
+* **Reinicio Secuencial:** Lógica de recuperación de estados que permite reposicionar la banda de forma controlada en dos tiempos.
+* **Retorno a Base:** Condición prioritaria de seguridad para la reubicación inmediata del manipulador en su posición *Home*.
 
 <div align="center">
   <img src="Images/DiagramaFlujo_AccionesRobot.png" alt="Diagrama de Flujo" width="800px"><br>
