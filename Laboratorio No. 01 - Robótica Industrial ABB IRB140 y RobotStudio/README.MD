@@ -35,11 +35,24 @@ La estrategia de resolución se dividió en dos fases: la preparación del entor
 
 Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un marcador. En el entorno de simulación, se estableció un *WorkObject* con dimensiones de **25×20×7 cm** para representar la superficie de trabajo, **el cual fue posicionado espacialmente sobre la banda transportadora principal de la celda.** Sobre estas coordenadas geométricas se diseñaron las trayectorias correspondientes a la decoración y a la escritura de los nombres.
 
-<p align="center">
-  <img src="Images/DisenoCADHerramienta.png" width="400" /> &nbsp;&nbsp; <img src="Images/Dibujopastel.png" width="400" /> &nbsp;&nbsp; <img src="Images/DisenoCADPastel.png" width="400" />
-  <br>
-  <b>Figura 2.</b> Modelado de herramienta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 3.</b> Diseño de trayectorias &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Figura 4.</b> Modelado del WorkObject
-</p>
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/DisenoCADHerramienta.png" width="300"><br>
+        <b>Figura 2. Modelado de herramienta</b>
+      </td>
+      <td align="center">
+        <img src="Images/Dibujopastel.png" width="300"><br>
+        <b>Figura 3. Diseño de trayectorias</b>
+      </td>
+      <td align="center">
+        <img src="Images/DisenoCADPastel.png" width="300"><br>
+        <b>Figura 4. Modelado del WorkObject</b>
+      </td>
+    </tr>
+  </table>
+</div>
 
 La validación del sistema se realizó primero en RobotStudio. Tras calibrar el `ToolData` y el `WorkObject`, se programaron las secuencias de movimiento con parámetros nominales de `v150` y `z5`, es decir, velocidad de 150mm/s y tolerancia de 5mm, **lo cual garantiza un trazo fluido sin comprometer la precisión requerida en los contornos curvos de las letras.** La lógica de interacción con el entorno se definió mediante el mapeo de las siguientes señales digitales, integrando rutinas de apoyo y seguridad:
 
