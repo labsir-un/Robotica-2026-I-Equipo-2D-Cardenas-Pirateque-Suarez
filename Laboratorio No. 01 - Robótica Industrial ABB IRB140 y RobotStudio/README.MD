@@ -235,7 +235,82 @@ Esta función permite parametrizar el desplazamiento vectorial de un objeto trid
 </div>
 <br>
 
-## 6. Codigo en RAPID del modulo utilizado
+
+## 6. Diseño e Implementación de la Herramienta
+
+Para la ejecución de la trayectoria de decoración, se diseñó e implementó un actuador final (herramienta) a la medida, modelado en Autodesk Inventor y manufacturado mediante impresión 3D por deposición de material fundido (FDM) utilizando **PETG**. Se seleccionó este polímero debido a su excelente equilibrio entre tenacidad, resistencia al impacto y estabilidad térmica, propiedades necesarias para soportar los esfuerzos mecánicos durante el acople y la operación del robot.
+
+### 6.1. Arquitectura del Diseño CAD
+
+La herramienta se dividió en tres componentes principales para facilitar su impresión y ensamblaje:
+
+1. **Acople con Brida:** Pieza base diseñada bajo las especificaciones exactas del manual del robot ABB IRB 140. Cuenta con un patrón de cuatro agujeros para tornillos **M6 (paso 1.25 mm)** y, de manera crucial, se le añadió un orificio guía descentrado. Este orificio concuerda con el pin de posicionamiento de la brida del robot, garantizando que la herramienta se acople de manera unívoca y mantenga su repetibilidad espacial sin desfasarse.
+2. **Unión Lisa:** Cuerpo central cilíndrico de la herramienta, que incorpora una base exterior de contorno hexagonal para facilitar su manipulación. Su núcleo es hueco y actúa como "camisa" o guía deslizante para el marcador.
+3. **Tapón Liso:** Elemento de cierre posterior encargado de retener los componentes internos dentro de la Unión Lisa.
+
+🔗 **Planos de manufactura:** Los planos detallados de despiece, ensamblaje y acotado se encuentran disponibles en formato PDF en el siguiente enlace: [Ver Planos de Herramienta (PDF) aquí](./Ruta_A_Tus_Planos.pdf).
+
+<br>
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/Acople_Brida.png" width="220"><br>
+        <b>Acople con Brida</b>
+      </td>
+      <td align="center">
+        <img src="Images/Union_Lisa.png" width="220"><br>
+        <b>Unión Lisa</b>
+      </td>
+      <td align="center">
+        <img src="Images/Tapon_Liso.png" width="220"><br>
+        <b>Tapón Liso</b>
+      </td>
+      <td align="center">
+        <img src="Images/Ensamblaje1.png" width="220"><br>
+        <b>Ensamblaje Final CAD</b>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+
+### 6.2. Mecanismo de Amortiguación y Montaje Físico
+
+Uno de los mayores retos al programar trayectorias de contacto rígido es el riesgo de colisión, que puede derivar en la rotura del marcador o daños en los servomotores del manipulador. Para solucionar esto, el diseño integra un **mecanismo de amortiguación longitudinal**.
+
+Se introdujo un **resorte (elemento elástico)** entre el Tapón Liso y el tope del marcador. Esto le otorga al elemento de escritura un grado de libertad lineal, permitiéndole retraerse ligeramente al entrar en contacto con el pastel. Gracias a esta *complianza mecánica*, la herramienta absorbe las pequeñas tolerancias geométricas de la pieza física, garantizando un trazo de presión constante sin fracturarse.
+
+Para la construcción y puesta a punto de la herramienta física, el ensamblaje se resolvió mediante dos tipos de uniones estratégicas:
+
+* **Unión Fija (Estructural):** Se utilizó adhesivo instantáneo para unir permanentemente el *Acople-Brida* con la *Unión Lisa*, conformando un bloque base sólido y resistente a las vibraciones del robot. Dada la naturaleza del **PETG**, se aseguró una limpieza previa de las superficies para optimizar la adherencia.
+* **Unión Desmontable (Mantenimiento):** Dado que el marcador es un elemento consumible, el diseño permite su extracción rápida. Se perforó un orificio pasante a través de la sección hexagonal de la *Unión Lisa* y el *Tapón Liso* para insertar un **pin extraíble** (pasador). Al retirar este pin, el tapón queda libre, permitiendo el reemplazo inmediato del resorte y el marcador.
+
+<br>
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/Brida_Robot.png" width="280"><br>
+        <b>Especificaciones brida ABB</b>
+      </td>
+      <td align="center">
+        <img src="Images/Fisico_1.jpg" width="280"><br>
+        <b>Mecanismo de pin extraíble</b>
+      </td>
+      <td align="center">
+        <img src="Images/Fisico_2.jpg" width="280"><br>
+        <b>Herramienta impresa en 3D</b>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+## 7. Codigo en RAPID del modulo utilizado
 ```rapid
 MODULE Module1
     CONST robtarget Target_Home:=[[518.48875071,0.469,561.003995976],[0.172530837,0,-0.985004117,0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
