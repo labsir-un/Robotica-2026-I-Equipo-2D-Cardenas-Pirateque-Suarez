@@ -10,7 +10,7 @@
 
 <br>
 <img src="Images/abb.png" alt="ABB" style="border-radius: 5px; width: 400px;"><br>
-<b>Figura 1.Manipulador ABB IRB 140.</b>
+<b>Figura 1. Manipulador ABB IRB 140.</b>
 </div>
 
 ---
