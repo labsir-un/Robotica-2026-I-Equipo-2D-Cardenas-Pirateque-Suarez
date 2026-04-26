@@ -137,54 +137,58 @@ El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda tr
 </div>
 
 
-
-
 ## 5. Descripción de las funciones utilizadas
 
-Para el desarrollo de la arquitectura de control y la simulación de la celda de manufactura, se emplearon diversas instrucciones nativas del lenguaje RAPID y herramientas de emulación de RobotStudio. A continuación, se detallan sus principios de operación.
+Para el desarrollo de la arquitectura de control de la estación, se implementaron instrucciones de trayectoria y gestión de señales en lenguaje RAPID, complementadas con herramientas de emulación cinemática dentro del entorno virtual de RobotStudio.
 
-### 5.1. Funciones de Movimiento
+### 5.1. Funciones de movimiento
 
-Las trayectorias del manipulador se programaron utilizando dos tipos principales de interpolación espacial para garantizar eficiencia en los traslados y precisión en el trazado:
+Estas instrucciones definen el comportamiento cinemático del Centro de Punto de Herramienta (TCP) del manipulador durante el ciclo de trabajo:
 
-* **MoveJ (Movimiento Articular):** Interpolación no lineal que calcula la ruta más rápida para los ejes del manipulador. Se utiliza para desplazar el robot rápidamente de un punto a otro cuando la trayectoria exacta del TCP (*Tool Center Point*) no es crítica. En este código, se empleó para los movimientos de aproximación, los retiros de seguridad en el eje Z y el retorno a la posición `Target_Home`.
-  * *Ejemplo de implementación:* `MoveJ Target_Home,v150,z5,MyNewTool\WObj:=wobj0;`
+* **MoveJ (Movimiento Articular):** Ejecuta desplazamientos rápidos interpolando los ejes del robot de forma no lineal. Se empleó para traslados libres en el espacio donde la trayectoria exacta del TCP no es crítica, como el retorno a la posición de reposo o aproximaciones iniciales.
+  * *Ejemplo implementado:* `MoveJ Target_Home,v150,z5,MyNewTool\WObj:=wobj0;`
+* **MoveL (Movimiento Lineal):** Fuerza al TCP a desplazarse en una línea recta perfecta desde la posición actual hasta el objetivo. Fue la función más utilizada, siendo fundamental para el trazado geométrico preciso de las letras en la rutina de decoración.
+  * *Ejemplo implementado:* `MoveL Target_30,v150,z5,MyNewTool\WObj:=Workobject_1;`
+* **MoveC (Movimiento Circular):** Genera una trayectoria curva calculando el arco entre la posición actual, un punto intermedio y un punto final. Se aplicó estrictamente para resolver las geometrías curvas del diseño (como la sonrisa y el contorno de la figura).
+  * *Ejemplo implementado:* `MoveC Target_9070,Target_9080,v150,z5,MyNewTool\WObj:=Workobject_1;`
 
-* **MoveL (Movimiento Lineal):** Obliga al TCP a moverse trazando una línea recta estricta entre el punto inicial y el destino. Es la instrucción central de la rutina de decoración, ya que garantiza la fidelidad geométrica absoluta al momento de dibujar los caracteres y contornos sobre la superficie del pastel.
-  * *Ejemplo de implementación:* `MoveL Target_30,v150,z5,MyNewTool\WObj:=Workobject_1;`
+### 5.2. Funciones de control
 
-### 5.2. Funciones de Control Lógico
+El control lógico del flujo de operaciones y la sincronización con los actuadores externos (banda y balizas) se gestionó mediante las siguientes instrucciones booleanas y de temporización:
 
-La interacción entre el controlador del robot y los periféricos de la celda (banda transportadora y pilotos de señalización) se gestionó mediante instrucciones de estado y temporización:
+* **Set:** Fuerza el cambio de estado de una señal de salida digital a nivel alto (1 lógico). En la estación, se utilizó para encender los indicadores de luz y dar la orden de arranque (`Enable`) a la banda transportadora.
+  * *Ejemplo implementado:* `SET FWD_Conveyor;`
+* **Reset:** Fuerza el cambio de estado de una señal de salida digital a nivel bajo (0 lógico). Esencial para apagar las señales luminosas al terminar las rutinas y para detener el avance de la banda.
+  * *Ejemplo implementado:* `RESET DO_01;`
+* **WaitTime:** Detiene la lectura del código y pausa la ejecución de la rutina por un periodo definido en segundos. Esta instrucción fue clave para garantizar el correcto posicionamiento físico del pastel sobre la banda transportadora antes de iniciar los descensos de la herramienta.
+  * *Ejemplo implementado:* `WaitTime 3;`
 
-* **Set:** Fuerza una señal de salida digital (DO) a un estado lógico alto (1). Se utilizó para encender los indicadores luminosos de estado y para enviar la señal de habilitación (`FWD_Conveyor`) y dirección (`BWD_Conveyor`) a la banda transportadora.
-  * *Ejemplo de implementación:* `Set DO_01; !Activación de Indicador de Luz 1`
+### 5.3. Funciones de simulación (Smart Components)
 
-* **Reset:** Fuerza una señal de salida digital (DO) a un estado lógico bajo (0). Es indispensable para apagar los pilotos de señalización al finalizar una subrutina o para detener el avance de la banda cortando su señal de *Enable*.
-  * *Ejemplo de implementación:* `RESET FWD_Conveyor; !Desactiva el movimiento de la banda`
+Dado que la banda transportadora física no es un eje acoplado directamente al controlador del robot, su cinemática debió ser emulada en RobotStudio. Para ello, se diseñó una lógica de estación basada en **Smart Components**, utilizando específicamente el bloque funcional `LinearMover2`.
 
-* **WaitTime:** Pausa la ejecución del código RAPID durante un tiempo especificado en segundos. Se implementó estratégicamente para sincronizar la cinemática del robot con el entorno, otorgando el tiempo físico necesario (3 segundos) para que la banda posicione el pastel antes de iniciar el trazado.
-  * *Ejemplo de implementación:* `WaitTime 3; !Tiempo de espera para llegar a posición de decoro`
+Esta función permite parametrizar el desplazamiento vectorial de un objeto tridimensional en el espacio. En este proyecto, se aplicó sobre el `WorkObject1_Pastel1` creando dos componentes inteligentes separados para gestionar las direcciones de la banda:
 
-### 5.3. Simulación de Cinemática Externa (Smart Components)
-
-Dado que la física de una banda transportadora no se emula nativamente a través de las salidas digitales estándar en RobotStudio, se diseñó una lógica de estación paralela utilizando **Smart Components** para replicar el desplazamiento del producto.
-
-* **Bloque LinearMover2:** Esta función vectorial permite trasladar objetos espaciales a lo largo de un eje durante un tiempo determinado. En la simulación, en lugar de animar una banda rodante, este bloque se configuró para desplazar directamente el `WorkObject` (`WorkObject1_Pastel1`) una distancia de 621.80 mm en 3.0 segundos.
-
-* **Lógica de Avance y Retroceso:** Se instanciaron dos componentes inteligentes principales conectados directamente a las señales del controlador virtual (`IRB140_6_81`):
-  * **SmartComponent_1:** Enlazado a la entrada de inicio de ciclo. Al recibir el pulso de ejecución, activa un `LinearMover2` con dirección `[0.00, -1.00, 0.00]`, simulando el ingreso del pastel a la zona de operación.
-  * **SmartComponent_2:** Enlazado a la rutina de reinicio secuencial. Activa un segundo `LinearMover2` invirtiendo el vector de dirección a `[0.00, 1.00, 0.00]` para emular el retorno de la pieza a la posición inicial.
-
-<p align="center">
-  <img src="Images/SmartComponent1.png" width="400" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="Images/SmartComponent2.png" width="400" />
-  <br>
-  <b>Figura 7.</b> Parámetros del bloque LinearMover2 (Avance y Retroceso)
-</p>
+* **SmartComponent_1 (Avance):** Vinculado a la señal de entrada `DI_01`. Al activarse, traslada el objeto de trabajo una distancia de 621.80 mm en dirección Y negativa (`[0.00, -1.00, 0.00]`) durante 3 segundos, simulando el ingreso de la pieza a la zona de decorado. Al finalizar, emite la señal `DO_01`.
+* **SmartComponent_2 (Retroceso):** Vinculado a la rutina de reinicio secuencial. Ejecuta un movimiento inverso al desplazar el objeto en dirección Y positiva (`[0.00, 1.00, 0.00]`), devolviendo el pastel a su posición original.
 
 <div align="center">
-  <img src="Images/LogicaEstacion.png" width="700px"><br>
-  <b>Figura 8. Interconexión de señales I/O del controlador con los Smart Components.</b>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/Logica_Estacion.png" width="300"><br>
+        <b>Figura 9. Diseño lógico de señales en estación</b>
+      </td>
+      <td align="center">
+        <img src="Images/SmartComponent1.png" width="300"><br>
+        <b>Figura 10. Bloque LinearMover2 (Avance)</b>
+      </td>
+      <td align="center">
+        <img src="Images/SmartComponent2.png" width="300"><br>
+        <b>Figura 11. Bloque LinearMover2 (Retroceso)</b>
+      </td>
+    </tr>
+  </table>
 </div>
 
 
