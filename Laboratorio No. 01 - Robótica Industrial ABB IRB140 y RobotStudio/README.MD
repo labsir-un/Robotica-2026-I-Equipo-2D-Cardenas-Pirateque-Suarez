@@ -136,61 +136,6 @@ El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda tr
   <b>Figura 6. Plano de planta y distribución de elementos.</b>
 </div>
 
-
-## 5. Descripción de las funciones utilizadas
-
-Para el desarrollo de la arquitectura de control de la estación, se implementaron instrucciones de trayectoria y gestión de señales en lenguaje RAPID, complementadas con herramientas de emulación cinemática dentro del entorno virtual de RobotStudio.
-
-### 5.1. Funciones de movimiento
-
-Estas instrucciones definen el comportamiento cinemático del Centro de Punto de Herramienta (TCP) del manipulador durante el ciclo de trabajo:
-
-* **MoveJ (Movimiento Articular):** Ejecuta desplazamientos rápidos interpolando los ejes del robot de forma no lineal. Se empleó para traslados libres en el espacio donde la trayectoria exacta del TCP no es crítica, como el retorno a la posición de reposo o aproximaciones iniciales.
-  * *Ejemplo implementado:* `MoveJ Target_Home,v150,z5,MyNewTool\WObj:=wobj0;`
-* **MoveL (Movimiento Lineal):** Fuerza al TCP a desplazarse en una línea recta perfecta desde la posición actual hasta el objetivo. Fue la función más utilizada, siendo fundamental para el trazado geométrico preciso de las letras en la rutina de decoración.
-  * *Ejemplo implementado:* `MoveL Target_30,v150,z5,MyNewTool\WObj:=Workobject_1;`
-* **MoveC (Movimiento Circular):** Genera una trayectoria curva calculando el arco entre la posición actual, un punto intermedio y un punto final. Se aplicó estrictamente para resolver las geometrías curvas del diseño (como la sonrisa y el contorno de la figura).
-  * *Ejemplo implementado:* `MoveC Target_9070,Target_9080,v150,z5,MyNewTool\WObj:=Workobject_1;`
-
-### 5.2. Funciones de control
-
-El control lógico del flujo de operaciones y la sincronización con los actuadores externos (banda y balizas) se gestionó mediante las siguientes instrucciones booleanas y de temporización:
-
-* **Set:** Fuerza el cambio de estado de una señal de salida digital a nivel alto (1 lógico). En la estación, se utilizó para encender los indicadores de luz y dar la orden de arranque (`Enable`) a la banda transportadora.
-  * *Ejemplo implementado:* `SET FWD_Conveyor;`
-* **Reset:** Fuerza el cambio de estado de una señal de salida digital a nivel bajo (0 lógico). Esencial para apagar las señales luminosas al terminar las rutinas y para detener el avance de la banda.
-  * *Ejemplo implementado:* `RESET DO_01;`
-* **WaitTime:** Detiene la lectura del código y pausa la ejecución de la rutina por un periodo definido en segundos. Esta instrucción fue clave para garantizar el correcto posicionamiento físico del pastel sobre la banda transportadora antes de iniciar los descensos de la herramienta.
-  * *Ejemplo implementado:* `WaitTime 3;`
-
-### 5.3. Funciones de simulación (Smart Components)
-
-Dado que la banda transportadora física no es un eje acoplado directamente al controlador del robot, su cinemática debió ser emulada en RobotStudio. Para ello, se diseñó una lógica de estación basada en **Smart Components**, utilizando específicamente el bloque funcional `LinearMover2`.
-
-Esta función permite parametrizar el desplazamiento vectorial de un objeto tridimensional en el espacio. En este proyecto, se aplicó sobre el `WorkObject1_Pastel1` creando dos componentes inteligentes separados para gestionar las direcciones de la banda:
-
-* **SmartComponent_1 (Avance):** Vinculado a la señal de entrada `DI_01`. Al activarse, traslada el objeto de trabajo una distancia de 621.80 mm en dirección Y negativa (`[0.00, -1.00, 0.00]`) durante 3 segundos, simulando el ingreso de la pieza a la zona de decorado. Al finalizar, emite la señal `DO_01`.
-* **SmartComponent_2 (Retroceso):** Vinculado a la rutina de reinicio secuencial. Ejecuta un movimiento inverso al desplazar el objeto en dirección Y positiva (`[0.00, 1.00, 0.00]`), devolviendo el pastel a su posición original.
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="Images/Logica_Estacion.png" width="300"><br>
-        <b>Figura 9. Diseño lógico de señales en estación</b>
-      </td>
-      <td align="center">
-        <img src="Images/SmartComponent1.png" width="300"><br>
-        <b>Figura 10. Bloque LinearMover2 (Avance)</b>
-      </td>
-      <td align="center">
-        <img src="Images/SmartComponent2.png" width="300"><br>
-        <b>Figura 11. Bloque LinearMover2 (Retroceso)</b>
-      </td>
-    </tr>
-  </table>
-</div>
-
 ## 5. Descripción de las funciones utilizadas
 
 Para el desarrollo de la arquitectura de control de la estación, se implementaron instrucciones de trayectoria y gestión de señales en lenguaje RAPID, complementadas con herramientas de emulación cinemática dentro del entorno virtual de RobotStudio.
