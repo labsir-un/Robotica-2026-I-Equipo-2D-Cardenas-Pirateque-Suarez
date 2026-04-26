@@ -100,7 +100,7 @@ Una vez corroborada la lógica computacional, se avanzó a la implementación en
       <b>Figura 7. Trazado final obtenido</b>
     </td>
     <td align="center">
-      <img src="Images/Figura8_Torta.jpg" width="250"><br>
+      <img src="Images/Patel_Fisico.png" width="250"><br>
       <b>Figura 8. Objeto de trabajo en estación física</b>
     </td>
   </tr>
