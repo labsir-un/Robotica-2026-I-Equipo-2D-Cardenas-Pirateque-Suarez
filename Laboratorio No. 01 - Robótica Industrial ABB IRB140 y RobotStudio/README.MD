@@ -92,7 +92,7 @@ Una vez corroborada la lógica computacional, se avanzó a la implementación en
 <table>
   <tr>
     <td align="center">
-      <img src="Images/Herramienta_Fisica.png" width="250"><br>
+      <img src="Images/Herramienta_Acoplada.png" width="250"><br>
       <b>Figura 6. Herramienta acoplada al manipulador</b>
     </td>
     <td align="center">
