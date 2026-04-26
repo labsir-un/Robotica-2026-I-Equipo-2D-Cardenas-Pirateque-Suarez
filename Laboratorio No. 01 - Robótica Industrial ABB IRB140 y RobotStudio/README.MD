@@ -75,7 +75,7 @@ La validación del sistema se realizó primero en RobotStudio. Tras calibrar el 
 <br>
 
 <div align="center">
-  <img src="images/Simu.png" alt="ABB" style="border-radius: 5px; width: 400px;">
+  <img src="Images/SimulaciónRobotStudio.png" alt="ABB" style="border-radius: 5px; width: 400px;">
   <br>
   <b>Figura 5. Entorno de simulación en RobotStudio.</b>
 </div>
