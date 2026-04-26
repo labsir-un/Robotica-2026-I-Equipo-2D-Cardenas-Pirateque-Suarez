@@ -140,6 +140,8 @@ El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda tr
 
 Para el desarrollo de la arquitectura de control de la estación, se implementaron instrucciones de trayectoria y gestión de señales en lenguaje RAPID, complementadas con herramientas de emulación cinemática dentro del entorno virtual de RobotStudio.
 
+<br>
+
 ### 5.1. Funciones de movimiento
 
 Estas instrucciones definen el comportamiento cinemático del Centro de Punto de Herramienta (TCP) del manipulador durante el ciclo de trabajo:
@@ -183,7 +185,6 @@ MoveC Target_9070, Target_9080, v150, z5, MyNewTool\WObj:=Workobject_1;
 * *(Los parámetros de velocidad, zona, herramienta y WorkObject mantienen la estructura previamente descrita).*
 
 <br>
-
 
 ### 5.2. Funciones de control
 
@@ -235,6 +236,8 @@ Esta función permite parametrizar el desplazamiento vectorial de un objeto trid
     </tr>
   </table>
 </div>
+
+<br>
 
 ## 6. Codigo en RAPID del modulo utilizado
 ```rapid
