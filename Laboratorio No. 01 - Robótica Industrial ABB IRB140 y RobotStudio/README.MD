@@ -40,15 +40,15 @@ Inicialmente, se diseñó un actuador final (herramienta) capaz de sujetar un ma
     <tr>
       <td align="center">
         <img src="Images/DisenoCADHerramienta.png" width="300"><br>
-        <b>Figura 2. Modelado de herramienta</b>
+        <b>Figura 2. Diseño 3D de la Herramienta</b>
       </td>
       <td align="center">
         <img src="Images/Dibujopastel.png" width="300"><br>
-        <b>Figura 3. Diseño de trayectorias</b>
+        <b>Figura 3. Planificación de rutas de decoración</b>
       </td>
       <td align="center">
         <img src="Images/DisenoCADPastel.png" width="300"><br>
-        <b>Figura 4. Modelado del WorkObject</b>
+        <b>Figura 4. Modelado CAD del Pastel</b>
       </td>
     </tr>
   </table>
