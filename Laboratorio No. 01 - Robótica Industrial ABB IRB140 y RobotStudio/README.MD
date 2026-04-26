@@ -131,13 +131,65 @@ El siguiente plano bidimensional detalla la distribución espacial (*layout*) de
 
 El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda transportadora y acota milimétricamente las tres estaciones operativas del ciclo: **posición inicial, zona de decorado y posición final (evacuación)**. Adicionalmente, se anexa una vista de detalle (escala 1:2) que evidencia el montaje de la herramienta porta-marcador sobre la brida del robot, indicando la compensación de 30° en la articulación 6 requerida para la parametrización en RobotStudio.
 
-
 <div align="center">
   <img src="Images/Planodeplanta.png" alt="Plano de planta" width="800px"><br>
   <b>Figura 6. Plano de planta y distribución de elementos.</b>
 </div>
 
-## 5. Codigo en RAPID del modulo utilizado
+
+
+
+## 5. Descripción de las funciones utilizadas
+
+Para el desarrollo de la arquitectura de control y la simulación de la celda de manufactura, se emplearon diversas instrucciones nativas del lenguaje RAPID y herramientas de emulación de RobotStudio. A continuación, se detallan sus principios de operación.
+
+### 5.1. Funciones de Movimiento
+
+Las trayectorias del manipulador se programaron utilizando dos tipos principales de interpolación espacial para garantizar eficiencia en los traslados y precisión en el trazado:
+
+* **MoveJ (Movimiento Articular):** Interpolación no lineal que calcula la ruta más rápida para los ejes del manipulador. Se utiliza para desplazar el robot rápidamente de un punto a otro cuando la trayectoria exacta del TCP (*Tool Center Point*) no es crítica. En este código, se empleó para los movimientos de aproximación, los retiros de seguridad en el eje Z y el retorno a la posición `Target_Home`.
+  * *Ejemplo de implementación:* `MoveJ Target_Home,v150,z5,MyNewTool\WObj:=wobj0;`
+
+* **MoveL (Movimiento Lineal):** Obliga al TCP a moverse trazando una línea recta estricta entre el punto inicial y el destino. Es la instrucción central de la rutina de decoración, ya que garantiza la fidelidad geométrica absoluta al momento de dibujar los caracteres y contornos sobre la superficie del pastel.
+  * *Ejemplo de implementación:* `MoveL Target_30,v150,z5,MyNewTool\WObj:=Workobject_1;`
+
+### 5.2. Funciones de Control Lógico
+
+La interacción entre el controlador del robot y los periféricos de la celda (banda transportadora y pilotos de señalización) se gestionó mediante instrucciones de estado y temporización:
+
+* **Set:** Fuerza una señal de salida digital (DO) a un estado lógico alto (1). Se utilizó para encender los indicadores luminosos de estado y para enviar la señal de habilitación (`FWD_Conveyor`) y dirección (`BWD_Conveyor`) a la banda transportadora.
+  * *Ejemplo de implementación:* `Set DO_01; !Activación de Indicador de Luz 1`
+
+* **Reset:** Fuerza una señal de salida digital (DO) a un estado lógico bajo (0). Es indispensable para apagar los pilotos de señalización al finalizar una subrutina o para detener el avance de la banda cortando su señal de *Enable*.
+  * *Ejemplo de implementación:* `RESET FWD_Conveyor; !Desactiva el movimiento de la banda`
+
+* **WaitTime:** Pausa la ejecución del código RAPID durante un tiempo especificado en segundos. Se implementó estratégicamente para sincronizar la cinemática del robot con el entorno, otorgando el tiempo físico necesario (3 segundos) para que la banda posicione el pastel antes de iniciar el trazado.
+  * *Ejemplo de implementación:* `WaitTime 3; !Tiempo de espera para llegar a posición de decoro`
+
+### 5.3. Simulación de Cinemática Externa (Smart Components)
+
+Dado que la física de una banda transportadora no se emula nativamente a través de las salidas digitales estándar en RobotStudio, se diseñó una lógica de estación paralela utilizando **Smart Components** para replicar el desplazamiento del producto.
+
+* **Bloque LinearMover2:** Esta función vectorial permite trasladar objetos espaciales a lo largo de un eje durante un tiempo determinado. En la simulación, en lugar de animar una banda rodante, este bloque se configuró para desplazar directamente el `WorkObject` (`WorkObject1_Pastel1`) una distancia de 621.80 mm en 3.0 segundos.
+
+* **Lógica de Avance y Retroceso:** Se instanciaron dos componentes inteligentes principales conectados directamente a las señales del controlador virtual (`IRB140_6_81`):
+  * **SmartComponent_1:** Enlazado a la entrada de inicio de ciclo. Al recibir el pulso de ejecución, activa un `LinearMover2` con dirección `[0.00, -1.00, 0.00]`, simulando el ingreso del pastel a la zona de operación.
+  * **SmartComponent_2:** Enlazado a la rutina de reinicio secuencial. Activa un segundo `LinearMover2` invirtiendo el vector de dirección a `[0.00, 1.00, 0.00]` para emular el retorno de la pieza a la posición inicial.
+
+<p align="center">
+  <img src="Images/SmartComponent1.png" width="400" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="Images/SmartComponent2.png" width="400" />
+  <br>
+  <b>Figura 7.</b> Parámetros del bloque LinearMover2 (Avance y Retroceso)
+</p>
+
+<div align="center">
+  <img src="Images/LogicaEstacion.png" width="700px"><br>
+  <b>Figura 8. Interconexión de señales I/O del controlador con los Smart Components.</b>
+</div>
+
+
+
+## 6. Codigo en RAPID del modulo utilizado
 ```rapid
 MODULE Module1
     CONST robtarget Target_Home:=[[518.48875071,0.469,561.003995976],[0.172530837,0,-0.985004117,0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
