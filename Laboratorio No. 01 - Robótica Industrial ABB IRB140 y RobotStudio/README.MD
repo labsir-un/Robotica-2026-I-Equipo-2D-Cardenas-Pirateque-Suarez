@@ -125,12 +125,16 @@ Esta topología permite al controlador gestionar sincrónicamente los movimiento
 </div>
 
 
-## 4. Plano de planta
+## 4. Plano de Planta
+
+El siguiente plano bidimensional detalla la distribución espacial (*layout*) de la celda de manufactura, garantizando la correcta correspondencia de coordenadas entre el entorno físico y el virtual. 
+
+El esquema ilustra el manipulador ABB IRB 140 posicionado respecto a la banda transportadora y acota milimétricamente las tres estaciones operativas del ciclo: **posición inicial, zona de decorado y posición final (evacuación)**. Adicionalmente, se anexa una vista de detalle (escala 1:2) que evidencia el montaje de la herramienta porta-marcador sobre la brida del robot, indicando la compensación de 30° en la articulación 6 requerida para la parametrización en RobotStudio.
 
 
 <div align="center">
   <img src="Images/Planodeplanta.png" alt="Plano de planta" width="800px"><br>
-  <b>Figura 6. Plano de planta.</b>
+  <b>Figura 6. Plano de planta y distribución de elementos.</b>
 </div>
 
 ## 5. Codigo en RAPID del modulo utilizado
