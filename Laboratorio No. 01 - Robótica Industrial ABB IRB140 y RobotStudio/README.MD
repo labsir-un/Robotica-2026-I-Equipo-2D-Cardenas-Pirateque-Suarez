@@ -204,7 +204,7 @@ Estas instrucciones definen el comportamiento cinemático del Centro de Punto de
 ```rapid
 MoveJ Target_Home, v150, z5, MyNewTool\WObj:=wobj0;
 ```
-* **Target_Home:** representa el punto (robtarget) al que se debe dirigir el robot.
+* **Target_Home:** representa el punto (Target) al que se debe dirigir el manipulador.
 * **v150:** representa la velocidad programada del TCP en mm/s.
 * **z5:** representa la zona de aproximación (incertidumbre) en mm.
 * **MyNewTool\WObj:=wobj0:**
