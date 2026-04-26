@@ -107,9 +107,6 @@ Una vez corroborada la lógica computacional, se avanzó a la implementación en
 </table>
 </div>
 
-
-## 3. Diagrama de Flujo de Acciones
-
 ## 3. Diagrama de Flujo de Acciones
 
 El siguiente diagrama detalla la arquitectura lógica de control implementada en lenguaje RAPID. A diferencia de una secuencia lineal básica, la programación se estructuró sobre un **bucle de ejecución continua** que evalúa de forma jerárquica el estado de las señales digitales para tomar decisiones operativas en tiempo real.
