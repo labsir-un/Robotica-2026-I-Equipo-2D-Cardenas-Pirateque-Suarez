@@ -184,7 +184,6 @@ MoveC Target_9070, Target_9080, v150, z5, MyNewTool\WObj:=Workobject_1;
 
 <br>
 
----
 
 ### 5.2. Funciones de control
 
@@ -206,8 +205,6 @@ El control lógico del flujo de operaciones y la sincronización con los actuado
   ```
 
 <br>
-
----
 
 ### 5.3. Funciones de simulación (Smart Components)
 
