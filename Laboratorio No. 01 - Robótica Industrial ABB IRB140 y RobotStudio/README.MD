@@ -251,16 +251,17 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
 🔗 **Planos de manufactura:** Los planos detallados de despiece, ensamblaje y acotado se encuentran disponibles en formato PDF en el siguiente enlace: [Ver Planos de Herramienta (PDF) aquí](./Ruta_A_Tus_Planos.pdf).
 
 <br>
+
 <div align="center">
   <table>
     <tr>
       <td align="center">
-        <img src="Images/Acople_Brida.png" width="400"><br>
-        <b>Acople con Brida</b>
+        <img src="Images/Acople_Brida.png" width="360"><br>
+        <b>Figura 12. Acople con Brida</b>
       </td>
       <td align="center">
-        <img src="Images/Union_Lisa.png" width="400"><br>
-        <b>Unión Lisa</b>
+        <img src="Images/Union_Lisa.png" width="360"><br>
+        <b>Figura 13. Unión Lisa</b>
       </td>
     </tr>
   </table>
@@ -270,12 +271,12 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
   <table>
     <tr>
       <td align="center">
-        <img src="Images/Tapon_Liso.png" width="400"><br>
-        <b>Tapón Liso</b>
+        <img src="Images/Tapon_Liso.png" width="360"><br>
+        <b>Figura 14. Tapón Liso</b>
       </td>
       <td align="center">
-        <img src="Images/EnsamblajeCAD_Herramienta.png" width="400"><br>
-        <b>Ensamblaje Final CAD</b>
+        <img src="Images/EnsamblajeCAD_Herramienta.png" width="360"><br>
+        <b>Figura 15. Ensamblaje Final CAD</b>
       </td>
     </tr>
   </table>
@@ -301,11 +302,11 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
     <tr>
       <td align="center">
         <img src="Images/Brida_Robot.png" width="400"><br>
-        <b>Especificaciones brida ABB</b>
+        <b>Figura 16. Especificaciones brida ABB</b>
       </td>
       <td align="center">
         <img src="Images/Fisico_General.jpg" width="400"><br>
-        <b>Herramienta final ensamblada</b>
+        <b>Figura 17. Herramienta final ensamblada</b>
       </td>
     </tr>
   </table>
@@ -316,15 +317,15 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
     <tr>
       <td align="center">
         <img src="Images/Sistema_Pin.jpg" width="300"><br>
-        <b>Sistema de pin extraíble</b>
+        <b>Figura 18. Sistema de pin extraíble</b>
       </td>
       <td align="center">
         <img src="Images/Fisico_Componentes.jpg" width="300"><br>
-        <b>Despiece físico y marcador</b>
+        <b>Figura 19. Despiece físico y marcador</b>
       </td>
       <td align="center">
         <img src="Images/Sistema_Resorte.jpg" width="300"><br>
-        <b>Detalle del sistema de resorte</b>
+        <b>Figura 20. Detalle del sistema de resorte</b>
       </td>
     </tr>
   </table>
