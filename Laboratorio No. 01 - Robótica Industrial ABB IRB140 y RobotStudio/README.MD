@@ -248,7 +248,7 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
 2. **Unión Lisa:** Cuerpo central cilíndrico de la herramienta, que incorpora una base exterior de contorno hexagonal para facilitar su manipulación. Su núcleo es hueco y actúa como "camisa" o guía deslizante para el marcador.
 3. **Tapón Liso:** Elemento de cierre posterior encargado de retener los componentes internos dentro de la Unión Lisa.
 
-🔗 **Planos de manufactura:** Los planos detallados de despiece, ensamblaje y acotado se encuentran disponibles en formato PDF en el siguiente enlace: [Ver Planos de Herramienta (PDF) aquí](./Ruta_A_Tus_Planos.pdf).
+🔗 **Planos de manufactura:** Los planos detallados de despiece, ensamblaje y acotado se encuentran disponibles en formato PDF en el siguiente enlace: [Ver Plano de Herramienta (PDF) aquí](./Anexos/Plano_Herramienta.pdf).
 
 <br>
 
