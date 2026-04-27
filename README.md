@@ -87,7 +87,7 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 
 ### Integrante 3
 <div align="center">
-  <img src="./assets/integrantes/integrante3.jpg" alt="Foto integrante 3" style="border-radius: 50%; width: 180px;"><br>
+  <img src="Fotos/DavidCardenas.png" alt="Foto integrante 3" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
 - **Nombre completo:** David Felipe Cardenas Cubides
