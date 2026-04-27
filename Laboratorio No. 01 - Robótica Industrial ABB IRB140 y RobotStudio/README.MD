@@ -332,7 +332,7 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
 </div>
 
 
-## 7. Estructura y Lógica del Código RAPID
+## 7. Código de RAPID (Estructura y Lógica)
 
 Dada la extensión del código generado para las trayectorias de interpolación, esta sección detalla exclusivamente la arquitectura de la rutina principal de control (`main`). Esta rutina opera como el "cerebro" de la celda, gestionando el *polling* continuo de las señales de entrada y derivando la ejecución a las subrutinas correspondientes.
 
