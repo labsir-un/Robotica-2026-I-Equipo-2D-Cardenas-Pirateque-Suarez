@@ -285,7 +285,7 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
 
 ### 6.2. Sistema de Amortiguación y Montaje Físico
 
-Uno de los mayores retos al programar trayectorias de contacto rígido es el riesgo de colisión, el cual puede derivar en la fractura estructural de la herramienta impresa (críticamente en la zona de mayor concentración de esfuerzos: el Acople-Brida) o en daños irreversibles al elemento físico que emula el pastel. Para mitigar este riesgo, el diseño integra un **sistema de amortiguación longitudinal**.
+Uno de los mayores retos al programar trayectorias de contacto rígido es el riesgo de colisión, el cual puede derivar en la fractura estructural de la herramienta impresa (críticamente en la zona de mayor concentración de esfuerzos: el **Acople-Brida**) o en daños irreversibles al elemento físico que emula el pastel. Para mitigar este riesgo, el diseño integra un **sistema de amortiguación longitudinal**.
 
 Se introdujo un **resorte (elemento elástico)** entre el Tapón Liso y el tope del marcador. Esto le otorga al elemento de escritura un grado de libertad lineal, permitiéndole retraerse ligeramente al entrar en contacto con la pieza. Gracias a esta *complianza mecánica*, la herramienta absorbe las posibles discrepancias geométricas del entorno físico, garantizando un trazo de presión constante y salvaguardando la integridad de todo el conjunto.
 
@@ -300,16 +300,31 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
   <table>
     <tr>
       <td align="center">
-        <img src="Images/Brida_Robot.png" width="280"><br>
+        <img src="Images/Brida_Robot.png" width="400"><br>
         <b>Especificaciones brida ABB</b>
       </td>
       <td align="center">
-        <img src="Images/Fisico_1.jpg" width="280"><br>
+        <img src="Images/Fisico_General.jpg" width="400"><br>
+        <b>Herramienta final ensamblada</b>
+      </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/Sistema_Pin.jpg" width="300"><br>
         <b>Sistema de pin extraíble</b>
       </td>
       <td align="center">
-        <img src="Images/Fisico_2.jpg" width="280"><br>
-        <b>Herramienta impresa en 3D</b>
+        <img src="Images/Fisico_Componentes.jpg" width="300"><br>
+        <b>Despiece físico y marcador</b>
+      </td>
+      <td align="center">
+        <img src="Images/Sistema_Resorte.jpg" width="300"><br>
+        <b>Detalle del sistema de resorte</b>
       </td>
     </tr>
   </table>
