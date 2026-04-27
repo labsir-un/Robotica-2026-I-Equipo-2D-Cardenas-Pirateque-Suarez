@@ -256,19 +256,19 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
   <table>
     <tr>
       <td align="center">
-        <img src="Images/Acople_Brida.png" width="220"><br>
+        <img src="Images/Acople_Brida.png" width="300"><br>
         <b>Acople con Brida</b>
       </td>
       <td align="center">
-        <img src="Images/Union_Lisa.png" width="220"><br>
+        <img src="Images/Union_Lisa.png" width="300"><br>
         <b>Unión Lisa</b>
       </td>
       <td align="center">
-        <img src="Images/Tapon_Liso.png" width="220"><br>
+        <img src="Images/Tapon_Liso.png" width="300"><br>
         <b>Tapón Liso</b>
       </td>
       <td align="center">
-        <img src="Images/EnsamblajeCAD_Herramienta.png" width="220"><br>
+        <img src="Images/EnsamblajeCAD_Herramienta.png" width="300"><br>
         <b>Ensamblaje Final CAD</b>
       </td>
     </tr>
