@@ -337,8 +337,8 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
 Dada la extensión del código generado para las trayectorias de interpolación, esta sección detalla exclusivamente la arquitectura de la rutina principal de control (`main`). Esta rutina opera como el "cerebro" de la celda, gestionando el *polling* continuo de las señales de entrada y derivando la ejecución a las subrutinas correspondientes.
 
 📂 **Archivos fuente completos:**
-* [Código RAPID implementado en el controlador físico (Robot Real)](./CodigoRAPID_Fisico.txt)
-* [Código RAPID utilizado en el entorno virtual (RobotStudio)](./CodigoRAPID_Simulación.txt)
+* [Código RAPID implementado en el controlador físico (Robot Real)](./Anexos/CodigoRAPID_Fisico.txt)
+* [Código RAPID utilizado en el entorno virtual (RobotStudio)](./Anexos/CodigoRAPID_Simulación.txt)
 
 ### 7.1. Desglose de la Rutina Principal (`main`)
 
