@@ -277,11 +277,11 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
 
 <br>
 
-### 6.2. Mecanismo de Amortiguación y Montaje Físico
+### 6.2. Sistema de Amortiguación y Montaje Físico
 
-Uno de los mayores retos al programar trayectorias de contacto rígido es el riesgo de colisión, que puede derivar en la rotura del marcador o daños en los servomotores del manipulador. Para solucionar esto, el diseño integra un **mecanismo de amortiguación longitudinal**.
+Uno de los mayores retos al programar trayectorias de contacto rígido es el riesgo de colisión, el cual puede derivar en la fractura estructural de la herramienta impresa (críticamente en la zona de mayor concentración de esfuerzos: el Acople-Brida) o en daños irreversibles al elemento físico que emula el pastel. Para mitigar este riesgo, el diseño integra un **sistema de amortiguación longitudinal**.
 
-Se introdujo un **resorte (elemento elástico)** entre el Tapón Liso y el tope del marcador. Esto le otorga al elemento de escritura un grado de libertad lineal, permitiéndole retraerse ligeramente al entrar en contacto con el pastel. Gracias a esta *complianza mecánica*, la herramienta absorbe las pequeñas tolerancias geométricas de la pieza física, garantizando un trazo de presión constante sin fracturarse.
+Se introdujo un **resorte (elemento elástico)** entre el Tapón Liso y el tope del marcador. Esto le otorga al elemento de escritura un grado de libertad lineal, permitiéndole retraerse ligeramente al entrar en contacto con la pieza. Gracias a esta *complianza mecánica*, la herramienta absorbe las posibles discrepancias geométricas del entorno físico, garantizando un trazo de presión constante y salvaguardando la integridad de todo el conjunto.
 
 Para la construcción y puesta a punto de la herramienta física, el ensamblaje se resolvió mediante dos tipos de uniones estratégicas:
 
@@ -299,7 +299,7 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
       </td>
       <td align="center">
         <img src="Images/Fisico_1.jpg" width="280"><br>
-        <b>Mecanismo de pin extraíble</b>
+        <b>Sistema de pin extraíble</b>
       </td>
       <td align="center">
         <img src="Images/Fisico_2.jpg" width="280"><br>
