@@ -74,14 +74,14 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
   <img src="./assets/integrantes/integrante2.jpg" alt="Foto integrante 2" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
-- **Nombre completo:** Nombre Apellido
+- **Nombre completo:** Jose Daniel Suarez Vasquez
 - **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Modelado, programación, control
-- **Intereses:** Manipulación, ROS 2, control de robots
+- **Correo institucional:**  jdsuarezva@unal.edu.co
+- **Usuario de GitHub:** [Danixcviii](https://github.com/Danixcviii)
+- **Rol en el equipo:**  Programación
+- **Intereses:** Automatización industrial, robótica industrial, BigData, IoT.
 - **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+  Estudiante de Ingeniería Mecatrónica, con experiencia práctica en el diseño, ensamble y puesta en marcha de tableros de automatización industrial, asi como 3 años de experiencia laboral como Ingeniero de Datos.
 
 ---
 
@@ -94,7 +94,7 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
 - **Carrera:** Ingeniería Mecatrónica
 - **Correo institucional:** dcardenascu@unal.edu.co
 - **Usuario de GitHub:** [dcardenascu](https://github.com/dcardenascu)
-- **Rol en el equipo:** Ej. Documentación, pruebas
+- **Rol en el equipo:**  Documentación, pruebas
 - **Intereses:** Robótica industrial, microcontroladores, IA, control, automatizacion de procesos
 - **Descripción breve:**  
   Estudiante de Ingeniería Mecatrónica con sólida formación en automatización, electrónica y desarrollo de software. Experiencia práctica en el diseño y control de máquinas CNC, programación de PLC y manejo de servomotores industriales. Capaz de integrar soluciones de hardware y software utilizando estructuras de datos y algoritmos de Machine Learning.
