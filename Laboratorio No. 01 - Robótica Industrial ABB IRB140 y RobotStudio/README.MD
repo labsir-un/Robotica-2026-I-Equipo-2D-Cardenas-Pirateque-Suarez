@@ -305,7 +305,7 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
         <b>Figura 16. Especificaciones brida ABB</b>
       </td>
       <td align="center">
-        <img src="Images/Fisico_General.png" width="400"><br>
+        <img src="Images/Fisico_General.jpg" width="400"><br>
         <b>Figura 17. Herramienta final ensamblada</b>
       </td>
     </tr>
@@ -316,7 +316,7 @@ Para la construcción y puesta a punto de la herramienta física, el ensamblaje 
   <table>
     <tr>
       <td align="center">
-        <img src="Images/Sistema_Pin.jpg" width="300"><br>
+        <img src="Images/Sistema_Pin.png" width="300"><br>
         <b>Figura 18. Sistema de pin extraíble</b>
       </td>
       <td align="center">
