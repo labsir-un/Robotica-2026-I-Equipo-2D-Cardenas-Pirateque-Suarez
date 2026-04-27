@@ -445,3 +445,11 @@ El diseño del pastel involucró el cálculo de más de 150 puntos espaciales di
 
 **Modularidad de Trayectorias (Paths):**
 En lugar de agrupar todas las instrucciones de movimiento (`MoveL`, `MoveJ`, `MoveC`) en una secuencia ininterrumpida y difícil de depurar, el trazado completo se segmentó en subrutinas lógicas nombradas desde `Path_10` hasta `Path_42000`. Cada *Path* encapsula una geometría específica del diseño (por ejemplo, el contorno de una sola letra, la sonrisa de la figura o un movimiento de aproximación en el eje Z). Esta modularidad es una buena práctica de programación en robótica, ya que previene el desbordamiento de memoria, facilita la depuración aislando secciones del dibujo y permite alterar el orden de ejecución desde el `main` sin reescribir coordenadas.
+
+## 8. Video del funcionamiento y simulacion 
+
+A continuación, se presenta la simulación y la puesta eb marcha del robot verificando la cinematica y el comportamie3nto del sistema  
+
+*video*
+
+ https://youtu.be/SZOyMfljEDA
