@@ -346,94 +346,100 @@ El código se estructura sobre un bucle infinito `WHILE TRUE` que evalúa consta
 
 **1. Inicialización y Estado Seguro:**
 ```rapid
-PROC main()
-    ! Restablecimiento de señales luminosas de salida
-    RESET DO_01; 
-    RESET DO_02; 
-    RESET DO_03; 
+PROC main()                ! Declaración del procedimiento principal del programa
+    ! Restablecimiento de señales luminosas de salida para asegurar un estado inicial limpio
+    RESET DO_01;           ! Apaga el indicador de operación nominal (Luz 1)
+    RESET DO_02;           ! Apaga el indicador de mantenimiento/apoyo (Luz 2)
+    RESET DO_03;           ! Apaga el indicador de reinicio (Luz 3)
     
-    ! Traslado preventivo del manipulador a la posición inicial
-    Path_10; 
+    ! Traslado preventivo del manipulador a la posición inicial segura
+    Path_10;               ! Llama a la subrutina que mueve el robot a la coordenada Home
 
     ! Bucle infinito de escaneo de señales (Polling)
-    WHILE TRUE DO 
+    WHILE TRUE DO          ! Inicia el ciclo continuo de evaluación de condiciones lógicas
 ```
 
 **2. Rutina de Decoración (Operación Nominal):**
-Se activa cuando `DI_01` está en alto y `DI_02` en bajo. Primero, sincroniza la banda para ingresar la pieza, luego llama secuencialmente a todas las subrutinas de trazado (`Path_20` a `Path_41000`) y, finalmente, evacúa el pastel terminado.
+Se activa cuando `DI_01` está en alto y `DI_02` en bajo. Primero, sincroniza la banda para ingresar la pieza, luego llama secuencialmente a todas las subrutinas de trazado y, finalmente, evacúa el pastel terminado.
 ```rapid
-        IF DI_01 = 1 AND DI_02 = 0 THEN
+        ! Condición 1: Rutina de Decoración (Operación Nominal)
+        IF DI_01 = 1 AND DI_02 = 0 THEN  ! Evalúa si solo el botón de inicio está presionado
             SET DO_01;             ! Enciende indicador visual de operación (Luz 1)
             
             ! Secuencia de ingreso del pastel a la zona de trabajo
-            SET FWD_Conveyor;      ! Habilita el avance de la banda transportadora
-            SET BWD_Conveyor;      ! Define la dirección de avance (Izquierda a Derecha)
-            WaitTime 3;            ! Tiempo estimado de posicionamiento físico
-            RESET FWD_Conveyor;    ! Detiene la banda transportadora
-            RESET BWD_Conveyor;    ! Restablece la señal de dirección
+            SET FWD_Conveyor;      ! Habilita la señal de avance de la banda transportadora
+            SET BWD_Conveyor;      ! Define la dirección de avance de la banda (Izquierda a Derecha)
+            WaitTime 3;            ! Pausa la ejecución 3s mientras el pastel llega a la posición
+            RESET FWD_Conveyor;    ! Deshabilita el avance para detener la banda transportadora
+            RESET BWD_Conveyor;    ! Restablece la señal de dirección a su estado de reposo
             
-            ! Llamado a las subrutinas de trayectoria geométrica (Trazado)
-            Path_20;
-            Path_30;
-            ! ... (Ejecución secuencial hasta Path_41000) ...
-            Path_10;               ! Retorno temporal a Home tras finalizar trazado
+            ! Llamado a las subrutinas de trayectoria geométrica (Trazado de letras y figura)
+            Path_20;               ! Ejecuta el primer trazo del diseño (Aproximación)
+            Path_30;               ! Ejecuta el siguiente segmento de la trayectoria
+            ! ... (Ejecución secuencial de subrutinas intermedias omitidas en el texto por brevedad) ...
+            Path_10;               ! Retorna el manipulador a la posición Home tras finalizar el trazado
             
             ! Secuencia de evacuación del pastel terminado
-            SET FWD_Conveyor;      ! Rehabilita el avance de la banda
-            SET BWD_Conveyor;      ! Mantiene dirección de evacuación
-            WaitTime 2;            ! Tiempo para salida de la pieza
-            RESET FWD_Conveyor;    ! Detiene la banda
-            RESET BWD_Conveyor;    ! Restablece dirección
-            RESET DO_01;           ! Apaga el indicador visual al finalizar ciclo
-        ENDIF
+            SET FWD_Conveyor;      ! Rehabilita la señal de avance de la banda transportadora
+            SET BWD_Conveyor;      ! Mantiene la dirección de evacuación (Izquierda a Derecha)
+            WaitTime 2;            ! Pausa 2s para permitir que la pieza salga de la estación
+            RESET FWD_Conveyor;    ! Detiene la banda transportadora definitivamente
+            RESET BWD_Conveyor;    ! Restablece la señal de dirección de la banda
+            RESET DO_01;           ! Apaga el indicador visual de operación al finalizar el ciclo
+        ENDIF                  ! Finaliza el bloque de la rutina de decoración
 ```
 
 **3. Rutinas de Apoyo y Mantenimiento:**
-Estas condicionales manejan la intervención manual del operador. Permiten ubicar una nueva pieza (`Path_11`) o retirar el manipulador a una zona segura para el cambio de herramienta (`Path_42000`).
+Estas condicionales manejan la intervención manual del operador. Permiten ubicar una nueva pieza de forma guiada o retirar el manipulador a una zona segura para el cambio del marcador.
 ```rapid
-        ! Modo de Apoyo Físico: Posicionamiento para ubicar la pieza
-        IF DI_01 = 1 AND DI_02 = 1 THEN
-            SET DO_01;             ! Enciende Luz 1
-            SET DO_02;             ! Enciende Luz 2 simultáneamente (Alerta de intervención)
-            Path_11;               ! Traslada el manipulador a coordenadas de setup
-            RESET DO_01;
-            RESET DO_02;
-        ENDIF
+        ! Condición 2: Modo de Apoyo Físico (Posicionamiento para ubicar la pieza)
+        IF DI_01 = 1 AND DI_02 = 1 THEN  ! Evalúa si se solicita ubicar el WorkObject físico
+            SET DO_01;             ! Enciende la Luz 1
+            SET DO_02;             ! Enciende la Luz 2 simultáneamente (Alerta de intervención manual)
+            Path_11;               ! Llama a la subrutina que traslada el robot a coordenadas de setup
+            RESET DO_01;           ! Apaga la Luz 1 al terminar la ubicación
+            RESET DO_02;           ! Apaga la Luz 2 al terminar la ubicación
+        ENDIF                  ! Finaliza el bloque de apoyo físico
 
-        ! Modo Mantenimiento: Retiro del manipulador a zona segura
-        IF DI_02 = 1 AND DI_03 = 0 THEN
-            SET DO_02;             ! Enciende indicador de mantenimiento (Luz 2)
-            Path_42000;            ! Traslada el manipulador a posición de recambio de marcador
-            RESET DO_02;
-        ENDIF
+        ! Condición 3: Modo Mantenimiento (Retiro del manipulador a zona segura)
+        IF DI_02 = 1 AND DI_03 = 0 THEN  ! Evalúa si se solicita espacio para mantenimiento
+            SET DO_02;             ! Enciende el indicador de mantenimiento (Luz 2)
+            Path_42000;            ! Traslada el manipulador a la posición segura de recambio de marcador
+            RESET DO_02;           ! Apaga la Luz 2 tras finalizar el movimiento
+        ENDIF                  ! Finaliza el bloque de mantenimiento
 ```
 
 **4. Protocolos de Reinicio y Seguridad:**
 Condiciones prioritarias para recuperar el estado inicial de la celda de manufactura, incluyendo el retroceso de la banda a la posición de origen y el retorno directo del robot a *Home*.
 ```rapid
-        ! Rutina de Reinicio: Retorno del pastel a la posición de inicio
-        IF DI_03 = 1 and DI_02 = 0 THEN
-            RESET BWD_Conveyor;    ! Invierte la dirección de la banda (Derecha a Izquierda)
-            SET FWD_Conveyor;      ! Habilita el movimiento en reversa
-            SET DO_03;             ! Enciende indicador de reinicio (Luz 3)
-            WaitTime 3;            ! Tiempo de retroceso al origen
-            RESET DO_03;
-            RESET FWD_Conveyor;    ! Detiene la banda en el origen
-            Path_10;               ! Asegura el robot en posición Home
-        ENDIF
+        ! Condición 4: Rutina de Reinicio (Retorno del pastel a la posición de inicio)
+        IF DI_03 = 1 and DI_02 = 0 THEN  ! Evalúa si se presionó el botón de reinicio/retorno
+            RESET BWD_Conveyor;    ! Asegura que la dirección se invierta (Derecha a Izquierda)
+            SET FWD_Conveyor;      ! Habilita el movimiento de la banda en reversa
+            SET DO_03;             ! Enciende el indicador de reinicio (Luz 3)
+            WaitTime 3;            ! Pausa 3s para permitir el retroceso al origen
+            RESET DO_03;           ! Apaga la Luz 3 al completarse el retroceso
+            RESET FWD_Conveyor;    ! Detiene la banda transportadora en la posición inicial
+            Path_10;               ! Asegura que el brazo robótico regrese a la posición Home
+        ENDIF                  ! Finaliza el bloque de reinicio
 
-        ! Retorno Directo de Seguridad
-        IF DI_02 = 1 and DI_03 = 1 THEN
-            Path_10;               ! Aborta posición actual y retorna a Home
-        ENDIF
+        ! Condición 5: Retorno Directo de Seguridad
+        IF DI_02 = 1 and DI_03 = 1 THEN  ! Evalúa una combinación de parada/retorno prioritario
+            Path_10;               ! Aborta la posición actual y retorna inmediatamente a Home
+        ENDIF                  ! Finaliza el bloque de seguridad
         
-    ENDWHILE
-ENDPROC
+    ENDWHILE               ! Cierra el bucle infinito de evaluación (Polling)
+ENDPROC                    ! Cierra la declaración del procedimiento principal
 ```
 
-### 7.2. Declaración de Variables y Subrutinas de Trayectoria
+<br>
 
-El resto del módulo RAPID, excluido de este documento por su extensión, está compuesto por dos grandes bloques funcionales:
+### 7.2. Lógica de Variables de Entorno y Rutinas de Trazado
 
-1. **Definición de Entorno y Coordenadas:** Declaración de variables globales (`CONST robtarget`) que almacenan las matrices de posición y cuaterniones de orientación para más de 150 puntos espaciales. Aquí también se definen las calibraciones de la herramienta (`tooldata MyNewTool`) y el sistema de referencia de la pieza (`wobjdata Workobject_1`).
-2. **Subrutinas de Movimiento (`Path_X`):** Conjunto de procedimientos modulares, desde `Path_10` hasta `Path_42000`, que contienen las instrucciones de interpolación directa (`MoveL`, `MoveJ`, `MoveC`) encargadas de materializar la trayectoria planificada desde el software CAD/CAM hacia el controlador físico.
+El resto del módulo RAPID (disponible en los archivos anexos) contiene la arquitectura geométrica del proyecto. Para estructurar un código limpio y mantenible, se dividió en dos grandes bloques lógicos:
+
+**Declaración de Variables Globales (Targets):**
+El diseño del pastel involucró el cálculo de más de 150 puntos espaciales discretos. Estos se definieron mediante variables `CONST robtarget` en la cabecera del código. Cada *target* almacena una matriz matemática que le indica al controlador no solo las coordenadas tridimensionales (X, Y, Z) en milímetros, sino también la orientación espacial del marcador (mediante cuaterniones) y la configuración de las articulaciones del robot. Asimismo, se parametrizó la herramienta específica diseñada (`tooldata MyNewTool`) y el sistema de coordenadas dinámico referenciado a la banda transportadora (`wobjdata Workobject_1`).
+
+**Modularidad de Trayectorias (Paths):**
+En lugar de agrupar todas las instrucciones de movimiento (`MoveL`, `MoveJ`, `MoveC`) en una secuencia ininterrumpida y difícil de depurar, el trazado completo se segmentó en subrutinas lógicas nombradas desde `Path_10` hasta `Path_42000`. Cada *Path* encapsula una geometría específica del diseño (por ejemplo, el contorno de una sola letra, la sonrisa de la figura o un movimiento de aproximación en el eje Z). Esta modularidad es una buena práctica de programación en robótica, ya que previene el desbordamiento de memoria, facilita la depuración aislando secciones del dibujo y permite alterar el orden de ejecución desde el `main` sin reescribir coordenadas.
