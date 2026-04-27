@@ -251,24 +251,30 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
 🔗 **Planos de manufactura:** Los planos detallados de despiece, ensamblaje y acotado se encuentran disponibles en formato PDF en el siguiente enlace: [Ver Planos de Herramienta (PDF) aquí](./Ruta_A_Tus_Planos.pdf).
 
 <br>
-
 <div align="center">
   <table>
     <tr>
       <td align="center">
-        <img src="Images/Acople_Brida.png" width="360"><br>
+        <img src="Images/Acople_Brida.png" width="300"><br>
         <b>Acople con Brida</b>
       </td>
       <td align="center">
-        <img src="Images/Union_Lisa.png" width="360"><br>
+        <img src="Images/Union_Lisa.png" width="300"><br>
         <b>Unión Lisa</b>
       </td>
+    </tr>
+  </table>
+
+  <br>
+
+  <table>
+    <tr>
       <td align="center">
-        <img src="Images/Tapon_Liso.png" width="360"><br>
+        <img src="Images/Tapon_Liso.png" width="300"><br>
         <b>Tapón Liso</b>
       </td>
       <td align="center">
-        <img src="Images/EnsamblajeCAD_Herramienta.png" width="360"><br>
+        <img src="Images/EnsamblajeCAD_Herramienta.png" width="300"><br>
         <b>Ensamblaje Final CAD</b>
       </td>
     </tr>
