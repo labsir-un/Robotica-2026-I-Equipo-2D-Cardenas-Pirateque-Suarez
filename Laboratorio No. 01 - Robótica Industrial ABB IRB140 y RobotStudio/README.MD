@@ -446,10 +446,18 @@ El diseño del pastel involucró el cálculo de más de 150 puntos espaciales di
 **Modularidad de Trayectorias (Paths):**
 En lugar de agrupar todas las instrucciones de movimiento (`MoveL`, `MoveJ`, `MoveC`) en una secuencia ininterrumpida y difícil de depurar, el trazado completo se segmentó en subrutinas lógicas nombradas desde `Path_10` hasta `Path_42000`. Cada *Path* encapsula una geometría específica del diseño (por ejemplo, el contorno de una sola letra, la sonrisa de la figura o un movimiento de aproximación en el eje Z). Esta modularidad es una buena práctica de programación en robótica, ya que previene el desbordamiento de memoria, facilita la depuración aislando secciones del dibujo y permite alterar el orden de ejecución desde el `main` sin reescribir coordenadas.
 
-## 8. Video del funcionamiento y simulacion 
+## 8. Demostración en Video
 
-A continuación, se presenta la simulación y la puesta eb marcha del robot verificando la cinematica y el comportamie3nto del sistema  
+Para evidenciar el correcto funcionamiento de la arquitectura de control diseñada, se ha documentado la ejecución de la celda de manufactura en video. 
 
-*video*
+En la demostración se puede observar la sincronización en tiempo real entre el programa principal en RAPID, el manejo de las Entradas/Salidas Digitales (DI/DO) para el control de la banda transportadora y luces indicadoras, así como la actuación física del sistema de amortiguación de la herramienta impresa en 3D durante el trazado de las trayectorias de decoración.
 
- https://youtu.be/SZOyMfljEDA
+Haga clic en el siguiente enlace para ver el video completo de la implementación simulada y física:
+
+<br>
+
+<div align="center">
+  <a href="https://youtu.be/nndRs3jOak0" target="_blank">
+    <img src="https://img.shields.io/badge/Ver_Video_en_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video" />
+  </a>
+</div>
