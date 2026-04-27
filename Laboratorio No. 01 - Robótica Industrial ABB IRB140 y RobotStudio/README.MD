@@ -268,7 +268,7 @@ La herramienta se dividió en tres componentes principales para facilitar su imp
         <b>Tapón Liso</b>
       </td>
       <td align="center">
-        <img src="Images/Ensamblaje1.png" width="220"><br>
+        <img src="Images/EnsamblajeCAD_Herramienta.png" width="220"><br>
         <b>Ensamblaje Final CAD</b>
       </td>
     </tr>
