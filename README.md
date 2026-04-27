@@ -90,12 +90,12 @@ Aquí se documentan los laboratorios, avances, resultados y la presentación de 
   <img src="./assets/integrantes/integrante3.jpg" alt="Foto integrante 3" style="border-radius: 50%; width: 180px;"><br>
 </div>
 
-- **Nombre completo:** Nombre Apellido
+- **Nombre completo:** David Felipe Cardenas Cubides
 - **Carrera:** Ingeniería Mecatrónica
-- **Correo institucional:** nombre@unal.edu.co
-- **Usuario de GitHub:** [usuariogithub](https://github.com/usuariogithub)
-- **Rol en el equipo:** Ej. Documentación, pruebas, simulación
-- **Intereses:** Robótica industrial, sistemas autónomos, IA
+- **Correo institucional:** dcardenascu@unal.edu.co
+- **Usuario de GitHub:** [dcardenascu](https://github.com/dcardenascu)
+- **Rol en el equipo:** Ej. Documentación, pruebas
+- **Intereses:** Robótica industrial, microcontroladores, IA, control, automatizacion de procesos
 - **Descripción breve:**  
-  Escribe aquí una breve presentación personal y académica del integrante.
+  Estudiante de Ingeniería Mecatrónica con sólida formación en automatización, electrónica y desarrollo de software. Experiencia práctica en el diseño y control de máquinas CNC, programación de PLC y manejo de servomotores industriales. Capaz de integrar soluciones de hardware y software utilizando estructuras de datos y algoritmos de Machine Learning.
 
