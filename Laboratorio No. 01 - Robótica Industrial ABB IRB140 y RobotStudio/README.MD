@@ -219,15 +219,15 @@ Esta función permite parametrizar el desplazamiento vectorial de un objeto trid
   <table>
     <tr>
       <td align="center">
-        <img src="Images/Logica_Estacion.png" width="300"><br>
+        <img src="Images/Logica_Estación.png" width="300"><br>
         <b>Figura 9. Diseño lógico de señales en estación</b>
       </td>
       <td align="center">
-        <img src="Images/SmartComponent1.png" width="300"><br>
+        <img src="Images/SmartComponent_1.png" width="300"><br>
         <b>Figura 10. Bloque LinearMover2 (Avance)</b>
       </td>
       <td align="center">
-        <img src="Images/SmartComponent2.png" width="300"><br>
+        <img src="Images/SmartComponent_2.png" width="300"><br>
         <b>Figura 11. Bloque LinearMover2 (Retroceso)</b>
       </td>
     </tr>
