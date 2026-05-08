@@ -21,6 +21,15 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 2. Comparación: Motoman MH6 vs ABB IRB140
 
+| Característica | **Motoman MH6** | **ABB IRB140** |
+|---|---|---|
+| **Fabricante** | Yaskawa Motoman | ABB Robotics |
+| **Estructura** | Articulada  | Articulada  |
+| **Grados de Libertad** | 6 + 2 externos | 6 |
+| **Masa del robot** | 130 kg | ~98 kg |
+| **Software de simulación** | MotoSim EG-VRC | RobotStudio |
+
+
 ## 3. Configuraciones Home1 y Home2 del Motoman MH6
 
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
@@ -36,6 +45,13 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 ## 9. Plano de Planta del Laboratorio
 
 ## 10. Código RoboDK 
+
+### 🐍 Código Python para RoboDK
+
+```python
+
+
+```
 
 ## 11. Demostración en Video
 
