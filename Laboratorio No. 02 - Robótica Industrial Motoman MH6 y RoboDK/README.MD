@@ -26,7 +26,9 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 | **Fabricante** | Yaskawa Motoman | ABB Robotics |
 | **Estructura** | Articulada  | Articulada  |
 | **Grados de Libertad** | 6 + 2 externos | 6 |
-| **Masa del robot** | 130 kg | ~98 kg |
+| **Masa del robot** | 130 kg | 98 kg |
+| **Alcance** | 1422 mm | 810 mm |
+| **Repetibilidad** |	0.08 mm |	0.08 mm |
 | **Software de simulación** | MotoSim EG-VRC | RobotStudio |
 
 
