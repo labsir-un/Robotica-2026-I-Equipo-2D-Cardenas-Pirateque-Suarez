@@ -36,6 +36,16 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
 
+<br>
+
+<div align="center">
+  <img src="Images/teach.png" alt="ABB" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 2. Teach Pendant.</b>
+</div>
+
+<br>
+
 ## 5. Niveles de Velocidad para Movimientos Manuales
 
 ## 6. Software RoboDK – Aplicaciones y Comunicación
