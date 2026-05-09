@@ -64,7 +64,7 @@ Para manipular manualmente el robot Motoman MH6, es necesario hace uso del Teach
 
 <br>
 <div align="center">
-  <img src="Images/teach.png" alt="ABB" style="border-radius: 5px; width: 200px;">
+  <img src="Images/teach.png" alt="teach" style="border-radius: 5px; width: 200px;">
   <br>
   <b>Figura 4. Teach Pendant.</b>
 </div>
@@ -80,7 +80,7 @@ El procedimiento estándar para habilitar el movimiento y navegar entre los dist
 
 <br>
 <div align="center">
-  <img src="Images/teach2.png" alt="ABB" style="border-radius: 5px; width: 200px;">
+  <img src="Images/teachp2.png" alt="botn teach" style="border-radius: 5px; width: 200px;">
   <br>
   <b>Figura 5. Botones de Teach Pendant.</b>
 </div>
