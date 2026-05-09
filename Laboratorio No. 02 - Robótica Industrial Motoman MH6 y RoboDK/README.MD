@@ -72,10 +72,18 @@ Para manipular manualmente el robot Motoman MH6, es necesario hace uso del Teach
 
 
 El procedimiento estándar para habilitar el movimiento y navegar entre los distintos modos de operación es el siguiente:
+### 1. Posicionar la llave en modo manual (Modo TEACH)
 
-1. posicionar la llave en modo manual(Modo Teach). 
-2. habilitar la potencia en el boton servo ON.
-3. Desactivar parada de emergencia.
+El *Teach Pendant* cuenta con un selector de modo físico que dispone de tres posiciones distintas, las cuales determinan el tipo de control sobre el manipulador:
+
+* **Posición TEACH (Manual):** Activa el modo de operación manual. Permite mover el brazo robótico directamente desde el *Teach Pendant*, ya sea mediante movimientos articulares o cartesianos. Por medidas de seguridad, la velocidad de los motores se encuentra limitada en este modo.
+
+* **Posición PLAY (Automático):** Permite al robot ejecutar de forma continua y automática los programas previamente guardados en su memoria.
+
+* **Posición REMOTE (Remoto):** Se utiliza para cederle el control del robot a un dispositivo externo al *Teach Pendant*. Generalmente, se trata de un equipo maestro conectado a través de la red, como lo es un computador operando con el software **RoboDK**.
+
+2. **habilitar la potencia en el boton servo ON**.
+3. **Desactivar parada de emergencia**.
 4.
 
 <br>
