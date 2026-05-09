@@ -9,7 +9,7 @@
 <h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
 <br>
-<img src="Images/motoman.png" alt="Motoman" style="border-radius: 5px; width: 400px;"><br>
+<img src="Images/motoman.png" alt="Motoman" style="border-radius: 5px; width: 200px;"><br>
 <b>Figura 1. Manipulador Motoman MH6.</b>
 </div>
 
@@ -39,7 +39,7 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 <br>
 
 <div align="center">
-  <img src="Images/teach.png" alt="ABB" style="border-radius: 5px; width: 100px;">
+  <img src="Images/teach.png" alt="ABB" style="border-radius: 5px; width: 200px;">
   <br>
   <b>Figura 2. Teach Pendant.</b>
 </div>
