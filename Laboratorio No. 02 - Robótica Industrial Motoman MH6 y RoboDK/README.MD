@@ -39,7 +39,7 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 <br>
 
 <div align="center">
-  <img src="Images/teach.png" alt="ABB" style="border-radius: 5px; width: 600px;">
+  <img src="Images/teach.png" alt="ABB" style="border-radius: 5px; width: 100px;">
   <br>
   <b>Figura 2. Teach Pendant.</b>
 </div>
