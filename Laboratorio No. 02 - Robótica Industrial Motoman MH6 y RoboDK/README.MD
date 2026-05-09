@@ -40,6 +40,20 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 6. Software RoboDK – Aplicaciones y Comunicación
 
+
+
+RoboDK es un potente software de simulación y programación de robots industriales diseñado para ser compatible con más de 40 fabricantes de robots incluyendo Yaskawa/Motoman, ABB, KUKA, Universal Robots, entre otros.. Sus aplicaciones principales en el entorno industrial y académico incluyen:
+
+
+
+- Programación Fuera de Línea (Offline Programming - OLP): Permite diseñar, simular y programar el robot en un entorno virtual tridimensional sin necesidad de detener la máquina física en la línea de producción.
+
+- Simulación de trayectorias y validación: Sirve para verificar alcances, detectar posibles colisiones entre el brazo, la herramienta y el entorno, y evitar singularidades articulares antes de ejecutar el movimiento real.
+
+- Manufactura avanzada: Es ampliamente utilizado para generar trayectorias complejas a partir de modelos CAD/CAM para aplicaciones como fresado robótico, impresión 3D, soldadura, pintura, y operaciones de pick and place (recoger y colocar).
+
+
+
 ## 7. Comparación: RoboDK vs RobotStudio
 
 
