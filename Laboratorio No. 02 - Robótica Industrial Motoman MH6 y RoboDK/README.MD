@@ -41,6 +41,21 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 3. Configuraciones Home1 y Home2 del Motoman MH6
 
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/home1.png" width="300"><br>
+        <b>Figura 2. Home 1</b>
+      </td>
+      <td align="center">
+        <img src="Images/home2.png" width="300"><br>
+        <b>Figura 3. Home 2</b>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
 
 <br>
