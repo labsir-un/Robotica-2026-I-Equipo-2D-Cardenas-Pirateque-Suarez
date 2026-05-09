@@ -42,6 +42,16 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 7. Comparación: RoboDK vs RobotStudio
 
+
+| Característica | **RoboDK** | **RobotStudio** |
+|---|---|---|
+| **Fabricante** | RoboDK Inc. (spin-off CoRo Lab, Canadá) | ABB Robotics |
+| **Compatibilidad** | +40 fabricantes (Yaskawa, KUKA, FANUC, ABB, UR, etc.) | Exclusivo para robots ABB |
+| **Fidelidad de simulación** | Alta (cinemática correcta), pero sin controlador virtual real | Máxima fidelidad: usa el controlador virtual ABB (VRC) idéntico al real |
+| **Lenguaje de robot** | Genera código nativo vía post-procesadores (no ejecuta INFORM/RAPID directamente) | Ejecuta y depura RAPID directamente |
+| **Multi-robot** | Sí, múltiples marcas en la misma simulación | Solo robots ABB |
+| **API / Programación** | Python, C#, .NET, C++ | Visual Basic, RAPID, C# |
+
 ## 8. Diagrama de Flujo del Robot
 
 ## 9. Plano de Planta del Laboratorio
