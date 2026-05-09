@@ -118,11 +118,7 @@ El sistema cuenta con cuatro niveles de velocidad preestablecidos para el movimi
 
 ## 6. Software RoboDK – Aplicaciones y Comunicación
 
-
-
 RoboDK es un potente software de simulación y programación de robots industriales diseñado para ser compatible con más de 40 fabricantes de robots incluyendo Yaskawa/Motoman, ABB, KUKA, Universal Robots, entre otros. Sus aplicaciones principales en el entorno industrial y académico incluyen:
-
-
 
 - Programación Fuera de Línea (Offline Programming - OLP): Permite diseñar, simular y programar el robot en un entorno virtual tridimensional sin necesidad de detener la máquina física en la línea de producción.
 
@@ -133,6 +129,11 @@ RoboDK es un potente software de simulación y programación de robots industria
 Para que el manipulador físico realice los movimientos simulados, RoboDK actúa como un "traductor". A nivel interno, el software calcula la cinemática inversa para transformar las coordenadas cartesianas y trayectorias del entorno virtual en los ángulos específicos requeridos por las articulaciones del robot.
 
 El elemento clave que hace posible el movimiento es el Post-procesador. Dado que cada fabricante de robots tiene su propio lenguaje de programación (por ejemplo, código INFORM para Yaskawa/Motoman o RAPID para ABB), el post-procesador de RoboDK toma las instrucciones genéricas de la simulación y genera automáticamente un archivo de código en el lenguaje nativo del controlador del robot específico que se está utilizando.
+
+La comunicación entre el software en el PC y el controlador del robot se puede realizar mediante dos métodos principales:
+
+ **Comunicación Fuera de Línea (Generación de programas):** RoboDK compila el programa a través de su post-procesador y genera un archivo de código. Este archivo se transfiere al controlador del manipulador de forma manual mediante una memoria USB o a través de una red local usando un protocolo FTP. Una vez cargado, el robot lo ejecuta de forma autónoma.
+ **Comunicación en Línea (Robot Drivers / Modo Online):** Este es el método utilizado durante el desarrollo del laboratoio en donde se controlar el robot en tiempo real desde el PC. El computador se conecta a la red donde esta conectado físicamente el controlador del robot mediante un cable de red (Ethernet) utilizando protocolos TCP/IP. Para que esto funcione, la llave del *Teach Pendant* debe estar en la posición **REMOTE**. A través de sus "Drivers", RoboDK establece una conexión servidor-cliente y envía las instrucciones de la trayectoria (como la polar) paso a paso directamente a los motores, sin necesidad de descargar un archivo completo en la memoria del robot.
 
 ## 7. Comparación: RoboDK vs RobotStudio
 
