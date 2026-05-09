@@ -66,16 +66,25 @@ Para manipular manualmente el robot Motoman MH6, es necesario hace uso del Teach
 <div align="center">
   <img src="Images/teach.png" alt="ABB" style="border-radius: 5px; width: 200px;">
   <br>
-  <b>Figura 2. Teach Pendant.</b>
+  <b>Figura 4. Teach Pendant.</b>
 </div>
 <br>
 
 
 El procedimiento estándar para habilitar el movimiento y navegar entre los distintos modos de operación es el siguiente:
 
-1. posicionar la llave en modo manual. 
+1. posicionar la llave en modo manual(Modo Teach). 
 2. habilitar la potencia en el boton servo ON.
 3. Desactivar parada de emergencia.
+4.
+
+<br>
+<div align="center">
+  <img src="Images/teach2.png" alt="ABB" style="border-radius: 5px; width: 200px;">
+  <br>
+  <b>Figura 5. Botones de Teach Pendant.</b>
+</div>
+<br>
 
 ## 5. Niveles de Velocidad para Movimientos Manuales
 
