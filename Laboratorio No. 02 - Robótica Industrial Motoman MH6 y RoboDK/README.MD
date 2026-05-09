@@ -106,6 +106,16 @@ Una vez que el robot tiene potencia, se utiliza el botón **[COORD]** para alter
 
 ## 5. Niveles de Velocidad para Movimientos Manuales
 
+Durante la operación manual del manipulador Motoman MH6 desde el *Teach Pendant*, es fundamental controlar la velocidad de los movimientos por razones de precisión y seguridad. A continuación, se detallan sus características:
+
+**1. Niveles de velocidad**
+El sistema cuenta con cuatro niveles de velocidad preestablecidos para el movimiento manual (jogging), los cuales limitan la velocidad máxima a la que se moverán los motores al presionar las teclas de los ejes:
+* **INCH (Micromovimiento / Paso a paso):** Es la velocidad más baja. El robot se mueve una distancia minúscula por cada pulsación de la tecla, independientemente de cuánto tiempo se mantenga presionada. Es ideal para aproximaciones muy finas y calibración.
+* **SLOW (Lenta):** Movimiento continuo pero a una velocidad muy reducida. Útil para acercarse a la pieza de trabajo de forma segura.
+* **MED (Media):** Velocidad moderada, utilizada para desplazamientos generales dentro de la celda de trabajo de forma controlada.
+* **FAST (Rápida):** Es la velocidad máxima permitida en el modo manual (limitada por seguridad frente a la velocidad real del modo automático). Se usa para realizar desplazamientos largos y rápidos en zonas libres de obstáculos.
+
+
 ## 6. Software RoboDK – Aplicaciones y Comunicación
 
 
