@@ -72,7 +72,7 @@ Para manipular manualmente el robot Motoman MH6, es necesario hace uso del Teach
 
 
 El procedimiento estándar para habilitar el movimiento y navegar entre los distintos modos de operación es el siguiente:
-### 1. Posicionar la llave en modo manual (Modo TEACH)
+### 4.1. Posicionar la llave en modo manual (Modo TEACH)
 
 El *Teach Pendant* cuenta con un selector de modo físico que dispone de tres posiciones distintas, las cuales determinan el tipo de control sobre el manipulador:
 
@@ -83,13 +83,13 @@ El *Teach Pendant* cuenta con un selector de modo físico que dispone de tres po
 * **Posición REMOTE (Remoto):** Se utiliza para cederle el control del robot a un dispositivo externo al *Teach Pendant*. Generalmente, se trata de un equipo maestro conectado a través de la red, como lo es un computador operando con el software **RoboDK**.
 
 
-### 2. Desactivar la parada de emergencia
+### 4.2. Desactivar la parada de emergencia
 Antes de iniciar cualquier operación, se debe verificar y desactivar el botón de parada de emergencia (E-Stop), el cual se encuentra ubicado en la parte superior derecha del *Teach Pendant* (generalmente se desactiva girándolo levemente en el sentido de las flechas).
 
-### 3. Habilitar la potencia de los motores (SERVO ON)
+### 4.3. Habilitar la potencia de los motores (SERVO ON)
 Posterior a la selección del modo *Teach* y la liberación del paro de emergencia, se procede a energizar los motores. Para esto, el operador debe presionar a la mitad el interruptor de hombre muerto (*Deadman switch*), ubicado en la parte posterior del *Teach Pendant* y, sin soltarlo, presionar el botón **[SERVO ON]**. 
 
-### 4. Realizar el movimiento
+### 4.4. Realizar el movimiento
 Una vez que el robot tiene potencia, se utiliza el botón **[COORD]** para alternar entre los distintos modos de movimiento y las teclas de los ejes para desplazar el manipulador. Los modos principales son:
 
 * **Movimiento articular (Joint):** Permite mover el robot controlando el ángulo de cada una de sus articulaciones (S, L, U, R, B, T) de forma independiente.
@@ -108,7 +108,7 @@ Una vez que el robot tiene potencia, se utiliza el botón **[COORD]** para alter
 
 Durante la operación manual del manipulador Motoman MH6 desde el *Teach Pendant*, es fundamental controlar la velocidad de los movimientos por razones de precisión y seguridad. A continuación, se detallan sus características:
 
-**1. Niveles de velocidad**
+**5.1. Niveles de velocidad**
 El sistema cuenta con cuatro niveles de velocidad preestablecidos para el movimiento manual (jogging), los cuales limitan la velocidad máxima a la que se moverán los motores al presionar las teclas de los ejes:
 * **INCH (Micromovimiento / Paso a paso):** Es la velocidad más baja. El robot se mueve una distancia minúscula por cada pulsación de la tecla, independientemente de cuánto tiempo se mantenga presionada. Es ideal para aproximaciones muy finas y calibración.
 * **SLOW (Lenta):** Movimiento continuo pero a una velocidad muy reducida. Útil para acercarse a la pieza de trabajo de forma segura.
