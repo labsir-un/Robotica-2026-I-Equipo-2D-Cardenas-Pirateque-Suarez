@@ -43,20 +43,30 @@ A partir de esta tabla, destacan diferencias clave como los entornos de simulaci
 
 ## 3. Configuraciones Home1 y Home2 del Motoman MH6
 
+En la programación y operación de manipuladores industriales, las posiciones de *Home* son configuraciones articulares predefinidas que sirven como puntos de referencia clave para el controlador y el operador. En el entorno del Motoman MH6 usado a lo largo del laboratorio, se manejan dos configuraciones principales (Home 1 y Home 2), cada una con un propósito técnico distinto dentro de la celda de manufactura.
+
+
+
 <div align="center">
   <table>
     <tr>
       <td align="center">
-        <img src="Images/home1.png" width="300"><br>
+        <img src="Images/home2.png" width="300"><br>
         <b>Figura 2. Home 1</b>
       </td>
       <td align="center">
-        <img src="Images/home2.png" width="300"><br>
+        <img src="Images/home1.png" width="300"><br>
         <b>Figura 3. Home 2</b>
       </td>
     </tr>
   </table>
 </div>
+
+
+Tal como se observa en las imagenes de referencia, estas posturas difieren tanto en su apariencia física como en su función:
+
+* **Home 1 (Cero Mecánico o Posición de Calibración):**
+
 
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
 
