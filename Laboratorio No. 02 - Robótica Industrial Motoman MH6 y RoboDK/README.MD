@@ -181,8 +181,6 @@ La comunicación entre el software en el PC y el controlador del robot se puede 
 
 Para evidenciar el correcto funcionamiento de la arquitectura de control diseñada, se ha documentado la ejecución de la celda de manufactura en video. 
 
-En la demostración se puede observar 
-
 Haga clic en el siguiente enlace para ver el video completo de la implementación simulada y física:
 
 <br>
