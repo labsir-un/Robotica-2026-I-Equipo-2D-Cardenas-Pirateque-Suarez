@@ -129,6 +129,8 @@ El sistema cuenta con cuatro niveles de velocidad preestablecidos para el movimi
 * **MED (Media):** Velocidad moderada, utilizada para desplazamientos generales dentro de la celda de trabajo de forma controlada.
 * **FAST (Rápida):** Es la velocidad máxima permitida en el modo manual (limitada por seguridad frente a la velocidad real del modo automático). Se usa para realizar desplazamientos largos y rápidos en zonas libres de obstáculos.
 
+Para cambiar entre velocidades se hace uso de los botones de [SLOW] y [FAST] del teach pendant, además del de [HIGH SPEED], ubicados entre los botones para mover el manipulador, y se muestra en la pantalla la velocidad a la que está operando mediante un indicador de barras en la parte superior.
+
 
 ## 6. Software RoboDK – Aplicaciones y Comunicación
 
