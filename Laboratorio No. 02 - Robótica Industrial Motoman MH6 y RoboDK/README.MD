@@ -65,7 +65,7 @@ En la programación y operación de manipuladores industriales, las posiciones d
 
 Tal como se observa en las imagenes de referencia, estas posturas difieren tanto en su apariencia física como en su función:
 
-* **Home 1 (Cero Mecánico o Posición de Calibración):**
+* **Home 1 (Cero Mecánico o Posición de Calibración):** En donde todos sus ejes se encuentran en cero grados (cero pulsos). Físicamente es una postura erguida y muy similar al home de otras marcas como ABB. Usada como punto de referencia cinemática absoluta para el controlador, siendo indispensable para procesos de calibración.
 
 
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
