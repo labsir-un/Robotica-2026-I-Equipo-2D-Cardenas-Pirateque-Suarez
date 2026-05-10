@@ -21,6 +21,8 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 2. Comparación: Motoman MH6 vs ABB IRB140
 
+En el desarrollo de competencias en robótica industrial, es esencial familiarizarse con diversas arquitecturas y programaciones. Siendo unos de los robots usados a lo largo del curso el ABB IRB140 y el Motoman MH6, es importante identificar las diferencias entre estos dos. A pesar de que ambos robots pertenecen a la misma clasificación de brazos antropomórficos, estos llegan a presentar varias diferencias entre sí, entre las que se pueden apreciar:
+
 
 <br>
 <div align="center">
@@ -38,6 +40,10 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 </div>
 
 <br>
+
+
+
+
 
 ## 3. Configuraciones Home1 y Home2 del Motoman MH6
 
