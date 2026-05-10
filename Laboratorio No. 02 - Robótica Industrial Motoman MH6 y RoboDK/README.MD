@@ -21,8 +21,7 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 2. Comparación: Motoman MH6 vs ABB IRB140
 
-En el desarrollo de competencias en robótica industrial, es esencial familiarizarse con diversas arquitecturas y programaciones. Siendo unos de los robots usados a lo largo del curso el ABB IRB140 y el Motoman MH6, es importante identificar las diferencias entre estos dos. A pesar de que ambos robots pertenecen a la misma clasificación de brazos antropomórficos, estos llegan a presentar varias diferencias entre sí, entre las que se pueden apreciar:
-
+En el desarrollo de competencias en robótica industrial, es esencial familiarizarse con diversas arquitecturas y entornos de programación. Puesto que a lo largo del curso se han utilizado los manipuladores ABB IRB140 y Yaskawa Motoman MH6, resulta importante identificar las diferencias entre ambos. A pesar de que los dos equipos pertenecen a la clasificación de brazos antropomórficos, presentan variaciones técnicas significativas entre sí, tal como se puede apreciar a continuación:
 
 <br>
 <div align="center">
@@ -30,20 +29,17 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 | Característica | **Motoman MH6** | **ABB IRB140** |
 |---|---|---|
 | **Fabricante** | Yaskawa Motoman | ABB Robotics |
-| **Estructura** | Articulada  | Articulada  |
+| **Estructura** | Articulada | Articulada |
 | **Grados de Libertad** | 6 + 2 externos | 6 |
 | **Masa del robot** | 130 kg | 98 kg |
 | **Alcance** | 1422 mm | 810 mm |
-| **Repetibilidad** |	0.08 mm |	0.08 mm |
-| **Software de simulación** | MotoSim EG-VRC | RobotStudio |
+| **Repetibilidad** | 0.08 mm | 0.08 mm |
+| **Software de simulación** | MotoSim EG-VRC / RoboDK | RobotStudio / RoboDK |
 
 </div>
-
 <br>
 
-
-
-
+A partir de esta tabla, destacan diferencias clave como los entornos de simulación nativos de cada fabricante, el alcance máximo y el peso del manipulador. Esto demuestra que, a pesar de sus similitudes estructurales, cada equipo posee características cinemáticas y físicas que lo hacen idóneo para satisfacer distintas necesidades operativas y de espacio dentro de la industria.
 
 ## 3. Configuraciones Home1 y Home2 del Motoman MH6
 
