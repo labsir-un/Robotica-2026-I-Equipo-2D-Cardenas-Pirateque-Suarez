@@ -51,7 +51,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 | **Humedad relativa máxima** | 95% | 95% (temperatura constante) |
 | **Nivel de protección** | IP54 | IP67 (todas las variantes) |
 | **Consumo de potencia** | 1.5 kVA (promedio) | 0.44 kW a 1000 mm/s |
-| **Aceleración máx. TCP** | — | 57 m/s² |
+| **Aceleración máx. TCP** | No especificada por fabricante | 57 m/s² |
 | **Software de programación** | MotoSim EG, RoboDK | RobotStudio, RoboDK |
 | **Lenguaje de programación** | INFORM III / Python | RAPID |
 
