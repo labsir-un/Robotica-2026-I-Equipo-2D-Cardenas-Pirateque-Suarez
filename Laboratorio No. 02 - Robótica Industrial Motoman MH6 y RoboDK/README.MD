@@ -24,12 +24,11 @@ Para operar el Motoman MH6 de manera eficiente y segura dentro de la celda de tr
 Más allá de la manipulación manual, la automatización industrial contemporánea depende de herramientas de software robustas que cierren la brecha entre el diseño de trayectorias y la ejecución en planta. En consecuencia, este documento introduce el uso de RoboDK, una potente plataforma de simulación y Programación Fuera de Línea (OLP) que destaca por su compatibilidad con múltiples fabricantes. Se abordarán sus aplicaciones fundamentales, su método de comunicación en línea con el controlador del Motoman, y se presentará un análisis crítico de sus ventajas, limitaciones y enfoques de uso frente a entornos de simulación propietarios y de alta fidelidad como RobotStudio.
 
 Finalmente, como culminación práctica de la sesión, se expone el diseño, simulación y ejecución de una trayectoria paramétrica polar. Este ejercicio no solo valida los conceptos de cinemática inversa y generación de trayectorias, sino que demuestra la viabilidad técnica de comandar movimientos complejos desde un computador hacia el manipulador Motoman MH6 real, consolidando un flujo de trabajo integral desde la estructuración del código en RoboDK hasta la respuesta física del robot en el laboratorio.
-
 ## 2. Comparación: Motoman MH6 vs ABB IRB140
 
 En el desarrollo de competencias en robótica industrial, es esencial familiarizarse con diversas arquitecturas y entornos de programación. Puesto que a lo largo del curso se han utilizado los manipuladores ABB IRB140 y Yaskawa Motoman MH6, resulta importante identificar las diferencias entre ambos. A pesar de que los dos equipos pertenecen a la clasificación de brazos de estructura articulada vertical y comparten una carga útil máxima de 6 kg, presentan variaciones técnicas significativas en sus dimensiones, velocidades y rangos de movimiento, tal como se detalla a continuación en el siguiente análisis estructurado:
 
-### 2.1 Datos Generales, Alcance y Operación
+### 2.1 Datos Generales y Alcance
 
 <br>
 <div align="center">
@@ -47,17 +46,18 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 | **Peso del manipulador** | ~130 kg | 98 kg |
 | **Controlador** | DX100 | IRC5 |
 | **Montajes disponibles** | Suelo, pared, techo | Suelo, invertido, pared (cualquier ángulo) |
-| **Temperatura de operación** | 0 a +45 °C | +5 a +45 °C |
+| **Temperatura de operación** | 0°C a +45°C | +5°C a +45°C |
+| **Humedad relativa máxima** | 95% | 95% (temperatura constante) |
+| **Nivel de protección** | IP54 | IP67 (todas las variantes) |
 | **Consumo de potencia** | 1.5 kVA (promedio) | 0.44 kW a 1000 mm/s |
-| **Protección IP** | — | IP67 (hasta muñeca) |
 | **Aceleración máx. TCP** | — | 57 m/s² |
 | **Software de programación** | MotoSim EG, RoboDK | RobotStudio, RoboDK |
-| **Lenguaje de programación**| INFORM III / Python | RAPID |
+| **Lenguaje de programación** | INFORM III / Python | RAPID |
 
 </div>
 <br>
 
-**Análisis:** La diferencia de escala es evidente. El Motoman MH6 posee un volumen de trabajo significativamente mayor, logrando casi el doble de alcance vertical y horizontal frente al IRB140, sacrificando a cambio un poco de precisión (repetibilidad de ±0.08mm vs ±0.03mm) y requiriendo un chasis más pesado (130 kg). El detalle más importante radica en los **dos ejes externos adicionales** que posee la celda del Motoman, otorgando un nivel de configuración superior para posicionadores o rieles en comparación al estándar de 6 ejes del ABB. A nivel de desarrollo y entorno, el ABB ofrece protección IP67 estándar, mientras que el Motoman se apoya en INFORM III y la versatilidad de RoboDK/Python para su programación.
+**Análisis:** La diferencia de escala es evidente. El Motoman MH6 posee un volumen de trabajo significativamente mayor, logrando casi el doble de alcance vertical y horizontal frente al IRB140, sacrificando a cambio un poco de precisión (repetibilidad de ±0.08mm vs ±0.03mm) y requiriendo un chasis más pesado (130 kg). El detalle más importante radica en los **dos ejes externos adicionales** que posee la celda del Motoman, otorgando un nivel de configuración superior para posicionadores o rieles en comparación al estándar de 6 ejes del ABB.
 
 ### 2.2 Rangos de Movimiento por Eje
 
@@ -76,7 +76,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis:** Es interesante notar cómo se distribuyen los movimientos. El Motoman MH6 presenta un rango excepcionalmente amplio en el Eje 3 (U: +250°/-175°) permitiéndole articularse sobre sí mismo de maneras muy flexibles para alcanzar puntos lejanos, mientras que el ABB IRB140 compensa con mayor rotación en la muñeca (Ejes 4 y 6), facilitando maniobras ágiles con la herramienta en espacios reducidos sin riesgo de enredos.
+**Análisis:** Es interesante notar cómo se distribuyen los movimientos. El Motoman MH6 presenta un rango excepcionalmente amplio en el Eje 3 (+250°/-175°) permitiéndole articularse sobre sí mismo de maneras muy flexibles para alcanzar puntos lejanos, mientras que el ABB IRB140 compensa con mayor rotación en la muñeca (Ejes 4 y 6), facilitando maniobras ágiles con la herramienta en espacios reducidos sin riesgo de enredos.
 
 ### 2.3 Velocidades Máximas por Eje
 
@@ -95,7 +95,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis:** En términos de dinámica, el Motoman MH6 es notablemente más rápido en su muñeca (Ejes 4, 5 y 6), alcanzando hasta 610 °/s en el giro de la herramienta (Eje T). Esto lo hace muy eficiente para reposicionamientos constantes en procesos como soldadura. El ABB IRB140, por su parte, mantiene un equilibrio en todo el brazo, destacando en la velocidad del Eje 3 (260 °/s).
+**Análisis:** En términos de dinámica, el Motoman MH6 es notablemente más rápido en su muñeca (Ejes 4, 5 y 6), alcanzando hasta 610 °/s en el giro de la herramienta. Esto lo hace muy eficiente para reposicionamientos constantes en procesos como soldadura. El ABB IRB140, por su parte, mantiene un equilibrio en todo el brazo, destacando en la velocidad del Eje 3 (260 °/s).
 
 ### 2.4 Aplicaciones Típicas
 
