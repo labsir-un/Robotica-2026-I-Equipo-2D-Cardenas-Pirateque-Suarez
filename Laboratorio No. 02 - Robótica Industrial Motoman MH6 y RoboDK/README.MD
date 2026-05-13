@@ -118,34 +118,79 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 **Análisis final:** Al observar las aplicaciones ideales, el ABB IRB140 sobresale en entornos que demandan control minucioso o ambientes especializados (Clean Room, Foundry), donde su alta precisión y tamaño compacto son vitales. En contraposición, la robustez, el extenso alcance y la velocidad en la muñeca del Motoman MH6 lo consolidan como un manipulador versátil (multipropósito) ideal para operaciones a mayor escala como paletizado, empaque y soldadura láser.
 
-## 3. Configuraciones Home1 y Home2 del Motoman MH6
+## 3. Configuraciones Home 1 y Home 2 del Motoman MH6
 
-En la programación y operación de manipuladores industriales, las posiciones de *Home* son configuraciones articulares predefinidas que sirven como puntos de referencia clave para el controlador y el operador. En el entorno del Motoman MH6 usado a lo largo del laboratorio, se manejan dos configuraciones principales (Home 1 y Home 2), cada una con un propósito técnico distinto dentro de la celda de manufactura.
+En la programación y operación del manipulador Motoman MH6, se establecen dos posiciones de referencia predefinidas en el controlador denominadas *Home 1* y *Home 2*. Estas configuraciones articulares son fundamentales dentro de la celda de manufactura, ya que sirven como puntos seguros de inicio, finalización de rutinas y verificación del sistema de coordenadas. A continuación, se detalla la posición de cada articulación en ambas configuraciones para dar cumplimiento a los requerimientos del análisis.
 
+### 3.1 Home 1 (Work Home Position)
 
+La posición *Home 1* constituye la postura base o neutral de trabajo del manipulador. Físicamente, en esta configuración el eje U (antebrazo) se orienta de forma horizontal y el eje R (muñeca) queda en posición vertical, resultando en una postura de reposo característica. Esta configuración facilita las verificaciones rápidas del área de trabajo, minimiza los torques estáticos sobre los actuadores y es comúnmente empleada como posición de inicio (*Origin*) en aplicaciones de embalaje y manipulación de materiales.
+
+Los valores de las articulaciones para esta posición, expresados en pulsos de encoder tal como los reporta el controlador DX100, son los siguientes:
+
+<br>
+<div align="center">
+
+| Articulación | Denominación | Origen (pulsos) | Actual (pulsos) |
+| :---: | :---: | :---: | :---: |
+| **Eje 1** | S | 0 | 1 |
+| **Eje 2** | L | −115.290 | −115.291 |
+| **Eje 3** | U | −111.622 | −111.621 |
+| **Eje 4** | R | 1 | 0 |
+| **Eje 5** | B | 42.647 | 42.646 |
+| **Eje 6** | T | 1.392 | 1.393 |
+
+</div>
+<br>
+
+> *Nota técnica: La columna "Actual" corresponde a la posición medida en el *Teach Pendant* al momento de la captura. La desviación máxima respecto al origen es de apenas ±1 pulso, lo que confirma una excelente calibración del sistema.*
 
 <div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="Images/home2.png" width="300"><br>
-        <b>Figura 2. Home 1</b>
-      </td>
-      <td align="center">
-        <img src="Images/home1.png" width="300"><br>
-        <b>Figura 3. Home 2</b>
-      </td>
-    </tr>
-  </table>
+  <img src="Images/home1.png" alt="Home 1 del Motoman MH6" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 2. Configuración Home 1 del manipulador Motoman MH6 — Postura base neutral de referencia.</b>
 </div>
 
+### 3.2 Home 2 (Second Home Position)
 
-Tal como se observa en las imagenes de referencia, estas posturas difieren tanto en su apariencia física como en su función:
+La posición *Home 2* corresponde a una postura elevada y retraída. En esta configuración, el brazo adopta una geometría casi extendida verticalmente, lo cual proporciona un amplio espacio de acceso a los elementos mecánicos del robot. Por su naturaleza compacta frente al entorno, está diseñada específicamente para operaciones de mantenimiento, cambio seguro de efectores finales (herramientas) y para el tránsito libre del manipulador reduciendo el riesgo de colisiones.
 
-* **Home 1 (Cero Mecánico o Posición de Calibración):** Es la posición n donde todos sus ejes se encuentran en cero grados (cero pulsos). Físicamente es una postura erguida y muy similar al home de otras marcas como ABB. Usada como punto de referencia cinemática absoluta para el controlador, siendo indispensable para procesos de calibración.
+Los valores de las articulaciones para esta posición, que se acercan considerablemente al cero mecánico en los ejes principales, son los siguientes:
 
-* **Home 2 (Posición de transporte o *Safe Home*):** Es una posición personalizable en algunos modelos de Yaskawa, usada principalmente en este caso para transporte del manipulador y almacenamiento. Esta tiene una forma más compacta o plegada, como se ve en la imagen.
+<br>
+<div align="center">
 
+| Articulación | Denominación | Especificado (pulsos) | Actual (pulsos) | Diferencia |
+| :---: | :---: | :---: | :---: | :---: |
+| **Eje 1** | S | 0 | 0 | 0 |
+| **Eje 2** | L | 2.037 | 2.037 | 0 |
+| **Eje 3** | U | 2.359 | 2.359 | 0 |
+| **Eje 4** | R | 0 | 0 | 0 |
+| **Eje 5** | B | −121 | −121 | 0 |
+| **Eje 6** | T | 1.392 | 1.392 | 0 |
+
+</div>
+<br>
+
+> *Nota técnica: Los valores de los ejes L, U y B próximos a cero evidencian la postura extendida. La diferencia nula (0) en todas las articulaciones demuestra que el robot alcanzó exactamente el *target* especificado en la memoria del controlador.*
+
+<div align="center">
+  <img src="Images/home2.png" alt="Home 2 del Motoman MH6" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 3. Configuración Home 2 del manipulador Motoman MH6 — Postura elevada para mantenimiento.</b>
+</div>
+
+### 3.3 Análisis: ¿Cuál posición es óptima?
+
+Respondiendo a la interrogante sobre cuál de las dos configuraciones es mejor, la respuesta depende estrictamente del escenario de uso, sin embargo, desde el punto de vista operativo estándar, **el Home 1 representa la posición óptima** como referencia habitual para la celda de manufactura. 
+
+Esta elección se fundamenta técnica y mecánicamente en los siguientes criterios:
+
+1. **Minimización de Torques Gravitacionales:** Al mantener el antebrazo horizontal y el brazo compensado, la postura del *Home 1* distribuye de forma equilibrada las cargas gravitacionales sobre los actuadores. Esto reduce drásticamente el torque estático que deben soportar los frenos eléctricos de los motores mientras el robot está inactivo, prolongando su vida útil.
+2. **Referencia de Calibración:** Al estar predefinida como el origen de trabajo, facilita la verificación visual y de software de la calibración del robot, permitiendo detectar de forma temprana desvíos en la repetibilidad antes de iniciar la producción.
+3. **Coherencia de Ciclo:** La programación industrial exige puntos de inicio y retorno predecibles. El *Home 1* sitúa la herramienta en una zona media de fácil acercamiento a las mesas de trabajo, optimizando los tiempos de ciclo.
+
+Por el contrario, el **Home 2 no es ideal para el reposo continuo**, sino que debe reservarse exclusivamente como una posición transitoria de servicio (mantenimiento preventivo, ajuste de herramental o resguardo en caso de ingreso de personal a la celda), donde su postura elevada garantiza la seguridad espacial.
 
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
 
