@@ -29,7 +29,7 @@ Finalmente, como culminación práctica de la sesión, se expone el diseño, sim
 
 En el desarrollo de competencias en robótica industrial, es esencial familiarizarse con diversas arquitecturas y entornos de programación. Puesto que a lo largo del curso se han utilizado los manipuladores ABB IRB140 y Yaskawa Motoman MH6, resulta importante identificar las diferencias entre ambos. A pesar de que los dos equipos pertenecen a la clasificación de brazos de estructura articulada vertical y comparten una carga útil máxima de 6 kg, presentan variaciones técnicas significativas en sus dimensiones, velocidades y rangos de movimiento, tal como se detalla a continuación en el siguiente análisis estructurado:
 
-### 2.1 Datos Generales y Alcance
+### 2.1 Datos Generales, Alcance y Operación
 
 <br>
 <div align="center">
@@ -47,11 +47,17 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 | **Peso del manipulador** | ~130 kg | 98 kg |
 | **Controlador** | DX100 | IRC5 |
 | **Montajes disponibles** | Suelo, pared, techo | Suelo, invertido, pared (cualquier ángulo) |
+| **Temperatura de operación** | 0 a +45 °C | +5 a +45 °C |
+| **Consumo de potencia** | 1.5 kVA (promedio) | 0.44 kW a 1000 mm/s |
+| **Protección IP** | — | IP67 (hasta muñeca) |
+| **Aceleración máx. TCP** | — | 57 m/s² |
+| **Software de programación** | MotoSim EG, RoboDK | RobotStudio, RoboDK |
+| **Lenguaje de programación**| INFORM III / Python | RAPID |
 
 </div>
 <br>
 
-**Análisis:** La diferencia de escala es evidente. El Motoman MH6 posee un volumen de trabajo significativamente mayor, logrando casi el doble de alcance vertical y horizontal frente al IRB140, sacrificando a cambio un poco de precisión (repetibilidad de ±0.08mm vs ±0.03mm) y requiriendo un chasis más pesado (130 kg). El detalle más importante radica en los **dos ejes externos adicionales** que posee la celda del Motoman, otorgando un nivel de configuración superior para posicionadores o rieles en comparación al estándar de 6 ejes del ABB.
+**Análisis:** La diferencia de escala es evidente. El Motoman MH6 posee un volumen de trabajo significativamente mayor, logrando casi el doble de alcance vertical y horizontal frente al IRB140, sacrificando a cambio un poco de precisión (repetibilidad de ±0.08mm vs ±0.03mm) y requiriendo un chasis más pesado (130 kg). El detalle más importante radica en los **dos ejes externos adicionales** que posee la celda del Motoman, otorgando un nivel de configuración superior para posicionadores o rieles en comparación al estándar de 6 ejes del ABB. A nivel de desarrollo y entorno, el ABB ofrece protección IP67 estándar, mientras que el Motoman se apoya en INFORM III y la versatilidad de RoboDK/Python para su programación.
 
 ### 2.2 Rangos de Movimiento por Eje
 
@@ -60,17 +66,17 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 | Eje | **Motoman MH6** | **ABB IRB140** |
 | :--- | :--- | :--- |
-| **Eje 1 (giro base)** | ±170° | +180° / -180° |
-| **Eje 2 (brazo inferior)**| +155° / -90° | +110° / -90° |
-| **Eje 3 (brazo superior)**| +250° / -175° | +50° / -230° |
-| **Eje 4 (rotación muñeca)**| ±180° | ±200° (por defecto) |
-| **Eje 5 (pitch/yaw)** | +225° / -45° | ±115° |
-| **Eje 6 (giro muñeca)** | ±360° | ±400° (por defecto) |
+| **Eje 1 (S - giro base)** | ±170° | +180° / -180° |
+| **Eje 2 (L - brazo inferior)**| +155° / -90° | +110° / -90° |
+| **Eje 3 (U - brazo superior)**| +250° / -175° | +50° / -230° |
+| **Eje 4 (R - rotación muñeca)**| ±180° | ±200° (por defecto) |
+| **Eje 5 (B - pitch/yaw)** | +225° / -45° | ±115° |
+| **Eje 6 (T - giro muñeca)** | ±360° | ±400° (por defecto) |
 
 </div>
 <br>
 
-**Análisis:** Es interesante notar cómo se distribuyen los movimientos. El Motoman MH6 presenta un rango excepcionalmente amplio en el Eje 3 (+250°/-175°) permitiéndole articularse sobre sí mismo de maneras muy flexibles para alcanzar puntos lejanos, mientras que el ABB IRB140 compensa con mayor rotación en la muñeca (Ejes 4 y 6), facilitando maniobras ágiles con la herramienta en espacios reducidos sin riesgo de enredos.
+**Análisis:** Es interesante notar cómo se distribuyen los movimientos. El Motoman MH6 presenta un rango excepcionalmente amplio en el Eje 3 (U: +250°/-175°) permitiéndole articularse sobre sí mismo de maneras muy flexibles para alcanzar puntos lejanos, mientras que el ABB IRB140 compensa con mayor rotación en la muñeca (Ejes 4 y 6), facilitando maniobras ágiles con la herramienta en espacios reducidos sin riesgo de enredos.
 
 ### 2.3 Velocidades Máximas por Eje
 
@@ -79,17 +85,17 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 | Eje | **Motoman MH6** | **ABB IRB140** |
 | :--- | :--- | :--- |
-| **Eje 1** | 220 °/s | 200 °/s |
-| **Eje 2** | 200 °/s | 200 °/s |
-| **Eje 3** | 220 °/s | 260 °/s |
-| **Eje 4** | 410 °/s | 360 °/s |
-| **Eje 5** | 410 °/s | 360 °/s |
-| **Eje 6** | 610 °/s | 450 °/s |
+| **Eje 1 (S)** | 220 °/s | 200 °/s |
+| **Eje 2 (L)** | 200 °/s | 200 °/s |
+| **Eje 3 (U)** | 220 °/s | 260 °/s |
+| **Eje 4 (R)** | 410 °/s | 360 °/s |
+| **Eje 5 (B)** | 410 °/s | 360 °/s |
+| **Eje 6 (T)** | 610 °/s | 450 °/s |
 
 </div>
 <br>
 
-**Análisis:** En términos de dinámica, el Motoman MH6 es notablemente más rápido en su muñeca (Ejes 4, 5 y 6), alcanzando hasta 610 °/s en el giro de la herramienta. Esto lo hace muy eficiente para reposicionamientos constantes en procesos como soldadura. El ABB IRB140, por su parte, mantiene un equilibrio en todo el brazo, destacando en la velocidad del Eje 3 (260 °/s).
+**Análisis:** En términos de dinámica, el Motoman MH6 es notablemente más rápido en su muñeca (Ejes 4, 5 y 6), alcanzando hasta 610 °/s en el giro de la herramienta (Eje T). Esto lo hace muy eficiente para reposicionamientos constantes en procesos como soldadura. El ABB IRB140, por su parte, mantiene un equilibrio en todo el brazo, destacando en la velocidad del Eje 3 (260 °/s).
 
 ### 2.4 Aplicaciones Típicas
 
