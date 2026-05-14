@@ -124,7 +124,7 @@ En la programación y operación del manipulador Motoman MH6, se establecen dos 
 
 ### 3.1 Home 1 (Work Home Position)
 
-La posición *Home 1* constituye la postura base o neutral de trabajo del manipulador. Físicamente, en esta configuración el eje U (antebrazo) se orienta de forma horizontal y el eje R (muñeca) queda en posición vertical, resultando en una postura de reposo característica. Esta configuración facilita las verificaciones rápidas del área de trabajo, minimiza los torques estáticos sobre los actuadores y es comúnmente empleada como posición de inicio (*Origin*) en aplicaciones de embalaje y manipulación de materiales.
+La posición *Home 1* constituye la postura base o neutral de trabajo del manipulador. Físicamente, en esta configuración el eje U (Upper Arm) se orienta de forma horizontal y el eje R (Rotate) queda en posición vertical, resultando en una postura de reposo característica. Esta configuración facilita las verificaciones rápidas del área de trabajo, minimiza los torques estáticos sobre los actuadores y es comúnmente empleada como posición de inicio (*Origin*) en aplicaciones de embalaje y manipulación de materiales.
 
 Los valores de las articulaciones para esta posición, expresados en pulsos de encoder tal como los reporta el controlador DX100, son los siguientes:
 
@@ -133,23 +133,35 @@ Los valores de las articulaciones para esta posición, expresados en pulsos de e
 
 | Articulación | Denominación | Origen (pulsos) | Actual (pulsos) |
 | :---: | :---: | :---: | :---: |
-| **Eje 1** | S | 0 | 1 |
-| **Eje 2** | L | −115.290 | −115.291 |
-| **Eje 3** | U | −111.622 | −111.621 |
-| **Eje 4** | R | 1 | 0 |
-| **Eje 5** | B | 42.647 | 42.646 |
-| **Eje 6** | T | 1.392 | 1.393 |
+| **Eje 1** | S (Shoulder/Base) | 0 | 1 |
+| **Eje 2** | L (Lower Arm) | −115.290 | −115.291 |
+| **Eje 3** | U (Upper Arm) | −111.622 | −111.621 |
+| **Eje 4** | R (Rotate) | 1 | 0 |
+| **Eje 5** | B (Bend) | 42.647 | 42.646 |
+| **Eje 6** | T (Twist/Tool) | 1.392 | 1.393 |
 
 </div>
 <br>
 
 > *Nota técnica: La columna "Actual" corresponde a la posición medida en el *Teach Pendant* al momento de la captura. La desviación máxima respecto al origen es de apenas ±1 pulso, lo que confirma una excelente calibración del sistema.*
 
+<br>
 <div align="center">
-  <img src="Images/home1.png" alt="Home 1 del Motoman MH6" style="border-radius: 5px; width: 350px;">
-  <br>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/home1.png" alt="Home 1 físico" width="350"><br>
+        <b>Vista física del manipulador</b>
+      </td>
+      <td align="center">
+        <img src="Images/tp_home1.jpg" alt="Teach Pendant Home 1" width="350"><br>
+        <b>Interfaz del Teach Pendant</b>
+      </td>
+    </tr>
+  </table>
   <b>Figura 2. Configuración Home 1 del manipulador Motoman MH6 — Postura base neutral de referencia.</b>
 </div>
+<br>
 
 ### 3.2 Home 2 (Second Home Position)
 
@@ -162,23 +174,35 @@ Los valores de las articulaciones para esta posición, que se acercan considerab
 
 | Articulación | Denominación | Especificado (pulsos) | Actual (pulsos) | Diferencia |
 | :---: | :---: | :---: | :---: | :---: |
-| **Eje 1** | S | 0 | 0 | 0 |
-| **Eje 2** | L | 2.037 | 2.037 | 0 |
-| **Eje 3** | U | 2.359 | 2.359 | 0 |
-| **Eje 4** | R | 0 | 0 | 0 |
-| **Eje 5** | B | −121 | −121 | 0 |
-| **Eje 6** | T | 1.392 | 1.392 | 0 |
+| **Eje 1** | S (Shoulder/Base) | 0 | 0 | 0 |
+| **Eje 2** | L (Lower Arm) | 2.037 | 2.037 | 0 |
+| **Eje 3** | U (Upper Arm) | 2.359 | 2.359 | 0 |
+| **Eje 4** | R (Rotate) | 0 | 0 | 0 |
+| **Eje 5** | B (Bend) | −121 | −121 | 0 |
+| **Eje 6** | T (Twist/Tool) | 1.392 | 1.392 | 0 |
 
 </div>
 <br>
 
 > *Nota técnica: Los valores de los ejes L, U y B próximos a cero evidencian la postura extendida. La diferencia nula (0) en todas las articulaciones demuestra que el robot alcanzó exactamente el *target* especificado en la memoria del controlador.*
 
+<br>
 <div align="center">
-  <img src="Images/home2.png" alt="Home 2 del Motoman MH6" style="border-radius: 5px; width: 350px;">
-  <br>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/home2.png" alt="Home 2 físico" width="350"><br>
+        <b>Vista física del manipulador</b>
+      </td>
+      <td align="center">
+        <img src="Images/tp_home2.png" alt="Teach Pendant Home 2" width="350"><br>
+        <b>Interfaz del Teach Pendant</b>
+      </td>
+    </tr>
+  </table>
   <b>Figura 3. Configuración Home 2 del manipulador Motoman MH6 — Postura elevada para mantenimiento.</b>
 </div>
+<br>
 
 ### 3.3 Análisis: ¿Cuál posición es óptima?
 
