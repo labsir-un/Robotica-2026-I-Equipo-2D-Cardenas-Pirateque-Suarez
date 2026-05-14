@@ -549,7 +549,7 @@ Haga clic en el siguiente enlace para ver el video completo de la implementació
 <br>
 
 <div align="center">
-  <a href="youtube.com" target="_blank">
+  <a href="https://youtu.be/QDgljY2Wygw" target="_blank">
     <img src="https://img.shields.io/badge/Ver_Video_en_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video" />
   </a>
 </div>
