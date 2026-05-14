@@ -214,6 +214,115 @@ Esta elección se fundamenta técnica y mecánicamente en los siguientes criteri
 
 Por el contrario, el **Home 2 no es ideal para el reposo continuo**, sino que debe reservarse exclusivamente como una posición transitoria de servicio (mantenimiento preventivo, ajuste de herramental o resguardo en caso de ingreso de personal a la celda), donde su postura elevada garantiza la seguridad espacial.
 
+
+## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
+
+La operación segura y precisa del manipulador Motoman MH6 requiere un conocimiento profundo de su interfaz física y de los protocolos de habilitación. Para este laboratorio, el control manual se realiza a través del terminal de programación portátil (*Teach Pendant*) asociado al controlador DX100.
+
+### 4.1 Procedimiento de Encendido y Activación del Sistema
+
+Antes de realizar cualquier desplazamiento, es imperativo seguir una secuencia de energización y configuración para garantizar que el sistema responda correctamente a los comandos:
+
+1. **Energización de Potencia:** Se deben activar los *breakers* identificados como "MOTOMAN" en el tablero eléctrico principal de la celda y posteriormente el interruptor totalizador.
+2. **Arranque del Controlador:** Girar la perilla de encendido en el cofre del controlador DX100.
+3. **Preparación del Teach Pendant:** Liberar el botón de parada de emergencia (*E-Stop*) girándolo en sentido horario y verificar que el selector de modo se encuentre en la posición **TEACH**.
+4. **Habilitación de Servos:** Navegar al menú "Robot" en la interfaz. Para energizar los motores, se debe presionar el botón **[SERVO ON READY]** mientras se mantiene pulsado a media carrera el interruptor de hombre muerto (*Deadman switch*) en la parte posterior del terminal. El LED de confirmación indicará que el robot está listo para moverse.
+
+<br>
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="Images/controlador_encendido.png" width="200"><br>
+        <b>Figura 6. Perilla de encendido DX100.</b>
+      </td>
+      <td align="center">
+        <img src="Images/selector_modo_tp.png" width="180"><br>
+        <b>Figura 7. Selector de modo en posición TEACH.</b>
+      </td>
+      <td align="center">
+        <img src="Images/habilitacion_servos.png" width="220"><br>
+        <b>Figura 8. Activación de servos y Deadman.</b>
+      </td>
+    </tr>
+  </table>
+</div>
+<br>
+
+### 4.2 Movimiento por Articulaciones (Modo JOINT)
+
+En el modo articular, el control se ejerce sobre cada uno de los seis motores de forma independiente. Es el modo más intuitivo para alejar al robot de configuraciones singulares o para desplazamientos que no requieren una trayectoria rectilínea del efector final.
+
+**Procedimiento de ejecución:**
+* Presionar la tecla **[COORD]** hasta visualizar el icono de modo articular (JOINT) en la pantalla.
+* Mantener presionado el interruptor de hombre muerto.
+* Presionar simultáneamente la tecla **[L-SHIFT]** junto con la tecla del eje deseado (**S, L, U, R, B, T**).
+
+<br>
+<div align="center">
+
+| Articulación | Denominación | Sentido Positivo | Sentido Negativo |
+| :---: | :--- | :---: | :---: |
+| **Eje 1** | S (Shoulder/Base) | `[L-SHIFT] + [S+]` | `[L-SHIFT] + [S-]` |
+| **Eje 2** | L (Lower Arm) | `[L-SHIFT] + [L+]` | `[L-SHIFT] + [L-]` |
+| **Eje 3** | U (Upper Arm) | `[L-SHIFT] + [U+]` | `[L-SHIFT] + [U-]` |
+| **Eje 4** | R (Rotate) | `[L-SHIFT] + [R+]` | `[L-SHIFT] + [R-]` |
+| **Eje 5** | B (Bend) | `[L-SHIFT] + [B+]` | `[L-SHIFT] + [B-]` |
+| **Eje 6** | T (Twist/Tool) | `[L-SHIFT] + [T+]` | `[L-SHIFT] + [T-]` |
+
+</div>
+<br>
+
+### 4.3 Movimiento Cartesiano (Modo XYZ)
+
+Este modo permite desplazar el Punto Central de la Herramienta (TCP) a lo largo de líneas rectas respecto a un sistema de coordenadas definido, usualmente la **BASE** del robot o la **TOOL** (herramienta). Es indispensable para aproximaciones precisas a objetos o para seguir bordes lineales.
+
+**Cambio de sistema de referencia:**
+Mediante pulsaciones sucesivas de la tecla **[COORD]**, el operador puede alternar entre los sistemas:
+`JOINT → XYZ (World/Base) → TOOL → USER → CYLINDER`
+
+<br>
+<div align="center">
+  <img src="Images/iconos_coordenadas.png" alt="Iconos de modo de movimiento" width="400">
+  <br>
+  <b>Figura 9. Selección de modos de coordenadas en el Teach Pendant.</b>
+</div>
+<br>
+
+### 4.4 Traslaciones y Rotaciones en el Espacio Cartesiano
+
+Una vez seleccionado el modo XYZ o TOOL, las teclas de movimiento cambian su función de control articular a control espacial. En este estado, el controlador ejecuta automáticamente la cinemática inversa para coordinar todos los motores y producir un movimiento lineal o una rotación pura sobre el TCP.
+
+#### 4.4.1 Traslaciones Lineales
+Las traslaciones desplazan el TCP manteniendo constante la orientación de la herramienta:
+
+<br>
+<div align="center">
+
+| Dirección de Movimiento | Combinación de Teclas |
+| :--- | :--- |
+| Desplazamiento en **+X / -X** | `[L-SHIFT] + [X+]` / `[L-SHIFT] + [X-]` |
+| Desplazamiento en **+Y / -Y** | `[L-SHIFT] + [Y+]` / `[L-SHIFT] + [Y-]` |
+| Desplazamiento en **+Z / -Z** | `[L-SHIFT] + [Z+]` / `[L-SHIFT] + [Z-]` |
+
+</div>
+<br>
+
+#### 4.4.2 Rotaciones (Cambio de Orientación)
+Las rotaciones permiten girar la herramienta alrededor de los ejes X, Y o Z, manteniendo el TCP en una posición fija en el espacio:
+
+<br>
+<div align="center">
+
+| Eje de Rotación | Combinación de Teclas |
+| :--- | :--- |
+| Rotación en **+Rx / -Rx** | `[L-SHIFT] + [Rx+]` / `[L-SHIFT] + [Rx-]` |
+| Rotación en **+Ry / -Ry** | `[L-SHIFT] + [Ry+]` / `[L-SHIFT] + [Ry-]` |
+| Rotación en **+Rz / -Rz** | `[L-SHIFT] + [Rz+]` / `[L-SHIFT] + [Rz-]` |
+
+</div>
+<br>
+
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
 
 Para manipular manualmente el robot Motoman MH6, es necesario hace uso del Teach Pendant. 
