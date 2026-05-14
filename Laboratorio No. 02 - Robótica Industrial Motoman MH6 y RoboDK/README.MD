@@ -485,16 +485,12 @@ Este esquema detalla el proceso paso a paso de la rutina programada: inicia con 
 
 ## 9. Plano de Planta del Laboratorio
 
-La disposición física de los elementos dentro de la celda de manufactura es un factor determinante para la seguridad y la eficiencia de la operación. El siguiente plano detalla la ubicación estratégica del manipulador Motoman MH6, su controlador DX100 y el área de interacción del operario.
+La disposición física de los elementos dentro de la celda de manufactura es un factor determinante para la seguridad y la eficiencia de la operación. Esta distribución asegura que el radio de acción del robot se mantenga dentro del cerramiento de seguridad, permitiendo la supervisión visual directa sin exponer al personal a riesgos mecánicos.
 
-Esta distribución asegura que el radio de acción del robot (alcance de 1422 mm) se mantenga dentro del cerramiento de seguridad, mientras que la estación de control (PC con RoboDK y Teach Pendant) se ubica en una zona que permite la supervisión visual directa sin exponer al personal a riesgos mecánicos durante la ejecución de la trayectoria polar.
+Como soporte técnico de la distribución espacial de la celda, se adjunta el plano detallado en formato PDF:
 
-<br>
-<div align="center">
-  <img src="Images/plano_planta.png" alt="Plano de planta de la celda" style="border-radius: 5px; width: 500px;">
-  <br>
-  <b>Figura 19. Distribución en planta de la celda de trabajo del manipulador Motoman MH6.</b>
-</div>
+* **[Plano de Planta - Celda de Manufactura (PDF)](Anexos/plano_de_planta_laboratorio.pdf)**
+
 <br>
 
 ## 10. Código de la Trayectoria Polar: Diseño, Simulación e Implementación
