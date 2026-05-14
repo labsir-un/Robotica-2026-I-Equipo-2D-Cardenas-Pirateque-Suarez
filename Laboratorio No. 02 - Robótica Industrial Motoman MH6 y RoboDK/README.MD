@@ -214,10 +214,17 @@ Esta elección se fundamenta técnica y mecánicamente en los siguientes criteri
 
 Por el contrario, el **Home 2 no es ideal para el reposo continuo**, sino que debe reservarse exclusivamente como una posición transitoria de servicio (mantenimiento preventivo, ajuste de herramental o resguardo en caso de ingreso de personal a la celda), donde su postura elevada garantiza la seguridad espacial.
 
-
 ## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
 
 La operación segura y precisa del manipulador Motoman MH6 requiere un conocimiento profundo de su interfaz física y de los protocolos de habilitación. Para este laboratorio, el control manual se realiza a través del terminal de programación portátil (*Teach Pendant*) asociado al controlador DX100.
+
+<br>
+<div align="center">
+  <img src="Images/teachp2.png" alt="Interfaz del Teach Pendant" width="450">
+  <br>
+  <b>Figura 6. Elementos principales de control, seguridad y ejes externos en el Teach Pendant.</b>
+</div>
+<br>
 
 ### 4.1 Procedimiento de Encendido y Activación del Sistema
 
@@ -234,15 +241,15 @@ Antes de realizar cualquier desplazamiento, es imperativo seguir una secuencia d
     <tr>
       <td align="center">
         <img src="Images/controlador_encendido.png" width="200"><br>
-        <b>Figura 6. Perilla de encendido DX100.</b>
+        <b>Figura 7. Perilla de encendido DX100.</b>
       </td>
       <td align="center">
         <img src="Images/selector_modo_tp.png" width="180"><br>
-        <b>Figura 7. Selector de modo en posición TEACH.</b>
+        <b>Figura 8. Selector de modo TEACH.</b>
       </td>
       <td align="center">
         <img src="Images/habilitacion_servos.png" width="220"><br>
-        <b>Figura 8. Activación de servos y Deadman.</b>
+        <b>Figura 9. Activación de servos.</b>
       </td>
     </tr>
   </table>
@@ -259,6 +266,13 @@ En el modo articular, el control se ejerce sobre cada uno de los seis motores de
 * Presionar simultáneamente la tecla **[L-SHIFT]** junto con la tecla del eje deseado (**S, L, U, R, B, T**).
 
 <br>
+<div align="center">
+  <img src="Images/mov_articular.png" alt="Esquema de Movimiento de Articulaciones" width="550">
+  <br>
+  <b>Figura 10. Representación gráfica del movimiento por articulaciones (S, L, U, R, B, T).</b>
+</div>
+<br>
+
 <div align="center">
 
 | Articulación | Denominación | Sentido Positivo | Sentido Negativo |
@@ -278,14 +292,13 @@ En el modo articular, el control se ejerce sobre cada uno de los seis motores de
 Este modo permite desplazar el Punto Central de la Herramienta (TCP) a lo largo de líneas rectas respecto a un sistema de coordenadas definido, usualmente la **BASE** del robot o la **TOOL** (herramienta). Es indispensable para aproximaciones precisas a objetos o para seguir bordes lineales.
 
 **Cambio de sistema de referencia:**
-Mediante pulsaciones sucesivas de la tecla **[COORD]**, el operador puede alternar entre los sistemas:
-`JOINT → XYZ (World/Base) → TOOL → USER → CYLINDER`
+Mediante pulsaciones sucesivas de la tecla **[COORD]**, el operador puede alternar entre los sistemas disponibles: `JOINT → XYZ (World/Base) → TOOL → USER`.
 
 <br>
 <div align="center">
-  <img src="Images/iconos_coordenadas.png" alt="Iconos de modo de movimiento" width="400">
+  <img src="Images/mov_cartesiano.png" alt="Esquema de Movimiento Cartesiano" width="450">
   <br>
-  <b>Figura 9. Selección de modos de coordenadas en el Teach Pendant.</b>
+  <b>Figura 11. Representación del movimiento en el espacio de trabajo (Coordenadas Base/World).</b>
 </div>
 <br>
 
@@ -308,10 +321,17 @@ Las traslaciones desplazan el TCP manteniendo constante la orientación de la he
 </div>
 <br>
 
-#### 4.4.2 Rotaciones (Cambio de Orientación)
-Las rotaciones permiten girar la herramienta alrededor de los ejes X, Y o Z, manteniendo el TCP en una posición fija en el espacio:
+#### 4.4.2 Rotaciones y Coordenadas de Herramienta (TOOL)
+Las rotaciones permiten girar la herramienta alrededor de los ejes X, Y o Z, manteniendo el TCP en una posición fija en el espacio. Cuando se trabaja específicamente en el sistema **TOOL**, los ejes X, Y, Z se alinean con la geometría del efector final, facilitando aproximaciones directas hacia la pieza de trabajo.
 
 <br>
+<div align="center">
+  <img src="Images/mov_herramienta.png" alt="Esquema de Coordenadas de Herramienta" width="550">
+  <br>
+  <b>Figura 12. Movimientos espaciales referenciados al sistema de Coordenadas de Herramienta (TOOL).</b>
+</div>
+<br>
+
 <div align="center">
 
 | Eje de Rotación | Combinación de Teclas |
