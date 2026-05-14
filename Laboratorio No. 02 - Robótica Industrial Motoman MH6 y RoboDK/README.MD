@@ -575,5 +575,4 @@ En el material se puede observar la sincronización lograda mediante los *driver
     <img src="https://img.shields.io/badge/Ver_Video_en_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video" />
   </a>
   <br>
-  <b>Figura 21. Demostración técnica de la implementación física y virtual del Laboratorio No. 02.</b>
 </div>
