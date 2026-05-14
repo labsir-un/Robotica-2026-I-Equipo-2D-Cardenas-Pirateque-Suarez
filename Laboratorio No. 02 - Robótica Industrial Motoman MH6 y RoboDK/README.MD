@@ -418,6 +418,13 @@ La comunicación entre el software en el PC y el controlador del robot se puede 
 | **API / Programación** | Python, C#, .NET, C++ | Visual Basic, RAPID, C# |
 
 ## 8. Diagrama de Flujo del Robot
+<br>
+<div align="center">
+  <img src="Images/diagrama de flujo.png" alt="flujo" style="border-radius: 5px; width: 200px;">
+  <br>
+  <b>Figura 10. Diagrama de flujo.</b>
+</div>
+<br>
 
 ## 9. Plano de Planta del Laboratorio
 
