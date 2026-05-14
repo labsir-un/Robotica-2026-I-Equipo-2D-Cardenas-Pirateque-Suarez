@@ -484,126 +484,72 @@ Este esquema detalla el proceso paso a paso de la rutina programada: inicia con 
 <br>
 
 
-## 9. Código RoboDK 
+## 9. Trayectoria Polar: Diseño, Simulación e Implementación
 
-Para garantizar una correcta referencia visual del sistema, se presenta a continuación el fragmento de código de python utilizado para la rutina. Este bloque permite controlar el motoman MH6 desde el software RoboDK.
+En esta fase final, se diseñó una trayectoria basada en coordenadas polares para ser ejecutada por el manipulador Motoman MH6. El objetivo es validar la capacidad de interpolación del robot y la precisión de la comunicación en línea desde RoboDK.
 
-### 🐍 Código Python para RoboDK
+### 9.1 Conceptos de la Trayectoria Polar
+Una trayectoria polar define la posición de un punto mediante un radio ($r$) y un ángulo ($\theta$), a diferencia de las coordenadas cartesianas convencionales ($X, Y$). Para este laboratorio, se implementó una variante de la **Rosa de Grandi** (curva de rosa) definida por la ecuación:
+
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.image?r(\theta)%20=%20A%20\cdot%20\cos(k\theta)" title="r(theta) = A * cos(k*theta)" />
+</div>
+
+Donde $A$ representa el radio máximo del lóbulo y $k$ determina el número de pétalos. En nuestro código, se utilizó $k=2$ para generar lóbulos independientes en ejes ortogonales. La conversión a coordenadas cartesianas para el comando `MoveL` del robot se realiza mediante:
+
+<div align="center">
+  <img src="https://latex.codecogs.com/svg.image?x%20=%20r%20\cdot%20\cos(\theta)" title="x = r * cos(theta)" /> <br>
+  <img src="https://latex.codecogs.com/svg.image?y%20=%20r%20\cdot%20\sin(\theta)" title="y = r * sin(theta)" />
+</div>
+
+### 9.2 Justificación Técnica de la Trayectoria (2 Pétalos)
+Aunque la ecuación permite generar múltiples pétalos, se seleccionó una configuración de **dos pétalos (0 y $\pi/2$ rad)** por los siguientes motivos técnicos:
+
+1. **Validación de Ejes Principales:** Permite verificar de forma independiente la precisión del robot tanto en el eje longitudinal como en el transversal del plano de trabajo.
+2. **Gestión de Memoria y Buffer:** Al trabajar con comunicación en línea (*Robot Drivers*), reducir la trayectoria a dos pétalos permite una ejecución más fluida sin saturar el buffer de comandos del controlador DX100, asegurando que el robot no realice pausas entre puntos.
+3. **Optimización de Tiempo de Ciclo:** En un entorno de manufactura real, se busca validar la lógica de control con la menor cantidad de movimientos necesarios, priorizando la calidad del trazo sobre la complejidad geométrica repetitiva.
+
+### 9.3 Anexos de Código Python (RoboDK API)
+
+Debido a las diferencias entre el entorno virtual y la respuesta dinámica del robot real, se generaron dos versiones del script:
+
+* **[Código Versión Virtual (Alta Fidelidad)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Virtual.py):** Configurado con **180 puntos** por lóbulo para obtener una curva visualmente perfecta y suave en el simulador.
+* **[Código Versión Física (Optimizado)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Fisica.py):** Configurado con **40 puntos** por lóbulo. Esta reducción es vital en la implementación física para evitar vibraciones en los servomotores y garantizar una velocidad constante durante la interpolación lineal.
+
+### 9.4 Visualización Previa (Script para Google Colab)
+
+Para validar la geometría antes de cargarla en RoboDK, se desarrolló el siguiente script en Python que puede ejecutarse en Google Colab para previsualizar la trayectoria:
 
 ```python
-from robodk.robolink import *
-from robodk.robomath import *
-import math
-from matplotlib.textpath import TextPath
+import numpy as np
+import matplotlib.pyplot as plt
 
-# Inicialización de la API de RoboDK
-RDK = Robolink()
-
-# Elegir un robot (si hay varios, aparece un popup)
-robot = RDK.ItemUserPick("Selecciona un robot", ITEM_TYPE_ROBOT)
-if not robot.Valid():
-    raise Exception("No se ha seleccionado un robot válido.")
-
-"""# Conectar al robot físico
-if not robot.Connect():
-    raise Exception("No se pudo conectar al robot. Verifica que esté en modo remoto y que la configuración sea correcta.")
-
-# Confirmar conexión
-if not robot.ConnectedState():
-    raise Exception("El robot no está conectado correctamente. Revisa la conexión.")
-
-print("Robot conectado correctamente.")"""
-
-frame = RDK.Item("Frame_from_Target1", ITEM_TYPE_FRAME)
-if not frame.Valid():
-    raise Exception("No se encontró el Frame de referencia.")
-
-robot.setPoseFrame(frame)
-# robot.setPoseTool(robot.PoseTool())
-robot.setSpeed(300)
-robot.setRounding(5)
-
-# Parámetros de la figura
-A = 150             # Radio máximo del lóbulo (Ajustado para mantener el tamaño original)
-z_surface, z_safe = 0, 50            
-puntos_curva = 180  # 180 puntos por lóbulo es suficiente para un trazo suave
-
-# --- Posicionamiento inicial OBLIGATORIO ---
-target_home = RDK.Item("Target_Home", ITEM_TYPE_TARGET) 
-if not target_home.Valid():
-    raise Exception("CRÍTICO: No se encontró 'Target_Home' en la estación. Es obligatorio para iniciar y terminar.")
-
-robot.MoveJ(target_home)
-
-def dibujar_lobulo(angulo_central):
-    """
-    Dibuja un lóbulo basado en la ecuación polar r = A * cos(2 * theta).
-    El lóbulo apuntará en la dirección del 'angulo_central'.
-    """
-    # Un lóbulo completo se traza en un rango de pi/2 (-pi/4 a pi/4 respecto al centro)
-    theta_i = angulo_central - math.pi / 4
-    theta_f = angulo_central + math.pi / 4
-
-    # Los lóbulos de esta ecuación siempre nacen en el origen (0,0)
-    x_i, y_i = 0, 0
+def generar_previsualizacion():
+    A = 150 # Radio máximo
+    puntos = 180
     
-    robot.MoveJ(transl(x_i, y_i, z_surface - z_safe))
-    robot.MoveL(transl(x_i, y_i, z_surface))
+    plt.figure(figsize=(8,8))
     
-    for i in range(puntos_curva + 1):
-        theta = theta_i + (i / puntos_curva) * (theta_f - theta_i)
+    # Dibujar pétalos (0 y pi/2)
+    for angulo_central in [0, np.pi/2]:
+        theta_i = angulo_central - np.pi / 4
+        theta_f = angulo_central + np.pi / 4
+        theta = np.linspace(theta_i, theta_f, puntos)
         
-        # Ecuación polar para el lóbulo
-        r = A * math.cos(2 * (theta - angulo_central))
+        r = A * np.cos(2 * (theta - angulo_central))
+        r = np.maximum(0, r)
         
-        # Filtro de seguridad: evita r negativo por precisión de decimales en los extremos
-        r = max(0, r) 
-        
-        x = r * math.cos(theta)
-        y = r * math.sin(theta)
-        robot.MoveL(transl(x, y, z_surface))
-        
-    # Elevar la herramienta al terminar el lóbulo (de vuelta en el origen)
-    robot.MoveL(transl(0, 0, z_surface - z_safe))
+        x = r * np.cos(theta)
+        y = r * np.sin(theta)
+        plt.plot(x, y, label=f'Pétalo {angulo_central} rad')
 
-def dibujar_texto_transformado(texto, cx, cy, longitud):
-    path = TextPath((0, 0), texto, size=1)
-    bbox = path.get_extents()
-    tw, th = bbox.x1 - bbox.x0, bbox.y1 - bbox.y0
-    escala = longitud / tw
-    
-    def transformar(px, py):
-        # Centrado local y aplicación de transformaciones (90° + Espejos)
-        lx, ly = px - (bbox.x0 + tw / 2), py - (bbox.y0 + th / 2)
-        rx, ry = ly, lx 
-        return rx * escala + cx, ry * escala + cy
+    plt.title("Previsualización de Trayectoria Polar - Lab 2")
+    plt.grid(True)
+    plt.legend()
+    plt.axis('equal')
+    plt.show()
 
-    for trazo in path.to_polygons():
-        x0, y0 = transformar(trazo[0][0], trazo[0][1])
-        robot.MoveJ(transl(x0, y0, z_surface - z_safe))
-        robot.MoveL(transl(x0, y0, z_surface))
-        
-        for pt in trazo[1:]:
-            x, y = transformar(pt[0], pt[1])
-            robot.MoveL(transl(x, y, z_surface))
-            
-        robot.MoveL(transl(x, y, z_surface - z_safe))
-
-# --- Ejecución de la rutina ---
-
-# 1. Dibujar Figura Polar (Dos lóbulos independientes)
-dibujar_lobulo(0)            # Dibuja el lóbulo hacia la derecha (0 radianes)
-dibujar_lobulo(math.pi / 2)  # Dibuja el lóbulo hacia arriba (pi/2 radianes)
-
-# 2. Dibujar Texto (Letras extra grandes: longitud=400, Ubicado más abajo: CX=-120)
-dibujar_texto_transformado("David, Daniel, David", -120, 0, 650)
-
-# --- Retorno a Home OBLIGATORIO ---
-robot.MoveJ(target_home)
-
-print("Trayectoria completada. El robot inició y regresó a Home exitosamente.")
-
-```
+generar_previsualizacion()
 
 ## 10. Demostración en Video
 
