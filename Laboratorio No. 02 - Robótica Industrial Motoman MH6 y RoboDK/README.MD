@@ -445,6 +445,10 @@ La comunicación entre el software en el PC y el controlador del robot se puede 
 
 ## 7. Comparación: RoboDK vs RobotStudio
 
+Para comprender mejor el ecosistema de herramientas de Programación Fuera de Línea (OLP) utilizadas a lo largo del curso, es fundamental establecer las diferencias operativas y enfoques de uso entre RoboDK y RobotStudio. A continuación, se presenta un cuadro comparativo con sus características principales:
+
+<br>
+<div align="center">
 
 | Característica | **RoboDK** | **RobotStudio** |
 |---|---|---|
@@ -455,12 +459,27 @@ La comunicación entre el software en el PC y el controlador del robot se puede 
 | **Multi-robot** | Sí, múltiples marcas en la misma simulación | Solo robots ABB |
 | **API / Programación** | Python, C#, .NET, C++ | Visual Basic, RAPID, C# |
 
+</div>
+<br>
+
+**Análisis y Usos Específicos:**
+
+La elección entre ambas plataformas depende directamente de la arquitectura de la celda de manufactura y los objetivos de programación:
+
+* **RobotStudio:** Representa el entorno definitivo y de máxima fidelidad cuando se trabaja en un ecosistema exclusivo de ABB. Su mayor fortaleza es la integración del Controlador Virtual (VRC), lo que significa que el código RAPID escrito y depurado en la simulación tendrá un comportamiento cinemático y lógico idéntico en el controlador físico (como el IRC5). Su uso específico es ideal para la puesta en marcha, depuración de lógica compleja y optimización de tiempos de ciclo precisos en equipos ABB.
+* **RoboDK:** Representa universalidad y flexibilidad. Para el ingeniero, esta herramienta significa no depender de un solo fabricante, ya que permite integrar manipuladores Yaskawa (Motoman), ABB, KUKA, entre otros, en un mismo entorno de trabajo unificado. Aunque carece de la fidelidad del VRC propietario, su uso específico brilla en la generación de trayectorias complejas guiadas por modelos CAD/CAM mediante su API en Python o C#. Actúa como un traductor universal: genera la trayectoria independiente de la marca y utiliza sus post-procesadores para exportar el código nativo final (como INFORM III para el Motoman).
+
 ## 8. Diagrama de Flujo del Robot
+
+El siguiente diagrama de flujo ilustra la secuencia lógica estructurada para la ejecución de la trayectoria polar y el trazado de texto mediante el software RoboDK. 
+
+Este esquema detalla el proceso paso a paso de la rutina programada: inicia con la validación de la conexión y configuración del entorno (Robot, Frame y posición Home), establece la velocidad de operación, y procede a la ejecución secuencial de los movimientos para dibujar los lóbulos correspondientes a la ecuación polar. Posteriormente, procesa las coordenadas para realizar el trazado del texto ("David, Daniel") a través de un bucle, garantizando finalmente un retorno seguro a la posición de *Target_Home* antes de dar por finalizada la ejecución.
+
 <br>
 <div align="center">
-  <img src="Images/diagrama de flujo.png" alt="flujo" style="border-radius: 5px; width: 200px;">
+  <img src="Images/diagrama de flujo.png" alt="Diagrama de flujo de la rutina" style="border-radius: 5px; width: 450px;">
   <br>
-  <b>Figura 10. Diagrama de flujo.</b>
+  <b>Figura 18. Diagrama de flujo de la secuencia de ejecución para la trayectoria polar en RoboDK.</b>
 </div>
 <br>
 
