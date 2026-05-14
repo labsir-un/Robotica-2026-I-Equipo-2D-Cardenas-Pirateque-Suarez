@@ -484,11 +484,25 @@ Este esquema detalla el proceso paso a paso de la rutina programada: inicia con 
 <br>
 
 
-## 9. Trayectoria Polar: Diseño, Simulación e Implementación
+## 9. Plano de Planta del Laboratorio
+
+La disposición física de los elementos dentro de la celda de manufactura es un factor determinante para la seguridad y la eficiencia de la operación. El siguiente plano detalla la ubicación estratégica del manipulador Motoman MH6, su controlador DX100 y el área de interacción del operario.
+
+Esta distribución asegura que el radio de acción del robot (alcance de 1422 mm) se mantenga dentro del cerramiento de seguridad, mientras que la estación de control (PC con RoboDK y Teach Pendant) se ubica en una zona que permite la supervisión visual directa sin exponer al personal a riesgos mecánicos durante la ejecución de la trayectoria polar.
+
+<br>
+<div align="center">
+  <img src="Images/plano_planta.png" alt="Plano de planta de la celda" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 19. Distribución en planta de la celda de trabajo del manipulador Motoman MH6.</b>
+</div>
+<br>
+
+## 10. Código de la Trayectoria Polar: Diseño, Simulación e Implementación
 
 En esta fase final, se diseñó una trayectoria basada en coordenadas polares para ser ejecutada por el manipulador Motoman MH6. El objetivo es validar la capacidad de interpolación del robot y la precisión de la comunicación en línea desde RoboDK.
 
-### 9.1 Conceptos de la Trayectoria Polar
+### 10.1 Conceptos de la Trayectoria Polar
 Una trayectoria polar define la posición de un punto mediante un radio ($r$) y un ángulo ($\theta$), a diferencia de las coordenadas cartesianas convencionales ($X, Y$). Para este laboratorio, se implementó una variante de la **Rosa de Grandi** (curva de rosa) definida por la ecuación:
 
 $$r(\theta)=A\cdot\cos(k\theta)$$
@@ -498,50 +512,45 @@ Donde $A$ representa el radio máximo del lóbulo y $k$ determina el número de 
 $$x=r\cdot\cos(\theta)$$
 $$y=r\cdot\sin(\theta)$$
 
-### 9.2 Justificación Técnica de la Trayectoria (2 Pétalos)
+### 10.2 Justificación Técnica de la Trayectoria (2 Pétalos)
 Aunque la ecuación permite generar múltiples pétalos, se seleccionó una configuración de **dos pétalos (0 y $\pi/2$ rad)** por los siguientes motivos técnicos:
 
 1. **Validación de Ejes Principales:** Permite verificar de forma independiente la precisión del robot tanto en el eje longitudinal como en el transversal del plano de trabajo.
 2. **Gestión de Memoria y Buffer:** Al trabajar con comunicación en línea (*Robot Drivers*), reducir la trayectoria a dos pétalos permite una ejecución más fluida sin saturar el buffer de comandos del controlador DX100, asegurando que el robot no realice pausas entre puntos.
 3. **Optimización de Tiempo de Ciclo:** En un entorno de manufactura real, se busca validar la lógica de control con la menor cantidad de movimientos necesarios, priorizando la calidad del trazo sobre la complejidad geométrica repetitiva.
 
-### 9.3 Anexos de Código Python (RoboDK API)
+### 10.3 Anexos de Código Python (RoboDK API)
 
-Debido a las diferencias entre el entorno virtual y la respuesta dinámica del robot real, se generaron dos versiones del script:
+Como requerimiento del laboratorio, se adjuntan los scripts desarrollados para la ejecución de la rutina. Debido a las diferencias entre el entorno virtual y la respuesta dinámica del robot real, se generaron dos versiones:
 
-* **[Código Versión Virtual (Alta Fidelidad)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Virtual.py):** Configurado con **180 puntos** por lóbulo para obtener una curva visualmente perfecta y suave en el simulador.
-* **[Código Versión Física (Optimizado)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Fisica.py):** Configurado con **40 puntos** por lóbulo. Esta reducción es vital en la implementación física para evitar vibraciones en los servomotores y garantizar una velocidad constante durante la interpolación lineal.
+* **[Código Versión Virtual (Alta Fidelidad)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Virtual.py):** Configurado con **180 puntos** por lóbulo para una curva visualmente perfecta.
+* **[Código Versión Física (Optimizado)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Fisica.py):** Configurado con **40 puntos** por lóbulo para garantizar una velocidad constante y sin vibraciones en el manipulador real.
 
-### 9.4 Visualización Previa (Script para Google Colab)
+### 10.4 Visualización Previa (Script para Google Colab)
 
-Para validar la geometría antes de cargarla en RoboDK, se desarrolló el siguiente script en Python que puede ejecutarse en Google Colab para previsualizar la trayectoria:
+Para validar la geometría de los pétalos y el posicionamiento exacto del texto (ubicado debajo de la figura polar) antes de la implementación, se utiliza el siguiente script de validación:
 
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
 
 def generar_previsualizacion():
-    A = 150 # Radio máximo
-    puntos = 180
-    
+    A = 150 
     plt.figure(figsize=(8,8))
     
-    # Dibujar pétalos (0 y pi/2)
+    # Dibujo de pétalos polares
     for angulo_central in [0, np.pi/2]:
-        theta_i = angulo_central - np.pi / 4
-        theta_f = angulo_central + np.pi / 4
-        theta = np.linspace(theta_i, theta_f, puntos)
-        
-        r = A * np.cos(2 * (theta - angulo_central))
-        r = np.maximum(0, r)
-        
-        x = r * np.cos(theta)
-        y = r * np.sin(theta)
-        plt.plot(x, y, label=f'Pétalo {angulo_central} rad')
+        theta = np.linspace(angulo_central - np.pi/4, angulo_central + np.pi/4, 180)
+        r = np.maximum(0, A * np.cos(2 * (theta - angulo_central)))
+        plt.plot(r * np.cos(theta), r * np.sin(theta), linewidth=2)
 
-    plt.title("Previsualización de Trayectoria Polar - Lab 2")
+    # Representación del texto procesado (David . P, Daniel. David . C) 
+    # Ubicado debajo de los pétalos (Y negativo)
+    plt.text(0, -180, "David . P, Daniel. David . C", fontsize=10, color='red', 
+             ha='center', va='center', fontweight='bold')
+
+    plt.title("Previsualización de Trayectoria Polar y Texto - Lab 2")
     plt.grid(True)
-    plt.legend()
     plt.axis('equal')
     plt.show()
 
@@ -552,15 +561,15 @@ generar_previsualizacion()
 <div align="center">
   <img src="Images/previsualizacion_colab.png" alt="Previsualización de trayectoria" width="450">
   <br>
-  <b>Figura 19. Resultado esperado de la trayectoria generada mediante el script de validación.</b>
+  <b>Figura 20. Resultado esperado de la trayectoria generado mediante el script de validación.</b>
 </div>
 <br>
 
-## 10. Demostración en Video
+## 11. Demostración en Video: Validación de Trayectoria Polar
 
-Para evidenciar el correcto funcionamiento de la arquitectura de control diseñada, se ha documentado la ejecución de la celda de manufactura en video. 
+Como evidencia final del cumplimiento de los objetivos del laboratorio, se presenta el registro audiovisual de la ejecución del sistema. Este video documenta la integración exitosa entre la Programación Fuera de Línea (OLP) y la operación del manipulador físico en tiempo real.
 
-Haga clic en el siguiente enlace para ver el video completo de la implementación simulada y física:
+En el material se puede observar la sincronización lograda mediante los *drivers* de RoboDK, validando que la trayectoria polar diseñada y simulada en el entorno virtual se traslada con precisión milimétrica al manipulador Motoman MH6. La demostración incluye tanto la fase de aproximación segura como la ejecución de los pétalos de la Rosa de Grandi y el trazado de texto, confirmando la robustez de la comunicación vía Ethernet y la correcta configuración de los sistemas de referencia (Frame) y herramienta (TCP).
 
 <br>
 
@@ -568,4 +577,6 @@ Haga clic en el siguiente enlace para ver el video completo de la implementació
   <a href="https://youtu.be/QDgljY2Wygw" target="_blank">
     <img src="https://img.shields.io/badge/Ver_Video_en_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video" />
   </a>
+  <br>
+  <b>Figura 21. Demostración técnica de la implementación física y virtual del Laboratorio No. 02.</b>
 </div>
