@@ -357,16 +357,62 @@ Las rotaciones permiten girar la herramienta alrededor de los ejes X, Y o Z, man
 
 ## 5. Niveles de Velocidad para Movimientos Manuales
 
-Durante la operación manual del manipulador Motoman MH6 desde el *Teach Pendant*, es fundamental controlar la velocidad de los movimientos por razones de precisión y seguridad. A continuación, se detallan sus características:
+Durante la operación manual del manipulador Motoman MH6, la gestión de la velocidad de desplazamiento (*Jog Speed*) es un factor crítico que vincula la eficiencia operativa con la seguridad industrial. El controlador DX100 permite ajustar este parámetro para adaptarse a las diferentes etapas del proceso de enseñanza (*Teaching*), desde aproximaciones milimétricas hasta traslaciones rápidas en áreas despejadas.
 
-**5.1. Niveles de velocidad**
-El sistema cuenta con cuatro niveles de velocidad preestablecidos para el movimiento manual (jogging), los cuales limitan la velocidad máxima a la que se moverán los motores al presionar las teclas de los ejes:
-* **INCH (Micromovimiento / Paso a paso):** Es la velocidad más baja. El robot se mueve una distancia minúscula por cada pulsación de la tecla, independientemente de cuánto tiempo se mantenga presionada. Es ideal para aproximaciones muy finas y calibración.
-* **SLOW (Lenta):** Movimiento continuo pero a una velocidad muy reducida. Útil para acercarse a la pieza de trabajo de forma segura.
-* **MED (Media):** Velocidad moderada, utilizada para desplazamientos generales dentro de la celda de trabajo de forma controlada.
-* **FAST (Rápida):** Es la velocidad máxima permitida en el modo manual (limitada por seguridad frente a la velocidad real del modo automático). Se usa para realizar desplazamientos largos y rápidos en zonas libres de obstáculos.
+### 5.1 Caracterización de los Niveles de Velocidad (Modo TEACH)
 
-Para cambiar entre velocidades se hace uso de los botones de [SLOW] y [FAST] del teach pendant, además del de [HIGH SPEED], ubicados entre los botones para mover el manipulador, y se muestra en la pantalla la velocidad a la que está operando mediante un indicador de barras en la parte superior.
+El sistema dispone de cuatro niveles preestablecidos que limitan la velocidad máxima de los motores al accionar las teclas de movimiento. La siguiente tabla detalla la función y el uso recomendado para cada nivel:
+
+<br>
+<div align="center">
+
+| Nivel | Denominación | Característica Técnica | Aplicación en Laboratorio |
+| :---: | :---: | :---: | :--- |
+| **1** | **INCHING** | Avance por pulsos (< 1 mm/s) | Posicionamiento de extrema precisión y calibración de puntos finos. |
+| **2** | **SLOW** | Velocidad Baja (≈ 1–20 mm/s) | Aproximación segura a la pieza de trabajo o zonas con posibles obstáculos. |
+| **3** | **MEDIUM** | Velocidad Media (≈ 20–150 mm/s) | Desplazamientos generales controlados dentro de la celda de manufactura. |
+| **4** | **FAST** | Velocidad Alta (≈ 150–300+ mm/s) | Traslaciones de gran amplitud en zonas completamente libres de interferencias. |
+
+</div>
+<br>
+
+### 5.2 Control y Ajuste de Velocidad
+
+El ajuste de la velocidad no requiere navegar por menús complejos; se realiza de forma directa mediante teclas dedicadas en el panel central del *Teach Pendant*. Este diseño permite al operador reaccionar rápidamente ante cambios en el entorno de la celda:
+
+* **Tecla [FAST] (▲):** Incrementa el nivel de velocidad un paso por cada pulsación.
+* **Tecla [SLOW] (▼):** Reduce el nivel de velocidad un paso por cada pulsación.
+
+<br>
+<div align="center">
+  <img src="Images/teclas_control_velocidad.png" alt="Botones de selección de velocidad" width="450">
+  <br>
+  <b>Figura 15. Teclas dedicadas FAST y SLOW para el ajuste dinámico de la velocidad de Jogging.</b>
+</div>
+<br>
+
+### 5.3 Identificación del Nivel en la Interfaz
+
+Para garantizar una operación consciente, el nivel de velocidad activo se muestra permanentemente en la barra de estado superior de la interfaz del DX100. El operador puede identificar la configuración actual mediante dos indicadores visuales:
+
+1. **Icono de Jog:** Una barra progresiva que indica visualmente si se encuentra en niveles bajos o altos.
+2. **Valor Porcentual:** Un indicador numérico (típicamente 5%, 25%, 50% o 100%) que escala la capacidad dinámica del robot para el modo manual.
+
+<br>
+<div align="center">
+  <img src="Images/niveles_velocidad_pantalla.png" alt="Indicadores de velocidad en interfaz" width="300">
+  <br>
+  <b>Figura 16. Visualización de los niveles de velocidad y porcentajes en la pantalla del Teach Pendant.</b>
+</div>
+<br>
+
+### 5.4 Criterios de Seguridad Operacional
+
+La selección de la velocidad debe seguir protocolos estrictos para evitar colisiones o situaciones de riesgo:
+
+* **Aproximación Progresiva:** Al acercarse al objetivo (target), se debe conmutar a niveles *SLOW* o *INCHING* para evitar errores de percepción de profundidad.
+* **Validación de Trayectoria:** En las primeras pruebas de un programa (modo *Play*), se utiliza el **Speed Override** (generalmente iniciando al 5% o 10%) para verificar que la trayectoria simulada en RoboDK coincide con el entorno físico antes de operar a velocidad nominal.
+* **Visibilidad Total:** El uso de la velocidad *FAST* queda restringido a momentos donde el operador tiene una línea de visión clara y total sobre todos los ejes del brazo y posibles obstáculos.
 
 
 ## 6. Software RoboDK – Aplicaciones y Comunicación
