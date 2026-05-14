@@ -154,7 +154,7 @@ Los valores de las articulaciones para esta posición, expresados en pulsos de e
         <b>Figura 2. Vista física del manipulador en configuración Home 1.</b>
       </td>
       <td align="center">
-        <img src="Images/tp_home1.jpg" alt="Teach Pendant Home 1" width="350"><br>
+        <img src="Images/tp_home1.jpeg" alt="Teach Pendant Home 1" width="350"><br>
         <b>Figura 3. Interfaz del Teach Pendant mostrando los pulsos para Home 1 (Work Home Position).</b>
       </td>
     </tr>
@@ -194,7 +194,7 @@ Los valores de las articulaciones para esta posición, que se acercan considerab
         <b>Figura 4. Vista física del manipulador en configuración Home 2 (Postura de mantenimiento).</b>
       </td>
       <td align="center">
-        <img src="Images/tp_home2.png" alt="Teach Pendant Home 2" width="350"><br>
+        <img src="Images/tp_home2.jpeg" alt="Teach Pendant Home 2" width="350"><br>
         <b>Figura 5. Interfaz del Teach Pendant mostrando los pulsos para Home 2 (Second Home Position).</b>
       </td>
     </tr>
