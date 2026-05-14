@@ -484,72 +484,7 @@ Este esquema detalla el proceso paso a paso de la rutina programada: inicia con 
 <br>
 
 
-## 9. Trayectoria Polar: Diseño, Simulación e Implementación
 
-En esta fase final, se diseñó una trayectoria basada en coordenadas polares para ser ejecutada por el manipulador Motoman MH6. El objetivo es validar la capacidad de interpolación del robot y la precisión de la comunicación en línea desde RoboDK.
-
-### 9.1 Conceptos de la Trayectoria Polar
-Una trayectoria polar define la posición de un punto mediante un radio ($r$) y un ángulo ($\theta$), a diferencia de las coordenadas cartesianas convencionales ($X, Y$). Para este laboratorio, se implementó una variante de la **Rosa de Grandi** (curva de rosa) definida por la ecuación:
-
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.image?r(\theta)%20=%20A%20\cdot%20\cos(k\theta)" title="r(theta) = A * cos(k*theta)" />
-</div>
-
-Donde $A$ representa el radio máximo del lóbulo y $k$ determina el número de pétalos. En nuestro código, se utilizó $k=2$ para generar lóbulos independientes en ejes ortogonales. La conversión a coordenadas cartesianas para el comando `MoveL` del robot se realiza mediante:
-
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.image?x%20=%20r%20\cdot%20\cos(\theta)" title="x = r * cos(theta)" /> <br>
-  <img src="https://latex.codecogs.com/svg.image?y%20=%20r%20\cdot%20\sin(\theta)" title="y = r * sin(theta)" />
-</div>
-
-### 9.2 Justificación Técnica de la Trayectoria (2 Pétalos)
-Aunque la ecuación permite generar múltiples pétalos, se seleccionó una configuración de **dos pétalos (0 y $\pi/2$ rad)** por los siguientes motivos técnicos:
-
-1. **Validación de Ejes Principales:** Permite verificar de forma independiente la precisión del robot tanto en el eje longitudinal como en el transversal del plano de trabajo.
-2. **Gestión de Memoria y Buffer:** Al trabajar con comunicación en línea (*Robot Drivers*), reducir la trayectoria a dos pétalos permite una ejecución más fluida sin saturar el buffer de comandos del controlador DX100, asegurando que el robot no realice pausas entre puntos.
-3. **Optimización de Tiempo de Ciclo:** En un entorno de manufactura real, se busca validar la lógica de control con la menor cantidad de movimientos necesarios, priorizando la calidad del trazo sobre la complejidad geométrica repetitiva.
-
-### 9.3 Anexos de Código Python (RoboDK API)
-
-Debido a las diferencias entre el entorno virtual y la respuesta dinámica del robot real, se generaron dos versiones del script:
-
-* **[Código Versión Virtual (Alta Fidelidad)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Virtual.py):** Configurado con **180 puntos** por lóbulo para obtener una curva visualmente perfecta y suave en el simulador.
-* **[Código Versión Física (Optimizado)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Fisica.py):** Configurado con **40 puntos** por lóbulo. Esta reducción es vital en la implementación física para evitar vibraciones en los servomotores y garantizar una velocidad constante durante la interpolación lineal.
-
-### 9.4 Visualización Previa (Script para Google Colab)
-
-Para validar la geometría antes de cargarla en RoboDK, se desarrolló el siguiente script en Python que puede ejecutarse en Google Colab para previsualizar la trayectoria:
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-def generar_previsualizacion():
-    A = 150 # Radio máximo
-    puntos = 180
-    
-    plt.figure(figsize=(8,8))
-    
-    # Dibujar pétalos (0 y pi/2)
-    for angulo_central in [0, np.pi/2]:
-        theta_i = angulo_central - np.pi / 4
-        theta_f = angulo_central + np.pi / 4
-        theta = np.linspace(theta_i, theta_f, puntos)
-        
-        r = A * np.cos(2 * (theta - angulo_central))
-        r = np.maximum(0, r)
-        
-        x = r * np.cos(theta)
-        y = r * np.sin(theta)
-        plt.plot(x, y, label=f'Pétalo {angulo_central} rad')
-
-    plt.title("Previsualización de Trayectoria Polar - Lab 2")
-    plt.grid(True)
-    plt.legend()
-    plt.axis('equal')
-    plt.show()
-
-generar_previsualizacion()
 
 ## 10. Demostración en Video
 
