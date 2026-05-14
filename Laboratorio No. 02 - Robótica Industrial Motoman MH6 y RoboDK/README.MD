@@ -143,7 +143,7 @@ Los valores de las articulaciones para esta posición, expresados en pulsos de e
 </div>
 <br>
 
-> *Nota técnica: La columna "Actual" corresponde a la posición medida en el *Teach Pendant* al momento de la captura. La desviación máxima respecto al origen es de apenas ±1 pulso, lo que confirma una excelente calibración del sistema.*
+> *Nota técnica: La columna "Actual" corresponde a la posición medida en el Teach Pendant al momento de la captura. La desviación máxima respecto al origen es de apenas ±1 pulso, lo que confirma una excelente calibración del sistema.*
 
 <br>
 <div align="center">
@@ -151,15 +151,14 @@ Los valores de las articulaciones para esta posición, expresados en pulsos de e
     <tr>
       <td align="center">
         <img src="Images/home1.png" alt="Home 1 físico" width="350"><br>
-        <b>Vista física del manipulador</b>
+        <b>Figura 2. Vista física del manipulador en configuración Home 1.</b>
       </td>
       <td align="center">
         <img src="Images/tp_home1.jpg" alt="Teach Pendant Home 1" width="350"><br>
-        <b>Interfaz del Teach Pendant</b>
+        <b>Figura 3. Interfaz del Teach Pendant mostrando los pulsos para Home 1 (Work Home Position).</b>
       </td>
     </tr>
   </table>
-  <b>Figura 2. Configuración Home 1 del manipulador Motoman MH6 — Postura base neutral de referencia.</b>
 </div>
 <br>
 
@@ -184,7 +183,7 @@ Los valores de las articulaciones para esta posición, que se acercan considerab
 </div>
 <br>
 
-> *Nota técnica: Los valores de los ejes L, U y B próximos a cero evidencian la postura extendida. La diferencia nula (0) en todas las articulaciones demuestra que el robot alcanzó exactamente el *target* especificado en la memoria del controlador.*
+> *Nota técnica: Los valores de los ejes L, U y B próximos a cero evidencian la postura extendida. La diferencia nula (0) en todas las articulaciones demuestra que el robot alcanzó exactamente el target especificado en la memoria del controlador.*
 
 <br>
 <div align="center">
@@ -192,15 +191,14 @@ Los valores de las articulaciones para esta posición, que se acercan considerab
     <tr>
       <td align="center">
         <img src="Images/home2.png" alt="Home 2 físico" width="350"><br>
-        <b>Vista física del manipulador</b>
+        <b>Figura 4. Vista física del manipulador en configuración Home 2 (Postura de mantenimiento).</b>
       </td>
       <td align="center">
         <img src="Images/tp_home2.png" alt="Teach Pendant Home 2" width="350"><br>
-        <b>Interfaz del Teach Pendant</b>
+        <b>Figura 5. Interfaz del Teach Pendant mostrando los pulsos para Home 2 (Second Home Position).</b>
       </td>
     </tr>
   </table>
-  <b>Figura 3. Configuración Home 2 del manipulador Motoman MH6 — Postura elevada para mantenimiento.</b>
 </div>
 <br>
 
