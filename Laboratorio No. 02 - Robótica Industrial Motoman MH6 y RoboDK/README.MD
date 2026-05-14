@@ -491,16 +491,12 @@ En esta fase final, se diseñó una trayectoria basada en coordenadas polares pa
 ### 9.1 Conceptos de la Trayectoria Polar
 Una trayectoria polar define la posición de un punto mediante un radio ($r$) y un ángulo ($\theta$), a diferencia de las coordenadas cartesianas convencionales ($X, Y$). Para este laboratorio, se implementó una variante de la **Rosa de Grandi** (curva de rosa) definida por la ecuación:
 
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.image?r(\theta)%20=%20A%20\cdot%20\cos(k\theta)" title="r(theta) = A * cos(k*theta)" />
-</div>
+$$r(\theta)=A\cdot\cos(k\theta)$$
 
 Donde $A$ representa el radio máximo del lóbulo y $k$ determina el número de pétalos. En nuestro código, se utilizó $k=2$ para generar lóbulos independientes en ejes ortogonales. La conversión a coordenadas cartesianas para el comando `MoveL` del robot se realiza mediante:
 
-<div align="center">
-  <img src="https://latex.codecogs.com/svg.image?x%20=%20r%20\cdot%20\cos(\theta)" title="x = r * cos(theta)" /> <br>
-  <img src="https://latex.codecogs.com/svg.image?y%20=%20r%20\cdot%20\sin(\theta)" title="y = r * sin(theta)" />
-</div>
+$$x=r\cdot\cos(\theta)$$
+$$y=r\cdot\sin(\theta)$$
 
 ### 9.2 Justificación Técnica de la Trayectoria (2 Pétalos)
 Aunque la ecuación permite generar múltiples pétalos, se seleccionó una configuración de **dos pétalos (0 y $\pi/2$ rad)** por los siguientes motivos técnicos:
@@ -573,5 +569,3 @@ Haga clic en el siguiente enlace para ver el video completo de la implementació
     <img src="https://img.shields.io/badge/Ver_Video_en_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video" />
   </a>
 </div>
-
-
