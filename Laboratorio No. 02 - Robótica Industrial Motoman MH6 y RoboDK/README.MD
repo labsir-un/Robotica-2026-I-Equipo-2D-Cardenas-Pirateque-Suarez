@@ -240,16 +240,20 @@ Antes de realizar cualquier desplazamiento, es imperativo seguir una secuencia d
   <table>
     <tr>
       <td align="center">
-        <img src="Images/controlador_encendido.png" width="200"><br>
+        <img src="Images/controlador_encendido.png" width="180"><br>
         <b>Figura 7. Perilla de encendido DX100.</b>
       </td>
       <td align="center">
-        <img src="Images/selector_modo_tp.png" width="180"><br>
-        <b>Figura 8. Selector de modo TEACH.</b>
+        <img src="Images/paro_emergencia.png" width="180"><br>
+        <b>Figura 8. Botón de paro de emergencia.</b>
       </td>
       <td align="center">
-        <img src="Images/habilitacion_servos.png" width="220"><br>
-        <b>Figura 9. Activación de servos.</b>
+        <img src="Images/selector_modo_tp.png" width="160"><br>
+        <b>Figura 9. Selector de modo TEACH.</b>
+      </td>
+      <td align="center">
+        <img src="Images/habilitacion_servos.png" width="200"><br>
+        <b>Figura 10. Activación de servos.</b>
       </td>
     </tr>
   </table>
@@ -269,7 +273,7 @@ En el modo articular, el control se ejerce sobre cada uno de los seis motores de
 <div align="center">
   <img src="Images/mov_articular.png" alt="Esquema de Movimiento de Articulaciones" width="550">
   <br>
-  <b>Figura 10. Representación gráfica del movimiento por articulaciones (S, L, U, R, B, T).</b>
+  <b>Figura 11. Representación gráfica del movimiento por articulaciones (S, L, U, R, B, T).</b>
 </div>
 <br>
 
@@ -287,24 +291,31 @@ En el modo articular, el control se ejerce sobre cada uno de los seis motores de
 </div>
 <br>
 
-### 4.3 Movimiento Cartesiano (Modo XYZ)
+### 4.3 Movimiento Cartesiano (Modo XYZ) y Selección de Coordenadas
 
 Este modo permite desplazar el Punto Central de la Herramienta (TCP) a lo largo de líneas rectas respecto a un sistema de coordenadas definido, usualmente la **BASE** del robot o la **TOOL** (herramienta). Es indispensable para aproximaciones precisas a objetos o para seguir bordes lineales.
 
 **Cambio de sistema de referencia:**
-Mediante pulsaciones sucesivas de la tecla **[COORD]**, el operador puede alternar entre los sistemas disponibles: `JOINT → XYZ (World/Base) → TOOL → USER`.
+Mediante pulsaciones sucesivas de la tecla **[COORD]**, el operador puede alternar entre los distintos sistemas de coordenadas. La pantalla del *Teach Pendant* mostrará el icono correspondiente al sistema activo en ese momento:
 
 <br>
 <div align="center">
+  <img src="Images/seleccion_coordenadas.png" alt="Selección de Coordenadas" width="350">
+  <br>
+  <b>Figura 12. Iconos de selección de coordenadas mediante la tecla COORD.</b>
+</div>
+<br>
+
+<div align="center">
   <img src="Images/mov_cartesiano.png" alt="Esquema de Movimiento Cartesiano" width="450">
   <br>
-  <b>Figura 11. Representación del movimiento en el espacio de trabajo (Coordenadas Base/World).</b>
+  <b>Figura 13. Representación del movimiento en el espacio de trabajo (Coordenadas Cartesianas/Base).</b>
 </div>
 <br>
 
 ### 4.4 Traslaciones y Rotaciones en el Espacio Cartesiano
 
-Una vez seleccionado el modo XYZ o TOOL, las teclas de movimiento cambian su función de control articular a control espacial. En este estado, el controlador ejecuta automáticamente la cinemática inversa para coordinar todos los motores y producir un movimiento lineal o una rotación pura sobre el TCP.
+Una vez seleccionado el modo cartesiano (XYZ) o de herramienta (TOOL), las teclas de movimiento cambian su función de control articular a control espacial. En este estado, el controlador ejecuta automáticamente la cinemática inversa para coordinar todos los motores y producir un movimiento lineal o una rotación pura sobre el TCP.
 
 #### 4.4.1 Traslaciones Lineales
 Las traslaciones desplazan el TCP manteniendo constante la orientación de la herramienta:
@@ -322,13 +333,13 @@ Las traslaciones desplazan el TCP manteniendo constante la orientación de la he
 <br>
 
 #### 4.4.2 Rotaciones y Coordenadas de Herramienta (TOOL)
-Las rotaciones permiten girar la herramienta alrededor de los ejes X, Y o Z, manteniendo el TCP en una posición fija en el espacio. Cuando se trabaja específicamente en el sistema **TOOL**, los ejes X, Y, Z se alinean con la geometría del efector final, facilitando aproximaciones directas hacia la pieza de trabajo.
+Las rotaciones permiten girar la herramienta alrededor de los ejes X, Y o Z, manteniendo el TCP en una posición fija en el espacio. Cuando se selecciona específicamente el sistema **TOOL**, los ejes X, Y, Z se alinean con la geometría del efector final, facilitando aproximaciones directas hacia la pieza de trabajo.
 
 <br>
 <div align="center">
   <img src="Images/mov_herramienta.png" alt="Esquema de Coordenadas de Herramienta" width="550">
   <br>
-  <b>Figura 12. Movimientos espaciales referenciados al sistema de Coordenadas de Herramienta (TOOL).</b>
+  <b>Figura 14. Movimientos espaciales referenciados al sistema de Coordenadas de Herramienta (TOOL).</b>
 </div>
 <br>
 
@@ -343,53 +354,6 @@ Las rotaciones permiten girar la herramienta alrededor de los ejes X, Y o Z, man
 </div>
 <br>
 
-## 4. Movimientos Manuales, modos, traslaciones y rotaciones 
-
-Para manipular manualmente el robot Motoman MH6, es necesario hace uso del Teach Pendant. 
-
-
-
-<br>
-<div align="center">
-  <img src="Images/teach.png" alt="teach" style="border-radius: 5px; width: 200px;">
-  <br>
-  <b>Figura 4. Teach Pendant.</b>
-</div>
-<br>
-
-
-El procedimiento estándar para habilitar el movimiento y navegar entre los distintos modos de operación es el siguiente:
-### 4.1. Posicionar la llave en modo manual (Modo TEACH)
-
-El *Teach Pendant* cuenta con un selector de modo físico que dispone de tres posiciones distintas, las cuales determinan el tipo de control sobre el manipulador:
-
-* **Posición TEACH (Manual):** Activa el modo de operación manual. Permite mover el brazo robótico directamente desde el *Teach Pendant*, ya sea mediante movimientos articulares o cartesianos. Por medidas de seguridad, la velocidad de los motores se encuentra limitada en este modo.
-
-* **Posición PLAY (Automático):** Permite al robot ejecutar de forma continua y automática los programas previamente guardados en su memoria.
-
-* **Posición REMOTE (Remoto):** Se utiliza para cederle el control del robot a un dispositivo externo al *Teach Pendant*. Generalmente, se trata de un equipo maestro conectado a través de la red, como lo es un computador operando con el software **RoboDK**.
-
-
-### 4.2. Desactivar la parada de emergencia
-Antes de iniciar cualquier operación, se debe verificar y desactivar el botón de parada de emergencia (E-Stop), el cual se encuentra ubicado en la parte superior derecha del *Teach Pendant* (generalmente se desactiva girándolo levemente en el sentido de las flechas).
-
-### 4.3. Habilitar la potencia de los motores (SERVO ON)
-Posterior a la selección del modo *Teach* y la liberación del paro de emergencia, se procede a energizar los motores. Para esto, el operador debe presionar a la mitad el interruptor de hombre muerto (*Deadman switch*), ubicado en la parte posterior del *Teach Pendant* y, sin soltarlo, presionar el botón **[SERVO ON]**. 
-
-### 4.4. Realizar el movimiento
-Una vez que el robot tiene potencia, se utiliza el botón **[COORD]** para alternar entre los distintos modos de movimiento y las teclas de los ejes para desplazar el manipulador. Los modos principales son:
-
-* **Movimiento articular (Joint):** Permite mover el robot controlando el ángulo de cada una de sus articulaciones (S, L, U, R, B, T) de forma independiente.
-* **Movimiento cartesiano con respecto a la base (World/Base):** Realiza desplazamientos lineales y rotaciones tomando como referencia el sistema de coordenadas absoluto situado en la base del robot (no afecta a los ejes externos).
-* **Movimiento cartesiano con respecto a la herramienta (Tool):** Realiza desplazamientos y rotaciones tomando como referencia el sistema de coordenadas del Punto Central de la Herramienta (TCP) seleccionada, facilitando aproximaciones precisas en la dirección en la que apunta el efector final.
-
-<br>
-<div align="center">
-  <img src="Images/teachp2.png" alt="botn teach" style="border-radius: 5px; width: 200px;">
-  <br>
-  <b>Figura 5. Botones de Teach Pendant.</b>
-</div>
-<br>
 
 ## 5. Niveles de Velocidad para Movimientos Manuales
 
