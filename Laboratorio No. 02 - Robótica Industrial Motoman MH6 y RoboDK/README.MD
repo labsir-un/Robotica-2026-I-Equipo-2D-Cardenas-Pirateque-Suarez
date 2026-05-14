@@ -483,7 +483,6 @@ Este esquema detalla el proceso paso a paso de la rutina programada: inicia con 
 </div>
 <br>
 
-
 ## 9. Plano de Planta del Laboratorio
 
 La disposición física de los elementos dentro de la celda de manufactura es un factor determinante para la seguridad y la eficiencia de la operación. El siguiente plano detalla la ubicación estratégica del manipulador Motoman MH6, su controlador DX100 y el área de interacción del operario.
@@ -521,14 +520,14 @@ Aunque la ecuación permite generar múltiples pétalos, se seleccionó una conf
 
 ### 10.3 Anexos de Código Python (RoboDK API)
 
-Como requerimiento del laboratorio, se adjuntan los scripts desarrollados para la ejecución de la rutina. Debido a las diferencias entre el entorno virtual y la respuesta dinámica del robot real, se generaron dos versiones:
+Como requerimiento del laboratorio, se adjuntan los scripts desarrollados para la ejecución de la rutina. Debido a las diferencias entre el entorno virtual y la respuesta dinámica del robot real, se generaron dos versiones localizadas en la carpeta de anexos:
 
-* **[Código Versión Virtual (Alta Fidelidad)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Virtual.py):** Configurado con **180 puntos** por lóbulo para una curva visualmente perfecta.
-* **[Código Versión Física (Optimizado)](https://github.com/DavidPirateque/Laboratorio_Robotica_2/blob/main/Trayectoria_Fisica.py):** Configurado con **40 puntos** por lóbulo para garantizar una velocidad constante y sin vibraciones en el manipulador real.
+* **[Código Versión Virtual (Alta Fidelidad)](Anexos/trayectoria_polar_simulacion_180pts.py):** Configurado con **180 puntos** por lóbulo para una curva visualmente perfecta.
+* **[Código Versión Física (Optimizado)](Anexos/trayectoria_polar_robot_fisico_40pts.py):** Configurado con **40 puntos** por lóbulo para garantizar una velocidad constante y sin vibraciones en el manipulador real.
 
 ### 10.4 Visualización Previa (Script para Google Colab)
 
-Para validar la geometría de los pétalos y el posicionamiento exacto del texto (ubicado debajo de la figura polar) antes de la implementación, se utiliza el siguiente script de validación:
+Para validar la geometría de los pétalos y el posicionamiento exacto del texto (horizontal y centrado debajo de la figura) antes de la implementación, se utiliza el siguiente script de validación:
 
 ```python
 import numpy as np
@@ -536,22 +535,24 @@ import matplotlib.pyplot as plt
 
 def generar_previsualizacion():
     A = 150 
-    plt.figure(figsize=(8,8))
+    plt.figure(figsize=(10, 10))
     
     # Dibujo de pétalos polares
     for angulo_central in [0, np.pi/2]:
         theta = np.linspace(angulo_central - np.pi/4, angulo_central + np.pi/4, 180)
         r = np.maximum(0, A * np.cos(2 * (theta - angulo_central)))
-        plt.plot(r * np.cos(theta), r * np.sin(theta), linewidth=2)
+        plt.plot(r * np.cos(theta), r * np.sin(theta), linewidth=3)
 
-    # Representación del texto procesado (David . P, Daniel. David . C) 
-    # Ubicado debajo de los pétalos (Y negativo)
-    plt.text(0, -180, "David . P, Daniel. David . C", fontsize=10, color='red', 
-             ha='center', va='center', fontweight='bold')
+    # Representación del texto procesado (David.P, Daniel, David.C)
+    # Ubicado horizontalmente debajo de los pétalos
+    plt.text(0, -100, "David.P, Daniel, David.C", fontsize=14, color='red', 
+             ha='center', va='top', fontweight='bold', rotation=0)
 
-    plt.title("Previsualización de Trayectoria Polar y Texto - Lab 2")
-    plt.grid(True)
+    plt.title("Previsualización de Trayectoria Polar y Texto - Lab 2", fontsize=14)
+    plt.grid(True, linestyle='--', alpha=0.6)
     plt.axis('equal')
+    plt.xlim(-200, 200)
+    plt.ylim(-200, 200)
     plt.show()
 
 generar_previsualizacion()
