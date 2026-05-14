@@ -426,9 +426,10 @@ La comunicación entre el software en el PC y el controlador del robot se puede 
 </div>
 <br>
 
-## 9. Plano de Planta del Laboratorio
 
-## 10. Código RoboDK 
+## 9. Código RoboDK 
+
+Para garantizar una correcta referencia visual del sistema, se presenta a continuación el fragmento de código de python utilizado para la rutina. Este bloque permite controlar el motoman MH6 desde el software RoboDK.
 
 ### 🐍 Código Python para RoboDK
 
@@ -547,7 +548,7 @@ print("Trayectoria completada. El robot inició y regresó a Home exitosamente."
 
 ```
 
-## 11. Demostración en Video
+## 10. Demostración en Video
 
 Para evidenciar el correcto funcionamiento de la arquitectura de control diseñada, se ha documentado la ejecución de la celda de manufactura en video. 
 
