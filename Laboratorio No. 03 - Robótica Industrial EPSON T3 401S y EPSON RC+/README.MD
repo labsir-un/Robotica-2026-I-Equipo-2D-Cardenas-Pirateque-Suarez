@@ -9,7 +9,7 @@
 <h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
 
 <br>
-<img src="Images/Epson.png" alt="Epson" style="border-radius: 5px; width: 200px;"><br>
+<img src="Images/Epson.png" alt="Epson" style="border-radius: 5px; width: 300px;"><br>
 <b>Figura 1. Manipulador industrial EPSON T3-401S.</b>
 </div>
 
