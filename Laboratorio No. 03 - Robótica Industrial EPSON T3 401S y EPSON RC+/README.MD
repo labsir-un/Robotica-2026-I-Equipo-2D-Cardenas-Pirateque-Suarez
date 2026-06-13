@@ -120,6 +120,22 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 ## 7. Análisis Comparativo de Software Robótico: RC+, RoboDK y RobotStudio
 
+<br>
+<div align="center">
+
+
+| Característica | RoboDK | RobotStudio | EPSON RC+ 7.0 |
+| :--- | :--- | :--- | :--- |
+| **Fabricante** | RoboDK Inc. (spin-off CoRo Lab, Canadá) | ABB Robotics | EPSON |
+| **Compatibilidad** | +40 fabricantes (Yaskawa, KUKA, FANUC, ABB, UR, etc.) | Exclusivo para robots ABB | Exclusivo para robots EPSON |
+| **Fidelidad de simulación** | Alta (cinemática correcta), pero sin controlador virtual real | Máxima fidelidad: usa el controlador virtual ABB (VRC) idéntico al real | Muy alta para EPSON: simulador 3D integrado con cálculo exacto de tiempos de ciclo |
+| **Lenguaje de robot** | Genera código nativo vía post-procesadores (no ejecuta INFORM/RAPID directamente) | Ejecuta y depura RAPID directamente | Ejecuta y depura SPEL+ directamente |
+| **Multi-robot** | Sí, múltiples marcas en la misma simulación | Solo robots ABB | Sí, múltiples robots EPSON operando en la misma celda |
+| **API / Programación** | Python, C#, .NET, C++ | Visual Basic, RAPID, C# | SPEL+, .NET (C#, VB.NET) vía RC+ API, LabVIEW |
+
+</div>
+<br>
+
 ## 8. Diseño e Integración del Gripper Neumático por Vacío
 
 
