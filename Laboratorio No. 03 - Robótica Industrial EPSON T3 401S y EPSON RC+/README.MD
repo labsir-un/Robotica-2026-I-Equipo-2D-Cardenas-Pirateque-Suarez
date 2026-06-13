@@ -109,5 +109,29 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 **Análisis final:** Al observar las aplicaciones ideales, el ABB IRB140 sobresale en entornos que demandan control minucioso o ambientes especializados (Clean Room, Foundry), donde su alta precisión y tamaño compacto son vitales. En contraposición, la robustez, el extenso alcance y la velocidad en la muñeca del Motoman MH6 lo consolidan como un manipulador versátil (multipropósito) ideal para operaciones a mayor escala como paletizado, empaque y soldadura láser.
 
+## 3. Descripción de las configuraciones home del EPSON T3-401S
+
+
+## 4. Operación y Modos de Movimiento Manual
+
+## 5. Gestión de Velocidades en Operación Manual
+
+## 6. Entorno de Programación y Comunicación: EPSON RC+ 7.0
+
+## 7. Análisis Comparativo de Software Robótico: RC+, RoboDK y RobotStudio
+
+## 8. Diseño e Integración del Gripper Neumático por Vacío
+
+
+## 9. Lógica de Control: Diagrama de Flujo.
+
+## 10. Implementación del Código
+
+
+## 11. Demostración en Video: Validación de Trayectoria Polar
+
+
+
+
 
 
