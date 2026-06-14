@@ -283,9 +283,6 @@ Function Paletizado_01
     Off 9
     Print "Fin: visitados unicos totales = ", visitedCount, "/30"
     
-    Print "Esperando accion del operador para regresar a Home..."
-    Pause
-    
     Print "Regresando a Home..."
     Home
 Fend
