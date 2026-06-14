@@ -114,7 +114,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 <br>
 
 <div align="center">
-  <img src="Images/home.png" alt="home" style="border-radius: 5px; width: 600px;">
+  <img src="Images/home.png" alt="home" style="border-radius: 5px; width: 200px;">
   <br>
   <b>Figura 2. Posicion de Home.</b>
 </div>
