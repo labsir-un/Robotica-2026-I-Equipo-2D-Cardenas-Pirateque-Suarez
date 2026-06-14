@@ -111,6 +111,15 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 ## 3. Descripción de las configuraciones home del EPSON T3-401S
 
+<br>
+
+<div align="center">
+  <img src="Images/home.png" alt="home" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 2. Posicion de Home.</b>
+</div>
+
+<br>
 
 ## 4. Operación y Modos de Movimiento Manual
 
