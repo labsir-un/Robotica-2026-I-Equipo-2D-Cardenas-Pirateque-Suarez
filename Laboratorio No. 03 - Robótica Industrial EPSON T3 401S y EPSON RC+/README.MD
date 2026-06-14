@@ -147,9 +147,9 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 ' =======================================================
 '  CONFIGURACIÓN DE SEPARACIÓN Y ALTURA (Modifica aquí fácilmente)
 ' =======================================================
-#define SEP_X 50.0  ' Reducido a 40 para no exceder los +/-100mm seguros en X
-#define SEP_Y 50.0  ' Distancia en mm entre filas (Eje Y) En total 100mm (200 a 300)
-#define ALTURA_Z -80.0 ' <--- NUEVA VARIABLE: Manipula aquí hasta dónde baja el robot (en mm)
+#define SEP_X 45.0  ' Reducido a 40 para no exceder los +/-100mm seguros en X
+#define SEP_Y 45.0  ' Distancia en mm entre filas (Eje Y) En total 100mm (200 a 300)
+#define ALTURA_Z -150.0 ' <--- NUEVA VARIABLE: Manipula aquí hasta dónde baja el robot (en mm)
 ' =======================================================
 
 Global Integer i, k, curA, curB, r, c, visitedCount
