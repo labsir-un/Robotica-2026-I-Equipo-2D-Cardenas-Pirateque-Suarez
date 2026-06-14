@@ -20,7 +20,7 @@ Los manipuladores industriales son herramientas clave en la automatización indu
 
 ## 2. Comparación Técnica: Motoman MH6, ABB IRB140 y EPSON T3-401S
 
-En el desarrollo de competencias en robótica industrial, es esencial familiarizarse con diversas arquitecturas y entornos de programación. Puesto que a lo largo del curso se han utilizado los manipuladores ABB IRB140 y Yaskawa Motoman MH6, resulta importante identificar las diferencias entre ambos. A pesar de que los dos equipos pertenecen a la clasificación de brazos de estructura articulada vertical y comparten una carga útil máxima de 6 kg, presentan variaciones técnicas significativas en sus dimensiones, velocidades y rangos de movimiento, tal como se detalla a continuación en el siguiente análisis estructurado:
+En el desarrollo de competencias en robótica industrial, es esencial familiarizarse con diversas arquitecturas y entornos de programación. Puesto que a lo largo del curso se han utilizado los manipuladores ABB IRB140, Yaskawa Motoman MH6 y Epson T3 401S, resulta importante identificar las diferencias entre estos. Sobre todo, al incluir el último, que forma parte de la categoría de robots SCARA, se evidencian múltiples diferencias en sus características y aplicaciones, tal como se detalla a continuación en el siguiente análisis estructurado.
 
 ### 2.1 Datos Generales y Alcance
 
@@ -49,7 +49,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis:** La diferencia de escala es evidente. El Motoman MH6 posee un volumen de trabajo significativamente mayor, logrando casi el doble de alcance vertical y horizontal frente al IRB140, sacrificando a cambio un poco de precisión (repetibilidad de ±0.08mm vs ±0.03mm) y requiriendo un chasis más pesado (130 kg). El detalle más importante radica en los **dos ejes externos adicionales** que posee la celda del Motoman, otorgando un nivel de configuración superior para posicionadores o rieles en comparación al estándar de 6 ejes del ABB.
+**Análisis:** La diferencia de escala es evidente. El EPSON T3-401S no solo posee menos articulaciones que los otros dos sino tambien tiene un alcance mucho menor, aunque tambien es el más precisión (repetibilidad de ±0.08mm/±0.03mm vs ±0.02mm) y teniendo tambien el menor peso entre los tres (16 kg) siendo este ultimo el detalle más importante.
 
 ### 2.2 Rangos de Movimiento por Eje
 
