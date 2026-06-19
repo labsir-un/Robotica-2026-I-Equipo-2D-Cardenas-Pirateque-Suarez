@@ -68,7 +68,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis:** Es interesante notar cómo se distribuyen los movimientos. El Motoman MH6 presenta un rango excepcionalmente amplio en el Eje 3 (+250°/-175°) permitiéndole articularse sobre sí mismo de maneras muy flexibles para alcanzar puntos lejanos, mientras que el ABB IRB140 compensa con mayor rotación en la muñeca (Ejes 4 y 6), facilitando maniobras ágiles con la herramienta en espacios reducidos sin riesgo de enredos.
+**Análisis:** aqui se puede apreciar una de las principales diferencias siendo el numero de ejes de libertad donde el EPSON cuanta directamente con dos menos, y siendo uno de estos uno prismatico a diferencia de los otros que solo cuentan con angulares, ademas de esto es curioso como ver que apesar de ser mas pequeño y compacto el EPSON cuenta con algunos ejes con mayor lobertad que los otros dos robots.
 
 ### 2.3 Velocidades Máximas por Eje
 
@@ -87,7 +87,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis:** En términos de dinámica, el Motoman MH6 es notablemente más rápido en su muñeca (Ejes 4, 5 y 6), alcanzando hasta 610 °/s en el giro de la herramienta. Esto lo hace muy eficiente para reposicionamientos constantes en procesos como soldadura. El ABB IRB140, por su parte, mantiene un equilibrio en todo el brazo, destacando en la velocidad del Eje 3 (260 °/s).
+**Análisis:** .
 
 ### 2.4 Aplicaciones Típicas
 
@@ -107,7 +107,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis final:** Al observar las aplicaciones ideales, el ABB IRB140 sobresale en entornos que demandan control minucioso o ambientes especializados (Clean Room, Foundry), donde su alta precisión y tamaño compacto son vitales. En contraposición, la robustez, el extenso alcance y la velocidad en la muñeca del Motoman MH6 lo consolidan como un manipulador versátil (multipropósito) ideal para operaciones a mayor escala como paletizado, empaque y soldadura láser.
+**Análisis final:** Al observar las aplicaciones ideales, el ABB IRB140 sobresale en entornos que demandan control minucioso o ambientes especializados (Clean Room, Foundry), donde su alta precisión y tamaño compacto son vitales. En contraposición, la robustez, el extenso alcance y la velocidad en la muñeca del Motoman MH6 lo consolidan como un manipulador versátil (multipropósito) ideal para operaciones a mayor escala como paletizado, empaque y soldadura láser. Por otro lado el EPSON es mas especializados en tareas sobre elementos pequeños como la electronica o rapidas con elementos de poco peso .
 
 ## 3. Descripción de las configuraciones home del EPSON T3-401S
 
