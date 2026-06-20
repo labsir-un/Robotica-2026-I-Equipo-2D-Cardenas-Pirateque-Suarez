@@ -149,7 +149,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 
 ## 9. Lógica de Control: Diagrama de Flujo.
-
+```mermaid
 graph TD
     A([Inicio: Función main]) --> B[Encender motores, configurar velocidad y aceleración]
     B --> C[Calcular distancias: totalAncho y totalLargo]
@@ -178,7 +178,6 @@ graph TD
     L -->|Fin del bucle| S[Imprimir conteo total de visitados]
     S --> T[Regresar a Home]
     T --> U([Fin])
-
 
 
 ## 10. Implementación del Código
