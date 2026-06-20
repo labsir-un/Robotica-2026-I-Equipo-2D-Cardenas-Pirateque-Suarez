@@ -123,12 +123,30 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 ## 4. Operación y Modos de Movimiento Manual
 
+dentro de los robots industriales el uso de un Teachpendant suele ser la herramienta usando para poder realizar diferentes movimientos con el manipulador y aunque el EPSON T3-401S cuenta con uno en esta practica se recurrio más al uso de la interfaz que nos otorga el EPSON RC+ 7.0 de la cual tiene los modos de movimiento:
+
+- Mundo
+- Herramienta
+- Local
+- Articular
+- ECP
+
 <br>
 
 <div align="center">
   <img src="Images/manual.png" alt="manual" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 2. Operacion Manual .</b>
+  <b>Figura 3. Operacion Manual .</b>
+</div>
+
+<br>
+
+<br>
+
+<div align="center">
+  <img src="Images/manual Articular.png" alt="manualart" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 4. Operacion Manual .</b>
 </div>
 
 <br>
