@@ -198,7 +198,10 @@ graph TD
 
 Global Integer i, k, curA, curB, r, c, visitedCount
 Global Integer pathA(33), pathB(33), visited(31)
+```
 
+
+```spel
 Function CargarRutas
     pathA(1) = 1
     pathA(2) = 9
@@ -266,20 +269,29 @@ Function CargarRutas
     pathB(31) = 11
     pathB(32) = 22
 Fend
+```
 
+
+```spel
 Function MarcarVisitado(idx As Integer)
     If visited(idx) = 0 Then
         visited(idx) = 1
         visitedCount = visitedCount + 1
     EndIf
 Fend
+```
 
+
+```spel
 Function ImprimeIdx(prefijo$ As String, idx As Integer)
     r = (idx - 1) / 6 + 1
     c = idx - (r - 1) * 6
     Print prefijo$, " idx=", idx, " -> (col=", c, ", fila=", r, ")"
 Fend
+```
 
+
+```spel
 Function Paletizado_01
     Pallet 1, P0, P1, P2, 6, 5
     Call CargarRutas
@@ -330,7 +342,10 @@ Function Paletizado_01
     Print "Regresando a Home..."
     Home
 Fend
+```
 
+
+```spel
 Function main
     Real totalAncho, totalLargo
 
