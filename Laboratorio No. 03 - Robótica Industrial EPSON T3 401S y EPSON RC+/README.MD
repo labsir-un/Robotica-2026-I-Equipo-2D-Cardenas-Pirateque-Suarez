@@ -116,8 +116,22 @@ La posición de Home es ciertamente la mas importante a la hora de programar sie
 en este caso el controlador nos permite definir el Home atravez de dos metodos.
  **1. configuracion desde gestion de robot** desde el mismo  EPSON RC+ 7.0 permite configurar la posición con pulsos por articulacion:
 
+<br>
 
+<div align="center">
+  <img src="Images/home1.png" alt="home" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 2. Interfaz de Home.</b>
+</div>
 
+<br>
+
+ **2. configuracion desde codigo** cuando se realiza el codigo se puede ingrezar comando que define el home de la siguiente forma:
+
+```spel
+    ' Configurar el Home en pulsos (J1 = 204800, el resto en 0)
+    HomeSet 204800, 0, 0, 0
+```
 
 <br>
 
