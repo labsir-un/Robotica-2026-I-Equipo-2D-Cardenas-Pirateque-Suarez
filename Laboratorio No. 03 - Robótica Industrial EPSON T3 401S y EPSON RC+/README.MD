@@ -192,7 +192,7 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 <br>
 
 <div align="center">
-  <img src="Images/unidaddemantenimiento.pnp" alt="uma" style="border-radius: 5px; width: 350px;">
+  <img src="Images/unidaddemantenimiento.png" alt="uma" style="border-radius: 5px; width: 350px;">
   <br>
   <b>Figura 6. Unidad de mantenimiento.</b>
 </div>
