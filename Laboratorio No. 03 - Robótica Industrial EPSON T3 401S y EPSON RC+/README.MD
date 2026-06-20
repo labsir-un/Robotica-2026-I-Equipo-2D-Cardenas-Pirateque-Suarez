@@ -5,8 +5,19 @@
     <img src="https://imgur.com/Os03JoE.png" alt="Escudo UNAL" width="350px">
 </picture>
 
-<h1>Laboratorio No. 03 - Robótica Industrial - Análisis y Operación del Manipulador EPSON T3-401S.</h1>
-<h2>Profesores: <br>Pedro Fabián Cárdenas Herrera <br> Manuel Felipe Carranza Montenegro</h2>
+<h3>Curso de Robótica 2026-I</h3>
+<h1>Laboratorio No. 03</h1>
+<h2>Robótica Industrial: Análisis y Operación del Manipulador EPSON T3-401S</h2>
+<h3>EPSON T3-401S · EPSON RC+ 7.5.2</h3>
+<h4>Profesores: Pedro Fabián Cárdenas Herrera · Manuel Felipe Carranza Montenegro</h4>
+<h4>Estudiantes: David Felipe Cardenas Cubides · David Santiago Pirateque Suarez </h4>
+
+<p>
+  <img alt="EPSON T3-401S" src="https://img.shields.io/badge/Robot-EPSON%20T3--401S-0066CC?logoColor=white">
+  <img alt="EPSON RC+" src="https://img.shields.io/badge/Software-EPSON%20RC%2B%207.5.2-0099CC?logoColor=white">
+  <img alt="SPEL+" src="https://img.shields.io/badge/Lenguaje-SPEL%2B-FF6600?logoColor=white">
+  <img alt="Estado" src="https://img.shields.io/badge/Estado-Completo-brightgreen">
+</p>
 
 <br>
 <img src="Images/Epson.png" alt="Epson" style="border-radius: 5px; width: 300px;"><br>
