@@ -87,7 +87,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis:** .
+
 
 ### 2.4 Aplicaciones Típicas
 
@@ -107,7 +107,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 </div>
 <br>
 
-**Análisis final:** Al observar las aplicaciones ideales, el ABB IRB140 sobresale en entornos que demandan control minucioso o ambientes especializados (Clean Room, Foundry), donde su alta precisión y tamaño compacto son vitales. En contraposición, la robustez, el extenso alcance y la velocidad en la muñeca del Motoman MH6 lo consolidan como un manipulador versátil (multipropósito) ideal para operaciones a mayor escala como paletizado, empaque y soldadura láser. Por otro lado el EPSON es mas especializados en tareas sobre elementos pequeños como la electronica o rapidas con elementos de poco peso .
+**Análisis final:** Al observar las aplicaciones ideales, el ABB IRB140 sobresale en entornos que demandan control minucioso o ambientes especializados (Clean Room, Foundry), donde su alta precisión y tamaño compacto son vitales. En contraposición, la robustez, el extenso alcance y la velocidad en la muñeca del Motoman MH6 lo consolidan como un manipulador versátil (multipropósito) ideal para operaciones a mayor escala como paletizado, empaque y soldadura láser. Por otro lado el EPSON es mas especializados en tareas sobre elementos pequeños como la electronica o rapidas con elementos de poco peso.
 
 ## 3. Descripción de las configuraciones home del EPSON T3-401S
 
@@ -194,6 +194,9 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 ## 6. Entorno de Programación y Comunicación: EPSON RC+ 7.0
 
 ## 7. Análisis Comparativo de Software Robótico: RC+, RoboDK y RobotStudio
+
+
+Gracias al acercamiento que se ha llevado acabo a lo largo del desrrollo de la asignatura a robots de distintas marcas hemos podido desarrollarnos en diferentes entornos de desarrollo donde realizando un analisis de los 3 principales que son: RoboDK, RobotStudio y EPSON RC+ 7.0 encontramos:
 
 <br>
 <div align="center">
