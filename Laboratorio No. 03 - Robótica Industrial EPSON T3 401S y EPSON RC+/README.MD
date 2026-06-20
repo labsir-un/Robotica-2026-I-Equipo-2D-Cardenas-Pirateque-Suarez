@@ -391,7 +391,7 @@ Para acoplar el sistema al manipulador, se diseñó una brida de sujeción para 
 
 <br>
 <div align="center">
-  <img src="Images/cad_gripper.png" alt="Diseño CAD del Gripper" style="border-radius: 5px; width: 350px;">
+  <img src="Images/cad_gripper.jpg" alt="Diseño CAD del Gripper" style="border-radius: 5px; width: 350px;">
   <br>
   <b>Figura 16. Diseño CAD del ensamble de la herramienta.</b>
 </div>
@@ -448,199 +448,75 @@ flowchart TD
     U --> V[Mover a Home]
     V --> W([Fin])
 ```
-## 10. Implementación del Código
+
+## 10. Análisis de Trayectorias y Plano de Planta
+
+### 10.1. Comparativa de Trayectorias: EPSON RC+ vs. RoboDK y RobotStudio
+En la programación de manipuladores industriales, el tipo de interpolación es fundamental. EPSON RC+ 7.0 cuenta con comandos específicos para la cinemática SCARA, los cuales presentan diferencias clave frente a entornos genéricos:
+
+* **Go (PTP):** Movimiento articular simultáneo. Es rápido, pero la trayectoria del TCP no es necesariamente una línea recta.
+* **Move (Lineal):** El TCP se desplaza en una línea recta estricta, ideal para inserciones o dispensado.
+* **Jump:** Es la instrucción estrella para aplicaciones *Pick and Place*. El robot eleva el eje Z, se traslada horizontalmente a máxima velocidad y desciende en el destino.
+
+A diferencia de EPSON RC+, entornos como **RobotStudio (RAPID)** o **RoboDK** están enfocados principalmente en robots de 6 ejes y estandarizan sus movimientos en `MoveJ` (articular) y `MoveL` (lineal). No poseen un equivalente nativo de un solo comando para el salto parabólico (`Jump`). Para replicarlo y evitar colisiones, requieren programar explícita y secuencialmente tres movimientos distintos (punto de aproximación, traslado y punto de descenso).
+
+### 10.2. Plano de Planta y Lógica de Movimiento
+**Requerimiento:** Mover dos huevos por toda la cubeta de 6×5 usando un patrón de salto tipo caballo de ajedrez (movimientos en "L").
+
+El plano de la cubeta consiste en una matriz rectangular de **5 filas × 6 columnas** (30 posiciones en total). La numeración de las celdas avanza secuencialmente de izquierda a derecha, y al finalizar una fila, continúa en el extremo izquierdo de la fila inferior:
+
+* **Fila 1:** 1, 2, 3, 4, 5, 6
+* **Fila 2:** 7, 8, 9, 10, 11, 12
+* **Fila 3:** 13, 14, 15, 16, 17, 18
+* **Fila 4:** 19, 20, 21, 22, 23, 24
+* **Fila 5:** 25, 26, 27, 28, 29, 30
+
+### 10.3. Trayectoria Escogida (Patrón de Caballo)
+Ambos elementos se desplazan de manera alternada utilizando un patrón equivalente al movimiento del caballo en el ajedrez: dos unidades en una dirección y una en la perpendicular. 
+
+Como se observa en el siguiente esquema, cada celda contiene el índice de la posición fija y puede contener círculos numerados que representan a los dos huevos:
+* **Huevo 1 (Círculo Amarillo):** Inicia en el índice **1** (Paso 1).
+* **Huevo 2 (Círculo Azul):** Inicia en el índice **30** (Paso 1).
+
+El número dentro de cada círculo indica **en qué paso de la secuencia temporal** el huevo respectivo visitó esa celda. Por ejemplo, si en una celda el círculo amarillo tiene un "8", significa que en el paso 8 el Huevo 1 se encontraba allí. Este diagrama permite visualizar simultáneamente la disposición espacial del *pallet* y el orden en que se visitó cada posición.
+
+<br>
+<div align="center">
+  <img src="Images/trayectoria_caballo.png" alt="Esquema de la trayectoria en matriz 6x5" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 18. Esquema temporal y espacial de la trayectoria (Patrón de Caballo).</b>
+</div>
+<br>
+
+Esta trayectoria se ejecutó utilizando exclusivamente el comando `Jump` de EPSON RC+, lo que garantizó un movimiento fluido, seguro y libre de colisiones entre los elementos y los separadores de la cubeta durante las transiciones.
+
+### 10.4. Montaje Final y Puntos de Referencia
+El montaje final de la celda de trabajo, mostrando la configuración del TCP (Tool Center Point) con el *gripper* neumático y los puntos parametrizados para la ejecución de la trayectoria sobre la cubeta, se detalla a continuación:
+
+<br>
+<div align="center">
+  <img src="Images/montaje_tcp.png" alt="Montaje final y TCP" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 19. Montaje físico del efector final y configuración de la celda.</b>
+</div>
+<br>
 
 
-**1.Iniciacion de variables:** Se crearon 3 principales variables para su facil manipulacion deonde dos son para la serpacion entre huevos tanto en X como en Y yla ultia para definal cuanto debia vajar la herramienta para poder mmanipular los elementos. Ademas de esto se crearon los path para guardar las trayectorias que debia seguir el manipulador. 
+## 11. Implementación del Código en SPEL+
 
-```spel
+El archivo adjunto a continuación contiene el código principal ejecutado en el controlador para realizar las trayectorias solicitadas en el laboratorio. En este script se implementa la lógica completa para garantizar el correcto movimiento tipo caballo de ajedrez de los dos huevos, asegurando que ambos elementos pasen por cada una de las posiciones de la bandeja (6x5) de manera alternada y sin colisiones.
 
-#define SEP_X 45.0  ' Reducido a 40 para no exceder los +/-100mm seguros en X
-#define SEP_Y 45.0  ' Distancia en mm entre filas (Eje Y) En total 100mm (200 a 300)
-#define ALTURA_Z -150.0 'Aquí hasta dónde baja el robot (en mm)
+<br>
+<div align="center">
+  <img src="Images/codigo_spel.png" alt="Captura de pantalla del editor SPEL+ mostrando el código" style="border-radius: 5px; width: 1000px;">
+  <br>
+  <b>Figura 20. Entorno de desarrollo SPEL+ mostrando el archivo principal.</b>
+</div>
+<br>
 
+Para revisar la declaración de variables, el arreglo de rutas y las funciones de paletizado detalladas, puede consultar el archivo fuente directamente desde el repositorio:
 
-Global Integer i, k, curA, curB, r, c, visitedCount
-Global Integer pathA(33), pathB(33), visited(31)
-```
-
-
-**2.Rutas:** Se almacena el orden en que se realizara cada ruta para que se mueva como el caballo en ajedrez.
-
-```spel
-Function CargarRutas
-    pathA(1) = 1
-    pathA(2) = 9
-    pathA(3) = 5
-    pathA(4) = 18
-    pathA(5) = 29
-    pathA(6) = 21
-    pathA(7) = 25
-    pathA(8) = 14
-    pathA(9) = 3
-    pathA(10) = 7
-    pathA(11) = 20
-    pathA(12) = 28
-    pathA(13) = 24
-    pathA(14) = 11
-    pathA(15) = 22
-    pathA(16) = 30
-    pathA(17) = 17
-    pathA(18) = 6
-    pathA(19) = 10
-    pathA(20) = 2
-    pathA(21) = 13
-    pathA(22) = 26
-    pathA(23) = 15
-    pathA(24) = 19
-    pathA(25) = 8
-    pathA(26) = 4
-    pathA(27) = 12
-    pathA(28) = 16
-    pathA(29) = 27
-    pathA(30) = 23
-    pathA(31) = 23
-    pathA(32) = 23
-
-    pathB(1) = 30
-    pathB(2) = 17
-    pathB(3) = 6
-    pathB(4) = 10
-    pathB(5) = 2
-    pathB(6) = 13
-    pathB(7) = 26
-    pathB(8) = 15
-    pathB(9) = 19
-    pathB(10) = 8
-    pathB(11) = 4
-    pathB(12) = 12
-    pathB(13) = 16
-    pathB(14) = 27
-    pathB(15) = 23
-    pathB(16) = 27
-    pathB(17) = 14
-    pathB(18) = 1
-    pathB(19) = 9
-    pathB(20) = 5
-    pathB(21) = 18
-    pathB(22) = 29
-    pathB(23) = 21
-    pathB(24) = 25
-    pathB(25) = 14
-    pathB(26) = 3
-    pathB(27) = 7
-    pathB(28) = 20
-    pathB(29) = 28
-    pathB(30) = 24
-    pathB(31) = 11
-    pathB(32) = 22
-Fend
-```
-**3.Marcador de visita:** Funcion encargada de saber por donde ya paso el robot y tener un mejor control del proceso.
-
-```spel
-Function MarcarVisitado(idx As Integer)
-    If visited(idx) = 0 Then
-        visited(idx) = 1
-        visitedCount = visitedCount + 1
-    EndIf
-Fend
-```
-
-**4.Impresion de posicion:** Funcion encargada mostrar al operador en que path se encuentra.
-
-```spel
-Function ImprimeIdx(prefijo$ As String, idx As Integer)
-    r = (idx - 1) / 6 + 1
-    c = idx - (r - 1) * 6
-    Print prefijo$, " idx=", idx, " -> (col=", c, ", fila=", r, ")"
-Fend
-```
-
-**5.Funcion de movimiento:** Funcion encargada realizar las rutas para los dos elementos con el orden asignado y alternando la activacion y desactivacion de la herramienta(gripper), por ultimo regresa a la posición Home.
-
-```spel
-Function Paletizado_01
-    Pallet 1, P0, P1, P2, 6, 5
-    Call CargarRutas
-    
-    For i = 1 To 30
-        visited(i) = 0
-    Next
-    visitedCount = 0
-    
-    curA = pathA(1)
-    curB = pathB(1)
-    Call MarcarVisitado(curA)
-    Call MarcarVisitado(curB)
-    
-    Print "Inicio cabalgado 2-huevos: matriz 6x5"
-    Call ImprimeIdx("H1 inicia en", curA)
-    Call ImprimeIdx("H2 inicia en", curB)
-    
-    For k = 2 To 32
-        Call ImprimeIdx("H1: regresa a (PICK)", curA)
-        Call MarcarVisitado(curA)
-        Jump Pallet(1, curA)
-        On 9
-        Wait 0.1
-        Call ImprimeIdx("H1: va a (PLACE)", pathA(k))
-        Call MarcarVisitado(pathA(k))
-        Jump Pallet(1, pathA(k))
-        Off 9
-        Wait 0.1
-        curA = pathA(k)
-
-        Call ImprimeIdx("H2: regresa a (PICK)", curB)
-        Call MarcarVisitado(curB)
-        Jump Pallet(1, curB)
-        On 9
-        Wait 0.1
-        Call ImprimeIdx("H2: va a (PLACE)", pathB(k))
-        Call MarcarVisitado(pathB(k))
-        Jump Pallet(1, pathB(k))
-        Off 9
-        Wait 0.1
-        curB = pathB(k)
-    Next
-    
-    Off 9
-    Print "Fin: visitados unicos totales = ", visitedCount, "/30"
-    
-    Print "Regresando a Home..."
-    Home
-Fend
-```
-
-**6.Funcion principal:** Funcion encargada de activar motores, definir velocidad y dar posicion exacta para las rutas con base a las bariables definidas al inicio, definir Home y llama a la función de paletizado.
-
-```spel
-Function main
-    Real totalAncho, totalLargo
-
-    Motor On
-    Power High
-    Accel 100, 100
-    Speed 100
-    
-    ' El programa lee automáticamente los valores definidos arriba
-    totalAncho = 5 * SEP_X  ' 6 columnas = 5 espacios intermedios
-    totalLargo = 4 * SEP_Y  ' 5 filas = 4 espacios intermedios
-    
-    ' Configurar el Home en pulsos (J1 = 204800, el resto en 0)
-    HomeSet 204800, 0, 0, 0
-    
-    ' Mover el robot físicamente al Home definido antes de iniciar
-    Home
-    
-    ' Generación automática y centrada de los puntos del Pallet usando ALTURA_Z
-    P0 = XY(-totalAncho / 2, 150, ALTURA_Z, 50)       ' Origen inferior izquierdo
-    P1 = XY(totalAncho / 2, 150, ALTURA_Z, 50)        ' Esquina inferior derecha
-    P2 = XY(-totalAncho / 2, 150 + totalLargo, ALTURA_Z, 50) ' Esquina superior izquierda
-    
-    Call Paletizado_01
-Fend
-```
+📄 **Archivo SPEL+** → [Main.prg](Main.prg)
 
 
 
