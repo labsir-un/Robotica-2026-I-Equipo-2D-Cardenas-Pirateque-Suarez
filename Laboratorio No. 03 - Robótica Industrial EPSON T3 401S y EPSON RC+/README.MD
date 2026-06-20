@@ -202,10 +202,8 @@ La velocidad determina exclusivamente qué tan rápido se desplaza el manipulado
 El cambio entre estos niveles y su identificación visual se realiza directamente en la interfaz de **Mover y enseñar**, marcando la opción deseada en el panel de control manual:
 
 <p align="center">
-  <img width="400" height="106" alt="image" src="https://github.com/user-attachments/assets/3adc679e-6966-4ca3-bcbc-4c4331d6331f" />
+  <img width="400" height="106" alt="Interfaz de selección de velocidad" src="Images/velocidad_jog.png" />
 </p>
-
----
 
 ### 5.2. Niveles de Potencia (Power)
 A diferencia de la velocidad, el ajuste de potencia modifica la capacidad de esfuerzo, fuerza o torque disponible en los motores. Según el manual del EPSON T3-401S, este parámetro se gestiona desde el menú principal en el **Panel de control**:
@@ -214,22 +212,20 @@ A diferencia de la velocidad, el ajuste de potencia modifica la capacidad de esf
 * **Power HIGH (Potencia Alta):** Habilita la capacidad completa de los motores, permitiendo al manipulador cargar y mover elementos utilizando su torque nominal completo.
 
 <p align="center">
-<img width="246" alt="image" src="https://github.com/user-attachments/assets/d30b76e1-7445-42e2-be3b-0db50faa2484" />
+  <img width="246" alt="Selección de modo de potencia alta y baja" src="Images/potencia_control.png" />
 </p>
 
 Para comprobar el nivel establecido actualmente, el operador debe revisar los indicadores visuales en la sección **Estado** dentro del Panel de control.
 
 Estado con **Potencia Alta** (indicador iluminado y habilitado):
 <p align="center">
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/9ec38bb1-ef55-44d0-847e-f84c7a285dc1" />
+  <img width="600" alt="Estado de interfaz en potencia alta" src="Images/potencia_alta.png" />
 </p>
 
 Estado con **Potencia Baja**:
 <p align="center">
-<img width="600"  alt="image" src="https://github.com/user-attachments/assets/df222cf7-06b5-4ce9-81b4-d927a7d0dcbf" />
+  <img width="600" alt="Estado de interfaz en potencia baja" src="Images/potencia_baja.png" />
 </p>
-
----
 
 ### 5.3. Relación Operativa entre Velocidad y Potencia
 Aunque se configuran por aparte, ambos parámetros interactúan físicamente durante la ejecución de las tareas. Comprender esta relación es vital para una correcta operación:
