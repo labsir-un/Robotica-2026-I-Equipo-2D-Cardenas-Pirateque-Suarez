@@ -342,77 +342,66 @@ A partir de esta comparación, se destacan las ventajas, limitaciones y aplicaci
 * **Limitaciones:** Su uso es exclusivo para manipuladores de la marca EPSON y su motor gráfico de simulación 3D es más básico o menos inmersivo en comparación con RobotStudio.
 * **Aplicaciones:** Tareas de alta velocidad e integración rápida en la industria, enfocadas en robots tipo SCARA o de 6 ejes pequeños, como operaciones de *pick and place*, empaque, y ensamblaje de componentes electrónicos pequeños.
 
-
 ## 8. Diseño e Integración del Gripper Neumático por Vacío
 
-Para la implementación del *gripper* (efector final) se requirió el diseño, ensamble e integración de un sistema neumático basado en generación de vacío. El correcto funcionamiento de esta herramienta depende de una cadena de componentes físicos y una configuración precisa en la lógica de control del robot.
+Para la implementación del *gripper* o efector final, se diseñó un circuito neumático compuesto por diferentes elementos que garantizan la sujeción segura y estable de los huevos durante la trayectoria.
 
-### 8.1. Componentes Físicos del Sistema Neumático
-
-El sistema se alimenta inicialmente mediante un compresor que suministra el aire a presión. Inmediatamente después, se utiliza una unidad de mantenimiento (FRL) para regular la presión de trabajo del sistema y filtrar posibles partículas de humedad y residuos sólidos presentes en el aire.
+En primer lugar, se utilizó un **compresor** encargado de suministrar el aire a presión para todo el sistema neumático. Seguido de este, se instaló una **unidad de mantenimiento (FRL)** para regular la presión de trabajo y filtrar tanto la humedad como los residuos sólidos que pudiera contener el aire de la red.
 
 <br>
 <div align="center">
   <img src="Images/unidaddemantenimiento.png" alt="Unidad de mantenimiento" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 13. Unidad de mantenimiento neumático.</b>
+  <b>Figura 13. Unidad de mantenimiento.</b>
 </div>
 <br>
 
-El paso del aire regulado es controlado por una electroválvula 3/2 accionada por solenoide. Este componente es el puente entre el hardware neumático y el controlador del robot, ya que su estado de apertura o cierre se comanda directamente mediante las señales eléctricas de las salidas digitales del manipulador.
+Para el control del flujo, se integró una **electroválvula 3/2**. Esta válvula permite suministrar o cortar el paso de aire hacia la etapa final del sistema mediante la activación de un solenoide, el cual es comandado directamente por las salidas digitales del controlador del robot.
 
 <br>
 <div align="center">
   <img src="Images/valvula.png" alt="Válvula 3 a 2" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 14. Electroválvula direccional 3/2.</b>
+  <b>Figura 14. Electroválvula 3 a 2.</b>
 </div>
 <br>
 
-A continuación, el flujo de aire presurizado ingresa a un generador de vacío. Este dispositivo aprovecha el principio de Venturi para transformar la presión positiva del aire comprimido en una presión negativa (vacío) con el caudal suficiente para sostener los elementos requeridos en la práctica.
+A continuación, el aire a presión ingresa a un **generador de vacío**, el cual funciona bajo el principio de Venturi. Este dispositivo convierte la presión positiva suministrada por el compresor en una presión negativa (vacío) lo suficientemente fuerte para sostener los elementos de la práctica.
 
 <br>
 <div align="center">
-  <img src="Images/venturi.jpeg" alt="Generador de vacío" style="border-radius: 5px; width: 350px;">
+  <img src="Images/venturi.jpeg" alt="Generador de vacío Venturi" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 15. Generador de vacío por principio de Venturi.</b>
+  <b>Figura 15. Generador de vacío.</b>
 </div>
 <br>
 
-Finalmente, el vacío generado se canaliza hacia la ventosa (*gripper*), la cual se posiciona en el TCP del robot EPSON T3-401S. 
-
-**Consideraciones de diseño:** La ventosa fue seleccionada cuidadosamente con un diámetro y material adecuados para adaptarse a la superficie curva del huevo. Esto garantiza un sello hermético con la fuerza de sujeción suficiente para sostener el peso sin permitir deslizamientos mecánicos bruscos durante las aceleraciones propias de los movimientos `Jump` entre las distintas posiciones del *pallet*.
+### 8.1. Diseño del Efector Final y Consideraciones Mecánicas
+Para acoplar el sistema al manipulador, se diseñó una brida de sujeción para la ventosa que se monta directamente en el TCP del EPSON T3-401S. La ventosa fue seleccionada con un diámetro específico y un material flexible adecuado para adaptarse a la superficie curva y frágil del huevo. Esto garantiza un sello hermético suficiente para sostener el peso sin permitir deslizamientos durante los movimientos rápidos en el espacio (como la instrucción `Jump`) entre las distintas posiciones del pallet.
 
 <br>
 <div align="center">
-  <img src="Images/gripper.png" alt="Ventosa - Gripper" style="border-radius: 5px; width: 350px;">
+  <img src="Images/cad_gripper.png" alt="Diseño CAD del Gripper" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 16. Ventosa neumática acoplada.</b>
+  <b>Figura 16. Diseño CAD del ensamble de la herramienta.</b>
 </div>
 <br>
-
-### 8.2. Integración Mecánica (Modelo CAD)
-
-Para garantizar la correcta fijación de la ventosa neumática y sus racores a la brida (*flange*) del eje J4 del robot, se desarrolló un ensamble mecánico a la medida. Este acople permite mantener la rigidez estructural durante las operaciones de recolección (*pick*) y ubicación (*place*).
 
 <br>
 <div align="center">
-  <img src="Images/ensamble_gripper.png" alt="Diseño CAD del Gripper" style="border-radius: 5px; width: 350px;">
+  <img src="Images/gripper.png" alt="Ventosa acoplada al robot" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 17. Diseño CAD del acople mecánico para el gripper de vacío.</b>
+  <b>Figura 17. Ventosa - Gripper implementado físicamente.</b>
 </div>
 <br>
 
-### 8.3. Configuración y Lógica de Control con E/S Digitales
+### 8.2. Lógica de Control y Configuración de E/S Digitales
+La actuación de la electroválvula se integró utilizando las interfaces de Entradas/Salidas (E/S) del controlador EPSON. Específicamente, se asignó la **salida digital número 9 (`D0_09`)** del robot para comandar la herramienta.
 
-Para que EPSON RC+ 7.0 gobierne la electroválvula, es necesario vincularla eléctricamente al puerto de I/O (Entradas/Salidas) del controlador. En esta práctica, el solenoide de la válvula se conectó físicamente a la salida digital número **9** (denominada en el panel como `D0_09`).
+Debido a la configuración del circuito electroneumático ensamblado en el laboratorio, la electroválvula opera con una **lógica invertida** desde el punto de vista de la programación en SPEL+:
 
-Debido a la naturaleza de la electroválvula y la conexión eléctrica, el control de la sujeción opera mediante una **lógica invertida**. Esto significa que el comando de apagado activa el actuador, y viceversa. La lógica implementada en el código SPEL+ funciona de la siguiente manera:
-
-* **Comando `Off 9` (o `Off D0_09`):** Envía la señal que abre el paso de aire hacia el Venturi $\rightarrow$ **Activa el vacío $\rightarrow$ Agarra el huevo.**
-* **Comando `On 9` (o `On D0_09`):** Envía la señal que corta el flujo de aire presurizado $\rightarrow$ **Desactiva el vacío $\rightarrow$ Suelta el huevo.**
-
-Esta lógica se puede observar directamente en el bucle principal de la rutina (Sección 10), donde el manipulador asegura el huevo (`Off 9`) antes de trasladarse hacia el destino, y corta el vacío (`On 9`) una vez alcanza la coordenada final.
+* **`Off 9` (Desactivar salida):** Permite el paso del aire hacia el Venturi, lo que **activa el vacío** y permite **agarrar el huevo**.
+* **`On 9` (Activar salida):** Corta el flujo de aire, lo que **desactiva el vacío** y **suelta el huevo**.
 
 
 
