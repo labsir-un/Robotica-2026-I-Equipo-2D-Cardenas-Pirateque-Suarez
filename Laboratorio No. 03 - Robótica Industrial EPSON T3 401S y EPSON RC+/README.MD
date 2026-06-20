@@ -524,8 +524,12 @@ Para revisar la declaración de variables, el arreglo de rutas y las funciones d
 📄 **Archivo SPEL+** → [Main.prg](Main.prg)
 
 
+## 12. Demostración en Video: Validación de Trayectoria
 
-## 11. Demostración en Video: Validación de Trayectoria 
+A continuación se presentan los enlaces a las evidencias audiovisuales que validan el funcionamiento del sistema. Ambos videos inician con la introducción oficial del laboratorio (**LabSIR Intro LabSIR**), cumpliendo estrictamente con los requisitos de la rúbrica.
+
+* ▶️ **[Video 1 - Simulación e Implementación Física]**([Inserta aquí tu enlace de YouTube]): Muestra la simulación completa de la trayectoria en EPSON RC+ 7.0 y la ejecución real en el manipulador EPSON T3-401S.
+* ▶️ **[Video 2 - Desempeño del Gripper Neumático]**([Inserta aquí tu enlace de YouTube]): Demostración detallada del gripper levantando un huevo de manera segura, demostrando la estabilidad del sello al vacío y la precisión del movimiento durante la rutina de paletizado.
 
 
 
