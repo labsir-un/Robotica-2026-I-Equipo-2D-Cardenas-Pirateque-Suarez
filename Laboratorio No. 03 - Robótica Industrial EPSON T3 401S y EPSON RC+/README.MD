@@ -405,45 +405,62 @@ Debido a la configuración del circuito electroneumático ensamblado en el labor
 
 
 
-## 9. Lógica de Control: Diagrama de Flujo.
+## 9. Lógica de Control: Diagrama de Flujo
 
+El siguiente diagrama de flujo describe la secuencia lógica del programa diseñado en SPEL+. Se divide en fases de inicialización, configuración del entorno de trabajo, y un bucle principal iterativo que alterna el movimiento de los dos huevos simulando el patrón de salto de un caballo de ajedrez.
 
 ```mermaid
-graph TD
-    A([Inicio: Función main]) --> B[Encender motores, configurar velocidad y aceleración]
-    B --> C[Calcular distancias: totalAncho y totalLargo]
-    C --> D[Establecer Home en pulsos y mover el robot a Home]
-    D --> E[Definir puntos P0, P1, P2 usando ALTURA_Z]
-    E --> F[[Llamar a Paletizado_01]]
+flowchart TD
+    A([Inicio: Función main]) --> INIT
 
-    F --> G[Definir geometría del Pallet 1: 6 columnas x 5 filas]
-    G --> H[[Llamar a CargarRutas: Llenar arreglos pathA y pathB]]
-    H --> I[Reiniciar arreglo 'visited' a 0 y visitedCount a 0]
-    I --> J[Asignar posiciones iniciales: curA = pathA 1, curB = pathB 1]
-    J --> K[Marcar curA y curB como visitados]
+    subgraph INIT [1. Configuración Inicial]
+        B[Encender motores, config. vel/accel] --> C[Calcular distancias del Pallet]
+        C --> D[Establecer y Mover a Home]
+        D --> E[Definir P0, P1, P2]
+        E --> F[[Llamar Función: Paletizado_01]]
+    end
+
+    F --> SETUP
+
+    subgraph SETUP [2. Preparación de Rutas y Variables]
+        G[Definir Pallet 1: 6x5] --> H[[Llamar a CargarRutas]]
+        H --> I[Reiniciar arreglo 'visited' a 0]
+        I --> J[Asignar posiciones iniciales curA, curB]
+        J --> K[Marcar curA y curB como visitados]
+    end
 
     K --> L{Bucle: For k = 2 To 32}
 
-    L -->|Iteración activa| M1[H1: Marcar curA como visitado PICK]
-    M1 --> M2[H1: Jump a curA, activar pin 9, Wait 0.1]
-    M2 --> M3[H1: Marcar pathA k como visitado PLACE]
-    M3 --> M4[H1: Jump a pathA k, desactivar pin 9, Wait 0.1]
-    M4 --> M5[H1: curA = pathA k]
+    L -- Iteración activa --> M1
+    
+    subgraph H1 [Movimiento Huevo 1]
+        M1[Marcar curA PICK y saltar] --> M2[Activar Vacío Pin 9 ON]
+        M2 --> M3[Marcar pathA_k PLACE y saltar]
+        M3 --> M4[Desactivar Vacío Pin 9 OFF]
+        M4 --> M5[Actualizar curA = pathA_k]
+    end
 
-    M5 --> N1[H2: Marcar curB como visitado PICK]
-    N1 --> N2[H2: Jump a curB, activar pin 9, Wait 0.1]
-    N2 --> N3[H2: Marcar pathB k como visitado PLACE]
-    N3 --> N4[H2: Jump a pathB k, desactivar pin 9, Wait 0.1]
-    N4 --> N5[H2: curB = pathB k]
+    M5 --> N1
 
-    N5 --> L
+    subgraph H2 [Movimiento Huevo 2]
+        N1[Marcar curB PICK y saltar] --> N2[Activar Vacío Pin 9 ON]
+        N2 --> N3[Marcar pathB_k PLACE y saltar]
+        N3 --> N4[Desactivar Vacío Pin 9 OFF]
+        N4 --> N5[Actualizar curB = pathB_k]
+    end
 
-    L -->|Fin del bucle k=33| S[Off 9 final]
-    S --> T[Imprimir visitedCount total]
-    T --> U[Imprimir 'Regresando a Home']
-    U --> V[Home]
+    N5 -- Siguiente iteración --> L
+
+    L -- Fin de bucle k=33 --> END_PROCESS
+
+    subgraph END_PROCESS [3. Finalización]
+        S[Apagar Pin 9 Final] --> T[/Imprimir 'visitedCount' total/]
+        T --> U[/Imprimir 'Regresando a Home'/]
+        U --> V[Mover a Home]
+    end
+
     V --> W([Fin])
-```
+
 ## 10. Implementación del Código
 
 
