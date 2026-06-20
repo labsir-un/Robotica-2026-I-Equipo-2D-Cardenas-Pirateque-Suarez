@@ -136,7 +136,7 @@ dentro de los robots industriales el uso de un Teachpendant suele ser la herrami
 <div align="center">
   <img src="Images/manual.png" alt="manual" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 3. Operacion Manual .</b>
+  <b>Figura 3. Operacion Manual.</b>
 </div>
 
 <br>
@@ -144,9 +144,9 @@ dentro de los robots industriales el uso de un Teachpendant suele ser la herrami
 <br>
 
 <div align="center">
-  <img src="Images/manual Articular.png" alt="manualart" style="border-radius: 5px; width: 350px;">
+  <img src="Images/manua2.png" alt="manualart" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 4. Operacion Manual .</b>
+  <b>Figura 4. Operacion Manual Articular.</b>
 </div>
 
 <br>
