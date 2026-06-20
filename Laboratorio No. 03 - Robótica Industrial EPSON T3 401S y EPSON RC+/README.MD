@@ -178,7 +178,7 @@ graph TD
     L -->|Fin del bucle| S[Imprimir conteo total de visitados]
     S --> T[Regresar a Home]
     T --> U([Fin])
-
+```
 
 ## 10. Implementación del Código
 
