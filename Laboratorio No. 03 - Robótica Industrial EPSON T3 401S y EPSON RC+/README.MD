@@ -149,37 +149,44 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 
 ## 9. Lógica de Control: Diagrama de Flujo.
+# Diagrama de Flujo - Paletizado Robot (Cabalgado 2 Huevos)
+
 ```mermaid
 graph TD
     A([Inicio: Función main]) --> B[Encender motores, configurar velocidad y aceleración]
     B --> C[Calcular distancias: totalAncho y totalLargo]
-    C --> D[Establecer coordenadas y mover el robot a Home]
+    C --> D[Establecer Home en pulsos y mover el robot a Home]
     D --> E[Definir puntos P0, P1, P2 usando ALTURA_Z]
     E --> F[[Llamar a Paletizado_01]]
 
     F --> G[Definir geometría del Pallet 1: 6 columnas x 5 filas]
     G --> H[[Llamar a CargarRutas: Llenar arreglos pathA y pathB]]
-    H --> I[Reiniciar arreglo de control 'visited' a 0]
-    I --> J[Asignar posiciones iniciales: curA y curB]
-    J --> K[[Marcar posiciones iniciales como visitadas]]
-    
-    K --> L{Bucle: For k = 2 To 32}
-    
-    L -->|Iteración activa| M[H1: Volver a curA PICK y activar pin 9]
-    M --> N[H1: Ir a nueva posición pathA k PLACE y desactivar pin 9]
-    N --> O[Actualizar curA y marcar como visitado]
-    
-    O --> P[H2: Volver a curB PICK y activar pin 9]
-    P --> Q[H2: Ir a nueva posición pathB k PLACE y desactivar pin 9]
-    Q --> R[Actualizar curB y marcar como visitado]
-    
-    R --> L
-    
-    L -->|Fin del bucle| S[Imprimir conteo total de visitados]
-    S --> T[Regresar a Home]
-    T --> U([Fin])
-```
+    H --> I[Reiniciar arreglo 'visited' a 0 y visitedCount a 0]
+    I --> J[Asignar posiciones iniciales: curA = pathA 1, curB = pathB 1]
+    J --> K[Marcar curA y curB como visitados]
 
+    K --> L{Bucle: For k = 2 To 32}
+
+    L -->|Iteración activa| M1[H1: Marcar curA como visitado PICK]
+    M1 --> M2[H1: Jump a curA, activar pin 9, Wait 0.1]
+    M2 --> M3[H1: Marcar pathA k como visitado PLACE]
+    M3 --> M4[H1: Jump a pathA k, desactivar pin 9, Wait 0.1]
+    M4 --> M5[H1: curA = pathA k]
+
+    M5 --> N1[H2: Marcar curB como visitado PICK]
+    N1 --> N2[H2: Jump a curB, activar pin 9, Wait 0.1]
+    N2 --> N3[H2: Marcar pathB k como visitado PLACE]
+    N3 --> N4[H2: Jump a pathB k, desactivar pin 9, Wait 0.1]
+    N4 --> N5[H2: curB = pathB k]
+
+    N5 --> L
+
+    L -->|Fin del bucle k=33| S[Off 9 final]
+    S --> T[Imprimir visitedCount total]
+    T --> U[Imprimir 'Regresando a Home']
+    U --> V[Home]
+    V --> W([Fin])
+```
 ## 10. Implementación del Código
 
 ```spel
