@@ -490,14 +490,17 @@ El número dentro de cada círculo indica **en qué paso de la secuencia tempora
 
 Esta trayectoria se ejecutó utilizando exclusivamente el comando `Jump` de EPSON RC+, lo que garantizó un movimiento fluido, seguro y libre de colisiones entre los elementos y los separadores de la cubeta durante las transiciones.
 
-### 10.4. Montaje Final y Puntos de Referencia
-El montaje final de la celda de trabajo, mostrando la configuración del TCP (Tool Center Point) con el *gripper* neumático y los puntos parametrizados para la ejecución de la trayectoria sobre la cubeta, se detalla a continuación:
+### 10.4. Configuración del TCP y Entorno Virtual
+
+Para la validación de la trayectoria de paletizado, se utilizó el entorno de simulación 3D integrado en EPSON RC+ 7.0. Es importante mencionar que el modelo CAD del efector final (gripper neumático) no se importó gráficamente al entorno virtual. 
+
+En su lugar, el centro de herramienta o TCP (*Tool Center Point*) del robot se configuró directamente a nivel de código, aplicando un desplazamiento matemático (*offset*) en el eje Z equivalente a la longitud física del acople y la ventosa (como se evidencia en la variable `ALTURA_Z = -150.0`). La siguiente figura muestra el manipulador en el simulador ejecutando la rutina programada sobre el espacio de trabajo definido.
 
 <br>
 <div align="center">
-  <img src="Images/montaje_tcp.png" alt="Montaje final y TCP" style="border-radius: 5px; width: 600px;">
+  <img src="Images/simulacion_epson.png" alt="Simulación en EPSON RC+ sin gripper" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 19. Montaje físico del efector final y configuración de la celda.</b>
+  <b>Figura 19. Simulación de la trayectoria en EPSON RC+ (Manipulador sin efector final gráfico).</b>
 </div>
 <br>
 
