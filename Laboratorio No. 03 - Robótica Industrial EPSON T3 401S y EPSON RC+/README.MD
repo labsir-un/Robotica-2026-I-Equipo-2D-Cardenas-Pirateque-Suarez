@@ -404,13 +404,7 @@ Debido a la configuración del circuito electroneumático ensamblado en el labor
 * **`On 9` (Activar salida):** Corta el flujo de aire, lo que **desactiva el vacío** y **suelta el huevo**.
 
 
-## 9. Lógica de Control: Diagrama de Flujo.
 
-
-
-
-
-```mermaid
 
 ## 9. Lógica de Control: Diagrama de Flujo.
 
