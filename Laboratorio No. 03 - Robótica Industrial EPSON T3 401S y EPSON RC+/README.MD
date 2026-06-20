@@ -148,46 +148,74 @@ Durante el desarrollo del laboratorio se opto principalmente por la segunda opci
 
 ## 4. Operación y Modos de Movimiento Manual
 
-dentro de los robots industriales el uso de un Teachpendant suele ser la herramienta usando para poder realizar diferentes movimientos con el manipulador y aunque el EPSON T3-401S cuenta con uno en esta practica se recurrio más al uso de la interfaz que nos otorga el EPSON RC+ 7.0 de la cual tiene los modos de movimiento:
+Dentro de los robots industriales, el uso de un *Teach Pendant* suele ser la herramienta usada para poder realizar diferentes movimientos con el manipulador. Aunque el EPSON T3-401S cuenta con uno, en esta práctica se recurrió más al uso de la interfaz que nos otorga el EPSON RC+ 7.0, específicamente desde la ventana **Administrador de Robot** en la pestaña **Mover y enseñar**.
 
+**Configuración Previa:** Según sea el caso, el operador debe realizar una configuración adecuada del controlador en el apartado "Conexión", donde podrá hacerlo de dos maneras:
+1. Si se trata del robot físico, mediante conexión USB (debe seleccionarse **USB**).
+2. Si se trata de una simulación del Robot, es necesario crear un controlador virtual.
+
+Además, para que el robot tenga la capacidad de ejecutar los movimientos, es necesario encender los motores. Para esto, presionamos el botón **MOTOR ON** en la pestaña **Panel de control**. Téngase en cuenta que con la opción de potencia **POWER LOW** la potencia de los motores será menor, algo más apropiado y seguro para calibración y *teach*.
+
+<br>
+<div align="center">
+  <img src="Images/motor_on.png" alt="Botón Motor ON" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 4. Botón Motor ON.</b>
+</div>
+<br>
+
+Los modos de movimiento disponibles son:
 - Mundo
 - Herramienta
 - Local
 - Articular
 - ECP
 
-En donde todos los modos a excepcion del articular manejan un sistema carteciano usando la misma interfaz que se puede ver acontinuación:
+En donde todos los modos, a excepción del articular, manejan un sistema cartesiano usando la misma interfaz que se puede ver a continuación. Para realizar movimientos de traslación y rotación en los ejes X, Y, Z y U, el operador debe hacer clic en las teclas en pantalla **(+) o (-)** correspondientes a cada eje.
 
 <br>
-
 <div align="center">
   <img src="Images/manual.png" alt="manual" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 4. Operacion Manual.</b>
+  <b>Figura 5. Operación Manual Cartesiana.</b>
 </div>
-
 <br>
 
-Estos modo tienen de diferencia el punto de referencia que utiliza cada uno siendo:
+Estos modos tienen de diferencia el punto de referencia que utiliza cada uno, siendo:
 
 - **Mundo:** tiene el origen (0,0,0) en la base del robot.
 - **Herramienta:** tiene el origen (0,0,0) en el TCP del robot.
 - **Local:** tiene el origen (0,0,0) en un punto personalizable definido por el usuario.
 - **ECP:** tiene el origen (0,0,0) en una herramienta externa al robot.
 
-
-Ademas de esto como es de costumbre tambien se cuenta con el modo articular que permite movilizar articulacion por articulacion cambiando la interfaz a:
+Además de esto, como es de costumbre, también se cuenta con el modo articular que permite movilizar articulación por articulación usando las teclas en pantalla **J1, J2, J3 y J4**, cambiando la interfaz a:
 
 <br>
-
 <div align="center">
   <img src="Images/manua2.png" alt="manualart" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 5. Operacion Manual Articular.</b>
+  <b>Figura 6. Operación Manual Articular.</b>
 </div>
-
 <br>
 
+Cabe aclarar que la articulación **J4** siempre opera en **grados**, ya que corresponde al eje rotacional del efector final. Por su parte, **J3** trabaja exclusivamente en **milímetros**, debido a que es el eje lineal del robot SCARA. Las demás articulaciones pueden configurarse directamente en coordenadas angulares o determinarse automáticamente mediante la cinemática inversa.
+
+El software también permite modificar la distancia de movimiento (salto) cada vez que se ejecuta una instrucción de movimiento manual o se presiona una tecla:
+
+<br>
+<div align="center">
+  <img src="Images/distancia_salto.png" alt="distancia_salto" style="border-radius: 5px; width: 400px;">
+  <br>
+  <b>Figura 7. Configuración de distancia de salto.</b>
+</div>
+<br>
+
+En resumen, el procedimiento para el movimiento manual es:
+1. Activar servo (**MOTOR ON**) verificando la potencia baja.
+2. Seleccionar la pestaña **Mover y enseñar**. 
+3. Elegir entre los Modos en el espacio de configuración (Articular) o en el espacio de trabajo (Mundo, Local, etc.).
+4. Ajustar velocidad (Alta/Baja) de jogging y la magnitud de cada salto.
+5. Ejecutar movimientos de traslación o rotación pulsando las teclas `+` o `-` en la interfaz.
 
 ## 5. Gestión de Velocidades y Potencia en Operación Manual
 
