@@ -345,56 +345,74 @@ A partir de esta comparación, se destacan las ventajas, limitaciones y aplicaci
 
 ## 8. Diseño e Integración del Gripper Neumático por Vacío
 
-para la implementacion del gripper se tubo que implementar diferentes elementos para el funcionamiento de este, donde el primero seria el compresor el cual gestiona el aire a presienon para el sistema neumatico. segido de este se neceisto de una unidad de mantenimiento para regular la presion y filtrar humedad y residuos solidos que puede llegar a contener el aire. 
+Para la implementación del *gripper* (efector final) se requirió el diseño, ensamble e integración de un sistema neumático basado en generación de vacío. El correcto funcionamiento de esta herramienta depende de una cadena de componentes físicos y una configuración precisa en la lógica de control del robot.
 
+### 8.1. Componentes Físicos del Sistema Neumático
+
+El sistema se alimenta inicialmente mediante un compresor que suministra el aire a presión. Inmediatamente después, se utiliza una unidad de mantenimiento (FRL) para regular la presión de trabajo del sistema y filtrar posibles partículas de humedad y residuos sólidos presentes en el aire.
 
 <br>
-
 <div align="center">
-  <img src="Images/unidaddemantenimiento.png" alt="uma" style="border-radius: 5px; width: 350px;">
+  <img src="Images/unidaddemantenimiento.png" alt="Unidad de mantenimiento" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 6. Unidad de mantenimiento.</b>
+  <b>Figura 13. Unidad de mantenimiento neumático.</b>
 </div>
-
 <br>
 
-
-seguido de este se uso una electrovalvula 3 a 2 que nos permitia suministrar el aire a los siguientes elementos usando una seenoide para su activacion que seria controlado directamente con las salidas digitales con la que cuenta el robot.
+El paso del aire regulado es controlado por una electroválvula 3/2 accionada por solenoide. Este componente es el puente entre el hardware neumático y el controlador del robot, ya que su estado de apertura o cierre se comanda directamente mediante las señales eléctricas de las salidas digitales del manipulador.
 
 <br>
-
 <div align="center">
-  <img src="Images/valvula.png" alt="valvu" style="border-radius: 5px; width: 350px;">
+  <img src="Images/valvula.png" alt="Válvula 3 a 2" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 7. Valvula 3 a 2.</b>
+  <b>Figura 14. Electroválvula direccional 3/2.</b>
 </div>
-
 <br>
 
-despues de este se uso una generador de vacio que funciona con el princio de venturi que permitia convertir la presion del aire generada por el compresor en una vacio lo suficientemente fuerte para sostener los elementos de esta practica
+A continuación, el flujo de aire presurizado ingresa a un generador de vacío. Este dispositivo aprovecha el principio de Venturi para transformar la presión positiva del aire comprimido en una presión negativa (vacío) con el caudal suficiente para sostener los elementos requeridos en la práctica.
 
 <br>
-
 <div align="center">
-  <img src="Images/venturi.jpeg" alt="ven" style="border-radius: 5px; width: 350px;">
+  <img src="Images/venturi.jpeg" alt="Generador de vacío" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 8. Gnerador de vacio.</b>
+  <b>Figura 15. Generador de vacío por principio de Venturi.</b>
 </div>
-
 <br>
 
-por ultimo se ubicó el gripper o ventosa en el TCP del EPSON y este fue el encargado de mover los elementos aprovechando el efecto de vacio obtenido anteriormente.
+Finalmente, el vacío generado se canaliza hacia la ventosa (*gripper*), la cual se posiciona en el TCP del robot EPSON T3-401S. 
+
+**Consideraciones de diseño:** La ventosa fue seleccionada cuidadosamente con un diámetro y material adecuados para adaptarse a la superficie curva del huevo. Esto garantiza un sello hermético con la fuerza de sujeción suficiente para sostener el peso sin permitir deslizamientos mecánicos bruscos durante las aceleraciones propias de los movimientos `Jump` entre las distintas posiciones del *pallet*.
 
 <br>
-
 <div align="center">
-  <img src="Images/gripper.png" alt="grip" style="border-radius: 5px; width: 350px;">
+  <img src="Images/gripper.png" alt="Ventosa - Gripper" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 9. ventosa - Gripper.</b>
+  <b>Figura 16. Ventosa neumática acoplada.</b>
 </div>
-
 <br>
 
+### 8.2. Integración Mecánica (Modelo CAD)
+
+Para garantizar la correcta fijación de la ventosa neumática y sus racores a la brida (*flange*) del eje J4 del robot, se desarrolló un ensamble mecánico a la medida. Este acople permite mantener la rigidez estructural durante las operaciones de recolección (*pick*) y ubicación (*place*).
+
+<br>
+<div align="center">
+  <img src="Images/ensamble_gripper.png" alt="Diseño CAD del Gripper" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 17. Diseño CAD del acople mecánico para el gripper de vacío.</b>
+</div>
+<br>
+
+### 8.3. Configuración y Lógica de Control con E/S Digitales
+
+Para que EPSON RC+ 7.0 gobierne la electroválvula, es necesario vincularla eléctricamente al puerto de I/O (Entradas/Salidas) del controlador. En esta práctica, el solenoide de la válvula se conectó físicamente a la salida digital número **9** (denominada en el panel como `D0_09`).
+
+Debido a la naturaleza de la electroválvula y la conexión eléctrica, el control de la sujeción opera mediante una **lógica invertida**. Esto significa que el comando de apagado activa el actuador, y viceversa. La lógica implementada en el código SPEL+ funciona de la siguiente manera:
+
+* **Comando `Off 9` (o `Off D0_09`):** Envía la señal que abre el paso de aire hacia el Venturi $\rightarrow$ **Activa el vacío $\rightarrow$ Agarra el huevo.**
+* **Comando `On 9` (o `On D0_09`):** Envía la señal que corta el flujo de aire presurizado $\rightarrow$ **Desactiva el vacío $\rightarrow$ Suelta el huevo.**
+
+Esta lógica se puede observar directamente en el bucle principal de la rutina (Sección 10), donde el manipulador asegura el huevo (`Off 9`) antes de trasladarse hacia el destino, y corta el vacío (`On 9`) una vez alcanza la coordenada final.
 
 
 
