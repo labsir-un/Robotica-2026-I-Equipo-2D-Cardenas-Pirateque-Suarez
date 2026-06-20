@@ -412,6 +412,14 @@ Debido a la configuración del circuito electroneumático ensamblado en el labor
 
 ```mermaid
 
+## 9. Lógica de Control: Diagrama de Flujo.
+
+
+
+
+
+```mermaid
+
 graph TD
 
     A([Inicio: Función main]) --> B[Encender motores, configurar velocidad y aceleración]
@@ -479,6 +487,10 @@ graph TD
     U --> V[Home]
 
     V --> W([Fin])
+
+``` 
+
+
 
 ``` 
 
