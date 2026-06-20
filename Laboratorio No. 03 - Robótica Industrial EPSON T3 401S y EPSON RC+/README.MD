@@ -189,6 +189,9 @@ graph TD
 ```
 ## 10. Implementación del Código
 
+
+**1.Iniciacion de variables:** Se crearon 3 principales variables para su facil manipulacion deonde dos son para la serpacion entre huevos tanto en X como en Y yla ultia para definal cuanto debia vajar la herramienta para poder mmanipular los elementos. Ademas de esto se crearon los path para guardar las trayectorias que debia seguir el manipulador. 
+
 ```spel
 
 #define SEP_X 45.0  ' Reducido a 40 para no exceder los +/-100mm seguros en X
@@ -200,6 +203,8 @@ Global Integer i, k, curA, curB, r, c, visitedCount
 Global Integer pathA(33), pathB(33), visited(31)
 ```
 
+
+**2.Rutas:** Se almacena el orden en que se realizara cada ruta para que se mueva como el caballo en ajedrez.
 
 ```spel
 Function CargarRutas
@@ -270,7 +275,7 @@ Function CargarRutas
     pathB(32) = 22
 Fend
 ```
-
+**3.Marcador de visita:** Funcion encargada de saber por donde ya paso el robot y tener un mejor control del proceso.
 
 ```spel
 Function MarcarVisitado(idx As Integer)
@@ -281,6 +286,7 @@ Function MarcarVisitado(idx As Integer)
 Fend
 ```
 
+**4.Impresion de posicion:** Funcion encargada mostrar al operador en que path se encuentra.
 
 ```spel
 Function ImprimeIdx(prefijo$ As String, idx As Integer)
@@ -290,6 +296,7 @@ Function ImprimeIdx(prefijo$ As String, idx As Integer)
 Fend
 ```
 
+**5.Funcion de movimiento:** Funcion encargada realizar las rutas para los dos elementos con el orden asignado y alternando la activacion y desactivacion de la herramienta(gripper).
 
 ```spel
 Function Paletizado_01
