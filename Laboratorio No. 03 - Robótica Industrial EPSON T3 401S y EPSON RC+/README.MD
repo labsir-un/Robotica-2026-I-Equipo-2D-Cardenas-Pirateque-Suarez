@@ -233,29 +233,28 @@ Aunque se configuran por aparte, ambos parámetros interactúan físicamente dur
 * **Velocidad Alta + Potencia Baja:** El robot intentará moverse rápido, pero al no tener el torque suficiente para vencer la inercia del movimiento o de la herramienta, el controlador podría autolimitar la velocidad real o arrojar un error de seguridad para evitar sobreesfuerzos.
 * **Velocidad Baja + Potencia Alta:** Es la combinación ideal para manipular cargas pesadas de manera controlada y estable, garantizando que los motores tengan la fuerza necesaria sin generar inercias peligrosas o movimientos bruscos.
 
-
 ## 6. Entorno de Programación y Comunicación: EPSON RC+ 7.0
 
-[cite_start]El software EPSON RC+ 7.0 es el entorno de desarrollo oficial para la configuración, programación y operación del manipulador EPSON T3-401S[cite: 10, 18]. Actúa como la interfaz central entre el ingeniero y el hardware físico, integrando múltiples herramientas en una sola plataforma.
+El software EPSON RC+ 7.0 es el entorno de desarrollo oficial para la configuración, programación y operación del manipulador EPSON T3-401S. Actúa como la interfaz central entre el ingeniero y el hardware físico, integrando múltiples herramientas en una sola plataforma.
 
 <p align="center">
   <img width="1000" alt="Interfaz Principal de EPSON RC+ 7.0" src="Images/epson_rc_interfaz.png" />
 </p>
 
 ### 6.1. Principales Aplicaciones y Funcionalidades
-[cite_start]Dentro del flujo de trabajo de automatización, este software es el encargado de gestionar todo el ciclo de vida del proyecto robótico[cite: 34, 63]:
+Dentro del flujo de trabajo de automatización, este software es el encargado de gestionar todo el ciclo de vida del proyecto robótico:
 
-* [cite_start]**Control directo de movimiento:** A través de la interfaz de operación manual (*Jog & Teach*), el operador puede mover el robot en tiempo real por articulaciones o de forma cartesiana, definir puntos clave en el espacio de trabajo y establecer posiciones de referencia[cite: 32].
+* **Control directo de movimiento:** A través de la interfaz de operación manual (*Jog & Teach*), el operador puede mover el robot en tiempo real por articulaciones o de forma cartesiana, definir puntos clave en el espacio de trabajo y establecer posiciones de referencia.
 * **Creación de proyectos y programación en SPEL+:** Funciona como un Entorno de Desarrollo Integrado (IDE) que permite escribir, estructurar, compilar y depurar la lógica de las trayectorias utilizando SPEL+, el lenguaje de programación nativo de EPSON.
-* **Simulación 3D:** Proporciona un entorno virtual de alta fidelidad que simula la cinemática del robot. [cite_start]Esto permite verificar alcances, prevenir colisiones y validar trayectorias de forma segura antes de realizar la implementación física en el manipulador[cite: 36, 73].
-* **Gestión de E/S (I/O) Digitales:** Integra monitores y paneles de control para las entradas y salidas digitales del robot. [cite_start]Esta función es indispensable para coordinar acciones con herramientas externas, como la activación de electroválvulas para el gripper neumático diseñado en la práctica[cite: 54, 65].
+* **Simulación 3D:** Proporciona un entorno virtual de alta fidelidad que simula la cinemática del robot. Esto permite verificar alcances, prevenir colisiones y validar trayectorias de forma segura antes de realizar la implementación física en el manipulador.
+* **Gestión de E/S (I/O) Digitales:** Integra monitores y paneles de control para las entradas y salidas digitales del robot. Esta función es indispensable para coordinar acciones con herramientas externas, como la activación de electroválvulas para el gripper neumático diseñado en la práctica.
 
 ### 6.2. Comunicación con el Manipulador
-[cite_start]Para que el robot ejecute físicamente las tareas programadas, el software establece un proceso de comunicación estructurado y directo[cite: 49, 63]:
+Para que el robot ejecute físicamente las tareas programadas, el software establece un proceso de comunicación estructurado y directo:
 
-1. [cite_start]**Enlace físico:** La comunicación primaria entre el equipo de cómputo y el robot se establece a través de una conexión física mediante un cable USB (o Ethernet)[cite: 20]. El controlador del EPSON T3-401S se encuentra integrado directamente en la base del brazo mecánico, lo que simplifica el cableado.
-2. [cite_start]**Envío de instrucciones:** EPSON RC+ 7.0 no procesa el movimiento en tiempo real desde la computadora; en su lugar, el software compila el código escrito y transfiere los comandos SPEL+ directamente a la memoria del controlador interno del robot[cite: 49, 50].
-3. **Ejecución del movimiento:** Una vez cargadas las instrucciones, es el controlador interno del robot el que asume el mando. [cite_start]EPSON RC+ envía las órdenes maestras de trayectoria, y el controlador se encarga de calcular los perfiles de velocidad y aceleración, traduciendo estos datos en señales de potencia hacia los servomotores de las articulaciones para efectuar el movimiento físico[cite: 63].
+1. **Enlace físico:** La comunicación primaria entre el equipo de cómputo y el robot se establece a través de una conexión física mediante un cable USB (o Ethernet). El controlador del EPSON T3-401S se encuentra integrado directamente en la base del brazo mecánico, lo que simplifica el cableado.
+2. **Envío de instrucciones:** EPSON RC+ 7.0 no procesa el movimiento en tiempo real desde la computadora; en su lugar, el software compila el código escrito y transfiere los comandos SPEL+ directamente a la memoria del controlador interno del robot.
+3. **Ejecución del movimiento:** Una vez cargadas las instrucciones, es el controlador interno del robot el que asume el mando. EPSON RC+ envía las órdenes maestras de trayectoria, y el controlador se encarga de calcular los perfiles de velocidad y aceleración, traduciendo estos datos en señales de potencia hacia los servomotores de las articulaciones para efectuar el movimiento físico.
 
 ## 7. Análisis Comparativo de Software Robótico: RC+, RoboDK y RobotStudio
 
