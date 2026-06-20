@@ -342,8 +342,7 @@ A partir de esta comparación, se destacan las ventajas, limitaciones y aplicaci
 * **Limitaciones:** Su uso es exclusivo para manipuladores de la marca EPSON y su motor gráfico de simulación 3D es más básico o menos inmersivo en comparación con RobotStudio.
 * **Aplicaciones:** Tareas de alta velocidad e integración rápida en la industria, enfocadas en robots tipo SCARA o de 6 ejes pequeños, como operaciones de *pick and place*, empaque, y ensamblaje de componentes electrónicos pequeños.
 
-### Reflexión: ¿Qué significa cada herramienta en la práctica?
-Desde la experiencia obtenida en el laboratorio, **RoboDK** representa el "traductor universal" y la herramienta más amigable para entender la cinemática general sin atarse a sintaxis propietarias. **RobotStudio** significa el "gemelo digital de alta gama", siendo el estándar industrial cuando se requiere perfección absoluta y control total sobre una estación ABB dedicada. Finalmente, **EPSON RC+ 7.0** es sinónimo de "agilidad e integración", mostrándose como una herramienta pragmática y libre de complicaciones innecesarias, diseñada para programar lógicas (como la del caballo de ajedrez) y llevarlas al hardware físico en un tiempo récord.
+
 ## 8. Diseño e Integración del Gripper Neumático por Vacío
 
 para la implementacion del gripper se tubo que implementar diferentes elementos para el funcionamiento de este, donde el primero seria el compresor el cual gestiona el aire a presienon para el sistema neumatico. segido de este se neceisto de una unidad de mantenimiento para regular la presion y filtrar humedad y residuos solidos que puede llegar a contener el aire. 
