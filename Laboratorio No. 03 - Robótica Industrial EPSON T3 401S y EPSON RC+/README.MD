@@ -150,6 +150,37 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 ## 9. Lógica de Control: Diagrama de Flujo.
 
+graph TD
+    A([Inicio: Función main]) --> B[Encender motores, configurar velocidad y aceleración]
+    B --> C[Calcular distancias: totalAncho y totalLargo]
+    C --> D[Establecer coordenadas y mover el robot a Home]
+    D --> E[Definir puntos P0, P1, P2 usando ALTURA_Z]
+    E --> F[[Llamar a Paletizado_01]]
+
+    F --> G[Definir geometría del Pallet 1: 6 columnas x 5 filas]
+    G --> H[[Llamar a CargarRutas: Llenar arreglos pathA y pathB]]
+    H --> I[Reiniciar arreglo de control 'visited' a 0]
+    I --> J[Asignar posiciones iniciales: curA y curB]
+    J --> K[[Marcar posiciones iniciales como visitadas]]
+    
+    K --> L{Bucle: For k = 2 To 32}
+    
+    L -->|Iteración activa| M[H1: Volver a curA PICK y activar pin 9]
+    M --> N[H1: Ir a nueva posición pathA k PLACE y desactivar pin 9]
+    N --> O[Actualizar curA y marcar como visitado]
+    
+    O --> P[H2: Volver a curB PICK y activar pin 9]
+    P --> Q[H2: Ir a nueva posición pathB k PLACE y desactivar pin 9]
+    Q --> R[Actualizar curB y marcar como visitado]
+    
+    R --> L
+    
+    L -->|Fin del bucle| S[Imprimir conteo total de visitados]
+    S --> T[Regresar a Home]
+    T --> U([Fin])
+
+
+
 ## 10. Implementación del Código
 
 ```spel
