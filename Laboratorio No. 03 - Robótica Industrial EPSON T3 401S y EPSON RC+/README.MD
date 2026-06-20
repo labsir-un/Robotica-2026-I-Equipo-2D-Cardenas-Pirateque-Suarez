@@ -189,7 +189,53 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 <br>
 
 
-## 5. Gestión de Velocidades en Operación Manual
+## 5. Gestión de Velocidades y Potencia en Operación Manual
+
+Para operar el manipulador EPSON T3-401S de forma manual y segura desde el software EPSON RC+ 7.0, es fundamental comprender y configurar dos parámetros independientes pero complementarios: **la velocidad (Speed)** y **la potencia (Power)**.
+
+### 5.1. Niveles de Velocidad (Speed)
+La velocidad determina exclusivamente qué tan rápido se desplaza el manipulador en su espacio de trabajo, sin afectar la fuerza que sus motores pueden ejercer. En la pestaña **Mover y enseñar** (Jog & Teach), el operador puede alternar entre dos modos principales:
+
+* **Velocidad Baja (Low):** El robot se desplaza de manera cautelosa debido a una limitación interna en el parámetro de velocidad. Es el modo recomendado para configuraciones iniciales, acercamientos precisos (como la aproximación del *gripper* a la cubeta) y pruebas de rutinas nuevas.
+* **Velocidad Alta (High):** Permite alcanzar valores mayores en el parámetro *Speed*, lo que se traduce en movimientos mucho más rápidos. Se utiliza cuando la trayectoria ya ha sido validada y se busca evaluar el tiempo de ciclo real.
+
+El cambio entre estos niveles y su identificación visual se realiza directamente en la interfaz de **Mover y enseñar**, marcando la opción deseada en el panel de control manual:
+
+<p align="center">
+  <img width="400" height="106" alt="image" src="https://github.com/user-attachments/assets/3adc679e-6966-4ca3-bcbc-4c4331d6331f" />
+</p>
+
+---
+
+### 5.2. Niveles de Potencia (Power)
+A diferencia de la velocidad, el ajuste de potencia modifica la capacidad de esfuerzo, fuerza o torque disponible en los motores. Según el manual del EPSON T3-401S, este parámetro se gestiona desde el menú principal en el **Panel de control**:
+
+* **Power LOW (Potencia Baja):** El robot trabaja con un torque reducido, limitando la fuerza física de los motores. Es una medida de seguridad crucial para evitar daños mecánicos severos en caso de colisiones inesperadas durante la programación.
+* **Power HIGH (Potencia Alta):** Habilita la capacidad completa de los motores, permitiendo al manipulador cargar y mover elementos utilizando su torque nominal completo.
+
+<p align="center">
+<img width="246" alt="image" src="https://github.com/user-attachments/assets/d30b76e1-7445-42e2-be3b-0db50faa2484" />
+</p>
+
+Para comprobar el nivel establecido actualmente, el operador debe revisar los indicadores visuales en la sección **Estado** dentro del Panel de control.
+
+Estado con **Potencia Alta** (indicador iluminado y habilitado):
+<p align="center">
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/9ec38bb1-ef55-44d0-847e-f84c7a285dc1" />
+</p>
+
+Estado con **Potencia Baja**:
+<p align="center">
+<img width="600"  alt="image" src="https://github.com/user-attachments/assets/df222cf7-06b5-4ce9-81b4-d927a7d0dcbf" />
+</p>
+
+---
+
+### 5.3. Relación Operativa entre Velocidad y Potencia
+Aunque se configuran por aparte, ambos parámetros interactúan físicamente durante la ejecución de las tareas. Comprender esta relación es vital para una correcta operación:
+
+* **Velocidad Alta + Potencia Baja:** El robot intentará moverse rápido, pero al no tener el torque suficiente para vencer la inercia del movimiento o de la herramienta, el controlador podría autolimitar la velocidad real o arrojar un error de seguridad para evitar sobreesfuerzos.
+* **Velocidad Baja + Potencia Alta:** Es la combinación ideal para manipular cargas pesadas de manera controlada y estable, garantizando que los motores tengan la fuerza necesaria sin generar inercias peligrosas o movimientos bruscos.
 
 ## 6. Entorno de Programación y Comunicación: EPSON RC+ 7.0
 
