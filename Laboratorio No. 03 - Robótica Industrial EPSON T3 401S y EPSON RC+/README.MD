@@ -134,6 +134,8 @@ en este caso el controlador nos permite definir el Home atravez de dos metodos.
     HomeSet 204800, 0, 0, 0
 ```
 
+Durante el desarrollo del laboratorio se opto principalmente por la segunda opción que resulta mas sencilla a la hora de cambiar de computador. con esto de posiciono el home sobre el eje Y y teniendo el robot total mente extendido de la siguiente forma:
+
 <br>
 
 <div align="center">
