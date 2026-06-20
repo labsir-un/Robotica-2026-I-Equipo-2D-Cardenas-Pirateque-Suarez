@@ -149,7 +149,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 
 ## 9. Lógica de Control: Diagrama de Flujo.
-# Diagrama de Flujo - Paletizado Robot (Cabalgado 2 Huevos)
+
 
 ```mermaid
 graph TD
