@@ -209,7 +209,7 @@ seguido de este se uso una electrovalvula 3 a 2 que nos permitia suministrar el 
 <div align="center">
   <img src="Images/valvula.png" alt="valvu" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 6. Valvula 3 a 2.</b>
+  <b>Figura 7. Valvula 3 a 2.</b>
 </div>
 
 <br>
@@ -221,12 +221,22 @@ despues de este se uso una generador de vacio que funciona con el princio de ven
 <div align="center">
   <img src="Images/venturi.jpeg" alt="ven" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 4. Gnerador de vacio.</b>
+  <b>Figura 8. Gnerador de vacio.</b>
 </div>
 
 <br>
 
+por ultimo se ubicó el gripper o ventosa en el TCP del EPSON y este fue el encargado de mover los elementos aprovechando el efecto de vacio obtenido anteriormente.
 
+<br>
+
+<div align="center">
+  <img src="Images/gripper.png" alt="grip" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 9. ventosa - Gripper.</b>
+</div>
+
+<br>
 
 
 
