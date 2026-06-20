@@ -114,6 +114,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 La posición de Home es ciertamente la mas importante a la hora de programar siendo esta definida de muchas maneras dependiendo de cosas como la marca del Robot o el modelo, esta puede ser desde una posicion con lo todos los motores en 0 grados, una posción de mantenimiento o una posición definida por el usuario.
 
 en este caso el controlador nos permite definir el Home atravez de dos metodos.
+
  **1. configuracion desde gestion de robot** desde el mismo  EPSON RC+ 7.0 permite configurar la posición con pulsos por articulacion:
 
 <br>
