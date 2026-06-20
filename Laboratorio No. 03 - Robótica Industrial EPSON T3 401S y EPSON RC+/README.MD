@@ -403,44 +403,51 @@ Debido a la configuración del circuito electroneumático ensamblado en el labor
 * **`Off 9` (Desactivar salida):** Permite el paso del aire hacia el Venturi, lo que **activa el vacío** y permite **agarrar el huevo**.
 * **`On 9` (Activar salida):** Corta el flujo de aire, lo que **desactiva el vacío** y **suelta el huevo**.
 
-
 ## 9. Lógica de Control: Diagrama de Flujo
 
 ```mermaid
 graph TD
-    A([Inicio: main]) --> B[Motores: velocidad y aceleración]
-    B --> C[Calcular totalAncho y totalLargo]
-    C --> D[Mover robot a Home]
-    D --> E[Definir puntos P0 P1 P2 con ALTURA_Z]
-    E --> F[[Paletizado_01]]
-    F --> G[Geometría Pallet 1: 6 col × 5 fil]
-    G --> H[[CargarRutas: llenar pathA y pathB]]
-    H --> I[Reset visited = 0, visitedCount = 0]
-    I --> J[curA = pathA-1, curB = pathB-1]
+    A([Inicio: Función main]) --> B[Encender motores<br/>Configurar velocidad y aceleración]
+    B --> C[Calcular distancias<br/>totalAncho y totalLargo]
+    C --> D[Establecer Home en pulsos<br/>Mover robot a Home]
+    D --> E[Definir puntos P0, P1, P2<br/>usando ALTURA_Z]
+    E --> F[[Llamar a Paletizado_01]]
+
+    F --> G[Geometría Pallet 1<br/>6 columnas × 5 filas]
+    G --> H[[CargarRutas: Llenar pathA y pathB]]
+    H --> I[Reiniciar arreglo visited a 0<br/>visitedCount = 0]
+    I --> J[curA = pathA 1<br/>curB = pathB 1]
     J --> K[Marcar curA y curB como visitados]
-    K --> L{For k = 2 To 32}
+    K --> L{Bucle: For k = 2 To 32}
 
-    L -->|Iteración activa| M1[H1: Marcar curA visitado PICK]
-    M1 --> M2[H1: Jump curA, pin 9 ON, Wait 0.1]
-    M2 --> M3[H1: Marcar pathA-k visitado PLACE]
-    M3 --> M4[H1: Jump pathA-k, pin 9 OFF, Wait 0.1]
-    M4 --> M5[H1: curA = pathA-k]
+    subgraph HEAD1 ["H1: Robot 1"]
+        M1[Marcar curA como visitado PICK]
+        M2[Jump a curA<br/>Activar pin 9, Wait 0.1]
+        M3[Marcar pathA k como visitado PLACE]
+        M4[Jump a pathA k<br/>Desactivar pin 9, Wait 0.1]
+        M5[curA = pathA k]
+    end
 
-    M5 --> N1[H2: Marcar curB visitado PICK]
-    N1 --> N2[H2: Jump curB, pin 9 ON, Wait 0.1]
-    N2 --> N3[H2: Marcar pathB-k visitado PLACE]
-    N3 --> N4[H2: Jump pathB-k, pin 9 OFF, Wait 0.1]
-    N4 --> N5[H2: curB = pathB-k]
+    subgraph HEAD2 ["H2: Robot 2"]
+        N1[Marcar curB como visitado PICK]
+        N2[Jump a curB<br/>Activar pin 9, Wait 0.1]
+        N3[Marcar pathB k como visitado PLACE]
+        N4[Jump a pathB k<br/>Desactivar pin 9, Wait 0.1]
+        N5[curB = pathB k]
+    end
 
-    N5 --> L
+    L -->|Iteración activa| M1
+    M1 --> M2 --> M3 --> M4 --> M5
+    M5 --> N1
+    N1 --> N2 --> N3 --> N4 --> N5
+    N5 -->|k++| L
 
-    L -->|k = 33: Fin bucle| S[Off pin 9]
-    S --> T[Imprimir visitedCount]
-    T --> U[Imprimir Regresando a Home]
+    L -->|Fin del bucle k=33| S[Off pin 9 final]
+    S --> T[Imprimir visitedCount total]
+    T --> U[Imprimir: Regresando a Home]
     U --> V[Home]
     V --> W([Fin])
 ```
-
 ## 10. Implementación del Código
 
 
