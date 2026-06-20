@@ -7,7 +7,7 @@
 
 <h3>Curso de Robótica 2026-I</h3>
 <h1>Laboratorio No. 03</h1>
-<h2> Robótica Industrial - Análisis y Operación del Manipulador EPSON T3-401S.</h2>
+<h2> Robótica Industrial - Análisis y Operación del Manipulador EPSON T3-401S</h2>
 <h3>EPSON T3-401S · EPSON RC+ 7.5.2</h3>
 <h4>Profesores: Pedro Fabián Cárdenas Herrera · Manuel Felipe Carranza Montenegro</h4>
 <h4>Estudiantes: David Felipe Cardenas Cubides · David Santiago Pirateque Suarez </h4>
