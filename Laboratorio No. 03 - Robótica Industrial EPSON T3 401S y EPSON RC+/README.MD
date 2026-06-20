@@ -471,6 +471,10 @@ El plano de la cubeta consiste en una matriz rectangular de **5 filas × 6 colum
 * **Fila 4:** 19, 20, 21, 22, 23, 24
 * **Fila 5:** 25, 26, 27, 28, 29, 30
 
+A continuación, se presenta el plano de planta de la celda de trabajo, detallando las distancias y la ubicación exacta de la cubeta de huevos con respecto a la base del manipulador EPSON T3-401S. Para visualizar el esquema en alta resolución y con la separación adecuada de los componentes, consulte el siguiente documento técnico:
+
+📄 **Archivo PDF del Plano de Planta** → [Plano_de_planta.pdf](Plano_de_planta.pdf)
+
 ### 10.3. Trayectoria Escogida (Patrón de Caballo)
 Ambos elementos se desplazan de manera alternada utilizando un patrón equivalente al movimiento del caballo en el ajedrez: dos unidades en una dirección y una en la perpendicular. 
 
@@ -484,7 +488,7 @@ El número dentro de cada círculo indica **en qué paso de la secuencia tempora
 <div align="center">
   <img src="Images/trayectoria_caballo.png" alt="Esquema de la trayectoria en matriz 6x5" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 18. Esquema temporal y espacial de la trayectoria (Patrón de Caballo).</b>
+  <b>Figura 19. Esquema temporal y espacial de la trayectoria (Patrón de Caballo).</b>
 </div>
 <br>
 
@@ -500,11 +504,9 @@ En su lugar, el centro de herramienta o TCP (*Tool Center Point*) del robot se c
 <div align="center">
   <img src="Images/simulacion_epson.png" alt="Simulación en EPSON RC+ sin gripper" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 19. Simulación de la trayectoria en EPSON RC+ (Manipulador sin efector final gráfico).</b>
+  <b>Figura 20. Simulación de la trayectoria en EPSON RC+ (Manipulador sin efector final gráfico).</b>
 </div>
 <br>
-
-
 ## 11. Implementación del Código en SPEL+
 
 El archivo adjunto a continuación contiene el código principal ejecutado en el controlador para realizar las trayectorias solicitadas en el laboratorio. En este script se implementa la lógica completa para garantizar el correcto movimiento tipo caballo de ajedrez de los dos huevos, asegurando que ambos elementos pasen por cada una de las posiciones de la bandeja (6x5) de manera alternada y sin colisiones.
