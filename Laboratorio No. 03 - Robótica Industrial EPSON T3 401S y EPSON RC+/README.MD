@@ -123,6 +123,17 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 ## 4. Operación y Modos de Movimiento Manual
 
+<br>
+
+<div align="center">
+  <img src="Images/manual.png" alt="manual" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 2. Operacion Manual .</b>
+</div>
+
+<br>
+
+
 ## 5. Gestión de Velocidades en Operación Manual
 
 ## 6. Entorno de Programación y Comunicación: EPSON RC+ 7.0
