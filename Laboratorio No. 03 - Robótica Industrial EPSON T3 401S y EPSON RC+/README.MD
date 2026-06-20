@@ -296,7 +296,7 @@ Function ImprimeIdx(prefijo$ As String, idx As Integer)
 Fend
 ```
 
-**5.Funcion de movimiento:** Funcion encargada realizar las rutas para los dos elementos con el orden asignado y alternando la activacion y desactivacion de la herramienta(gripper).
+**5.Funcion de movimiento:** Funcion encargada realizar las rutas para los dos elementos con el orden asignado y alternando la activacion y desactivacion de la herramienta(gripper), por ultimo regresa a la posición Home.
 
 ```spel
 Function Paletizado_01
@@ -351,6 +351,7 @@ Function Paletizado_01
 Fend
 ```
 
+**6.Funcion principal:** Funcion encargada de activar motores, definir velocidad y dar posicion exacta para las rutas con base a las bariables definidas al inicio, definir Home y llama a la función de paletizado.
 
 ```spel
 Function main
