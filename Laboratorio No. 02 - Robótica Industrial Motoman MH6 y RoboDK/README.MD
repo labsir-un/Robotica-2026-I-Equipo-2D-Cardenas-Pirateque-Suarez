@@ -562,28 +562,31 @@ generar_previsualizacion()
 </div>
 <br>
 
-## 12. Demostración en Video: Validación de Trayectoria
+## 11. Demostración en Video: Validación de Trayectoria Polar
 
-A continuación se presentan los enlaces a las evidencias audiovisuales que validan el funcionamiento del sistema. Ambos videos inician con la introducción oficial del laboratorio (**LabSIR Intro LabSIR**), cumpliendo estrictamente con los requisitos de la rúbrica.
 
-### 12.1. Simulación e Implementación Física
-Este video documenta la integración exitosa entre la programación en EPSON RC+ 7.0 y la operación del manipulador físico en tiempo real, validando la trayectoria tipo caballo de ajedrez diseñada para el paletizado.
+
+Como evidencia final del cumplimiento de los objetivos del laboratorio, se presenta el registro audiovisual de la ejecución del sistema. Este video documenta la integración exitosa entre la Programación Fuera de Línea (OLP) y la operación del manipulador físico en tiempo real.
+
+
+
+En el material se puede observar la sincronización lograda mediante los *drivers* de RoboDK, validando que la trayectoria polar diseñada y simulada en el entorno virtual se traslada con precisión milimétrica al manipulador Motoman MH6. La demostración incluye tanto la fase de aproximación segura como la ejecución de los pétalos de la Rosa de Grandi y el trazado de texto, confirmando la robustez de la comunicación vía Ethernet y la correcta configuración de los sistemas de referencia (Frame) y herramienta (TCP).
+
+
 
 <br>
+
+
+
 <div align="center">
-  <a href="URL_AQUÍ" target="_blank">
-    <img src="https://img.shields.io/badge/Ver_Simulación_e_Implementación-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video de Trayectoria" />
-  </a>
-</div>
-<br>
 
-### 12.2. Desempeño del Gripper Neumático
-Demostración detallada del *gripper* neumático levantando un huevo de manera segura, evidenciando la estabilidad del sello al vacío y la precisión del movimiento durante las transiciones críticas.
+  <a href="https://youtu.be/QDgljY2Wygw" target="_blank">
 
-<br>
-<div align="center">
-  <a href="URL_AQUÍ" target="_blank">
-    <img src="https://img.shields.io/badge/Ver_Desempeño_del_Gripper-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video del Gripper" />
+    <img src="https://img.shields.io/badge/Ver_Video_en_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video" />
+
   </a>
-</div>
-<br>
+
+  <br>
+
+</div> 
+
