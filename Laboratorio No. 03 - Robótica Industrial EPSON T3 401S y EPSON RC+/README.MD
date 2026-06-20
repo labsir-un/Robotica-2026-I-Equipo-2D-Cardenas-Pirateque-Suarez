@@ -229,9 +229,13 @@ La velocidad determina exclusivamente qué tan rápido se desplaza el manipulado
 
 El cambio entre estos niveles y su identificación visual se realiza directamente en la interfaz de **Mover y enseñar**, marcando la opción deseada en el panel de control manual:
 
-<p align="center">
-  <img width="400" height="106" alt="Interfaz de selección de velocidad" src="Images/velocidad_jog.png" />
-</p>
+<br>
+<div align="center">
+  <img src="Images/velocidad_jog.png" alt="Interfaz de selección de velocidad" style="border-radius: 5px; width: 400px;">
+  <br>
+  <b>Figura 8. Interfaz de selección de velocidad.</b>
+</div>
+<br>
 
 ### 5.2. Niveles de Potencia (Power)
 A diferencia de la velocidad, el ajuste de potencia modifica la capacidad de esfuerzo, fuerza o torque disponible en los motores. Según el manual del EPSON T3-401S, este parámetro se gestiona desde el menú principal en el **Panel de control**:
@@ -239,21 +243,35 @@ A diferencia de la velocidad, el ajuste de potencia modifica la capacidad de esf
 * **Power LOW (Potencia Baja):** El robot trabaja con un torque reducido, limitando la fuerza física de los motores. Es una medida de seguridad crucial para evitar daños mecánicos severos en caso de colisiones inesperadas durante la programación.
 * **Power HIGH (Potencia Alta):** Habilita la capacidad completa de los motores, permitiendo al manipulador cargar y mover elementos utilizando su torque nominal completo.
 
-<p align="center">
-  <img width="246" alt="Selección de modo de potencia alta y baja" src="Images/potencia_control.png" />
-</p>
+<br>
+<div align="center">
+  <img src="Images/potencia_control.png" alt="Selección de modo de potencia alta y baja" style="border-radius: 5px; width: 246px;">
+  <br>
+  <b>Figura 9. Selección de modo de potencia alta y baja.</b>
+</div>
+<br>
 
 Para comprobar el nivel establecido actualmente, el operador debe revisar los indicadores visuales en la sección **Estado** dentro del Panel de control.
 
 Estado con **Potencia Alta** (indicador iluminado y habilitado):
-<p align="center">
-  <img width="600" alt="Estado de interfaz en potencia alta" src="Images/potencia_alta.png" />
-</p>
+
+<br>
+<div align="center">
+  <img src="Images/potencia_alta.png" alt="Estado de interfaz en potencia alta" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 10. Estado de interfaz en potencia alta.</b>
+</div>
+<br>
 
 Estado con **Potencia Baja**:
-<p align="center">
-  <img width="600" alt="Estado de interfaz en potencia baja" src="Images/potencia_baja.png" />
-</p>
+
+<br>
+<div align="center">
+  <img src="Images/potencia_baja.png" alt="Estado de interfaz en potencia baja" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 11. Estado de interfaz en potencia baja.</b>
+</div>
+<br>
 
 ### 5.3. Relación Operativa entre Velocidad y Potencia
 Aunque se configuran por aparte, ambos parámetros interactúan físicamente durante la ejecución de las tareas. Comprender esta relación es vital para una correcta operación:
@@ -265,9 +283,13 @@ Aunque se configuran por aparte, ambos parámetros interactúan físicamente dur
 
 El software EPSON RC+ 7.0 es el entorno de desarrollo oficial para la configuración, programación y operación del manipulador EPSON T3-401S. Actúa como la interfaz central entre el ingeniero y el hardware físico, integrando múltiples herramientas en una sola plataforma.
 
-<p align="center">
-  <img width="1000" alt="Interfaz Principal de EPSON RC+ 7.0" src="Images/epson_rc_interfaz.png" />
-</p>
+<br>
+<div align="center">
+  <img src="Images/epson_rc_interfaz.png" alt="Interfaz Principal de EPSON RC+ 7.0" style="border-radius: 5px; width: 1000px;">
+  <br>
+  <b>Figura 12. Interfaz Principal de EPSON RC+ 7.0.</b>
+</div>
+<br>
 
 ### 6.1. Principales Aplicaciones y Funcionalidades
 Dentro del flujo de trabajo de automatización, este software es el encargado de gestionar todo el ciclo de vida del proyecto robótico:
@@ -286,12 +308,10 @@ Para que el robot ejecute físicamente las tareas programadas, el software estab
 
 ## 7. Análisis Comparativo de Software Robótico: RC+, RoboDK y RobotStudio
 
-
-Gracias al acercamiento que se ha llevado acabo a lo largo del desrrollo de la asignatura a robots de distintas marcas hemos podido desarrollarnos en diferentes entornos de desarrollo donde realizando un analisis de los 3 principales que son: RoboDK, RobotStudio y EPSON RC+ 7.0 encontramos:
+Gracias al acercamiento que se ha llevado a cabo a lo largo del desarrollo de la asignatura a robots de distintas marcas, hemos podido desenvolvernos en diferentes entornos de desarrollo. Al realizar un análisis de los 3 principales (RoboDK, RobotStudio y EPSON RC+ 7.0), encontramos la siguiente comparativa:
 
 <br>
 <div align="center">
-
 
 | Característica | RoboDK | RobotStudio | EPSON RC+ 7.0 |
 | :--- | :--- | :--- | :--- |
@@ -305,6 +325,25 @@ Gracias al acercamiento que se ha llevado acabo a lo largo del desrrollo de la a
 </div>
 <br>
 
+A partir de esta comparación, se destacan las ventajas, limitaciones y aplicaciones específicas de cada herramienta[cite: 1]:
+
+### RoboDK
+* **Ventajas:** Su mayor fortaleza es la universalidad. Permite programar y simular celdas con robots de decenas de marcas distintas simultáneamente, siendo muy intuitivo y fácil de integrar con lenguajes como Python.
+* **Limitaciones:** Al no contar con los controladores virtuales originales de los fabricantes, los tiempos de ciclo simulados son aproximados. Además, la generación de código depende de post-procesadores que, en ocasiones, requieren ajustes manuales antes de pasarlos al controlador real.
+* **Aplicaciones:** Prototipado rápido, entornos académicos, y programación offline (*Offline Programming* - OLP) para celdas multi-marca o procesos de trayectorias complejas como impresión 3D y mecanizado.
+
+### RobotStudio (ABB)
+* **Ventajas:** Ofrece una fidelidad perfecta (gemelo digital) gracias a su Controlador Virtual ABB (VRC). Lo que ocurre en la simulación es exactamente lo que ocurrirá en la realidad, permitiendo una depuración impecable del código RAPID y un cálculo exacto de colisiones y tiempos.
+* **Limitaciones:** Está estrictamente limitado al ecosistema de ABB. Es un software exigente en recursos computacionales y muchas de sus funciones avanzadas (como los *PowerPacs*) requieren licencias comerciales costosas.
+* **Aplicaciones:** Puesta en marcha virtual (*Virtual Commissioning*), optimización precisa de tiempos de ciclo y despliegue industrial avanzado exclusivo de celdas de manufactura ABB.
+
+### EPSON RC+ 7.0
+* **Ventajas:** Es un entorno ligero, directo y sumamente optimizado. Integra a la perfección el IDE para programar en SPEL+, el panel de control manual, la gestión de E/S y el simulador 3D en una sola ventana, facilitando un flujo de trabajo ágil.
+* **Limitaciones:** Su uso es exclusivo para manipuladores de la marca EPSON y su motor gráfico de simulación 3D es más básico o menos inmersivo en comparación con RobotStudio.
+* **Aplicaciones:** Tareas de alta velocidad e integración rápida en la industria, enfocadas en robots tipo SCARA o de 6 ejes pequeños, como operaciones de *pick and place*, empaque, y ensamblaje de componentes electrónicos pequeños.
+
+### Reflexión: ¿Qué significa cada herramienta en la práctica?
+Desde la experiencia obtenida en el laboratorio, **RoboDK** representa el "traductor universal" y la herramienta más amigable para entender la cinemática general sin atarse a sintaxis propietarias. **RobotStudio** significa el "gemelo digital de alta gama", siendo el estándar industrial cuando se requiere perfección absoluta y control total sobre una estación ABB dedicada. Finalmente, **EPSON RC+ 7.0** es sinónimo de "agilidad e integración", mostrándose como una herramienta pragmática y libre de complicaciones innecesarias, diseñada para programar lógicas (como la del caballo de ajedrez) y llevarlas al hardware físico en un tiempo récord.
 ## 8. Diseño e Integración del Gripper Neumático por Vacío
 
 para la implementacion del gripper se tubo que implementar diferentes elementos para el funcionamiento de este, donde el primero seria el compresor el cual gestiona el aire a presienon para el sistema neumatico. segido de este se neceisto de una unidad de mantenimiento para regular la presion y filtrar humedad y residuos solidos que puede llegar a contener el aire. 
