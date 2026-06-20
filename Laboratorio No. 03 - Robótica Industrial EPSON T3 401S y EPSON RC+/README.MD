@@ -141,7 +141,7 @@ Durante el desarrollo del laboratorio se opto principalmente por la segunda opci
 <div align="center">
   <img src="Images/home.png" alt="home" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 2. Posicion de Home.</b>
+  <b>Figura 3. Posicion de Home.</b>
 </div>
 
 <br>
@@ -163,7 +163,7 @@ En donde todos los modos a excepcion del articular manejan un sistema carteciano
 <div align="center">
   <img src="Images/manual.png" alt="manual" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 3. Operacion Manual.</b>
+  <b>Figura 4. Operacion Manual.</b>
 </div>
 
 <br>
@@ -183,7 +183,7 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 <div align="center">
   <img src="Images/manua2.png" alt="manualart" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 4. Operacion Manual Articular.</b>
+  <b>Figura 5. Operacion Manual Articular.</b>
 </div>
 
 <br>
