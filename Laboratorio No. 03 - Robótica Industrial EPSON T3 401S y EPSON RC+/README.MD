@@ -491,10 +491,6 @@ graph TD
 ``` 
 
 
-
-``` 
-
-
 ## 10. Implementación del Código
 
 
