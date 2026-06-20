@@ -189,6 +189,42 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 ## 8. Diseño e Integración del Gripper Neumático por Vacío
 
 
+<br>
+
+<div align="center">
+  <img src="Images/unidaddemantenimiento.pnp" alt="uma" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 6. Unidad de mantenimiento.</b>
+</div>
+
+<br>
+
+<br>
+
+<div align="center">
+  <img src="Images/valvula.png" alt="valvu" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 6. Valvula 3 a 2.</b>
+</div>
+
+<br>
+
+
+<br>
+
+<div align="center">
+  <img src="Images/venturi.jpeg" alt="ven" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 4. Gnerador de vacio.</b>
+</div>
+
+<br>
+
+
+
+
+
+
 ## 9. Lógica de Control: Diagrama de Flujo.
 
 
