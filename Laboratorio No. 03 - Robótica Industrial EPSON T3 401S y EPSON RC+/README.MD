@@ -434,7 +434,7 @@ flowchart TD
     N5 -->|Siguiente iteración| L
     L -->|Fin del bucle k=33| S[Apagar Pin 9 final]
     S --> T[/Imprimir visitedCount total/]
-    T --> U[/Imprimir: Regresando a Home/]
+    T --> U[/Imprimir: Regresando a <br/>Home/]
     U --> V[Mover a Home]
     V --> W([Fin])
 ```
