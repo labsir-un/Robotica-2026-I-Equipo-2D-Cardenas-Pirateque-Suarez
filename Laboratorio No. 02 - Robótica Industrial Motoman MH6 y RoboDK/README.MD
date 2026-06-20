@@ -564,29 +564,15 @@ generar_previsualizacion()
 
 ## 11. Demostración en Video: Validación de Trayectoria Polar
 
-
-
 Como evidencia final del cumplimiento de los objetivos del laboratorio, se presenta el registro audiovisual de la ejecución del sistema. Este video documenta la integración exitosa entre la Programación Fuera de Línea (OLP) y la operación del manipulador físico en tiempo real.
-
-
 
 En el material se puede observar la sincronización lograda mediante los *drivers* de RoboDK, validando que la trayectoria polar diseñada y simulada en el entorno virtual se traslada con precisión milimétrica al manipulador Motoman MH6. La demostración incluye tanto la fase de aproximación segura como la ejecución de los pétalos de la Rosa de Grandi y el trazado de texto, confirmando la robustez de la comunicación vía Ethernet y la correcta configuración de los sistemas de referencia (Frame) y herramienta (TCP).
 
-
-
 <br>
 
-
-
 <div align="center">
-
   <a href="https://youtu.be/QDgljY2Wygw" target="_blank">
-
     <img src="https://img.shields.io/badge/Ver_Video_en_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video" />
-
   </a>
-
   <br>
-
-</div> 
-
+</div>
