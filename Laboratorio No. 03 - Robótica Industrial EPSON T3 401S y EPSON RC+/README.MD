@@ -499,7 +499,7 @@ Fend
 
 
 
-## 11. Demostración en Video: Validación de Trayectoria Polar
+## 11. Demostración en Video: Validación de Trayectoria 
 
 
 
