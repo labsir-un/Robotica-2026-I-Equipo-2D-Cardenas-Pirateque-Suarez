@@ -131,6 +131,8 @@ dentro de los robots industriales el uso de un Teachpendant suele ser la herrami
 - Articular
 - ECP
 
+En donde todos los modos a excepcion del articular manejan un sistema carteciano usando la misma interfaz que se puede ver acontinuación:
+
 <br>
 
 <div align="center">
@@ -140,6 +142,15 @@ dentro de los robots industriales el uso de un Teachpendant suele ser la herrami
 </div>
 
 <br>
+
+Estos modo tienen de diferencia el punto de referencia que utiliza cada uno siendo:
+
+- **Mundo:** tiene el origen (0,0,0) en la base del robot.
+-** Herramienta:** tiene el origen (0,0,0) en el TCP del robot.
+- **Local:** tiene el origen (0,0,0) en un punto personalizable definido por el usuario.
+- **ECP:** tiene el origen (0,0,0) en una herramienta externa al robot.
+
+
 
 <br>
 
