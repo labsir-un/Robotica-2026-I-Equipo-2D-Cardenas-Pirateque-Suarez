@@ -188,6 +188,8 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 
 ## 8. Diseño e Integración del Gripper Neumático por Vacío
 
+para la implementacion del gripper se tubo que implementar diferentes elementos para el funcionamiento de este, donde el primero seria el compresor el cual gestiona el aire a presienon para el sistema neumatico. segido de este se neceisto de una unidad de mantenimiento para regular la presion y filtrar humedad y residuos solidos que puede llegar a contener el aire. 
+
 
 <br>
 
@@ -199,6 +201,9 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 
 <br>
 
+
+seguido de este se uso una electrovalvula 3 a 2 que nos permitia suministrar el aire a los siguientes elementos usando una seenoide para su activacion que seria controlado directamente con las salidas digitales con la que cuenta el robot.
+
 <br>
 
 <div align="center">
@@ -209,6 +214,7 @@ Ademas de esto como es de costumbre tambien se cuenta con el modo articular que 
 
 <br>
 
+despues de este se uso una generador de vacio que funciona con el princio de venturi que permitia convertir la presion del aire generada por el compresor en una vacio lo suficientemente fuerte para sostener los elementos de esta practica
 
 <br>
 
