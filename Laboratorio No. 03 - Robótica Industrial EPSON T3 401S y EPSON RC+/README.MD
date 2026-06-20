@@ -146,11 +146,12 @@ En donde todos los modos a excepcion del articular manejan un sistema carteciano
 Estos modo tienen de diferencia el punto de referencia que utiliza cada uno siendo:
 
 - **Mundo:** tiene el origen (0,0,0) en la base del robot.
--** Herramienta:** tiene el origen (0,0,0) en el TCP del robot.
+- ** Herramienta:** tiene el origen (0,0,0) en el TCP del robot.
 - **Local:** tiene el origen (0,0,0) en un punto personalizable definido por el usuario.
 - **ECP:** tiene el origen (0,0,0) en una herramienta externa al robot.
 
 
+Ademas de esto como es de costumbre tambien se cuenta con el modo articular que permite movilizar articulacion por articulacion cambiando la interfaz a:
 
 <br>
 
