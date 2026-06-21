@@ -121,11 +121,11 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 ## 3. Descripción de las configuraciones home del EPSON T3-401S
 
-La posición de Home es ciertamente la mas importante a la hora de programar siendo esta definida de muchas maneras dependiendo de cosas como la marca del Robot o el modelo, esta puede ser desde una posicion con lo todos los motores en 0 grados, una posción de mantenimiento o una posición definida por el usuario.
+La posición de Home es ciertamente la más importante a la hora de programar, siendo esta definida de muchas maneras dependiendo de aspectos como la marca del robot o el modelo. Esta puede ser desde una posición con todos los motores en 0 grados (alineación mecánica), una posición de mantenimiento seguro o una posición estratégica definida por el usuario. Además, sirve como punto de referencia absoluto para que el controlador calcule la cinemática directa e inversa del brazo, garantizando desplazamientos predecibles y seguros al iniciar o finalizar una rutina.
 
-en este caso el controlador nos permite definir el Home atravez de dos metodos.
+En este caso, el controlador del EPSON T3-401S nos permite definir el Home a través de dos métodos principales, ambos basados en la lectura de pulsos de los *encoders* absolutos de cada articulación.
 
- **1. configuracion desde gestion de robot** desde el mismo  EPSON RC+ 7.0 permite configurar la posición con pulsos por articulacion:
+ **1. Configuración desde gestión de robot:** Desde el mismo software EPSON RC+ 7.0 se permite configurar la posición con pulsos por articulación. Mediante la herramienta *Robot Manager*, el operador puede mover el brazo manualmente a la postura deseada y guardar estos valores permanentemente en la memoria no volátil del controlador:
 
 <br>
 
@@ -137,21 +137,21 @@ en este caso el controlador nos permite definir el Home atravez de dos metodos.
 
 <br>
 
- **2. configuracion desde codigo** cuando se realiza el codigo se puede ingrezar comando que define el home de la siguiente forma:
+ **2. Configuración desde código:** Cuando se realiza el código, se puede ingresar un comando que define el Home de la siguiente forma. Esta instrucción en SPEL+ sobrescribe temporalmente la configuración local, forzando al controlador a adoptar estos valores específicos cada vez que se ejecuta el programa:
 
 ```spel
     ' Configurar el Home en pulsos (J1 = 204800, el resto en 0)
     HomeSet 204800, 0, 0, 0
 ```
 
-Durante el desarrollo del laboratorio se opto principalmente por la segunda opción que resulta mas sencilla a la hora de cambiar de computador. con esto de posiciono el home sobre el eje Y y teniendo el robot total mente extendido de la siguiente forma:
+Durante el desarrollo del laboratorio se optó principalmente por la segunda opción, que resulta más sencilla a la hora de cambiar de computador, ya que el origen se encapsula directamente en el archivo del proyecto y no se depende de las configuraciones previas del equipo local. Con esto, se posicionó el Home sobre el eje Y positivo y teniendo el robot totalmente extendido de la siguiente forma (al definir 204800 pulsos en J1, la articulación base se alinea perpendicularmente, lo que asegura que el brazo estirado no interfiera con otros elementos de la celda de trabajo):
 
 <br>
 
 <div align="center">
   <img src="Images/home.png" alt="home" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 3. Posicion de Home.</b>
+  <b>Figura 3. Posición de Home.</b>
 </div>
 
 <br>
