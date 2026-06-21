@@ -119,7 +119,7 @@ En el desarrollo de competencias en robótica industrial, es esencial familiariz
 
 **Análisis final:** Al observar las aplicaciones ideales, el ABB IRB140 sobresale en entornos que demandan control minucioso o ambientes especializados (Clean Room, Foundry), donde su alta precisión y tamaño compacto son vitales. En contraposición, la robustez, el extenso alcance y la velocidad en la muñeca del Motoman MH6 lo consolidan como un manipulador versátil (multipropósito) ideal para operaciones a mayor escala como paletizado, empaque y soldadura láser. Por otro lado el EPSON es mas especializados en tareas sobre elementos pequeños como la electronica o rapidas con elementos de poco peso.
 
-## 3. Descripción de las configuraciones home del EPSON T3-401S
+## 3. Descripción de las configuraciones **Home** del EPSON T3-401S
 
 La posición de Home es ciertamente la más importante a la hora de programar, siendo esta definida de muchas maneras dependiendo de aspectos como la marca del robot o el modelo. Esta puede ser desde una posición con todos los motores en 0 grados (alineación mecánica), una posición de mantenimiento seguro o una posición estratégica definida por el usuario. Además, sirve como punto de referencia absoluto para que el controlador calcule la cinemática directa e inversa del brazo, garantizando desplazamientos predecibles y seguros al iniciar o finalizar una rutina.
 
