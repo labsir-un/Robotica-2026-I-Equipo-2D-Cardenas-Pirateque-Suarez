@@ -6,8 +6,8 @@
 </picture>
 
 <h3>Curso de Robótica 2026-I</h3>
-<h1>Laboratorio No. 03</h1>
-<h2> Laboratorio No. 04 - 2026-I - Rob´otica de Desarrollo, Intro a ROS2 Jazzy Jalisco - Turtlesim</h2>
+<h1>Laboratorio No. 04</h1>
+<h2>Robótica de Desarrollo, Intro a ROS2 Jazzy Jalisco - Turtlesim</h2>
 <h4>Profesores: Pedro Fabián Cárdenas Herrera · Manuel Felipe Carranza Montenegro</h4>
 <h4>Estudiantes: David Felipe Cardenas Cubides · David Santiago Pirateque Suarez </h4>
 
