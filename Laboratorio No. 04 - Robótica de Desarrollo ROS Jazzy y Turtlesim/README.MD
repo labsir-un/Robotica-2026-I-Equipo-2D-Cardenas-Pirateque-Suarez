@@ -19,7 +19,7 @@
 </p>
 
 <br>
-<img src="Images/Epson.png" alt="Epson" style="border-radius: 5px; width: 300px;"><br>
+<img src="Images/ros.png" alt="ros" style="border-radius: 5px; width: 300px;"><br>
 <b>Figura 1. Robot Operating System.</b>
 </div>
 
