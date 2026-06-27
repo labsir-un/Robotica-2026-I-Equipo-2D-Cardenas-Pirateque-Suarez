@@ -27,10 +27,10 @@
 # Laboratorio 04: Control y Arquitectura en ROS 2 Jazzy (Turtlesim)
 (Título principal claro y directo)
 
-## 1. Integrantes del Equipo
+## 1. Introducción
 (Nombres completos y correos institucionales de la pareja).
 
-## 2. Objetivos del Proyecto
+## 2. Integrantes del Equipo
 (Un párrafo breve indicando que el objetivo fue crear un nodo no bloqueante en Python para controlar turtlesim y analizar la comunicación en ROS 2).
 
 ## 3. Diseño del Controlador (Diagrama de Flujo)
