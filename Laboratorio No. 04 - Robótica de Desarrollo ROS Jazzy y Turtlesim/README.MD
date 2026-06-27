@@ -24,3 +24,42 @@
 </div>
 
 
+# Laboratorio 04: Control y Arquitectura en ROS 2 Jazzy (Turtlesim)
+(Título principal claro y directo)
+
+## 1. Integrantes del Equipo
+(Nombres completos y correos institucionales de la pareja).
+
+## 2. Objetivos del Proyecto
+(Un párrafo breve indicando que el objetivo fue crear un nodo no bloqueante en Python para controlar turtlesim y analizar la comunicación en ROS 2).
+
+## 3. Diseño del Controlador (Diagrama de Flujo)
+(Acá deben poner la explicación de la lógica de su código. Es el lugar perfecto para insertar el código Mermaid obligatorio que muestra cómo funciona la Máquina de Estados Finita y los hilos de ejecución).
+
+## 4. Desarrollo e Implementación
+(Aquí desglosan las funcionalidades exigidas. Pueden usar estos subtítulos):
+
+    ### Control Manual y Acciones Básicas (Flechas, cambiar lápiz, reset).
+
+    ### Figuras Geométricas y Modo Autónomo (Cuadrado, Triángulo, evasión de bordes).
+
+    ### Dibujo de Iniciales (Explicar brevemente cómo calcularon los tiempos y giros para sus letras).
+
+    ### Sistema Líder-Seguidor (Explicar la matemática del control proporcional y cómo se comunican las dos tortugas).
+
+## 5. Análisis de la Arquitectura en ROS 2 (Evidencias)
+(Esta es la sección de las capturas de pantalla de la terminal. Subtítulos sugeridos):
+
+    ### Nodos y Tópicos Activos (Imágenes de ros2 node list y ros2 topic list).
+
+    ### Servicios Disponibles (Imagen de ros2 service list).
+
+    ### Telemetría de Posición (Imagen del echo al tópico de pose).
+
+    ### Mapa de Interconexión (rqt_graph) (Adjuntar la imagen exportada de rqt_graph mostrando cómo su nodo se habla con el simulador).
+
+## 6. Instrucciones de Ejecución
+(Paso a paso rápido con los comandos de consola para que el profesor pueda compilar el workspace y correr el nodo sin problemas).
+
+## 7. Video Explicativo
+(El enlace de YouTube/Vimeo del video de máximo 10 minutos).
