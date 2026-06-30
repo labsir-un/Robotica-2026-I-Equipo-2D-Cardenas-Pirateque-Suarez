@@ -507,6 +507,7 @@ En su lugar, el centro de herramienta o TCP (*Tool Center Point*) del robot se c
   <b>Figura 20. Simulación de la trayectoria en EPSON RC+ (Manipulador sin efector final gráfico).</b>
 </div>
 <br>
+
 ## 11. Implementación del Código en SPEL+
 
 El archivo adjunto a continuación contiene el código principal ejecutado en el controlador para realizar las trayectorias solicitadas en el laboratorio. En este script se implementa la lógica completa para garantizar el correcto movimiento tipo caballo de ajedrez de los dos huevos, asegurando que ambos elementos pasen por cada una de las posiciones de la bandeja (6x5) de manera alternada y sin colisiones.
@@ -533,7 +534,7 @@ Este video documenta la integración exitosa entre la programación en EPSON RC+
 
 <br>
 <div align="center">
-  <a href="URL_AQUÍ" target="_blank">
+  <a href="https://youtu.be/q9rzD6KI-rI?si=Ntt1uTeXnVFXIH2K" target="_blank">
     <img src="https://img.shields.io/badge/Ver_Simulación_e_Implementación-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video de Trayectoria" />
   </a>
 </div>
@@ -544,7 +545,7 @@ Demostración detallada del *gripper* neumático levantando un huevo de manera s
 
 <br>
 <div align="center">
-  <a href="URL_AQUÍ" target="_blank">
+  <a href="https://www.youtube.com/watch?v=bfC9EiFeH2A" target="_blank">
     <img src="https://img.shields.io/badge/Ver_Desempeño_del_Gripper-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video del Gripper" />
   </a>
 </div>
