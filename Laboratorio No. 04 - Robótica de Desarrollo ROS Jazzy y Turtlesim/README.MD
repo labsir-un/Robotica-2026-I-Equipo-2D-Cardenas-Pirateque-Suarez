@@ -25,13 +25,27 @@
 
 
 # Laboratorio 04: Control y Arquitectura en ROS 2 Jazzy (Turtlesim)
-(Título principal claro y directo)
 
-## 1. Introducción
-(Nombres completos y correos institucionales de la pareja).
+## 1. Objetivos
 
-## 2. Integrantes del Equipo
-(Un párrafo breve indicando que el objetivo fue crear un nodo no bloqueante en Python para controlar turtlesim y analizar la comunicación en ROS 2).
+### Objetivo General
+
+### Objetivo específicos
+
+- Comprender ROS2.
+- Implementar nodos.
+- Controlar turtlesim.
+- Implementar comunicación mediante tópicos y servicios.
+- Desarrollar un sistema líder-seguidor.
+
+
+## 2. Introducción
+
+En elm presente laboratorio se tuvo como objetivo desarrollar una aplicación en ROS2 que permitiera controlar el movimiento de una tortuga dentro del simulador Turtlesim, aplicando los conceptos básicos de programación en python de nodos y comunicación entre ellos. A lo largo del desarrollo se implementaron diferentes funciones que permitieron interactuar con el simulador tanto de forma manual como automática.
+
+La solución fue desarrollada en Ubuntu 24.04 utilizando ROS2 Jazzy Jalisco, Python y rclpy. Entre las principales funcionalidades implementadas se encuentran el control mediante el teclado, la generación automática de trayectorias como cuadrados y triángulos, el dibujo de letras correspondientes a las iniciales de los integrantes del grupo en este caso D F C P S, el manejo del lápiz de dibujo, el reinicio de la tortuga y un sistema líder-seguidor en el que una segunda tortuga replica el movimiento de la principal a partir de la información recibida por medio de tópicos de ROS2.
+
+
 
 ## 3. Diseño del Controlador (Diagrama de Flujo)
 (Acá deben poner la explicación de la lógica de su código. Es el lugar perfecto para insertar el código Mermaid obligatorio que muestra cómo funciona la Máquina de Estados Finita y los hilos de ejecución).
