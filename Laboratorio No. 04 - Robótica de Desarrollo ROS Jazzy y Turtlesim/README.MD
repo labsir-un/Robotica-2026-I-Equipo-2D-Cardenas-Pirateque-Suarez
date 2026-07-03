@@ -68,7 +68,21 @@ La solución fue desarrollada en Ubuntu 24.04 utilizando ROS2 Jazzy Jalisco, Pyt
 
 ## 4. Estructura del proyecto
 
+El desarrollo del laboratorio se realizó dentro de uno de los paquetes llamado **my_turtle_controller**, el cual se encuentra ubicado en el *workspace* de ROS 2. Esto se debe a que el paquete contiene no solo el nodo principal encargado del movimiento de la tortuga, sino también los archivos necesarios para ejecutarlo. teniendo de estructura:
 
+```
+~/ros2_jazzy/src/
+└── my_turtle_controller/
+    ├── package.xml
+    ├── setup.py
+    ├── setup.cfg
+    ├── resource/
+    │   └── my_turtle_controller
+    ├── my_turtle_controller/
+    │   ├── __init__.py
+    │   └── move_turtle.py
+    └── test/
+```
 
 
 
