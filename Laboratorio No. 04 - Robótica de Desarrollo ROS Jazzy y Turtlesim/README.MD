@@ -91,7 +91,7 @@ El archivo principal de edición es `move_turtle.py`, el cual contiene toda la l
 * Configuración de letras.
 * Lógica del modo líder-seguidor.
 
-Ademas de esto se modifico el archivo de `setup.py` para modificar el nodo ejecutable incluyendo las lineas de:
+Además de esto, se modificó el archivo `setup.py` para registrar el nodo ejecutable, añadiendo las siguientes líneas:
 
 ```python
 entry_points={
@@ -101,7 +101,7 @@ entry_points={
 },
 ```
 
-por ultimo se modifico el `package.xml` para agregar las dependencias necesarias como lo son `rclpy`, `turtlesim`, etc. Esto añadiendo las lineas de:
+Por último, se modificó el archivo `package.xml` para incluir las dependencias necesarias, como `rclpy`, `turtlesim`, entre otras. Para ello, se añadieron las siguientes líneas:
 
 ```
 <depend>rclpy</depend>
