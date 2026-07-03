@@ -47,8 +47,23 @@ La solución fue desarrollada en Ubuntu 24.04 utilizando ROS2 Jazzy Jalisco, Pyt
 
 
 
-## 3. Diseño del Controlador (Diagrama de Flujo)
-(Acá deben poner la explicación de la lógica de su código. Es el lugar perfecto para insertar el código Mermaid obligatorio que muestra cómo funciona la Máquina de Estados Finita y los hilos de ejecución).
+## 3. Tecnologías usadas
+
+
+<br>
+<div align="center">
+
+| Tecnología | Versión | Descripción |
+| :--- | :--- | :--- |
+| **Ubuntu** | 24.04 LTS |   |
+| **ROS2**| Jazzy Jalisco |   |
+| **Python**| 3.9 |   |
+| **rclpy**| ROS2 |   |
+| **Turtlesim** | ROS2  |
+| **Git** | Web |   |
+
+</div>
+<br>
 
 ## 4. Desarrollo e Implementación
 (Aquí desglosan las funcionalidades exigidas. Pueden usar estos subtítulos):
