@@ -55,12 +55,13 @@ La solución fue desarrollada en Ubuntu 24.04 utilizando ROS2 Jazzy Jalisco, Pyt
 
 | Tecnología | Versión | Descripción |
 | :--- | :--- | :--- |
-| **Ubuntu** | 24.04 LTS |   |
-| **ROS2**| Jazzy Jalisco |   |
-| **Python**| 3.9 |   |
-| **rclpy**| ROS2 |   |
-| **Turtlesim** | ROS2  |
-| **Git** | Web |   |
+| **Ubuntu** | 24.04 LTS | Sistema operativo donde se instaló y ejecutó el entorno de desarrollo ROS2.  |
+| **ROS2**| Jazzy Jalisco | Framework utilizado para desarrollar la aplicación robótica basada en nodos, tópicos y servicios. |
+| **Python**| 3.9 | Lenguaje de programación utilizado para implementar la logica del laboratorio.  |
+| **rclpy**| ROS2 | Biblioteca de python para creación de nodos, publicadores, suscriptores y clientes de servicios. |
+| **Turtlesim** | ROS2 | Simulador utilizado para visualizar y controlar el movimiento de las tortugas durante el laboratorio. |
+| **Git** | Web | Sistema de gestion donde se alamcena el repositorio. |
+| **VirtualBox** | 7.2.8 | Software de maquina virtual donde se instaló Ubuntu 24.04 lts. |
 
 </div>
 <br>
