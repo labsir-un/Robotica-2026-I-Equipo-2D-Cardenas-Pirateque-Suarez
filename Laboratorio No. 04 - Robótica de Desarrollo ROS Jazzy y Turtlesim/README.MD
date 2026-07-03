@@ -110,7 +110,7 @@ Por último, se modificó el archivo `package.xml` para incluir las dependencias
 <depend>std_srvs</depend>
 ```
 
-## Diagrama de flujo
+## 5. Diagrama de flujo
 
 ```mermaid
 flowchart TD
@@ -177,15 +177,54 @@ flowchart TD
     H -->|Ctrl+C / Excepción| Y([Restaurar terminal y Finalizar programa])
 ```
 
-## 5. Codigo
+## 6. Arquitectura del paquete
+
+
+## 7. implementación
+
+La solución del laboratorio se desarrolló principalmente en el archivo `move_turtle.py`, donde se implementó un nodo de ROS 2 encargado de controlar el movimiento de la tortuga, ejecutar trayectorias automáticas, dibujar letras y gestionar el sistema de control líder-seguidor.
+
+
+para comenzar se inicia el nodo principal da la aplicacion iniciando asi todos los programas necesarios para el funcionamiento
+
+```python
+
+class MoveTurtle(Node):
+
+    def __init__(self):
+        super().__init__('move_turtle_node')
+
+```
+
+despues se crean los publicadores y suscriptores donde los publicadores seran los encargados de enviar los diferentes comandos de velocidad lineal y angular a las tortugas y los suscriptores los encargados de resivir continuamente la pósicion de las las tortugas.
+
+```python
+
+self.cmd_vel_pub = self.create_publisher(
+    Twist,
+    '/turtle1/cmd_vel',
+    10
+)
+
+self.pose_sub = self.create_subscription(
+    Pose,
+    '/turtle1/pose',
+    self.pose_callback,
+    10
+)
+
+```
+
+
+
 ```python
 
 
 
 ```
 
-## 6. Instrucciones de Ejecución
+## 8. Instrucciones de Ejecución
 (Paso a paso rápido con los comandos de consola para que el profesor pueda compilar el workspace y correr el nodo sin problemas).
 
-## 7. Video Explicativo
+## 9. Video Explicativo
 (El enlace de YouTube/Vimeo del video de máximo 10 minutos).
