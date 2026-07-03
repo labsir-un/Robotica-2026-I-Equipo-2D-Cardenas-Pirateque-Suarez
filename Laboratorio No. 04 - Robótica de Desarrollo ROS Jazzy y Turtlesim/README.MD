@@ -143,6 +143,71 @@ AD --> AE[Publicar en /turtle2/cmd_vel]
 AE --> Z
 ```
 
+```mermaid
+flowchart TD
+    A([Inicio del programa]) --> B[Inicializar ROS 2]
+    B --> C[Crear nodo MoveTurtle]
+    C --> D[Crear publicadores, suscriptores, clientes y Timer Líder-Seguidor]
+    D --> E[Iniciar hilo dedicado: rclpy.spin]
+    D --> F[Hilo Principal: Entrar al bucle de teclado run]
+
+    %% HILO DE PROCESAMIENTO ROS 2 (Sub-proceso de fondo)
+    E --> Z[¿Se activa el callback del Timer a 20Hz?]
+    Z -->|Sí| AA{¿Existe turtle2 spawned?}
+    AA -->|No| Z
+    AA -->|Sí| AB[Leer pose de turtle1 y turtle2]
+    AB --> AC[Calcular distancia y orientación]
+    AC --> AD[Calcular velocidades proporcionalmente]
+    AD --> AE[Publicar en /turtle2/cmd_vel]
+    AE --> Z
+
+    %% BUCLE PRINCIPAL DE TECLADO
+    F --> G[Leer tecla del teclado get_key]
+    G --> H{¿Qué tecla fue presionada o evento?}
+
+    H -->|↑ ↓ ← →| I[Control manual fluido]
+    I --> J[Publicar velocidad en /turtle1/cmd_vel]
+    J --> F
+
+    H -->|I| S[Invertir estado de self.initials_mode]
+    S --> F
+
+    H -->|S, T, P, D, F, C| K{¿self.initials_mode es True?}
+    K -->|Sí| L[Dibujar Letra según la tecla D, S, P, F o C]
+    K -->|No| M{¿Qué tecla estándar?}
+    M -->|S| N[Dibujar cuadrado]
+    M -->|T| O[Dibujar triángulo]
+    M -->|P| P[Activar/Desactivar lápiz toggle_pen]
+    L --> J
+    N --> J
+    O --> J
+    P --> F
+
+    H -->|A| Q[Ejecutar trayectoria automática]
+    Q --> QA{¿Cerca del borde?}
+    QA -->|Sí| QB[Girar a velocidad angular auto]
+    QA -->|No| QC[Avanzar en línea recta]
+    QB --> J
+    QC --> J
+    
+    H -->|V| U[Ejecutar secuencia automática de video]
+    U --> J
+
+    H -->|R| M_R[Reiniciar simulación reset_turtle]
+    M_R --> F
+
+    H -->|2| V[Generar turtle2 spawn_turtle2]
+    V --> F
+
+    H -->|3| W[Eliminar turtle2 kill_turtle2]
+    W --> F
+
+    H -->|Q / Inactividad > 0.15s| X[Detener movimiento total stop]
+    X --> J
+
+    H -->|Ctrl+C / Excepción| Y([Restaurar terminal y Finalizar programa])
+```
+
 ## 5. Codigo
 ```python
 
