@@ -66,27 +66,13 @@ La solución fue desarrollada en Ubuntu 24.04 utilizando ROS2 Jazzy Jalisco, Pyt
 </div>
 <br>
 
-## 4. Desarrollo e Implementación
-(Aquí desglosan las funcionalidades exigidas. Pueden usar estos subtítulos):
+## 4. Estructura del proyecto
 
-    ### Control Manual y Acciones Básicas (Flechas, cambiar lápiz, reset).
 
-    ### Figuras Geométricas y Modo Autónomo (Cuadrado, Triángulo, evasión de bordes).
 
-    ### Dibujo de Iniciales (Explicar brevemente cómo calcularon los tiempos y giros para sus letras).
 
-    ### Sistema Líder-Seguidor (Explicar la matemática del control proporcional y cómo se comunican las dos tortugas).
 
-## 5. Análisis de la Arquitectura en ROS 2 (Evidencias)
-(Esta es la sección de las capturas de pantalla de la terminal. Subtítulos sugeridos):
 
-    ### Nodos y Tópicos Activos (Imágenes de ros2 node list y ros2 topic list).
-
-    ### Servicios Disponibles (Imagen de ros2 service list).
-
-    ### Telemetría de Posición (Imagen del echo al tópico de pose).
-
-    ### Mapa de Interconexión (rqt_graph) (Adjuntar la imagen exportada de rqt_graph mostrando cómo su nodo se habla con el simulador).
 
 ## 6. Instrucciones de Ejecución
 (Paso a paso rápido con los comandos de consola para que el profesor pueda compilar el workspace y correr el nodo sin problemas).
