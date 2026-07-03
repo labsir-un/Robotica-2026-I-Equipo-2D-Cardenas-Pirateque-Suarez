@@ -91,6 +91,24 @@ El archivo principal de edición es `move_turtle.py`, el cual contiene toda la l
 * Configuración de letras.
 * Lógica del modo líder-seguidor.
 
+Ademas de esto se modifico el archivo de `setup.py` para modificar el nodo ejecutable incluyendo las lineas de:
+
+```python
+entry_points={
+    'console_scripts': [
+        'move_turtle = my_turtle_controller.move_turtle:main',
+    ],
+},
+```
+
+por ultimo se modifico el `package.xml` para agregar las dependencias necesarias como lo son `rclpy`, `turtlesim`, etc. Esto añadiendo las lineas de:
+
+```
+<depend>rclpy</depend>
+<depend>geometry_msgs</depend>
+<depend>turtlesim</depend>
+<depend>std_srvs</depend>
+```
 
 ## Diagrama de flujo
 
