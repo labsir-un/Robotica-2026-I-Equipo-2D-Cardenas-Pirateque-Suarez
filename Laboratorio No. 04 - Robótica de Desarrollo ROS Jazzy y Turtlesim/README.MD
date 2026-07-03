@@ -84,7 +84,7 @@ El desarrollo del laboratorio se realizó dentro de uno de los paquetes llamado 
     └── test/
 ```
 
-
+donde el archivo de principal edición seria el `move_turtle.py` 
 
 ## Diagrama de flujo
 
