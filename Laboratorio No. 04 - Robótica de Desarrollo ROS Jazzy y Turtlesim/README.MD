@@ -84,7 +84,13 @@ El desarrollo del laboratorio se realizó dentro de uno de los paquetes llamado 
     └── test/
 ```
 
-donde el archivo de principal edición seria el `move_turtle.py` 
+El archivo principal de edición es `move_turtle.py`, el cual contiene toda la lógica implementada para el desarrollo del laboratorio. En este archivo se encuentran las funcionalidades correspondientes a:
+
+* Control manual.
+* Configuración de figuras.
+* Configuración de letras.
+* Lógica del modo líder-seguidor.
+
 
 ## Diagrama de flujo
 
