@@ -426,6 +426,8 @@ def draw_D(self):
         self.turn_to_angle(0.0)
 ```
 
+Con esto, al presionar la tecla `V`, se ejecuta la rutina definida a partir de estos movimientos y se ubica cada una de las letras de forma ordenada, dando como resultado:
+
 
 
 <br>
