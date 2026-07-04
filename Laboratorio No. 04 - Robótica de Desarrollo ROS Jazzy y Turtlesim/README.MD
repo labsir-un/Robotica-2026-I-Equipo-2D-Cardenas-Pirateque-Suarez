@@ -333,7 +333,7 @@ Obteniendo como resultado:
 <div align="center">
   <img src="Images/triangulo.png" alt="triag" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 2. Figura de triangulo.</b>
+  <b>Figura 3. Figura de triangulo.</b>
 </div>
 
 <br>
@@ -360,7 +360,7 @@ Obteniendo como resultado:
 <div align="center">
   <img src="Images/rectangulo.png" alt="rec" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 3. Figura de rectangulo.</b>
+  <b>Figura 4. Figura de rectangulo.</b>
 </div>
 
 <br>
@@ -446,7 +446,7 @@ Con esto, al presionar la tecla `V`, se ejecuta la rutina definida a partir de e
 <div align="center">
   <img src="Images/letras.png" alt="letr" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 4. Dibujo de letras.</b>
+  <b>Figura 5. Dibujo de letras.</b>
 </div>
 
 <br>
@@ -485,7 +485,7 @@ Una vez implementadas todas estas funcionalidades, al presionar la tecla de acti
 <div align="center">
   <img src="Images/seguidor.png" alt="seg" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 5. Sistema Líder-seguidor.</b>
+  <b>Figura 6. Sistema Líder-seguidor.</b>
 </div>
 
 <br>
