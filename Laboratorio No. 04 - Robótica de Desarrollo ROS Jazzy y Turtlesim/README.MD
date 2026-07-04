@@ -297,7 +297,9 @@ def move_forward(self):
 ```
 ### 7.4 Figuras automaticas.
 
+Para el dibujo de elementos se implemento usando las funciones basicas de giro y movimientos.
 
+para el triangulo se realiza el mismo movimiento 3 veces para crear sus tres lados de la siguiente forma:
 
 
 ```python
@@ -312,7 +314,7 @@ def move_forward(self):
 ```
 
 
-
+Obteniendo como resultado:
 
 
 <br>
@@ -326,6 +328,7 @@ def move_forward(self):
 <br>
 
 
+para el rectangulo se realiza el mismo movimiento 4 veces para crear sus lados de la siguiente forma:
 
 
 
@@ -339,6 +342,7 @@ def move_forward(self):
         self.get_logger().info('Cuadrado completado.')
 
 ```
+Obteniendo como resultado:
 
 <br>
 
