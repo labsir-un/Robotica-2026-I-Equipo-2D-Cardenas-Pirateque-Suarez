@@ -183,6 +183,17 @@ flowchart TD
 ## 6. Arquitectura del paquete
 
 
+<br>
+
+<div align="center">
+  <img src="Images/graph.png" alt="gra" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 2. Diagrama de arquitectura de programación.</b>
+</div>
+
+<br>
+
+
 ## 7. implementación
 
 La solución del laboratorio se desarrolló principalmente en el archivo `move_turtle.py`, donde se implementó un nodo de ROS 2 encargado de controlar el movimiento de la tortuga, ejecutar trayectorias automáticas, dibujar letras y gestionar el sistema de control líder-seguidor.
