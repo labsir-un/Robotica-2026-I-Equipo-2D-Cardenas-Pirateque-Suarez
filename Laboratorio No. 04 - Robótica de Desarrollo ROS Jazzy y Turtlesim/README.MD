@@ -442,6 +442,30 @@ Con esto, al presionar la tecla `V`, se ejecuta la rutina definida a partir de e
 
 ### 7.6 Sistema líder-seguidor.
 
+el seguimiento funciona premero con la implementacion de un temporizador que calcula la distancia entra embas tortugas.
+
+```python
+dx = self.current_pose.x - self.pose2.x
+dy = self.current_pose.y - self.pose2.y
+
+distance = math.hypot(dx, dy)
+
+target_theta = math.atan2(dy, dx)
+```
+ya con esos datos se calcula la velocidad proporcional
+
+```python
+msg.linear.x = 1.5 * distance
+
+msg.angular.z = 6.0 * error_theta
+
+```
+Finalmente, la velocidad es enviada al tópico correspondiente.
+
+```python
+self.cmd_vel2_pub.publish(msg)
+
+```
 
 <br>
 
