@@ -294,9 +294,39 @@ def move_forward(self):
 ```
 ### 7.4 Figuras automaticas.
 
+<br>
+
+<div align="center">
+  <img src="Images/triangulo.png" alt="triag" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 3. Figura de triangulo.</b>
+</div>
+
+<br>
+
+<br>
+
+<div align="center">
+  <img src="Images/rectangulo.png" alt="rec" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 3. Figura de rectangulo.</b>
+</div>
+
+<br>
+
 
 ### 7.5 Dibujo de letras.
 
+
+<br>
+
+<div align="center">
+  <img src="Images/letras.png" alt="letr" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 3. Dibujo de letras.</b>
+</div>
+
+<br>
 
 ### 7.6 Sistema líder-seguidor.
 
