@@ -534,7 +534,7 @@ En el material se puede observar la sincronización lograda mediante el entorno 
 
 <br>
 <div align="center">
-  <a href="[AQUÍ_PONES_EL_LINK_DE_YOUTUBE]">
+  <a href="https://youtu.be/iTaVKp3e5hM">
     <img src="https://img.shields.io/badge/VER%20VIDEO%20EN%20YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video en YouTube"/>
   </a>
 </div>
