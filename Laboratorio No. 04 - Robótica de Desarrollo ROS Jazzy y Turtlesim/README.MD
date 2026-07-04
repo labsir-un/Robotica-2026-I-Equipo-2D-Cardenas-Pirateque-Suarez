@@ -9,7 +9,7 @@
 <h1>Laboratorio No. 04</h1>
 <h2>Robótica de Desarrollo, Intro a ROS2 Jazzy Jalisco - Turtlesim</h2>
 <h4>Profesores: Pedro Fabián Cárdenas Herrera · Manuel Felipe Carranza Montenegro</h4>
-<h4>Estudiantes: David Felipe Cardenas Cubides · David Santiago Pirateque Suarez </h4>
+<h4>Estudiantes: David Felipe Cárdenas Cubides · David Santiago Pirateque Suárez </h4>
 
 <p>
   <img alt="Ubuntu 24.04 LTS" src="https://img.shields.io/badge/Ubuntu-24.04%20LTS-E95420?logo=ubuntu&logoColor=white">
@@ -30,12 +30,12 @@
 
 ### Objetivo General
 
-Implementar un paqueto de ROS2 Jazzy Jalisco que permita controlar  de una a dos tortugas del suimulador de Turtlesim mediante un nodo configurado desde python, este debe incluir funciones para control manual, trayectorias automaticas, dibujo tanto de escrituras como de letras y un sistema de líder-seguidor. 
+Implementar un paquete de ROS 2 Jazzy Jalisco que permita controlar de una a dos tortugas del simulador de Turtlesim mediante un nodo configurado desde Python, este debe incluir funciones para control manual, trayectorias automáticas, dibujo tanto de escrituras como de letras y un sistema de líder-seguidor. 
 
 
-### Objetivo específicos
+### Objetivos específicos
 
-- Comprender ROS2.
+- Comprender ROS 2.
 - Implementar nodos.
 - Controlar turtlesim.
 - Implementar comunicación mediante tópicos y servicios.
@@ -44,9 +44,9 @@ Implementar un paqueto de ROS2 Jazzy Jalisco que permita controlar  de una a dos
 
 ## 2. Introducción
 
-En elm presente laboratorio se tuvo como objetivo desarrollar una aplicación en ROS2 que permitiera controlar el movimiento de una tortuga dentro del simulador Turtlesim, aplicando los conceptos básicos de programación en python de nodos y comunicación entre ellos. A lo largo del desarrollo se implementaron diferentes funciones que permitieron interactuar con el simulador tanto de forma manual como automática.
+En el presente laboratorio se tuvo como objetivo desarrollar una aplicación en ROS 2 que permitiera controlar el movimiento de una tortuga dentro del simulador Turtlesim, aplicando los conceptos básicos de programación en Python de nodos y comunicación entre ellos. A lo largo del desarrollo se implementaron diferentes funciones que permitieron interactuar con el simulador tanto de forma manual como automática.
 
-La solución fue desarrollada en Ubuntu 24.04 utilizando ROS2 Jazzy Jalisco, Python y rclpy. Entre las principales funcionalidades implementadas se encuentran el control mediante el teclado, la generación automática de trayectorias como cuadrados y triángulos, el dibujo de letras correspondientes a las iniciales de los integrantes del grupo en este caso D F C P S, el manejo del lápiz de dibujo, el reinicio de la tortuga y un sistema líder-seguidor en el que una segunda tortuga replica el movimiento de la principal a partir de la información recibida por medio de tópicos de ROS2.
+La solución fue desarrollada en Ubuntu 24.04 utilizando ROS 2 Jazzy Jalisco, Python y rclpy. Entre las principales funcionalidades implementadas se encuentran el control mediante el teclado, la generación automática de trayectorias como cuadrados y triángulos, el dibujo de letras correspondientes a las iniciales de los integrantes del grupo en este caso D F C P S, el manejo del lápiz de dibujo, el reinicio de la tortuga y un sistema líder-seguidor en el que una segunda tortuga replica el movimiento de la principal a partir de la información recibida por medio de tópicos de ROS 2.
 
 
 
@@ -58,22 +58,22 @@ La solución fue desarrollada en Ubuntu 24.04 utilizando ROS2 Jazzy Jalisco, Pyt
 
 | Tecnología | Versión | Descripción |
 | :--- | :--- | :--- |
-| **Ubuntu** | 24.04 LTS | Sistema operativo donde se instaló y ejecutó el entorno de desarrollo ROS2.  |
-| **ROS2**| Jazzy Jalisco | Framework utilizado para desarrollar la aplicación robótica basada en nodos, tópicos y servicios. |
-| **Python**| 3.9 | Lenguaje de programación utilizado para implementar la logica del laboratorio.  |
-| **rclpy**| ROS2 | Biblioteca de python para creación de nodos, publicadores, suscriptores y clientes de servicios. |
-| **Turtlesim** | ROS2 | Simulador utilizado para visualizar y controlar el movimiento de las tortugas durante el laboratorio. |
-| **Git** | Web | Sistema de gestion donde se alamcena el repositorio. |
-| **VirtualBox** | 7.2.8 | Software de maquina virtual donde se instaló Ubuntu 24.04 lts. |
+| **Ubuntu** | 24.04 LTS | Sistema operativo donde se instaló y ejecutó el entorno de desarrollo ROS 2. |
+| **ROS 2**| Jazzy Jalisco | Framework utilizado para desarrollar la aplicación robótica basada en nodos, tópicos y servicios. |
+| **Python**| 3.9 | Lenguaje de programación utilizado para implementar la lógica del laboratorio. |
+| **rclpy**| ROS 2 | Biblioteca de Python para creación de nodos, publicadores, suscriptores y clientes de servicios. |
+| **Turtlesim** | ROS 2 | Simulador utilizado para visualizar y controlar el movimiento de las tortugas durante el laboratorio. |
+| **Git** | Web | Sistema de gestión donde se almacena el repositorio. |
+| **VirtualBox** | 7.2.8 | Software de máquina virtual donde se instaló Ubuntu 24.04 LTS. |
 
 </div>
 <br>
 
 ## 4. Estructura del proyecto
 
-El desarrollo del laboratorio se realizó dentro de uno de los paquetes llamado **my_turtle_controller**, el cual se encuentra ubicado en el *workspace* de ROS 2. Esto se debe a que el paquete contiene no solo el nodo principal encargado del movimiento de la tortuga, sino también los archivos necesarios para ejecutarlo. teniendo de estructura:
+El desarrollo del laboratorio se realizó dentro de uno de los paquetes llamado **my_turtle_controller**, el cual se encuentra ubicado en el *workspace* de ROS 2. Esto se debe a que el paquete contiene no solo el nodo principal encargado del movimiento de la tortuga, sino también los archivos necesarios para ejecutarlo, teniendo de estructura:
 
-```
+```text
 ~/ros2_jazzy/src/
 └── my_turtle_controller/
     ├── package.xml
@@ -106,7 +106,7 @@ entry_points={
 
 Por último, se modificó el archivo `package.xml` para incluir las dependencias necesarias, como `rclpy`, `turtlesim`, entre otras. Para ello, se añadieron las siguientes líneas:
 
-```
+```xml
 <depend>rclpy</depend>
 <depend>geometry_msgs</depend>
 <depend>turtlesim</depend>
@@ -195,7 +195,7 @@ El paquete `my_turtle_controller`, utilizado durante el laboratorio, está compu
 
 <br>
 
-Ademas del nodo que contiene la logica el diagrama nos muestra el nodo `turtlesim`que es el que proporciona ROS suendo el encargado de:
+Además del nodo que contiene la lógica, el diagrama muestra el nodo `turtlesim` que es el que proporciona ROS, siendo el encargado de:
 * Dibuja las tortugas.
 * Recibe comandos de movimiento.
 * Actualiza la simulación.
@@ -205,13 +205,13 @@ Ademas del nodo que contiene la logica el diagrama nos muestra el nodo `turtlesi
 En cuanto a los tópicos, se utilizan dos publicadores encargados de enviar los comandos de velocidad lineal y angular de cada una de las tortugas, correspondientes a `/turtle1/cmd_vel` y `/turtle2/cmd_vel`. Asimismo, se emplean dos suscriptores para recibir la información de la posición y orientación de las tortugas mediante los tópicos `/turtle1/pose` y `/turtle2/pose`.
 
 
-## 7. implementación
+## 7. Implementación
 
 La solución del laboratorio se desarrolló principalmente en el archivo `move_turtle.py`, donde se implementó un nodo de ROS 2 encargado de controlar el movimiento de la tortuga, ejecutar trayectorias automáticas, dibujar letras y gestionar el sistema de control líder-seguidor.
 
-### 7.1 Creacion de nodo, suscrptores y publicadores.
+### 7.1 Creación de nodo, suscriptores y publicadores.
 
-Para comenzar se inicia el nodo principal da la aplicacion iniciando asi todos los programas necesarios para el funcionamiento
+Para comenzar se inicia el nodo principal de la aplicación iniciando así todos los programas necesarios para el funcionamiento.
 
 ```python
 
@@ -222,7 +222,7 @@ class MoveTurtle(Node):
 
 ```
 
-Despues se crean los publicadores y suscriptores donde los publicadores seran los encargados de enviar los diferentes comandos de velocidad lineal y angular a las tortugas y los suscriptores los encargados de resivir continuamente la pósicion de las las tortugas.
+Después se crean los publicadores y suscriptores donde los publicadores serán los encargados de enviar los diferentes comandos de velocidad lineal y angular a las tortugas y los suscriptores los encargados de recibir continuamente la posición de las tortugas.
 
 ```python
 
@@ -261,7 +261,7 @@ self.pose2_sub = self.create_subscription(
 ```
 ### 7.2 Creación de clientes de servicios.
 
-Continuando se programan los distintos servicios para contorlar las diferentes funcionalidades
+Continuando se programan los distintos servicios para controlar las diferentes funcionalidades.
 
 ```python
 
@@ -289,7 +289,7 @@ self.kill_client = self.create_client(
 
 ### 7.3 Control manual.
 
-Usando la función `get_key()` se lee el teclado para despues llamar a las siguientes funciones encargadas del movimientos. 
+Usando la función `get_key()` se lee el teclado para después llamar a las siguientes funciones encargadas de los movimientos. 
 
 ```python
 
@@ -306,7 +306,7 @@ elif key == KEY_RIGHT:
     self.turn_right()
 
 ```
-donde función publica un mensaje Twist sobre el tópico /turtle1/cmd_vel
+donde la función publica un mensaje Twist sobre el tópico `/turtle1/cmd_vel`
 
 ```python
 def move_forward(self):
@@ -317,11 +317,11 @@ def move_forward(self):
     )
 
 ```
-### 7.4 Figuras automaticas.
+### 7.4 Figuras automáticas.
 
-Para el dibujo de elementos se implemento usando las funciones basicas de giro y movimientos.
+Para el dibujo de elementos se implementó usando las funciones básicas de giro y movimientos.
 
-para el triangulo se realiza el mismo movimiento 3 veces para crear sus tres lados de la siguiente forma:
+Para el triángulo se realiza el mismo movimiento 3 veces para crear sus tres lados de la siguiente forma:
 
 
 ```python
@@ -344,13 +344,13 @@ Obteniendo como resultado:
 <div align="center">
   <img src="Images/triangulo.png" alt="triag" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 3. Figura de triangulo.</b>
+  <b>Figura 3. Figura de triángulo.</b>
 </div>
 
 <br>
 
 
-para el rectangulo se realiza el mismo movimiento 4 veces para crear sus lados de la siguiente forma:
+Para el rectángulo se realiza el mismo movimiento 4 veces para crear sus lados de la siguiente forma:
 
 
 
@@ -371,7 +371,7 @@ Obteniendo como resultado:
 <div align="center">
   <img src="Images/rectangulo.png" alt="rec" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 4. Figura de rectangulo.</b>
+  <b>Figura 4. Figura de rectángulo.</b>
 </div>
 
 <br>
@@ -379,7 +379,7 @@ Obteniendo como resultado:
 
 ### 7.5 Dibujo de letras.
 
-En el caso del dibujo de letras, se implementó una rutina independiente para cada una de ellas, con el fin de facilitar su construcción a partir de líneas rectas y semicircunferencias, como se puede ver acontinuación:
+En el caso del dibujo de letras, se implementó una rutina independiente para cada una de ellas, con el fin de facilitar su construcción a partir de líneas rectas y semicircunferencias, como se puede ver a continuación:
 
 ```python 
 
@@ -464,7 +464,7 @@ Con esto, al presionar la tecla `V`, se ejecuta la rutina definida a partir de e
 
 ### 7.6 Sistema líder-seguidor.
 
-el seguimiento funciona premero con la implementacion de un temporizador que calcula la distancia entra embas tortugas.
+El seguimiento funciona primero con la implementación de un temporizador que calcula la distancia entre ambas tortugas.
 
 ```python
 dx = self.current_pose.x - self.pose2.x
@@ -474,7 +474,7 @@ distance = math.hypot(dx, dy)
 
 target_theta = math.atan2(dy, dx)
 ```
-ya con esos datos se calcula la velocidad proporcional
+Ya con esos datos se calcula la velocidad proporcional.
 
 ```python
 msg.linear.x = 1.5 * distance
@@ -501,13 +501,42 @@ Una vez implementadas todas estas funcionalidades, al presionar la tecla de acti
 
 <br>
 
-## 8. Instrucciones de Ejecución
-para lograr la ejecucion del codigo teniendo en cuuenta que ya se modificaron los archivos corespondientes solo faltaria abrir dos terminales y correr los siguientes codigos
+
+## 8. Verificación de la Arquitectura ROS 2
+
+Durante el desarrollo del laboratorio, se procedió a inspeccionar el sistema utilizando las herramientas de terminal provistas por ROS 2 para confirmar la correcta comunicación entre los componentes.
+
+### 8.1 `ros2 node list`
+*(Añadir captura de pantalla)*
+**Explicación:** Este comando lista los nodos activos en el sistema. Permite observar que tanto el nodo del simulador (`/turtlesim`) como el nodo de control implementado (`/move_turtle_node`) se encuentran operando simultáneamente.
+
+### 8.2 `ros2 topic list`
+*(Añadir captura de pantalla)*
+**Explicación:** Despliega todos los canales de comunicación activos. Permite visualizar que la red cuenta con los tópicos de control de velocidad y pose para ambas tortugas (`/turtle1/cmd_vel`, `/turtle2/pose`, etc.).
+
+### 8.3 `ros2 topic echo /turtle1/pose`
+*(Añadir captura de pantalla)*
+**Explicación:** Permite monitorear el flujo de datos en tiempo real. Se observa el mensaje `Pose` actualizándose con las coordenadas espaciales y velocidades de la tortuga, información utilizada para el control de lazo cerrado.
+
+### 8.4 `ros2 topic info /turtle1/cmd_vel`
+*(Añadir captura de pantalla)*
+**Explicación:** Proporciona metadatos del tópico. Confirma el tipo de mensaje esperado (`geometry_msgs/msg/Twist`) y valida la existencia de un publicador y un suscriptor.
+
+### 8.5 `ros2 service list`
+*(Añadir captura de pantalla)*
+**Explicación:** Muestra todos los servicios síncronos disponibles. Se evidencian los servicios invocados en el código, tales como `/spawn`, `/kill`, `/clear` y `/turtle1/set_pen`.
+
+### 8.6 `rqt_graph`
+*(Añadir captura de pantalla)*
+**Explicación:** Herramienta gráfica que renderiza la topología del sistema. Las elipses representan los nodos y las flechas confirman el enrutamiento de los tópicos entre el líder, el seguidor y el controlador.
+
+
+## 9. Instrucciones de Ejecución
+Para lograr la ejecución del código teniendo en cuenta que ya se modificaron los archivos correspondientes, solo faltaría abrir dos terminales y correr los siguientes códigos:
 
 **Terminal A**
 
-```
-
+```bash
 cd ~/ros2_jazzy
 colcon build --packages-select my_turtle_controller --symlink-install
 source install/setup.bash
@@ -518,11 +547,11 @@ ros2 run my_turtle_controller move_turtle
 
 **Terminal B**
 
-```
+```bash
 ros2 run turtlesim turtlesim_node
 
 ```
 
 
-## 9. Video Explicativo
+## 10. Video Explicativo
 (El enlace de YouTube/Vimeo del video de máximo 10 minutos).
