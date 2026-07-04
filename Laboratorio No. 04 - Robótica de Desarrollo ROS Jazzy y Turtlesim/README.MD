@@ -209,30 +209,39 @@ En cuanto a los tópicos, se utilizan dos publicadores encargados de enviar los 
 Durante la ejecución, se procedió a inspeccionar el sistema utilizando las herramientas de terminal que provee ROS 2 para confirmar la correcta comunicación entre componentes. A continuación, se detalla la evidencia:
 
 #### 6.1.1 `ros2 node list`
-<img width="745" height="305" alt="ros2 node list" src="Images/node_list.png" />
+<div align="center">
+  <img height="305" alt="ros2 node list" src="Images/node_list.png" />
+</div>
 
 > **Análisis:** Este comando lista los nodos activos. La captura demuestra que tanto `/turtlesim` como el nodo `/move_turtle_node` están operando simultáneamente en el middleware.
 
 #### 6.1.2 `ros2 topic list`
-<img width="745" height="305" alt="ros2 topic list" src="Images/topic_list.png" />
+<div align="center">
+  <img height="305" alt="ros2 topic list" src="Images/topic_list.png" />
+</div>
 
 > **Análisis:** Despliega todos los canales de comunicación activos. Permite visualizar que la red cuenta con los tópicos de control cinemático y odometría para ambas tortugas (`/turtle1/cmd_vel`, `/turtle2/pose`, etc.).
 
 #### 6.1.3 `ros2 topic echo /turtle1/pose`
-<img width="745" height="305" alt="ros2 topic echo" src="Images/topic_echo.png" />
+<div align="center">
+  <img height="305" alt="ros2 topic echo" src="Images/topic_echo.png" />
+</div>
 
 > **Análisis:** Permite monitorear el flujo de datos en tiempo real. En la captura se observa el mensaje `Pose` actualizándose con las coordenadas espaciales ($x, y, \theta$) que el código procesa en el lazo cerrado.
 
 #### 6.1.4 `ros2 topic info /turtle1/cmd_vel`
-<img width="745" height="305" alt="ros2 topic info" src="Images/topic_info.png" />
+<div align="center">
+  <img height="305" alt="ros2 topic info" src="Images/topic_info.png" />
+</div>
 
 > **Análisis:** Entrega metadatos vitales del tópico. Confirma el tipo de mensaje esperado (`geometry_msgs/msg/Twist`) y valida que existe 1 *Publisher* (el script de control) y 1 *Subscriber* (el simulador).
 
 #### 6.1.5 `ros2 service list`
-<img width="745" height="305" alt="ros2 service list" src="Images/service_list.png" />
+<div align="center">
+  <img height="305" alt="ros2 service list" src="Images/service_list.png" />
+</div>
 
 > **Análisis:** Muestra todos los servicios síncronos disponibles. Aquí se evidencian los servicios nativos invocados por el código, como `/spawn`, `/kill`, `/clear` y `/turtle1/set_pen`.
-
 ## 7. Implementación
 
 La solución del laboratorio se desarrolló principalmente en el archivo `move_turtle.py`, donde se implementó un nodo de ROS 2 encargado de controlar el movimiento de la tortuga, ejecutar trayectorias automáticas, dibujar letras y gestionar el sistema de control líder-seguidor.
