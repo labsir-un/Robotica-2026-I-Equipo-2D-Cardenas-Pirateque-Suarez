@@ -190,7 +190,7 @@ El paquete `my_turtle_controller`, utilizado durante el laboratorio, está compu
 <div align="center">
   <img src="Images/graph.png" alt="gra" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 2. Diagrama de arquitectura de programación.</b>
+  <b>Figura 2. Diagrama de arquitectura de programación (rqt_graph).</b>
 </div>
 
 <br>
@@ -204,6 +204,34 @@ Además del nodo que contiene la lógica, el diagrama muestra el nodo `turtlesim
 
 En cuanto a los tópicos, se utilizan dos publicadores encargados de enviar los comandos de velocidad lineal y angular de cada una de las tortugas, correspondientes a `/turtle1/cmd_vel` y `/turtle2/cmd_vel`. Asimismo, se emplean dos suscriptores para recibir la información de la posición y orientación de las tortugas mediante los tópicos `/turtle1/pose` y `/turtle2/pose`.
 
+### 6.1 Verificación de la Arquitectura ROS 2
+
+Durante la ejecución, se procedió a inspeccionar el sistema utilizando las herramientas de terminal que provee ROS 2 para confirmar la correcta comunicación entre componentes. A continuación, se detalla la evidencia:
+
+#### 6.1.1 `ros2 node list`
+<img width="945" height="505" alt="ros2 node list" src="Images/node_list.png" />
+
+> **Análisis:** Este comando lista los nodos activos. La captura demuestra que tanto `/turtlesim` como el nodo `/move_turtle_node` están operando simultáneamente en el middleware.
+
+#### 6.1.2 `ros2 topic list`
+<img width="945" height="505" alt="ros2 topic list" src="Images/topic_list.png" />
+
+> **Análisis:** Despliega todos los canales de comunicación activos. Permite visualizar que la red cuenta con los tópicos de control cinemático y odometría para ambas tortugas (`/turtle1/cmd_vel`, `/turtle2/pose`, etc.).
+
+#### 6.1.3 `ros2 topic echo /turtle1/pose`
+<img width="945" height="505" alt="ros2 topic echo" src="Images/topic_echo.png" />
+
+> **Análisis:** Permite monitorear el flujo de datos en tiempo real. En la captura se observa el mensaje `Pose` actualizándose con las coordenadas espaciales ($x, y, \theta$) que el código procesa en el lazo cerrado.
+
+#### 6.1.4 `ros2 topic info /turtle1/cmd_vel`
+<img width="945" height="505" alt="ros2 topic info" src="Images/topic_info.png" />
+
+> **Análisis:** Entrega metadatos vitales del tópico. Confirma el tipo de mensaje esperado (`geometry_msgs/msg/Twist`) y valida que existe 1 *Publisher* (el script de control) y 1 *Subscriber* (el simulador).
+
+#### 6.1.5 `ros2 service list`
+<img width="945" height="505" alt="ros2 service list" src="Images/service_list.png" />
+
+> **Análisis:** Muestra todos los servicios síncronos disponibles. Aquí se evidencian los servicios nativos invocados por el código, como `/spawn`, `/kill`, `/clear` y `/turtle1/set_pen`.
 
 ## 7. Implementación
 
@@ -471,57 +499,34 @@ Una vez implementadas todas estas funcionalidades, al presionar la tecla de acti
 </div>
 <br>
 
+## 8. Instrucciones de Ejecución
 
-## 8. Verificación de la Arquitectura ROS 2
+Para iniciar la simulación y el control, asumiendo que el espacio de trabajo ya ha sido compilado, se deben abrir dos terminales independientes y ejecutar los siguientes comandos:
 
-Durante el desarrollo del laboratorio, se procedió a inspeccionar el sistema utilizando las herramientas de terminal provistas por ROS 2 para confirmar la correcta comunicación entre los componentes.
+**Terminal A (Simulador)**
+```bash
+source /opt/ros/jazzy/setup.bash
+ros2 run turtlesim turtlesim_node
+```
 
-### 8.1 `ros2 node list`
-*(Añadir captura de pantalla)*
-**Explicación:** Este comando lista los nodos activos en el sistema. Permite observar que tanto el nodo del simulador (`/turtlesim`) como el nodo de control implementado (`/move_turtle_node`) se encuentran operando simultáneamente.
-
-### 8.2 `ros2 topic list`
-*(Añadir captura de pantalla)*
-**Explicación:** Despliega todos los canales de comunicación activos. Permite visualizar que la red cuenta con los tópicos de control de velocidad y pose para ambas tortugas (`/turtle1/cmd_vel`, `/turtle2/pose`, etc.).
-
-### 8.3 `ros2 topic echo /turtle1/pose`
-*(Añadir captura de pantalla)*
-**Explicación:** Permite monitorear el flujo de datos en tiempo real. Se observa el mensaje `Pose` actualizándose con las coordenadas espaciales y velocidades de la tortuga, información utilizada para el control de lazo cerrado.
-
-### 8.4 `ros2 topic info /turtle1/cmd_vel`
-*(Añadir captura de pantalla)*
-**Explicación:** Proporciona metadatos del tópico. Confirma el tipo de mensaje esperado (`geometry_msgs/msg/Twist`) y valida la existencia de un publicador y un suscriptor.
-
-### 8.5 `ros2 service list`
-*(Añadir captura de pantalla)*
-**Explicación:** Muestra todos los servicios síncronos disponibles. Se evidencian los servicios invocados en el código, tales como `/spawn`, `/kill`, `/clear` y `/turtle1/set_pen`.
-
-### 8.6 `rqt_graph`
-*(Añadir captura de pantalla)*
-**Explicación:** Herramienta gráfica que renderiza la topología del sistema. Las elipses representan los nodos y las flechas confirman el enrutamiento de los tópicos entre el líder, el seguidor y el controlador.
-
-
-## 9. Instrucciones de Ejecución
-Para lograr la ejecución del código teniendo en cuenta que ya se modificaron los archivos correspondientes, solo faltaría abrir dos terminales y correr los siguientes códigos:
-
-**Terminal A**
-
+**Terminal B (Controlador)**
 ```bash
 cd ~/ros2_jazzy
 colcon build --packages-select my_turtle_controller --symlink-install
 source install/setup.bash
 ros2 run my_turtle_controller move_turtle
-
 ```
 
+## 9. Video Explicativo
 
-**Terminal B**
+Como evidencia final del cumplimiento de los objetivos del laboratorio, se presenta el registro audiovisual de la ejecución del sistema. Este video documenta la integración exitosa entre los nodos de ROS 2 y la operación gráfica del simulador Turtlesim en tiempo real.
 
-```bash
-ros2 run turtlesim turtlesim_node
+En el material se puede observar la sincronización lograda mediante el entorno de desarrollo, validando que la cinemática de lazo cerrado diseñada se traslada con precisión a la tortuga principal. La demostración incluye tanto la fase de control manual concurrente sin bloqueos como la ejecución de figuras automáticas, el trazado de iniciales y el comportamiento del sistema líder-seguidor, confirmando la robustez de la comunicación vía tópicos y la correcta configuración de la arquitectura.
 
-```
-
-
-## 10. Video Explicativo
-(El enlace de YouTube/Vimeo del video de máximo 10 minutos).
+<br>
+<div align="center">
+  <a href="[AQUÍ_PONES_EL_LINK_DE_YOUTUBE]">
+    <img src="https://img.shields.io/badge/VER%20VIDEO%20EN%20YOUTUBE-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video en YouTube"/>
+  </a>
+</div>
+<br>
