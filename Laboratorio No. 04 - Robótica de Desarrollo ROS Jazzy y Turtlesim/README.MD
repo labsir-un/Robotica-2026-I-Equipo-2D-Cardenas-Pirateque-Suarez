@@ -357,7 +357,7 @@ Obteniendo como resultado:
 
 ### 7.5 Dibujo de letras.
 
-
+En el caso del dibujo de letras, se implementó una rutina independiente para cada una de ellas, con el fin de facilitar su construcción a partir de líneas rectas y semicircunferencias, como se puede ver acontinuación:
 
 ```python 
 
@@ -446,7 +446,7 @@ def draw_D(self):
 <div align="center">
   <img src="Images/seguidor.png" alt="seg" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 4. Sistema Líder-seguidor.</b>
+  <b>Figura 5. Sistema Líder-seguidor.</b>
 </div>
 
 <br>
