@@ -195,6 +195,15 @@ El paquete `my_turtle_controller`, utilizado durante el laboratorio, está compu
 
 <br>
 
+Ademas del nodo que contiene la logica el diagrama nos muestra el nodo `turtlesim`que es el que proporciona ROS suendo el encargado de:
+* Dibuja las tortugas.
+* Recibe comandos de movimiento.
+* Actualiza la simulación.
+* Calcula la posición actual.
+* Publica continuamente la posición de cada tortuga.
+
+En cuanto a los tópicos, se utilizan dos publicadores encargados de enviar los comandos de velocidad lineal y angular de cada una de las tortugas, correspondientes a `/turtle1/cmd_vel` y `/turtle2/cmd_vel`. Asimismo, se emplean dos suscriptores para recibir la información de la posición y orientación de las tortugas mediante los tópicos `/turtle1/pose` y `/turtle2/pose`.
+
 
 ## 7. implementación
 
