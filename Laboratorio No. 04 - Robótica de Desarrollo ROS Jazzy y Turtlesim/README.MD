@@ -182,6 +182,8 @@ flowchart TD
 
 ## 6. Arquitectura del paquete
 
+El paquete `my_turtle_controller`, utilizado durante el laboratorio, está compuesto por un nodo principal denominado `move_turtle_node`, en el cual se implementa la lógica principal del sistema. Este nodo es responsable de procesar la entrada del usuario, controlar el movimiento de ambas tortugas, ejecutar las trayectorias programadas y gestionar la comunicación con el simulador Turtlesim mediante el uso de publicadores, suscriptores y servicios de ROS 2.
+
 
 <br>
 
