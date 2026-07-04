@@ -466,6 +466,8 @@ Finalmente, la velocidad es enviada al tópico correspondiente.
 self.cmd_vel2_pub.publish(msg)
 
 ```
+Una vez implementadas todas estas funcionalidades, al presionar la tecla de activación del seguidor (`2`) se puede observar la aparición de una segunda tortuga, la cual sigue la trayectoria de la tortuga principal. Su recorrido se representa con un color ligeramente más gris.
+
 
 <br>
 
