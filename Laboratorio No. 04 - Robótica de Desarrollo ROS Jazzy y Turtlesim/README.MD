@@ -354,7 +354,15 @@ def move_forward(self):
 ### 7.6 Sistema líder-seguidor.
 
 
+<br>
 
+<div align="center">
+  <img src="Images/seguidor.png" alt="seg" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 4. Sistema Líder-seguidor.</b>
+</div>
+
+<br>
 
 ## 8. Instrucciones de Ejecución
 (Paso a paso rápido con los comandos de consola para que el profesor pueda compilar el workspace y correr el nodo sin problemas).
