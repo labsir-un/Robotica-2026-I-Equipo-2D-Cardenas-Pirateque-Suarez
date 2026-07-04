@@ -480,7 +480,27 @@ Una vez implementadas todas estas funcionalidades, al presionar la tecla de acti
 <br>
 
 ## 8. Instrucciones de Ejecución
-(Paso a paso rápido con los comandos de consola para que el profesor pueda compilar el workspace y correr el nodo sin problemas).
+para lograr la ejecucion del codigo teniendo en cuuenta que ya se modificaron los archivos corespondientes solo faltaria abrir dos terminales y correr los siguientes codigos
+
+**Terminal A**
+
+```
+
+cd ~/ros2_jazzy
+colcon build --packages-select my_turtle_controller --symlink-install
+source install/setup.bash
+ros2 run my_turtle_controller move_turtle
+
+```
+
+
+**Terminal B**
+
+```
+ros2 run turtlesim turtlesim_node
+
+```
+
 
 ## 9. Video Explicativo
 (El enlace de YouTube/Vimeo del video de máximo 10 minutos).
