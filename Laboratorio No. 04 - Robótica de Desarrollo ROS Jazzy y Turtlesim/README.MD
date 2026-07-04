@@ -241,7 +241,7 @@ self.pose_sub = self.create_subscription(
 
 ```
 
-Ademas de esto creo otro publicador y otro seguidor para el sistema de lider-seguidor 
+Además de esto, se creó otro publicador y otro suscriptor para el sistema líder-seguidor.
 
 ```python
 
