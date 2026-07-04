@@ -299,9 +299,15 @@ def move_forward(self):
 
 
 
+
 ```python
 
-
+    def draw_triangle(self, side_length=SHAPE_SIDE_LENGTH):
+        self.get_logger().info('Dibujando triangulo...')
+        for lado in range(3):
+            if not self.move_by_distance(side_length): return
+            if not self.turn_by_angle(2 * math.pi / 3): return
+        self.get_logger().info('Triangulo completado.')
 
 ```
 
@@ -321,9 +327,16 @@ def move_forward(self):
 
 
 
+
+
 ```python
 
-
+    def draw_square(self, side_length=SHAPE_SIDE_LENGTH):
+        self.get_logger().info('Dibujando cuadrado...')
+        for lado in range(4):
+            if not self.move_by_distance(side_length): return
+            if not self.turn_by_angle(math.pi / 2): return
+        self.get_logger().info('Cuadrado completado.')
 
 ```
 
@@ -339,6 +352,76 @@ def move_forward(self):
 
 
 ### 7.5 Dibujo de letras.
+
+
+
+```python 
+
+def draw_D(self):
+        self.get_logger().info('Dibujando letra D...')
+        self._set_pen(False) 
+        if not self.turn_to_angle(math.pi / 2): return       
+        if not self.move_by_distance(2.0): return            
+        if not self.turn_to_angle(0.0): return               
+        if not self.draw_arc(-math.pi, radius=1.0): return   
+        self._set_pen(True)  
+        self.turn_to_angle(0.0)
+
+    def draw_S(self):
+        self.get_logger().info('Dibujando letra S...')
+        self._set_pen(False) 
+        if not self.turn_to_angle(math.pi / 2): return               
+        if not self.draw_arc(1.5 * math.pi, radius=0.5): return    
+        if not self.turn_to_angle(0.0): return           
+        if not self.draw_arc(-1.5 * math.pi, radius=0.5): return   
+        self._set_pen(True)  
+        self.turn_to_angle(0.0) 
+
+    def draw_P(self):
+        self.get_logger().info('Dibujando letra P...')
+        self._set_pen(False) 
+        if not self.turn_to_angle(math.pi / 2): return       
+        if not self.move_by_distance(2.0): return            
+        if not self.turn_to_angle(0.0): return               
+        if not self.draw_arc(-math.pi, radius=0.65): return   
+        self._set_pen(True)  
+        self.turn_to_angle(0.0)
+
+    def draw_F(self):
+        self.get_logger().info('Dibujando letra F...')
+        self._set_pen(False) 
+        if not self.turn_to_angle(math.pi / 2): return       
+        if not self.move_by_distance(2.0): return            
+        if not self.turn_to_angle(0.0): return               
+        if not self.move_by_distance(1.0): return            
+        
+        self._set_pen(True)  
+        if not self.turn_to_angle(math.pi): return           
+        if not self.move_by_distance(1.0): return            
+        if not self.turn_to_angle(-math.pi / 2): return      
+        if not self.move_by_distance(1.0): return            
+        if not self.turn_to_angle(0.0): return               
+        
+        self._set_pen(False) 
+        if not self.move_by_distance(0.8): return            
+        self._set_pen(True)  
+        self.turn_to_angle(0.0)
+
+    def draw_C(self):
+        self.get_logger().info('Dibujando letra C...')
+        self._set_pen(True)  
+        if not self.turn_to_angle(math.pi / 2): return       
+        if not self.move_by_distance(2.0): return
+        if not self.turn_to_angle(0.0): return               
+        if not self.move_by_distance(1.0): return
+        if not self.turn_to_angle(math.pi): return           
+        
+        self._set_pen(False) 
+        if not self.draw_arc(math.pi, radius=1.0): return    
+        self._set_pen(True)  
+        self.turn_to_angle(0.0)
+```
+
 
 
 <br>
