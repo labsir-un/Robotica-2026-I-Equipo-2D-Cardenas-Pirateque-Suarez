@@ -184,8 +184,9 @@ flowchart TD
 
 La solución del laboratorio se desarrolló principalmente en el archivo `move_turtle.py`, donde se implementó un nodo de ROS 2 encargado de controlar el movimiento de la tortuga, ejecutar trayectorias automáticas, dibujar letras y gestionar el sistema de control líder-seguidor.
 
+### 7.1 Creacion de nodo, suscrptores y publicadores.
 
-para comenzar se inicia el nodo principal da la aplicacion iniciando asi todos los programas necesarios para el funcionamiento
+Para comenzar se inicia el nodo principal da la aplicacion iniciando asi todos los programas necesarios para el funcionamiento
 
 ```python
 
@@ -196,7 +197,7 @@ class MoveTurtle(Node):
 
 ```
 
-despues se crean los publicadores y suscriptores donde los publicadores seran los encargados de enviar los diferentes comandos de velocidad lineal y angular a las tortugas y los suscriptores los encargados de resivir continuamente la pósicion de las las tortugas.
+Despues se crean los publicadores y suscriptores donde los publicadores seran los encargados de enviar los diferentes comandos de velocidad lineal y angular a las tortugas y los suscriptores los encargados de resivir continuamente la pósicion de las las tortugas.
 
 ```python
 
@@ -215,13 +216,92 @@ self.pose_sub = self.create_subscription(
 
 ```
 
-
+Ademas de esto creo otro publicador y otro seguidor para el sistema de lider-seguidor 
 
 ```python
 
+self.cmd_vel2_pub = self.create_publisher(
+    Twist,
+    '/turtle2/cmd_vel',
+    10
+)
 
+self.pose2_sub = self.create_subscription(
+    Pose,
+    '/turtle2/pose',
+    self.pose2_callback,
+    10
+)
 
 ```
+### 7.2 Creación de clientes de servicios.
+
+Continuando se programan los distintos servicios para contorlar las diferentes funcionalidades
+
+```python
+
+self.teleport_client = self.create_client(
+    TeleportAbsolute,
+    '/turtle1/teleport_absolute'
+)
+
+self.set_pen_client = self.create_client(
+    SetPen,
+    '/turtle1/set_pen'
+)
+
+self.spawn_client = self.create_client(
+    Spawn,
+    '/spawn'
+)
+
+self.kill_client = self.create_client(
+    Kill,
+    '/kill'
+)
+
+```
+
+### 7.3 Control manual.
+
+Usando la función `get_key()` se lee el teclado para despues llamar a las siguientes funciones encargadas del movimientos. 
+
+```python
+
+if key == KEY_UP:
+    self.move_forward()
+
+elif key == KEY_DOWN:
+    self.move_backward()
+
+elif key == KEY_LEFT:
+    self.turn_left()
+
+elif key == KEY_RIGHT:
+    self.turn_right()
+
+```
+donde función publica un mensaje Twist sobre el tópico /turtle1/cmd_vel
+
+```python
+def move_forward(self):
+    self.current_v = LINEAR_SPEED
+    self.publish_velocity(
+        linear=self.current_v,
+        angular=self.current_w
+    )
+
+```
+### 7.4 Figuras automaticas.
+
+
+### 7.5 Dibujo de letras.
+
+
+### 7.6 Sistema líder-seguidor.
+
+
+
 
 ## 8. Instrucciones de Ejecución
 (Paso a paso rápido con los comandos de consola para que el profesor pueda compilar el workspace y correr el nodo sin problemas).
