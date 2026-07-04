@@ -211,21 +211,18 @@ La solución del laboratorio se desarrolló principalmente en el archivo `move_t
 
 ### 7.1 Creación de nodo, suscriptores y publicadores.
 
-Para comenzar se inicia el nodo principal de la aplicación iniciando así todos los programas necesarios para el funcionamiento.
+Para comenzar, se inicia el nodo principal de la aplicación, estableciendo así todos los componentes necesarios para el funcionamiento dentro de la red de ROS 2.
 
 ```python
-
 class MoveTurtle(Node):
 
     def __init__(self):
         super().__init__('move_turtle_node')
-
 ```
 
-Después se crean los publicadores y suscriptores donde los publicadores serán los encargados de enviar los diferentes comandos de velocidad lineal y angular a las tortugas y los suscriptores los encargados de recibir continuamente la posición de las tortugas.
+Después se crean los publicadores y suscriptores. Los publicadores son los encargados de enviar los diferentes comandos de velocidad lineal y angular a las tortugas, mientras que los suscriptores reciben continuamente la posición de estas para realizar cálculos precisos.
 
 ```python
-
 self.cmd_vel_pub = self.create_publisher(
     Twist,
     '/turtle1/cmd_vel',
@@ -238,13 +235,11 @@ self.pose_sub = self.create_subscription(
     self.pose_callback,
     10
 )
-
 ```
 
-Además de esto, se creó otro publicador y otro suscriptor para el sistema líder-seguidor.
+Además de esto, se instanció un segundo par de publicador y suscriptor dedicado exclusivamente al sistema líder-seguidor para monitorear y controlar a la segunda tortuga.
 
 ```python
-
 self.cmd_vel2_pub = self.create_publisher(
     Twist,
     '/turtle2/cmd_vel',
@@ -257,14 +252,13 @@ self.pose2_sub = self.create_subscription(
     self.pose2_callback,
     10
 )
-
 ```
+
 ### 7.2 Creación de clientes de servicios.
 
-Continuando se programan los distintos servicios para controlar las diferentes funcionalidades.
+Continuando con la arquitectura, se programan los distintos clientes de servicios requeridos para controlar funcionalidades integradas del simulador, permitiendo alterar el entorno mediante peticiones síncronas.
 
 ```python
-
 self.teleport_client = self.create_client(
     TeleportAbsolute,
     '/turtle1/teleport_absolute'
@@ -284,15 +278,13 @@ self.kill_client = self.create_client(
     Kill,
     '/kill'
 )
-
 ```
 
 ### 7.3 Control manual.
 
-Usando la función `get_key()` se lee el teclado para después llamar a las siguientes funciones encargadas de los movimientos. 
+Usando la función `get_key()`, se lee el teclado de forma directa a una alta frecuencia. A partir de la tecla detectada, se invocan las funciones encargadas de los movimientos espaciales. 
 
 ```python
-
 if key == KEY_UP:
     self.move_forward()
 
@@ -304,9 +296,9 @@ elif key == KEY_LEFT:
 
 elif key == KEY_RIGHT:
     self.turn_right()
-
 ```
-donde la función publica un mensaje Twist sobre el tópico `/turtle1/cmd_vel`
+
+Para asegurar un control simultáneo y fluido que permita avanzar y girar de manera concurrente sin bloqueos, se implementó un sistema de memoria de velocidades. La función publica un mensaje Twist sobre el tópico `/turtle1/cmd_vel` combinando ambas velocidades.
 
 ```python
 def move_forward(self):
@@ -315,75 +307,60 @@ def move_forward(self):
         linear=self.current_v,
         angular=self.current_w
     )
-
 ```
+
 ### 7.4 Figuras automáticas.
 
-Para el dibujo de elementos se implementó usando las funciones básicas de giro y movimientos.
+Para el dibujo de elementos geométricos, se implementaron algoritmos basados en cinemática de lazo cerrado, leyendo constantemente la odometría para evitar los errores acumulativos típicos de las instrucciones por tiempo.
 
-Para el triángulo se realiza el mismo movimiento 3 veces para crear sus tres lados de la siguiente forma:
-
+Para el triángulo, se realiza el mismo movimiento 3 veces iterando a través de desplazamientos rectos y giros matemáticos exactos (120 grados) para crear sus tres lados de la siguiente forma:
 
 ```python
-
     def draw_triangle(self, side_length=SHAPE_SIDE_LENGTH):
         self.get_logger().info('Dibujando triangulo...')
         for lado in range(3):
             if not self.move_by_distance(side_length): return
             if not self.turn_by_angle(2 * math.pi / 3): return
         self.get_logger().info('Triangulo completado.')
-
 ```
-
 
 Obteniendo como resultado:
 
-
 <br>
-
 <div align="center">
   <img src="Images/triangulo.png" alt="triag" style="border-radius: 5px; width: 350px;">
   <br>
   <b>Figura 3. Figura de triángulo.</b>
 </div>
-
 <br>
 
-
-Para el rectángulo se realiza el mismo movimiento 4 veces para crear sus lados de la siguiente forma:
-
-
+Para el rectángulo se realiza el mismo procedimiento, iterando 4 veces para crear sus lados ortogonales de la siguiente forma:
 
 ```python
-
     def draw_square(self, side_length=SHAPE_SIDE_LENGTH):
         self.get_logger().info('Dibujando cuadrado...')
         for lado in range(4):
             if not self.move_by_distance(side_length): return
             if not self.turn_by_angle(math.pi / 2): return
         self.get_logger().info('Cuadrado completado.')
-
 ```
+
 Obteniendo como resultado:
 
 <br>
-
 <div align="center">
   <img src="Images/rectangulo.png" alt="rec" style="border-radius: 5px; width: 350px;">
   <br>
   <b>Figura 4. Figura de rectángulo.</b>
 </div>
-
 <br>
-
 
 ### 7.5 Dibujo de letras.
 
-En el caso del dibujo de letras, se implementó una rutina independiente para cada una de ellas, con el fin de facilitar su construcción a partir de líneas rectas y semicircunferencias, como se puede ver a continuación:
+En el caso del dibujo de letras, se programó una rutina independiente para cada una de ellas, con el fin de facilitar su construcción a partir de líneas rectas y semicircunferencias. Para garantizar que los arcos de las letras sean perfectos, se implementó un sistema de frenado dinámico que reduce la velocidad al acercarse al ángulo final, evitando que las figuras se tuerzan por la inercia. El código se estructura como se puede ver a continuación:
 
 ```python 
-
-def draw_D(self):
+    def draw_D(self):
         self.get_logger().info('Dibujando letra D...')
         self._set_pen(False) 
         if not self.turn_to_angle(math.pi / 2): return       
@@ -448,23 +425,19 @@ def draw_D(self):
         self.turn_to_angle(0.0)
 ```
 
-Con esto, al presionar la tecla `V`, se ejecuta la rutina definida a partir de estos movimientos y se ubica cada una de las letras de forma ordenada, dando como resultado:
-
-
+Con esto, al presionar la tecla `V`, se ejecuta la rutina automatizada definida a partir de estos movimientos que ubica cada una de las letras de forma ordenada mediante teletransporte absoluto, generando un arreglo de tipografías sin colisiones y dando como resultado:
 
 <br>
-
 <div align="center">
   <img src="Images/letras.png" alt="letr" style="border-radius: 5px; width: 350px;">
   <br>
   <b>Figura 5. Dibujo de letras.</b>
 </div>
-
 <br>
 
 ### 7.6 Sistema líder-seguidor.
 
-El seguimiento funciona primero con la implementación de un temporizador que calcula la distancia entre ambas tortugas.
+El seguimiento de trayectoria funciona primero con la implementación de un temporizador de alta frecuencia (20Hz) que calcula en tiempo real la distancia euclidiana y el ángulo relativo entre las coordenadas de ambas tortugas.
 
 ```python
 dx = self.current_pose.x - self.pose2.x
@@ -474,31 +447,28 @@ distance = math.hypot(dx, dy)
 
 target_theta = math.atan2(dy, dx)
 ```
-Ya con esos datos se calcula la velocidad proporcional.
+
+Ya con estos datos de error frente a la posición deseada, se calcula la velocidad proporcional aplicando ganancias predefinidas para la corrección lineal y angular.
 
 ```python
 msg.linear.x = 1.5 * distance
-
 msg.angular.z = 6.0 * error_theta
-
 ```
-Finalmente, la velocidad es enviada al tópico correspondiente.
+
+Finalmente, la velocidad calculada es enviada al tópico de comando correspondiente para movilizar al seguidor.
 
 ```python
 self.cmd_vel2_pub.publish(msg)
-
 ```
-Una vez implementadas todas estas funcionalidades, al presionar la tecla de activación del seguidor (`2`) se puede observar la aparición de una segunda tortuga, la cual sigue la trayectoria de la tortuga principal. Su recorrido se representa con un color ligeramente más gris.
 
+Una vez implementadas todas estas funcionalidades, al presionar la tecla de activación del seguidor (`2`), se puede observar mediante la instanciación de un nuevo nodo la aparición de una segunda tortuga, la cual sigue activamente la trayectoria de la tortuga principal. Su recorrido se representa gráficamente con un color ligeramente más gris.
 
 <br>
-
 <div align="center">
   <img src="Images/seguidor.png" alt="seg" style="border-radius: 5px; width: 350px;">
   <br>
   <b>Figura 6. Sistema Líder-seguidor.</b>
 </div>
-
 <br>
 
 
