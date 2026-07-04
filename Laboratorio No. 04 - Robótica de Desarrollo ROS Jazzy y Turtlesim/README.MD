@@ -30,6 +30,9 @@
 
 ### Objetivo General
 
+Implementar un paqueto de ROS2 Jazzy Jalisco que permita controlar  de una a dos tortugas del suimulador de Turtlesim mediante un nodo configurado desde python, este debe incluir funciones para control manual, trayectorias automaticas, dibujo tanto de escrituras como de letras y un sistema de líder-seguidor. 
+
+
 ### Objetivo específicos
 
 - Comprender ROS2.
@@ -294,15 +297,35 @@ def move_forward(self):
 ```
 ### 7.4 Figuras automaticas.
 
+
+
+```python
+
+
+
+```
+
+
+
+
+
 <br>
 
 <div align="center">
   <img src="Images/triangulo.png" alt="triag" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 3. Figura de triangulo.</b>
+  <b>Figura 2. Figura de triangulo.</b>
 </div>
 
 <br>
+
+
+
+```python
+
+
+
+```
 
 <br>
 
@@ -323,7 +346,7 @@ def move_forward(self):
 <div align="center">
   <img src="Images/letras.png" alt="letr" style="border-radius: 5px; width: 350px;">
   <br>
-  <b>Figura 3. Dibujo de letras.</b>
+  <b>Figura 4. Dibujo de letras.</b>
 </div>
 
 <br>
