@@ -21,6 +21,6 @@
 </p>
 
 <br>
-<img src="Images/ros.png" alt="ros" style="border-radius: 5px; width: 300px;"><br>
-<b>Figura 1. Robot Operating System.</b>
+<img src="Images/pincher.png" alt="ros" style="border-radius: 5px; width: 300px;"><br>
+<b>Figura 1. Robot Phantom X Pincher X100.</b>
 </div>
