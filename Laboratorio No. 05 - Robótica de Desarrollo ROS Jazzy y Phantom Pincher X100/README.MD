@@ -60,6 +60,7 @@
 ```
 
 ```
+
 phantom_ws/
 ├── src/
 │   ├── phantomx_pincher/                 # Metapaquete: launch de alto nivel
@@ -110,6 +111,22 @@ phantom_ws/
 │                                         #   (colores) o teclado, publica PoseCommand,
 │                                         #   controla pinza y ventosa (Arduino)
 │
+├── scripts/                              # Scripts sueltos (no empaquetados) por actividad,
+│   │                                     #   ejecutados directamente con `python3`, 100% simulación
+│   │                                     #   (publican /joint_states, sin Dynamixel real)
+│   ├── joint_selector_act4.py            # Clase JointSelector base (API: habilitar_torque,
+│   │                                     #   mover_articulacion, mover_simultaneo, leer_todas...)
+│   ├── joint_selector_act4_gui.py        # Misma API + GUI Tkinter con sliders por articulación
+│   ├── joint_seletor_act4.py             # (duplicado/variante con GUI; nombre con typo)
+│   ├── act4.py                           # Actividad 4 – movimiento individual (control directo AX-12)
+│   ├── act7.py                           # Actividad 7 – movimiento simultáneo (usa joint_selector_act4)
+│   ├── act8.py                           # Actividad 8 – movimiento secuencial (usa joint_selector_act4_gui)
+│   ├── act9.py                           # Actividad 9 – interpolación lineal/cúbica + gráficas (matplotlib)
+│   ├── act13.py                          # Actividad 13 – enseñanza y repetición de poses (Tkinter + YAML)
+│   ├── act14_draw_shape_phantomx.py      # Actividad 14 – trazado de figura (IK + Marker en RViz)
+│   ├── act15.py                          # Actividad 15 – coreografía (secuencia J1-J4+pinza con timestamps)
+│   └── calibrar_geometria.py             # Diagnóstico de geometría real vía TF (calibración L1-L4)
+│
 ├── docs/                                  # (a añadir) documentación del laboratorio
 │   ├── diagrama_flujo.png
 │   ├── plano_planta.pdf
@@ -117,6 +134,7 @@ phantom_ws/
 │   └── conclusiones/
 ├── resources/graficas/                    # (a añadir) gráficas de calibración/interpolación/senoidal
 └── videos/enlaces_videos.md               # (a añadir) enlaces a videos
+
 ```
 
 
