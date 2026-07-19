@@ -76,11 +76,11 @@
 
 | Articulación | Límite inferior | Límite superior | Margen de seguridad |
 | :--- | :---: | :---: | :---: |
-| **Base** | | | |
-| **Hombro** | | | |
-| **Codo** | | | |
-| **Muñeca** | | | |
-| **Pinza** | | | |
+| **Base** | -145.0° | 145.0° | 5.0° |
+| **Hombro** | -96.0° | 96.0° | 4.0° |
+| **Codo** | -138.0° | 144.0° | 6.0° |
+| **Muñeca** | -106.0° | 124.0° | 4.0° |
+| **Pinza** | -35.0° | 35.0°  | 5.0° |
 
 ---
 
