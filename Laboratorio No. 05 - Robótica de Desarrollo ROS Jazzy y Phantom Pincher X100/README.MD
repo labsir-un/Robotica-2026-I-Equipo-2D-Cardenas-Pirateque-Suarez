@@ -315,6 +315,9 @@ La secuencia de movimiento está compuesta por cinco configuraciones articulares
 
 <br>
 
+En cada etapa, todas las articulaciones se desplazan simultáneamente hasta alcanzar la configuración objetivo mediante la función mover_simultaneo(). Una vez alcanzada la posición, el programa realiza una pausa de tres segundos para facilitar la observación de la postura antes de continuar con la siguiente configuración.
+
+
 
 ## 11. Actividad 8 – Movimiento secuencial
 
