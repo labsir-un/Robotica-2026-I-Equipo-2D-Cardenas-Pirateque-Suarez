@@ -60,80 +60,73 @@
 ```
 
 ```
-
-phantom_ws/
-├── src/
-│   ├── phantomx_pincher/                 # Metapaquete: launch de alto nivel
-│   │   └── launch/
-│   │       ├── fake.launch.py            # MoveIt2 + ros2_control FAKE (RViz)  ← usado en este laboratorio
-│   │       └── gz.launch.py              # MoveIt2 + Gazebo (no usado aquí)
+├── README.md                     <- este documento
+├──phantom_ws/
+│   ├── src/
+│   │   ├── phantomx_pincher/                 # Metapaquete: launch de alto nivel
+│   │   │   └── launch/
+│   │   │       ├── fake.launch.py            # MoveIt2 + ros2_control FAKE (RViz)  ← usado en este laboratorio
+│   │   │       └── gz.launch.py              # MoveIt2 + Gazebo (no usado aquí)
+│   │   │
+│   │   ├── phantomx_pincher_description/     # URDF/xacro + mallas STL/DAE del robot
+│   │   │   ├── urdf/phantomx_pincher.urdf.xacro
+│   │   │   ├── meshes/STL/ ...               # Mallas para medición (Actividad 3)
+│   │   │   ├── launch/display.launch.py      # RViz + robot_state_publisher standalone
+│   │   │   └── scripts/                      # Conversión xacro → URDF/SDF
+│   │   │       ├── xacro2urdf.bash
+│   │   │       ├── xacro2sdf.bash
+│   │   │       └── xacro2sdf_direct.bash
+│   │   │
+│   │   ├── phantomx_pincher_bringup/         # Lanzamiento integrado sim/real
+│   │   │   └── launch/phantomx_pincher.launch.py   # arg use_real_robot (true/false)
+│   │   │
+│   │   ├── phantomx_pincher_moveit_config/   # Configuración de MoveIt 2
+│   │   │   ├── config/
+│   │   │   │   ├── joint_limits.yaml
+│   │   │   │   ├── kinematics.yaml
+│   │   │   │   ├── controllers_position.yaml
+│   │   │   │   ├── phantomx_pincher.srdf
+│   │   │   │   └── ompl_planning.yaml
+│   │   │   └── scripts/                      # Conversión xacro → SRDF
+│   │   │       └── xacro2srdf.bash
+│   │   │
+│   │   ├── phantomx_pincher_interfaces/      # Mensajes propios
+│   │   │   └── msg/PoseCommand.msg           # x, y, z, roll, pitch, yaw, cartesian_path
+│   │   │
+│   │   ├── phantomx_pincher_commander_cpp/   # Wrapper en C++ de MoveGroupInterface
+│   │   │   └── src/ (commander, test_moveit) # Traduce PoseCommand → movimientos de MoveIt
+│   │   │
+│   │   ├── phantomx_pincher_demos/           # Ejemplos oficiales del kit (base para varias actividades)
+│   │   │   └── (ex_joint_goal.py, ex_pose_goal.py, ex_gripper.py, ex_servo.py,
+│   │   │        ex_collision_primitive.py, ex_collision_mesh.py,
+│   │   │        demo_pick_and_place.py, demo_observe_scene.py)
+│   │   │
+│   │   ├── pincher_control/                  # Paquete propio: control articular + cinemática
+│   │   │   ├── control_servo.py              # Clase PincherController (DH + IK con roboticstoolbox,
+│   │   │   │                                 #   GUI Tkinter, publica /joint_states)
+│   │   │   └── follow_joint_trajectory_node.py # Puente MoveIt ↔ Dynamixel (solo robot real)
+│   │   │
+│   │   └── pincher_cproyect/                 # Paquete propio: tarea de aplicación
+│   │       └── pincher_cproyect/mover.py     # Nodo "mover": recibe comandos por tópico /Bring
+│   │                                         #   (colores) o teclado, publica PoseCommand,
+│   │                                         #   controla pinza y ventosa (Arduino)
 │   │
-│   ├── phantomx_pincher_description/     # URDF/xacro + mallas STL/DAE del robot
-│   │   ├── urdf/phantomx_pincher.urdf.xacro
-│   │   ├── meshes/STL/ ...               # Mallas para medición (Actividad 3)
-│   │   ├── launch/display.launch.py      # RViz + robot_state_publisher standalone
-│   │   └── scripts/                      # Conversión xacro → URDF/SDF
-│   │       ├── xacro2urdf.bash
-│   │       ├── xacro2sdf.bash
-│   │       └── xacro2sdf_direct.bash
+│   ├── scripts/                              # Scripts sueltos (no empaquetados) por actividad,
+│   │   │                                     #   ejecutados directamente con `python3`, 100% simulación
+│   │   │                                     #   (publican /joint_states, sin Dynamixel real)
+│   │   ├── joint_selector_act4.py            # Clase JointSelector base (API: habilitar_torque,
+│   │   │                                     #   mover_articulacion, mover_simultaneo, leer_todas...)
+│   │   ├── joint_selector_act4_gui.py        # Misma API + GUI Tkinter con sliders por articulación
+│   │   ├── joint_seletor_act4.py             # (duplicado/variante con GUI; nombre con typo)
+│   │   ├── act4.py                           # Actividad 4 – movimiento individual (control directo AX-12)
+│   │   ├── act7.py                           # Actividad 7 – movimiento simultáneo (usa joint_selector_act4)
+│   │   ├── act8.py                           # Actividad 8 – movimiento secuencial (usa joint_selector_act4_gui)
+│   │   ├── act9.py                           # Actividad 9 – interpolación lineal/cúbica + gráficas (matplotlib)
+│   │   ├── act13.py                          # Actividad 13 – enseñanza y repetición de poses (Tkinter + YAML)
+│   │   ├── act14_draw_shape_phantomx.py      # Actividad 14 – trazado de figura (IK + Marker en RViz)
+│   │   ├── act15.py                          # Actividad 15 – coreografía (secuencia J1-J4+pinza con timestamps)
+│   │   └── calibrar_geometria.py             # Diagnóstico de geometría real vía TF (calibración L1-L4)
 │   │
-│   ├── phantomx_pincher_bringup/         # Lanzamiento integrado sim/real
-│   │   └── launch/phantomx_pincher.launch.py   # arg use_real_robot (true/false)
-│   │
-│   ├── phantomx_pincher_moveit_config/   # Configuración de MoveIt 2
-│   │   ├── config/
-│   │   │   ├── joint_limits.yaml
-│   │   │   ├── kinematics.yaml
-│   │   │   ├── controllers_position.yaml
-│   │   │   ├── phantomx_pincher.srdf
-│   │   │   └── ompl_planning.yaml
-│   │   └── scripts/                      # Conversión xacro → SRDF
-│   │       └── xacro2srdf.bash
-│   │
-│   ├── phantomx_pincher_interfaces/      # Mensajes propios
-│   │   └── msg/PoseCommand.msg           # x, y, z, roll, pitch, yaw, cartesian_path
-│   │
-│   ├── phantomx_pincher_commander_cpp/   # Wrapper en C++ de MoveGroupInterface
-│   │   └── src/ (commander, test_moveit) # Traduce PoseCommand → movimientos de MoveIt
-│   │
-│   ├── phantomx_pincher_demos/           # Ejemplos oficiales del kit (base para varias actividades)
-│   │   └── (ex_joint_goal.py, ex_pose_goal.py, ex_gripper.py, ex_servo.py,
-│   │        ex_collision_primitive.py, ex_collision_mesh.py,
-│   │        demo_pick_and_place.py, demo_observe_scene.py)
-│   │
-│   ├── pincher_control/                  # Paquete propio: control articular + cinemática
-│   │   ├── control_servo.py              # Clase PincherController (DH + IK con roboticstoolbox,
-│   │   │                                 #   GUI Tkinter, publica /joint_states)
-│   │   └── follow_joint_trajectory_node.py # Puente MoveIt ↔ Dynamixel (solo robot real)
-│   │
-│   └── pincher_cproyect/                 # Paquete propio: tarea de aplicación
-│       └── pincher_cproyect/mover.py     # Nodo "mover": recibe comandos por tópico /Bring
-│                                         #   (colores) o teclado, publica PoseCommand,
-│                                         #   controla pinza y ventosa (Arduino)
-│
-├── scripts/                              # Scripts sueltos (no empaquetados) por actividad,
-│   │                                     #   ejecutados directamente con `python3`, 100% simulación
-│   │                                     #   (publican /joint_states, sin Dynamixel real)
-│   ├── joint_selector_act4.py            # Clase JointSelector base (API: habilitar_torque,
-│   │                                     #   mover_articulacion, mover_simultaneo, leer_todas...)
-│   ├── joint_selector_act4_gui.py        # Misma API + GUI Tkinter con sliders por articulación
-│   ├── joint_seletor_act4.py             # (duplicado/variante con GUI; nombre con typo)
-│   ├── act4.py                           # Actividad 4 – movimiento individual (control directo AX-12)
-│   ├── act7.py                           # Actividad 7 – movimiento simultáneo (usa joint_selector_act4)
-│   ├── act8.py                           # Actividad 8 – movimiento secuencial (usa joint_selector_act4_gui)
-│   ├── act9.py                           # Actividad 9 – interpolación lineal/cúbica + gráficas (matplotlib)
-│   ├── act13.py                          # Actividad 13 – enseñanza y repetición de poses (Tkinter + YAML)
-│   ├── act14_draw_shape_phantomx.py      # Actividad 14 – trazado de figura (IK + Marker en RViz)
-│   ├── act15.py                          # Actividad 15 – coreografía (secuencia J1-J4+pinza con timestamps)
-│   └── calibrar_geometria.py             # Diagnóstico de geometría real vía TF (calibración L1-L4)
-│
-├── docs/                                  # (a añadir) documentación del laboratorio
-│   ├── diagrama_flujo.png
-│   ├── plano_planta.pdf
-│   ├── cinematica_directa_inversa.md
-│   └── conclusiones/
-├── resources/graficas/                    # (a añadir) gráficas de calibración/interpolación/senoidal
-└── videos/enlaces_videos.md               # (a añadir) enlaces a videos
 
 ```
 
