@@ -28,12 +28,35 @@
 
 # Laboratorio No. 05: Phantom X Pincher X100 – ROS 2 Jazzy – RViz.
 
-## 1. Descripción de la Solución Planteada
-*(Describe brevemente el objetivo del laboratorio y la arquitectura general de la solución en ROS 2 Jazzy. Explica cómo se organizaron los paquetes y los nodos de control.)*
+## 1. Objetivos
 
-## 2. Diagrama de Flujo de las Acciones del Robot
-*(Inserta aquí la imagen del diagrama de flujo global o los diagramas de las rutinas principales)*
-`![Diagrama de flujo](ruta/a/tu/imagen.png)`
+- Controlar las articulaciones del modelo simulado del Phantom X Pincher X100 en ROS 2 Jazzy.
+- Medir y modelar la geometría del manipulador.
+- Implementar movimientos individuales, simultáneos, secuenciales e interpolados sobre el modelo en RViz.
+- Aplicar cinemática directa e inversa validando contra la pose observada en RViz.
+- Programar trayectorias, repetición de poses y una tarea artística (trazado) y una coreografía, todo en simulación.
+
+
+
+## 2. Estructura del repositorio
+
+```
+.
+├── README.md                     <- este documento
+├── docs/
+├── phantomx_sim_bringup/         <- launch files RViz + joint_state_publisher_gui
+├── phantom_ws/         <- paquete ROS 2 con nodos propios (Python)
+│   ├── src
+│   ├── phantomx_pincher
+│   │   ├── phantomx_pincher_description
+│   │   ├── phantomx_pincher_bringup
+│   │   ├── phantomx_pincher_moveit_config
+│   │   └── pincher_cproyect
+│   ├── scripts/
+│   │   ├── act15.py
+│   ├── build        
+│   ├── install    
+│   └── log      
 
 ---
 
