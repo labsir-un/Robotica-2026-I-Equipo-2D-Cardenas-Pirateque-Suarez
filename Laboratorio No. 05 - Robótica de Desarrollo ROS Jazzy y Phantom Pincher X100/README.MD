@@ -125,7 +125,7 @@ Para ello, se deben ejecutar los siguientes comandos en una terminal:
 * **Acceder al espacio de trabajo.**
 
 ```bash
-cd /home/davp/ros2_jazzy/Proyecto-Final-Robotica-main/Codigos/phantom_ws
+cd ~/phantom_ws
 ```
 
 * **Compilar el paquete de descripción.**
