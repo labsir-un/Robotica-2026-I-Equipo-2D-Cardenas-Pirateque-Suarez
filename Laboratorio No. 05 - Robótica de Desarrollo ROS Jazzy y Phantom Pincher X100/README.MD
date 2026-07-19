@@ -232,7 +232,7 @@ Al ejecutar el programa, se abrirá la siguiente ventana de control:
 <br>
 
 <div align="center">
-  <img src="Images/act4.png" alt="Ventana de control" style="border-radius: 5px; width: 500px;">
+  <img src="Images/act4.png" alt="Ventana de control" style="border-radius: 5px; width: 400px;">
   <br>
   <b>Figura 3. Ventana de control.</b>
 </div>
@@ -257,7 +257,22 @@ Durante esta demostración, cada articulación se mueve de manera independiente,
 
 ## 8. Actividad 5 – Calibración de cero y error articular
 
+
+
 ## 9. Actividad 6 – Límites seguros
+
+para esta actividad se ejecuta el codigo correspondiente que abre una ventana nueva que permite calibrar de forma manual estos limites 
+
+
+<br>
+
+<div align="center">
+  <img src="Images/act6.png" alt="Movimiento por ejes" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 4. Limites por eje.</b>
+</div>
+
+<br>
 
 <br>
 
