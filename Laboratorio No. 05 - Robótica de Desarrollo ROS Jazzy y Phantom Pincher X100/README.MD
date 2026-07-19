@@ -217,6 +217,16 @@ Estos parámetros representan las dimensiones geométricas del manipulador y con
 
 ## 7. Actividad 4 – Movimiento individual de articulaciones
 
+<br>
+
+<div align="center">
+  <img src="Images/act4.png" alt="RViz" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 3. Ventana de control.</b>
+</div>
+
+<br>
+
 
 ## 8. Actividad 5 – Calibración de cero y error articular
 
