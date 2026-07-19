@@ -181,16 +181,20 @@ Como resultado, se obtiene la siguiente ventana de visualización y control:
 
 
 ## 6. Actividad 3 – Medición del robot
+Se tomaron las medidas de los diferentes eslabones del manipulador utilizando principalmente las dimensiones obtenidas de las mallas STL del modelo 3D. A partir de estas mediciones se determinaron los parámetros geométricos empleados en el desarrollo de la cinemática del robot, obteniéndose los siguientes valores:
 
-| Parámetro | Valor |
-|---|---|
-| L1 (altura base → hombro) | 44.0 mm |
-| L2 (hombro → codo) | 107.5 mm |
-| L3 (codo → muñeca) | 107.5 mm |
-| L4 (muñeca → TCP) | 75.3 mm |
-| Alcance radial máximo (`PLANAR_REACH_MAX`) | L2+L3+L4 = 290.3 mm |
-| Alcance radial mínimo (`PLANAR_REACH_MIN`) | 40 mm |
-| Alcance vertical (`Z_MIN`–`Z_MAX`) | 0 – (L1+L2+L3+L4) = 334.3 mm |
+| Parámetro                                  |                                Valor |
+| ------------------------------------------ | -----------------------------------: |
+| L1 (altura de la base al hombro)           |                              44.0 mm |
+| L2 (hombro al codo)                        |                             107.5 mm |
+| L3 (codo a la muñeca)                      |                             107.5 mm |
+| L4 (muñeca al TCP)                         |                              75.3 mm |
+| Alcance radial máximo (`PLANAR_REACH_MAX`) |          L2 + L3 + L4 = **290.3 mm** |
+| Alcance radial mínimo (`PLANAR_REACH_MIN`) |                            **40 mm** |
+| Alcance vertical (`Z_MIN`–`Z_MAX`)         | **0 – 334.3 mm** (L1 + L2 + L3 + L4) |
+
+Estos parámetros representan las dimensiones geométricas del manipulador y constituyen la base para el cálculo de la cinemática directa e inversa, así como para la definición de los límites del espacio de trabajo utilizados durante la planificación de trayectorias.
+
 
 
 
