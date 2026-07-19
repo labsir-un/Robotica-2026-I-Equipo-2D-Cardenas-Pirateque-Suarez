@@ -217,15 +217,42 @@ Estos parámetros representan las dimensiones geométricas del manipulador y con
 
 ## 7. Actividad 4 – Movimiento individual de articulaciones
 
+Para esta actividad se desarrolló un programa en Python capaz de interactuar con el modelo del robot en RViz, generando una interfaz gráfica que permite configurar las posiciones de las articulaciones de forma manual o ejecutar una secuencia de movimiento automática.
+
+Para ejecutar este programa, primero se debe cerrar la interfaz de **Joint State Publisher** iniciada anteriormente y, posteriormente, ejecutar los siguientes comandos en una nueva terminal:
+
+```bash
+source /opt/ros/jazzy/setup.bash
+cd ~/phantom_ws/scripts
+python3 actividad4.py
+```
+
+Al ejecutar el programa, se abrirá la siguiente ventana de control:
+
 <br>
 
 <div align="center">
-  <img src="Images/act4.png" alt="RViz" style="border-radius: 5px; width: 500px;">
+  <img src="Images/act4.png" alt="Ventana de control" style="border-radius: 5px; width: 500px;">
   <br>
   <b>Figura 3. Ventana de control.</b>
 </div>
 
 <br>
+
+La interfaz permite controlar cada una de las articulaciones del manipulador mediante controles deslizantes (*sliders*), de forma similar a la ventana del **Joint State Publisher**. Sin embargo, incorpora funcionalidades adicionales, como el botón **`Demo automática`**, el cual ejecuta una secuencia de movimientos predefinida.
+
+Durante esta demostración, cada articulación se mueve de manera independiente, recorriendo cinco posiciones diferentes dentro de su rango de operación. Una vez finaliza la secuencia de un eje, este regresa a su posición inicial (0°) antes de continuar con el siguiente, lo que facilita la verificación individual del movimiento de cada articulación y la correcta configuración del modelo.
+
+<br>
+
+<div align="center">
+  <img src="Images/act4.1.png" alt="Movimiento por ejes" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 4. Movimiento del robot eje por eje.</b>
+</div>
+
+<br>
+
 
 
 ## 8. Actividad 5 – Calibración de cero y error articular
