@@ -157,7 +157,7 @@ Como resultado, se obtiene la siguiente ventana de visualización y control:
 <br>
 
 <div align="center">
-  <img src="Images/Rviz.png" alt="RViz" style="border-radius: 5px; width: 350px;">
+  <img src="Images/Rviz.png" alt="RViz" style="border-radius: 5px; width: 400px;">
   <br>
   <b>Figura 2. Ventana de visualización y control en RViz.</b>
 </div>
