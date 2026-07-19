@@ -163,10 +163,32 @@
 | **Muñeca** | -106.0° | 124.0° | 4.0° |
 | **Pinza** | -35.0° | 35.0°  | 5.0° |
 
+## 10. Actividad 7 – Movimiento simultáneo
 
+## 11. Actividad 8 – Movimiento secuencial
+
+## 12. Actividad 9 – Interpolación de trayectorias
+
+## 13. Actividad 10 – Trayectoria sinusoidal
+
+## 14. Actividad 11 – Cinemática directa
+
+## 15. Actividad 12 – Cinemática inversa
+
+## 16. Actividad 13 – Enseñanza y repetición de poses
+
+## 17. Actividad 14 – Trazado de una figura
+
+## 18. Actividad 15 – Reto final: coreografía robótica
+
+
+## 19. Video Explicativo
 
 
 ## 20. Conclusiones Individuales
+
+
+
 
 ### Conclusiones de [Nombre del Integrante 1]
 * *(Escribe aquí tus conclusiones sobre ROS 2, la cinemática, las dificultades, etc.)*
