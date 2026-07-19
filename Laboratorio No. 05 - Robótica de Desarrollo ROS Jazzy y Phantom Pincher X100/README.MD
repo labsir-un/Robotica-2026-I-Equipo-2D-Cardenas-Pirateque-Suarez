@@ -40,24 +40,7 @@
 
 ## 2. Estructura del repositorio
 
-```
-.
-├── README.md                     <- este documento
-├── docs/
-├── phantomx_sim_bringup/         <- launch files RViz + joint_state_publisher_gui
-├── phantom_ws/         <- paquete ROS 2 con nodos propios (Python)
-│   ├── src
-│   ├── phantomx_pincher
-│   │   ├── phantomx_pincher_description
-│   │   ├── phantomx_pincher_bringup
-│   │   ├── phantomx_pincher_moveit_config
-│   │   └── pincher_cproyect
-│   ├── scripts/
-│   │   ├── act15.py
-│   ├── build        
-│   ├── install    
-│   └── log      
-```
+
 
 ```
 ├── README.md                     <- este documento
@@ -111,29 +94,44 @@
 │   │                                         #   (colores) o teclado, publica PoseCommand,
 │   │                                         #   controla pinza y ventosa (Arduino)
 │   │
-│   ├── scripts/                              # Scripts sueltos (no empaquetados) por actividad,
-│   │   │                                     #   ejecutados directamente con `python3`, 100% simulación
-│   │   │                                     #   (publican /joint_states, sin Dynamixel real)
-│   │   ├── joint_selector_act4.py            # Clase JointSelector base (API: habilitar_torque,
-│   │   │                                     #   mover_articulacion, mover_simultaneo, leer_todas...)
-│   │   ├── joint_selector_act4_gui.py        # Misma API + GUI Tkinter con sliders por articulación
-│   │   ├── joint_seletor_act4.py             # (duplicado/variante con GUI; nombre con typo)
-│   │   ├── act4.py                           # Actividad 4 – movimiento individual (control directo AX-12)
-│   │   ├── act7.py                           # Actividad 7 – movimiento simultáneo (usa joint_selector_act4)
-│   │   ├── act8.py                           # Actividad 8 – movimiento secuencial (usa joint_selector_act4_gui)
-│   │   ├── act9.py                           # Actividad 9 – interpolación lineal/cúbica + gráficas (matplotlib)
-│   │   ├── act13.py                          # Actividad 13 – enseñanza y repetición de poses (Tkinter + YAML)
-│   │   ├── act14_draw_shape_phantomx.py      # Actividad 14 – trazado de figura (IK + Marker en RViz)
-│   │   ├── act15.py                          # Actividad 15 – coreografía (secuencia J1-J4+pinza con timestamps)
-│   │   └── calibrar_geometria.py             # Diagnóstico de geometría real vía TF (calibración L1-L4)
-│   │
+│   └── scripts/                              # Scripts sueltos (no empaquetados) por actividad,
+│       │                                     #   ejecutados directamente con `python3`, 100% simulación
+│       │                                     #   (publican /joint_states, sin Dynamixel real)
+│       ├── joint_selector_act4.py            # Clase JointSelector base (API: habilitar_torque,
+│       │                                     #   mover_articulacion, mover_simultaneo, leer_todas...)
+│       ├── joint_selector_act4_gui.py        # Misma API + GUI Tkinter con sliders por articulación
+│       ├── joint_seletor_act4.py             # (duplicado/variante con GUI; nombre con typo)
+│       ├── act4.py                           # Actividad 4 – movimiento individual (control directo AX-12)
+│       ├── act7.py                           # Actividad 7 – movimiento simultáneo (usa joint_selector_act4)
+│       ├── act8.py                           # Actividad 8 – movimiento secuencial (usa joint_selector_act4_gui)
+│       ├── act9.py                           # Actividad 9 – interpolación lineal/cúbica + gráficas (matplotlib)
+│       ├── act13.py                          # Actividad 13 – enseñanza y repetición de poses (Tkinter + YAML)
+│       ├── act14_draw_shape_phantomx.py      # Actividad 14 – trazado de figura (IK + Marker en RViz)
+│       ├── act15.py                          # Actividad 15 – coreografía (secuencia J1-J4+pinza con timestamps)
+│       └── calibrar_geometria.py             # Diagnóstico de geometría real vía TF (calibración L1-L4)
+│   
 
 ```
 
 
 ---
 
-## 3. Identificación del Hardware y Geometría (Actividades 2 y 3)
+## 3. Puesta en marcha (simulación)
+
+
+## 4. Actividad 1 – Preparación del robot 
+
+
+## 5. Actividad 2 – Identificación de motores y articulaciones 
+
+| Articulación (URDF) | ID Dynamixel | Signo aplicado | Función |
+|---|---|---|---|
+| `phantomx_pincher_arm_shoulder_pan_joint` (Base) | 1 | +1 | Rotación de la base |
+| `phantomx_pincher_arm_shoulder_lift_joint` (Hombro) | 2 | −1 | Eleva/baja el brazo |
+| `phantomx_pincher_arm_elbow_flex_joint` (Codo) | 3 | −1 | Flexión del codo |
+| `phantomx_pincher_arm_wrist_flex_joint` (Muñeca) | 4 | −1 | Orientación de la pinza |
+| `phantomx_pincher_gripper_finger1_joint` (Pinza) | 5 | +1 | Apertura/cierre (dedo 2 es *mimic*) |
+
 
 ### 3.1 Identificación de Motores y Articulaciones
 *(Resultados de la Actividad 2. Complete la siguiente tabla tras la inspección física del robot)*
