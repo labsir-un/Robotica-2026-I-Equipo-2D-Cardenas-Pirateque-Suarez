@@ -118,6 +118,29 @@
 
 ## 3. Puesta en marcha 
 
+Ya teniendo configurado el entorno con los archivos correspondientes para poder ejecutar los comandos de movimientos, se debe iniciar el entorno de trabajo ccagarndo la descripcion del robot en ROS 2. permitiendo asi el reconocimiento de los diferentes elementos y su cisualizacion e intreraccion en RViz.
+
+para esto se introduce los siguietnes comandos en una terminal:
+
+-acceder al espacio de trabajo.
+
+```
+cd /home/davp/ros2_jazzy/Proyecto-Final-Robotica-main/Codigos/phantom_ws
+```
+- Compilación del paquete de descripción.
+```
+colcon build --packages-select phantomx_pincher_description
+```
+- Carga del entorno de trabajo.
+```
+source install/setup.bash
+```
+
+-Inicialización de la simulación.
+```
+ros2 launch phantomx_pincher_description view.launch.py
+```
+
 
 ## 4. Actividad 1 – Preparación del robot 
 
