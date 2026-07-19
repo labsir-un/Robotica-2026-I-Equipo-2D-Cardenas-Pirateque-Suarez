@@ -116,7 +116,7 @@
 
 ---
 
-## 3. Puesta en marcha (simulación)
+## 3. Puesta en marcha 
 
 
 ## 4. Actividad 1 – Preparación del robot 
