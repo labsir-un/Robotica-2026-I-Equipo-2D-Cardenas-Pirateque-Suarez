@@ -222,6 +222,10 @@ Estos parámetros representan las dimensiones geométricas del manipulador y con
 
 ## 9. Actividad 6 – Límites seguros
 
+<br>
+
+<div align="center">
+
 | Articulación | Límite inferior | Límite superior | Margen de seguridad |
 | :--- | :---: | :---: | :---: |
 | **Base** | -145.0° | 145.0° | 5.0° |
@@ -229,6 +233,10 @@ Estos parámetros representan las dimensiones geométricas del manipulador y con
 | **Codo** | -138.0° | 144.0° | 6.0° |
 | **Muñeca** | -106.0° | 124.0° | 4.0° |
 | **Pinza** | -35.0° | 35.0°  | 5.0° |
+
+</div>
+
+<br>
 
 ## 10. Actividad 7 – Movimiento simultáneo
 
