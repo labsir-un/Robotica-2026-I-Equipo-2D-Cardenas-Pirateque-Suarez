@@ -118,28 +118,51 @@
 
 ## 3. Puesta en marcha 
 
-Ya teniendo configurado el entorno con los archivos correspondientes para poder ejecutar los comandos de movimientos, se debe iniciar el entorno de trabajo ccagarndo la descripcion del robot en ROS 2. permitiendo asi el reconocimiento de los diferentes elementos y su cisualizacion e intreraccion en RViz.
+Ya teniendo configurado el entorno con los archivos correspondientes para ejecutar los comandos de movimiento, es necesario iniciar el entorno de trabajo cargando la descripción del robot en ROS 2. Esto permite el reconocimiento de los diferentes componentes del manipulador, así como su visualización e interacción en RViz.
 
-para esto se introduce los siguietnes comandos en una terminal:
+Para ello, se deben ejecutar los siguientes comandos en una terminal:
 
--acceder al espacio de trabajo.
+* **Acceder al espacio de trabajo.**
 
-```
+```bash
 cd /home/davp/ros2_jazzy/Proyecto-Final-Robotica-main/Codigos/phantom_ws
 ```
-- Compilación del paquete de descripción.
-```
+
+* **Compilar el paquete de descripción.**
+
+```bash
 colcon build --packages-select phantomx_pincher_description
 ```
-- Carga del entorno de trabajo.
-```
+
+* **Cargar el entorno de trabajo.**
+
+```bash
 source install/setup.bash
 ```
 
--Inicialización de la simulación.
-```
+* **Inicializar la simulación.**
+
+```bash
 ros2 launch phantomx_pincher_description view.launch.py
 ```
+
+La ejecución de estos comandos permite:
+
+* Calcular y publicar las transformaciones entre los diferentes eslabones del robot.
+* Generar una interfaz gráfica para modificar manualmente los valores de las articulaciones.
+* Abrir la herramienta de visualización RViz, la cual representa el modelo tridimensional del robot y permite verificar que la configuración del manipulador sea correcta.
+
+Como resultado, se obtiene la siguiente ventana de visualización y control:
+
+<br>
+
+<div align="center">
+  <img src="Images/Rviz.png" alt="RViz" style="border-radius: 5px; width: 350px;">
+  <br>
+  <b>Figura 2. Ventana de visualización y control en RViz.</b>
+</div>
+
+<br>
 
 
 ## 4. Actividad 1 – Preparación del robot 
