@@ -191,6 +191,7 @@ Como resultado, se obtiene la siguiente ventana de visualización y control:
 ## 6. Actividad 3 – Medición del robot
 Se tomaron las medidas de los diferentes eslabones del manipulador utilizando principalmente las dimensiones obtenidas de las mallas STL del modelo 3D. A partir de estas mediciones se determinaron los parámetros geométricos empleados en el desarrollo de la cinemática del robot, obteniéndose los siguientes valores:
 
+Dando como resultado:
 
 <br>
 
