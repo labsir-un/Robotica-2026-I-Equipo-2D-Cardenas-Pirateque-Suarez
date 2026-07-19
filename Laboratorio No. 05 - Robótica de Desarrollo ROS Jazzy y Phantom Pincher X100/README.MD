@@ -293,6 +293,29 @@ para esta actividad se ejecuta el codigo correspondiente que abre una ventana nu
 
 ## 10. Actividad 7 – Movimiento simultáneo
 
+Para esta actividad se desarrolló un programa en Python cuyo objetivo es ejecutar una secuencia de movimientos simultáneos de todas las articulaciones del manipulador.
+
+La secuencia de movimiento está compuesta por cinco configuraciones articulares, las cuales se ejecutan de forma consecutiva. Cada configuración define los ángulos objetivo de las articulaciones de la base, hombro, codo, muñeca y pinza, como se muestra a continuación:
+
+<br>
+
+<div align="center">
+
+
+| Configuración | Base | Hombro | Codo | Muñeca | Pinza |
+| ------------: | ---: | -----: | ---: | -----: | ----: |
+|       Inicial |   0° |     0° |   0° |     0° |    0° |
+|             1 |  25° |    25° |  20° |   -20° |    0° |
+|             2 | -35° |    35° |  30° |    30° |    0° |
+|             3 |  85° |   -20° |  55° |    25° |    0° |
+|             4 |  80° |    35° |  55° |   -45° |    0° |
+
+
+</div>
+
+<br>
+
+
 ## 11. Actividad 8 – Movimiento secuencial
 
 ## 12. Actividad 9 – Interpolación de trayectorias
