@@ -109,7 +109,7 @@
 │       ├── act14_draw_shape_phantomx.py      # Actividad 14 – trazado de figura (IK + Marker en RViz)
 │       ├── act15.py                          # Actividad 15 – coreografía (secuencia J1-J4+pinza con timestamps)
 │       └── calibrar_geometria.py             # Diagnóstico de geometría real vía TF (calibración L1-L4)
-│   
+└── Images/  
 
 ```
 
