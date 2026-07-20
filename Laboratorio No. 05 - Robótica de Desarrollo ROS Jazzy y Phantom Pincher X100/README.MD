@@ -122,6 +122,148 @@ Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/
 ```
 
 
+
+```mermaid
+
+flowchart TD
+
+    Start([Inicio]) --> Prep
+
+    subgraph FASE0["Actividad 1 - Preparacion"]
+        Prep[Lanzar simulacion\nros2 launch phantomx_pincher_description view.launch.py]
+        Prep --> Home0[Verificar posicion HOME\nRViz vs modelo]
+    end
+
+    Home0 --> IdentAct
+
+    subgraph FASE1["Actividades 2 y 3 - Identificacion y medicion"]
+        IdentAct[Identificar articulaciones\nIDs Dynamixel, signo, referencia] --> Medir[Medir geometria\nSTL o calibrar_geometria.py]
+        Medir --> DH[Calcular parametros DH\nL1, L2, L3, L4]
+    end
+
+    DH --> Act4
+
+    subgraph FASE2["Actividad 4 - Movimiento individual"]
+        Act4[Seleccionar articulacion] --> Q4{Dentro de limites?}
+        Q4 -- No --> Rechazo4[Rechazar valor\ny registrar advertencia]
+        Rechazo4 --> Act4
+        Q4 -- Si --> Mover4[Enviar posicion\npublicar /joint_states]
+        Mover4 --> Rep4{Se probaron\ndel menos 3 posiciones?}
+        Rep4 -- No --> Act4
+        Rep4 -- Si --> Home4[Regresar a HOME]
+    end
+
+    Home4 --> Act5
+
+    subgraph FASE3["Actividad 5 - Calibracion de cero"]
+        Act5[Enviar 5 posiciones\npor articulacion] --> Leer5[Leer posicion simulada\n/joint_states]
+        Leer5 --> Err5[Calcular error\neq = qdeseado - qmedido]
+        Err5 --> Stats5[Error maximo, promedio\ny desplazamiento de cero]
+        Stats5 --> Graf5[Graficar qdeseado vs qmedido]
+    end
+
+    Graf5 --> Act6
+
+    subgraph FASE4["Actividad 6 - Limites seguros"]
+        Act6[Mover manualmente\nhasta topes mecanicos] --> Reg6[Registrar limite\ninferior y superior]
+        Reg6 --> Margen6[Aplicar margen\nde seguridad]
+        Margen6 --> Guardar6[Guardar limites\nJSON / CSV]
+    end
+
+    Guardar6 --> Act7
+
+    subgraph FASE5["Actividad 7 - Movimiento simultaneo"]
+        Act7[Config. articular\nbase, hombro, codo, muneca, pinza] --> Q7{Cumple\nlimites seguros?}
+        Q7 -- No --> Ajustar7[Ajustar y justificar\nconfiguracion]
+        Ajustar7 --> Act7
+        Q7 -- Si --> Mover7[mover_simultaneo\ntodas las articulaciones a la vez]
+        Mover7 --> Loop7{Quedan\nconfiguraciones?}
+        Loop7 -- Si --> Act7
+        Loop7 -- No --> Home7[Regresar a HOME]
+    end
+
+    Home7 --> Act8
+
+    subgraph FASE6["Actividad 8 - Movimiento secuencial"]
+        Act8[Base] --> Act8b[Hombro] --> Act8c[Codo] --> Act8d[Muneca] --> Act8e[Pinza]
+        Act8e --> Comp8[Comparar vs. simultaneo\ntiempo, trayectoria TCP, suavidad]
+    end
+
+    Comp8 --> Act9
+
+    subgraph FASE7["Actividad 9 - Interpolacion"]
+        Act9[Configuraciones\nA y B alejadas] --> Lin9[Interpolacion lineal]
+        Act9 --> Cub9[Interpolacion cubica / quintica]
+        Lin9 --> Graf9[Graficar q(t)\ny comparar suavidad]
+        Cub9 --> Graf9
+    end
+
+    Graf9 --> Act10
+
+    subgraph FASE8["Actividad 10 - Trayectoria sinusoidal"]
+        Act10[q(t) = q0 + A sin 2 pi f t\n4 combinaciones A, f] --> Q10{Dentro de\nlimites seguros?}
+        Q10 -- No --> Ajustar10[Reducir amplitud\no frecuencia]
+        Ajustar10 --> Act10
+        Q10 -- Si --> Ejec10[Ejecutar y registrar\nqdeseado vs qmedido]
+        Ejec10 --> Err10[Calcular error maximo\ny RMSE]
+    end
+
+    Err10 --> Act11
+
+    subgraph FASE9["Actividad 11 - Cinematica directa"]
+        Act11[Recibir q1, q2, q3, q4] --> Mat11[Matrices DH\nA1 . A2 . A3 . A4]
+        Mat11 --> XYZ11[Calcular x, y, z\nroll, pitch, yaw]
+        XYZ11 --> Comp11[Comparar con pose\nobservada en RViz]
+    end
+
+    Comp11 --> Act12
+
+    subgraph FASE10["Actividad 12 - Cinematica inversa"]
+        Act12[Recibir x, y, z, theta] --> Alc12{Punto dentro\ndel alcance?}
+        Alc12 -- No --> Informar12[Informar:\npunto no alcanzable]
+        Alc12 -- Si --> Sol12[Calcular soluciones\ncodo arriba / codo abajo]
+        Sol12 --> Filtro12{Cumple\nlimites articulares?}
+        Filtro12 -- No --> Descartar12[Descartar solucion]
+        Filtro12 -- Si --> Cercana12[Elegir solucion mas cercana\na config. actual]
+        Cercana12 --> Ejecutar12[Ejecutar movimiento]
+    end
+
+    Ejecutar12 --> Act13
+    Informar12 --> Act13
+
+    subgraph FASE11["Actividad 13 - Ensenanza y repeticion"]
+        Act13[Mover a una configuracion] --> Guardar13[Guardar pose\ncon nombre]
+        Guardar13 --> N13{Al menos\n8 poses?}
+        N13 -- No --> Act13
+        N13 -- Si --> YAML13[Almacenar en YAML]
+        YAML13 --> Play13[Reproducir en orden\ncon tiempo configurable]
+        Play13 --> Stop13[Permitir detener\nen cualquier momento]
+    end
+
+    Stop13 --> Act14
+
+    subgraph FASE12["Actividad 14 - Trazado de figura"]
+        Act14[Definir puntos cartesianos\nde la figura] --> IK14[Resolver con\ncinematica inversa]
+        IK14 --> Interp14[Interpolar entre\npuntos consecutivos]
+        Interp14 --> Dibujo14[Publicar Marker\nen RViz]
+    end
+
+    Dibujo14 --> Act15
+
+    subgraph FASE13["Actividad 15 - Coreografia"]
+        Act15[Iniciar en posicion segura] --> Sync15[Sincronizar movimientos\ncon momentos de la cancion]
+        Sync15 --> Check15{Respeta limites\nseguros?}
+        Check15 -- No --> Ajustar15[Recalcular\nsecuencia de poses]
+        Ajustar15 --> Sync15
+        Check15 -- Si --> Dur15{Duracion\nmayor o igual a 45 s?}
+        Dur15 -- No --> Sync15
+        Dur15 -- Si --> FinSeg15[Finalizar en\nposicion segura]
+    end
+
+    FinSeg15 --> End([Fin])
+
+```
+
 ---
 
 ## 3. Puesta en marcha 
