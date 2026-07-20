@@ -465,7 +465,7 @@ Para esta actividad se desarrolló un programa en Python que implementa una **in
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act12.png" alt="Interfaz de Movimiento simultaneo actividad 12" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act13.png" alt="Interfaz de Movimiento simultaneo actividad 12" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 13.Interfaz de aprendizaje actividad 13.</b>
 </div>
@@ -481,12 +481,36 @@ Para esta actividad se desarrolló una interfaz gráfica en Python para controla
 
 Además, la interfaz incorpora controles de seguridad, como parada de emergencia, detención del trazado, regreso a la posición HOME y limpieza del lienzo de RViz, facilitando la visualización y validación de las trayectorias generadas.
 
-<br> 
-<div align="center"> 
-    <img src="Images/act14.1.png" alt="Interfaz actividad 14" style="border-radius: 5px; width: 500px;">
-    <br> 
-    <b>Figura 14. Interfaz gráfica para el trazado cartesiano en RViz.</b> 
-</div> 
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act14_Circulo.png" alt="Interfaz de Movimiento simultaneo actividad 14" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 14.Interfaz y trazado de circulo actividad 14.</b>
+</div>
+
+<br>
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act14_Iniciales.png" alt="Interfaz de Movimiento simultaneo actividad 14" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 14.Interfaz y trazado de iniciales actividad 14.</b>
+</div>
+
+<br>
+
+
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act14_Triangulo.png" alt="Interfaz de Movimiento simultaneo actividad 14" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 14.Interfaz y trazado de triangulo actividad 14.</b>
+</div>
+
 <br>
 
 ## 18. Actividad 15 – Reto final: coreografía robótica
