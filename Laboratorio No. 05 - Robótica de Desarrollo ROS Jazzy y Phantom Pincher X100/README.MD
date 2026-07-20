@@ -815,20 +815,14 @@ La interfaz permite cargar automáticamente cualquiera de las 5 configuraciones 
 
 Se evaluó la cinemática directa para la **Configuración 2** de la Actividad 7 ($25°, 25°, 20°, -20°, 0°$), comparando el resultado teórico del modelo DH con la pose observada mediante `tf echo` en RViz:
 
-<br>
-
 <div align="center">
-  <img src="Images/Validacion_Act11_Config2.png" alt="Validación cinemática directa - Configuración 2" style="border-radius: 5px; width: 700px;">
-  <br>
-  <b>Figura 12. Comparación entre resultado teórico (DH) y pose observada en RViz — Configuración 2.</b>
-</div>
-
-<br>
 
 | | X (mm) | Y (mm) | Z (mm) | Roll | Pitch | Yaw |
 |---|---:|---:|---:|---:|---:|---:|
 | **Teórico (DH)** | 151.23 | 70.52 | 316.24 | −90.00° | −65.00° | 25.00° |
 | **RViz (`tf echo`)** | 134.00 | 62.00 | 290.00 | 0.00° | −25.00° | −155.00° |
+
+</div>|
 
 ### Análisis de la diferencia observada
 
