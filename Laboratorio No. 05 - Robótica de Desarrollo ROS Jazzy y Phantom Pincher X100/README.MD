@@ -335,7 +335,7 @@ donde se tienen los diferentes elementos del ensamble y el robot en su posición
 
 ## 5. Actividad 2 – Identificación de motores y articulaciones 
 
-
+Los IDs Dynamixel y el mapeo de signo están definidos en `pincher_control/control_servo.py` (`self.dxl_ids`, `self.joint_sign`) y se reutilizan en `follow_joint_trajectory_node.py` para el robot real:
 
 <br>
 
