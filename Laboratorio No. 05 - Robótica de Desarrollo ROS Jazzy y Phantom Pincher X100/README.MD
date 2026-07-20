@@ -458,28 +458,33 @@ Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las art
 
 ## 12. Actividad 9 – Interpolación de trayectorias
 
-<br>
-
-<div align="center">
-  <img src="Images/Interfaz_Act9.png" alt="Interfaz de Movimiento simultaneo actividad 9" style="border-radius: 5px; width: 600px;">
-  <br>
-  <b>Figura 9.Interfaz de interpolación de trayectoria actividad 9.</b>
-</div>
-
-<br>
-
-
-
+El objetivo de esta actividad es comparar el comportamiento de dos métodos de interpolación de trayectorias, **lineal** y **cúbica**, para el movimiento de las cinco articulaciones del robot. La aplicación permite definir las configuraciones inicial y final, ejecutar ambos movimientos y analizar las diferencias mediante gráficas de posición angular respecto al tiempo.
 
 <br>
 
 <div align="center">
-  <img src="Images/Interpolacion_Graficas_Act9.png" alt="Interfaz de Movimiento simu actividad 9" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act9.png" alt="Interfaz de interpolación de trayectoria actividad 9" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 10. Graficas de interpolación de la actividad 9.</b>
+  <b>Figura 9. Interfaz de interpolación de trayectoria de la actividad 9.</b>
 </div>
 
 <br>
+
+La interfaz está dividida en cuatro secciones principales. La primera permite configurar la **Pose A** y la **Pose B** para cada una de las cinco articulaciones mediante controles numéricos. La segunda contiene los parámetros de ejecución, donde se establece el tiempo total del movimiento y el paso de integración (`dt`), además de los controles para habilitar o deshabilitar el torque y regresar el robot a la posición **Home**. La tercera corresponde al botón principal de ejecución, encargado de calcular las trayectorias y realizar el movimiento del robot. Finalmente, la parte inferior incorpora una consola donde se muestra el estado de la ejecución y los mensajes del proceso, junto con un botón de **Parada de Emergencia** disponible durante toda la operación.
+
+El funcionamiento interno del programa comienza calculando las trayectorias mediante la función `calcular_trayectorias_multiples()`, la cual genera los puntos correspondientes a las interpolaciones lineal y cúbica para cada articulación. Posteriormente, la rutina `_rutina_completa()` ejecuta ambos movimientos sobre el robot, exporta los datos obtenidos al archivo `trayectorias_act9.csv` y, una vez finalizada la ejecución, llama a `_dibujar_graficas_finales()` para generar las gráficas comparativas de posición angular en función del tiempo.
+
+<br>
+
+<div align="center">
+  <img src="Images/Interpolacion_Graficas_Act9.png" alt="Gráficas de interpolación actividad 9" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 10. Gráficas de posición angular en función del tiempo para las interpolaciones lineal y cúbica.</b>
+</div>
+
+<br>
+
+Las gráficas muestran la evolución de la posición de cada articulación durante el movimiento. En ellas se observa que la interpolación lineal genera una variación uniforme de la posición, mientras que la interpolación cúbica produce una transición más suave al inicio y al final de la trayectoria, reduciendo los cambios bruscos de velocidad y proporcionando un movimiento más continuo.
 
 
 
