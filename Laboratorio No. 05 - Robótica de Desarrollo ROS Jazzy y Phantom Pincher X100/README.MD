@@ -393,29 +393,57 @@ Los IDs Dynamixel y el mapeo de signo están definidos en `pincher_control/contr
 
 
 ## 6. Actividad 3 – Medición del robot
-Se tomaron las medidas de los diferentes eslabones del manipulador utilizando principalmente las dimensiones obtenidas de las mallas STL del modelo 3D. A partir de estas mediciones se determinaron los parámetros geométricos empleados en el desarrollo de la cinemática del robot, obteniéndose los siguientes valores:
 
-Dando como resultado:
+Las dimensiones del manipulador se obtuvieron a partir de los archivos STL/URDF del paquete `phantomx_pincher_description` (repositorio base de modelos tridimensionales) y se validaron con mediciones directas sobre el ensamble del brazo en Autodesk Inventor.
 
 <br>
 
 <div align="center">
-
-| Parámetro                                  |                                Valor |
-| ------------------------------------------ | -----------------------------------: |
-| L1 (altura de la base al hombro)           |                              44.0 mm |
-| L2 (hombro al codo)                        |                             107.5 mm |
-| L3 (codo a la muñeca)                      |                             107.5 mm |
-| L4 (muñeca al TCP)                         |                              75.3 mm |
-| Alcance radial máximo (`PLANAR_REACH_MAX`) |          L2 + L3 + L4 = **290.3 mm** |
-| Alcance radial mínimo (`PLANAR_REACH_MIN`) |                            **40 mm** |
-| Alcance vertical (`Z_MIN`–`Z_MAX`)         | 0 – (L1 + L2 + L3 + L4) = **334.3 mm**  |
-
+  <img src="Images/Diagrama_DH_Act3_PosicionHome.png" alt="Diagrama DH posición HOME" style="border-radius: 5px; width: 260px;">
+  <br>
+  <b>Figura 3. Diagrama geométrico del manipulador en posición HOME, con los parámetros L1-L4 y los ejes articulares q1-q4 utilizados en la convención Denavit-Hartenberg (Actividades 11 y 12).</b>
 </div>
 
 <br>
 
-Estos parámetros representan las dimensiones geométricas del manipulador y constituyen la base para el cálculo de la cinemática directa e inversa, así como para la definición de los límites del espacio de trabajo utilizados durante la planificación de trayectorias.
+| Parámetro | Valor |
+| --- | ---: |
+| L1 (altura de la base al hombro) | 45.0 mm |
+| L2 (hombro al codo) | 107.0 mm |
+| L3 (codo a la muñeca) | 107.0 mm |
+| L4 (muñeca al TCP) | 108.8 mm |
+| Alcance radial máximo (`PLANAR_REACH_MAX` = L2+L3+L4) | **322.8 mm** |
+| Alcance radial mínimo (práctico) | ~40 mm* |
+| Alcance vertical (`Z_MIN`–`Z_MAX`) | 0 – (L1+L2+L3+L4) = **367.8 mm** |
+
+<br>
+
+*Estos valores son los mismos utilizados como constantes `L1, L2, L3, L4` en `actividad11.py` y `actividad12.py`, garantizando consistencia entre la medición geométrica y el cálculo de cinemática directa/inversa.*
+
+\*El alcance radial mínimo no se deriva de una constante en el código: `actividad12.py` descarta una solución cuando `D < |L2 − L3|`, que con L2 = L3 da un mínimo teórico de 0 mm (codo totalmente plegado). El valor práctico de 40 mm refleja la limitación real por colisión mecánica entre los eslabones, no un cálculo de la cinemática.
+
+### Verificación dimensional en CAD
+
+<br>
+
+<div align="center">
+  <img src="Images/CAD_Inventor_Medicion_Brazo_Act3.png" alt="Medición CAD en Inventor" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 4. Verificación dimensional del ensamble en Autodesk Inventor: distancia hombro–muñeca (283.45 mm) y ancho de la pinza (71.60 mm).</b>
+</div>
+
+<br>
+
+La medición directa en Inventor entre los ejes de hombro y muñeca (283.45 mm) es mayor que la suma L2+L3 del modelo DH (214.0 mm), ya que corresponde a la distancia real sobre el ensamble en una pose no alineada con el plano del modelo simplificado, e incluye el ancho de las carcasas de los servomotores intermedios que la convención DH no contabiliza por separado. Se documenta como dato de verificación física, complementario al modelo cinemático de la Figura 3.
+
+### Dimensiones de la pinza
+
+| Parámetro | Valor | Fuente |
+| --- | ---: | --- |
+| Ancho total de la pinza | 71.60 mm | Medición CAD (Inventor) |
+| Separación entre centros de los dedos | 23.0 mm | URDF (`phantomx_pincher_gripper_finger1/2_joint`) |
+| Recorrido articular por dedo (prismático) | 1.0 – 15.8 mm | URDF (límites del joint) |
+| Bounding box de cada dedo | ≈ 24.0 × 23.0 × 37.0 mm | Malla de colisión `finger.stl` |
 
 
 
