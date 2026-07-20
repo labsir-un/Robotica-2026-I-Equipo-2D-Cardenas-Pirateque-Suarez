@@ -468,6 +468,21 @@ Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las art
 
 <br>
 
+
+
+
+<br>
+
+<div align="center">
+  <img src="Images/Interpolacion_Graficas_Act9.png" alt="Interfaz de Movimiento simu actividad 9" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 10. Graficas de interpolación de la actividad 9.</b>
+</div>
+
+<br>
+
+
+
 ## 13. Actividad 10 – Trayectoria sinusoidal
 
 Para esta actividad se desarrolló un programa en Python que implementa una **interfaz gráfica de usuario (GUI)** para generar trayectorias sinusoidales en cualquiera de las articulaciones del manipulador. La interfaz permite seleccionar la articulación, definir la posición central ((q_0)), la amplitud, la frecuencia y el tiempo de ejecución de la trayectoria.
