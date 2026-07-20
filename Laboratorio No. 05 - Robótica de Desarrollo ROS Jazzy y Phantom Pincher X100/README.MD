@@ -539,8 +539,7 @@ El funcionamiento interno del programa comienza obteniendo los valores articular
 
 ## 15. Actividad 12 – Cinemática inversa
 
-
-La **Actividad 12** implementa la cinemática inversa del robot **Phantom X Pincher X100**, permitiendo calcular las configuraciones articulares necesarias para alcanzar una posición cartesiana objetivo definida por las coordenadas **X, Y, Z** y el ángulo de orientación **θ (pitch)**. Además del cálculo matemático, la interfaz valida que las soluciones obtenidas respeten los límites seguros definidos previamente, selecciona automáticamente la trayectoria más conveniente y ejecuta el movimiento del robot tanto en simulación como en el sistema físico.
+La **Actividad 12** implementa la cinemática inversa del robot **Phantom X Pincher X100**, permitiendo calcular los ángulos articulares necesarios para alcanzar una posición cartesiana definida por **X, Y, Z** y la orientación **θ (pitch)**. Además, valida las soluciones obtenidas y ejecuta el movimiento del robot en simulación o en el sistema físico.
 
 <br>
 
@@ -552,9 +551,15 @@ La **Actividad 12** implementa la cinemática inversa del robot **Phantom X Pinc
 
 <br>
 
-La interfaz está organizada en diferentes secciones para facilitar el cálculo y la ejecución de la cinemática inversa. En la parte superior se encuentra un **botón de parada de emergencia**, que desactiva inmediatamente el torque de los motores. Debajo de este se incluye un menú con **pruebas cartesianas predefinidas**, desde el cual es posible cargar diferentes posiciones de prueba. Posteriormente se ubican los campos para ingresar manualmente las coordenadas **X, Y, Z** y el ángulo **θ**, permitiendo definir cualquier posición objetivo dentro del espacio de trabajo del robot. La interfaz también incorpora un panel de control con botones para activar o desactivar el torque, regresar el manipulador a la posición **Home** y ajustar la velocidad mediante un control deslizante y un cuadro numérico. Finalmente, una consola muestra las soluciones calculadas, las descartadas por exceder los límites de seguridad y el estado de la ejecución del movimiento.
+La interfaz está organizada en las siguientes secciones:
 
-El funcionamiento interno del programa inicia convirtiendo las coordenadas cartesianas al sistema de referencia del robot y calculando el centro de la muñeca para desacoplar la orientación del efector final. A continuación, mediante relaciones trigonométricas y el **teorema del coseno**, se obtienen las dos posibles soluciones de la cinemática inversa (**codo arriba** y **codo abajo**). Cada solución es comparada con los límites seguros definidos en la Actividad 6 y se descartan automáticamente aquellas que superan las restricciones mecánicas. Si existen varias soluciones válidas, el algoritmo selecciona la que requiere el menor desplazamiento desde la configuración actual del robot, logrando un movimiento más eficiente. Finalmente, la configuración elegida se envía al controlador mediante ROS 2 para ejecutar el movimiento de forma suave, mientras la consola informa al usuario sobre el proceso y cualquier condición de error detectada.
+- **Parada de emergencia:** desactiva inmediatamente el torque de los motores.
+- **Pruebas cartesianas:** permite cargar posiciones de prueba predefinidas.
+- **Coordenadas objetivo:** ingreso manual de los valores **X, Y, Z** y **θ**.
+- **Control del robot:** botones para activar/desactivar el torque, regresar a **Home** y ajustar la velocidad mediante un deslizador y un cuadro numérico.
+- **Consola:** muestra las soluciones calculadas, las descartadas por límites de seguridad y el estado de la ejecución.
+
+El algoritmo convierte las coordenadas cartesianas al modelo del robot y calcula las posibles soluciones de **codo arriba** y **codo abajo** utilizando relaciones trigonométricas y el teorema del coseno. Posteriormente verifica que cada solución cumpla los límites seguros definidos en la Actividad 6, selecciona la trayectoria válida que requiere el menor desplazamiento desde la posición actual y envía el movimiento al robot mediante ROS 2.
 
 ## 16. Actividad 13 – Enseñanza y repetición de poses
 
