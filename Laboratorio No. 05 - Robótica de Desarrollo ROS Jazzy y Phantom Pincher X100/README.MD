@@ -415,7 +415,19 @@ Para esta actividad se desarrolló un programa en Python que implementa una **in
 Las poses registradas pueden guardarse y cargarse mediante archivos **YAML**, lo que permite conservar y reutilizar diferentes secuencias de movimiento. Durante la reproducción, el robot ejecuta cada pose de forma automática utilizando la función `mover_simultaneo()`, respetando el tiempo de transición definido por el usuario. Además, la interfaz incorpora funciones de seguridad como **Torque ON**, **Torque OFF**, **HOME** y **Parada de Emergencia**.
 
 
-## 17. Actividad 14 – Trazado de una figura
+## 17. Actividad 14 – Trazado de una figura.
+
+Para esta actividad se desarrolló una interfaz gráfica en Python para controlar el trazado cartesiano del robot en RViz. El programa permite dibujar figuras geométricas (triángulo, cuadrado y círculo) e iniciales personalizadas mediante el cálculo de la cinemática inversa (_cinematica_inversa()), la interpolación de trayectorias (_interpolar_segmento()) y el envío de movimientos simultáneos al manipulador mediante mover_simultaneo().
+
+Además, la interfaz incorpora controles de seguridad, como parada de emergencia, detención del trazado, regreso a la posición HOME y limpieza del lienzo de RViz, facilitando la visualización y validación de las trayectorias generadas.
+
+<br> 
+<div align="center"> 
+    <img src="Images/act14.1.png" alt="Interfaz actividad 14" style="border-radius: 5px; width: 500px;">
+    <br> 
+    <b>Figura 14. Interfaz gráfica para el trazado cartesiano en RViz.</b> 
+</div> 
+<br>
 
 ## 18. Actividad 15 – Reto final: coreografía robótica
 
