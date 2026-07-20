@@ -233,7 +233,7 @@ Al ejecutar el programa, se abrirá la siguiente ventana de control:
 <br>
 
 <div align="center">
-  <img src="Images/act4.png" alt="Ventana de control" style="border-radius: 5px; width: 400px;">
+  <img src="Images/Interfaz_Act4.png" alt="Interfaz de control actividad 4" style="border-radius: 5px; width: 400px;">
   <br>
   <b>Figura 3. Ventana de control.</b>
 </div>
@@ -430,6 +430,20 @@ Además, la interfaz incorpora controles de seguridad, como parada de emergencia
 <br>
 
 ## 18. Actividad 15 – Reto final: coreografía robótica
+
+La Actividad 15 desarrolla un sistema de control para ejecutar coreografías sincronizadas con música en el robot Phantom X Pincher. La aplicación incorpora una interfaz gráfica construida con Tkinter, reproducción de audio mediante Pygame y un motor de generación de movimientos basado en información extraída previamente de archivos CSV.
+
+para esto se creo los archivos de `datos_pedro.csv` y `datos_dubidubidu.csv` donde se almacenan los diferentes parametros musicales como energía, frecuencia y detección de pulsos, que luegos seran cargados el programa. posteriormente transforma los parametros en posiciones para el robot generando el movimiento sincronizado con la musica con algoritmos como:
+
+```python
+b = 40.0 * onda_base * (0.5 + energia)
+h = -30.0 + (freq * 120.0)
+c = 30.0 - (freq * 120.0)
+```
+
+mentiene el ritmo con una frecuencia de **10 Hz**  
+
+ademas todo esto es controlado desde una tinterfaz grafica 
 
 
 ## 19. Video Explicativo
