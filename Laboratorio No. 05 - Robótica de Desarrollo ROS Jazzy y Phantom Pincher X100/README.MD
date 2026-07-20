@@ -1082,7 +1082,7 @@ Para evidenciar el comportamiento de los nodos de ROS 2 comunicándose directame
 
 <br>
 <div align="center">
-  <a href="[Insertar_link_de_YouTube_aquí]" target="_blank">
+  <a href="https://youtu.be/bTBChsdoA-k?si=56v6unIYY6i5sLhe" target="_blank">
     <img src="https://img.shields.io/badge/VER_BONUS_(HARDWARE_FÍSICO)-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video Bonus">
   </a>
 </div>
