@@ -128,10 +128,36 @@ Para ello, se deben ejecutar los siguientes comandos en una terminal:
 cd ~/phantom_ws
 ```
 
+* **Instalación de Dependencias del Sistema.**
+
+```bash
+sudo apt update
+sudo apt install python3-tk python3-numpy python3-matplotlib python3-yaml python3-venv ros-jazzy-visualization-msgs
+```
+
+
 * **Compilar el paquete de descripción.**
 
 ```bash
-colcon build --packages-select phantomx_pincher_description
+# Carga de la instalación base de ROS 2
+source /opt/ros/jazzy/setup.bash
+
+# Compilación del proyecto
+colcon build
+```
+
+
+* ** Creación del Entorno Virtual**
+
+```bash
+# Creación del entorno virtual
+python3 -m venv mi_entorno
+
+# Activación del entorno virtual
+source mi_entorno/bin/activate
+
+# Instalación de dependencias de audio e interfaz gráfica
+pip install librosa pandas pygame pillow
 ```
 
 * **Cargar el entorno de trabajo.**
