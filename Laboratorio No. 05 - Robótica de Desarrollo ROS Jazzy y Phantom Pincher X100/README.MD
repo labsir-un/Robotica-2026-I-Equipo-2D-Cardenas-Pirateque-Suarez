@@ -319,18 +319,30 @@ Finalizada la rutina, el robot regresa automáticamente a la posición **Home (0
 
 ## 9. Actividad 6 – Límites seguros
 
-para esta actividad se ejecuta el codigo correspondiente que abre una ventana nueva que permite calibrar de forma manual estos limites 
+La Actividad 6 tiene como objetivo determinar los límites seguros de operación de cada articulación del robot **Phantom X Pincher X100** mediante un procedimiento de calibración manual. La aplicación fue desarrollada en **Python** utilizando **Tkinter** para la interfaz gráfica y **ROS 2** para la comunicación con el robot a través de la clase `JointSelector`.
 
+A diferencia de la actividad anterior, en esta práctica el **torque de los motores se desactiva automáticamente**, permitiendo que el usuario pueda mover manualmente cada articulación hasta sus topes mecánicos. Posteriormente, el sistema registra ambos extremos y calcula un rango seguro de operación aplicando un margen de seguridad configurable.
 
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 6" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act6.png" alt="Interfaz de calibración actividad 6" style="border-radius:5px; width:600px;">
   <br>
   <b>Figura 6. Interfaz de calibración actividad 6.</b>
 </div>
 
 <br>
+
+La interfaz se organiza en cuatro secciones principales:
+
+- **Configuración global**, donde se define el margen de seguridad que será aplicado a todas las articulaciones.
+- **Panel de calibración**, desde el cual se selecciona la articulación, se observa su posición en tiempo real y se registran los dos extremos de movimiento.
+- **Tabla de resultados**, donde se muestran los límites seguros calculados para cada articulación.
+- **Consola**, utilizada para informar el progreso del proceso y las acciones realizadas por el usuario.
+
+Durante la calibración, el usuario mueve manualmente cada articulación hasta sus dos topes mecánicos y registra ambas posiciones. El sistema calcula automáticamente el límite inferior y el límite superior seguros aplicando el margen configurado, almacenando posteriormente toda la información en archivos **JSON** y **CSV** para ser utilizada en actividades posteriores.
+
+Los límites seguros obtenidos para el robot fueron los siguientes:
 
 <br>
 
@@ -342,12 +354,13 @@ para esta actividad se ejecuta el codigo correspondiente que abre una ventana nu
 | **Hombro** | -96.0° | 96.0° | 4.0° |
 | **Codo** | -138.0° | 144.0° | 6.0° |
 | **Muñeca** | -106.0° | 124.0° | 4.0° |
-| **Pinza** | -35.0° | 35.0°  | 5.0° |
+| **Pinza** | -35.0° | 35.0° | 5.0° |
 
 </div>
 
 <br>
 
+Estos valores constituyen el rango de operación seguro del manipulador y son utilizados como restricciones durante el desarrollo de las actividades posteriores, evitando que el robot alcance posiciones cercanas a los topes mecánicos y reduciendo el riesgo de daños en los servomotores o en la estructura del manipulador.
 ## 10. Actividad 7 – Movimiento simultáneo
 
 Para esta actividad se desarrolló un programa en Python cuyo objetivo es ejecutar una secuencia de movimientos simultáneos de todas las articulaciones del manipulador.
