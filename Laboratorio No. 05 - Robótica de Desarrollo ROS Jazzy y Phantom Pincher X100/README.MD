@@ -563,11 +563,10 @@ Los límites seguros obtenidos para el robot fueron los siguientes:
 <br>
 
 Estos valores constituyen el rango de operación seguro del manipulador y son utilizados como restricciones durante el desarrollo de las actividades posteriores, evitando que el robot alcance posiciones cercanas a los topes mecánicos y reduciendo el riesgo de daños en los servomotores o en la estructura del manipulador.
+
 ## 10. Actividad 7 – Movimiento simultáneo
 
-Para esta actividad se desarrolló un programa en Python cuyo objetivo es ejecutar una secuencia de movimientos simultáneos de todas las articulaciones del manipulador.
-
-La secuencia de movimiento está compuesta por cinco configuraciones articulares, las cuales se ejecutan de forma consecutiva. Cada configuración define los ángulos objetivo de las articulaciones de la base, hombro, codo, muñeca y pinza, como se muestra a continuación:
+Para esta actividad se desarrolló una interfaz gráfica en Python cuyo objetivo es comandar el desplazamiento simultáneo de todas las articulaciones del manipulador, ejecutando las cinco configuraciones articulares definidas en la guía de laboratorio:
 
 <br>
 
@@ -585,20 +584,21 @@ La secuencia de movimiento está compuesta por cinco configuraciones articulares
 
 <br>
 
-En cada etapa, todas las articulaciones se desplazan simultáneamente hasta alcanzar la configuración objetivo mediante la función `mover_simultaneo()`. Una vez alcanzada la posición, el programa realiza una pausa de tres segundos para facilitar la observación de la postura antes de continuar con la siguiente configuración.
+A diferencia de una secuencia automática simple, el programa incorpora un **sistema de validación previo** a cada envío: antes de mover el robot, compara cada valor articular solicitado contra los límites seguros determinados en la Actividad 6 (cargados automáticamente desde `limites_act6/limites_seguros.json`). Si algún valor excede su límite, el programa lo trunca automáticamente al límite más cercano y despliega en la consola gráfica una justificación técnica del motivo (colisión mecánica inminente o riesgo de sobreesfuerzo del servomotor) antes de ejecutar el movimiento ya corregido.
 
-Al finalizar la secuencia, el manipulador regresa automáticamente a la posición HOME (0°, 0°, 0°, 0°, 0°), deshabilita el torque de los servomotores y cierra el nodo de ROS 2 de forma segura.
+Para el conjunto de límites calibrados de este equipo, **ninguna de las cinco configuraciones de la guía requirió truncamiento**: los cinco vectores articulares caen dentro del rango seguro definido en la Actividad 6.
 
+El flujo de uso es el siguiente: se selecciona una configuración desde el menú desplegable ("Configuraciones del Laboratorio") y se presiona **▶ EJECUTAR CONFIGURACIÓN**. El movimiento se ejecuta mediante `mover_simultaneo()`, con un tiempo de interpolación ajustable entre 5.0 s (velocidad mínima) y 0.2 s (velocidad máxima) mediante un control deslizante de velocidad (rango 1–1023, valor por defecto 150). Al finalizar cada movimiento, la consola despliega un reporte comparando, articulación por articulación, la posición deseada frente a la posición real leída de los servomotores.
+
+La interfaz incluye además parada de emergencia (corta el torque de inmediato), botones independientes de **Torque ON/OFF**, y un botón de retorno a **HOME** (0°, 0°, 0°, 0°, 0°) para dejar el manipulador en posición segura al finalizar.
 
 <br>
 
 <div align="center">
   <img src="Images/Interfaz_Act7.png" alt="Interfaz de Movimiento simultaneo actividad 7" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 7. Interfaz de Movimiento simultaneo actividad 7.</b>
+  <b>Figura 7. Interfaz de movimiento simultáneo con validación y justificación automática de límites (Actividad 7).</b>
 </div>
-
-<br>
 
 ## 11. Actividad 8 – Movimiento secuencial
 
