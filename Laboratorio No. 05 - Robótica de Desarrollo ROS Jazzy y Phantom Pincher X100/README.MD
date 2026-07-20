@@ -339,21 +339,37 @@ La ejecución de estos comandos permite:
 
 
 
-## 4. Actividad 1 – Preparación del robot 
+## 4. Actividad 1 – Preparación del robot
 
-Como resultado de la anterior ejecucion de comandos, se obtiene la siguiente ventana de visualización y control:
+> **Nota sobre el alcance de la entrega:** por restricciones de tiempo, el docente autorizó entregar este laboratorio trabajando únicamente sobre el modelo simulado en RViz. Lo logrado adicionalmente sobre el robot físico se documenta como bonus en la sección **[Bonus] Trabajo con el robot físico**, al final de este documento.
+
+Como preparación del laboratorio, se cargó la descripción URDF/xacro del Phantom X Pincher X100 (paquete `phantomx_pincher_description`) mediante:
+
+```bash
+ros2 launch phantomx_pincher_description view.launch.py
+```
+
+Este comando:
+
+- Publica las transformaciones (`tf`) entre los cinco eslabones del manipulador (base, hombro, codo, muñeca, pinza) a partir del URDF.
+- Levanta el **Joint State Publisher GUI**, que permite mover manualmente cada articulación dentro de sus límites definidos en el xacro.
+- Abre **RViz**, cargando el modelo tridimensional completo del robot (mallas STL/DAE) para verificación visual.
+
+Como resultado, se obtuvo la siguiente ventana de visualización y control:
 
 <br>
-
 <div align="center">
   <img src="Images/Rviz.png" alt="RViz" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 2. Ventana de visualización y control en RViz.</b>
 </div>
-
 <br>
 
-donde se tienen los diferentes elementos del ensamble y el robot en su posición home.
+Se verificó lo siguiente antes de continuar con el resto de actividades:
+
+- El modelo carga en la posición **HOME** (0°, 0°, 0°, 0°, 0°), una configuración segura y libre de colisiones entre eslabones.
+- Los cinco elementos del ensamble (base, hombro, codo, muñeca, pinza) corresponden geométricamente al Phantom X Pincher X100 real, según las mallas del paquete `phantomx_pincher_description`.
+- Los *sliders* del Joint State Publisher desplazan cada articulación de forma independiente y respetan los límites definidos en `phantomx_pincher.urdf.xacro`, confirmando que el modelo queda correctamente parametrizado para las actividades siguientes.
 
 ## 5. Actividad 2 – Identificación de motores y articulaciones 
 
