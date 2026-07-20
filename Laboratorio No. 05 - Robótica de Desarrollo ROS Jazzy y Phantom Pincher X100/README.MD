@@ -195,9 +195,10 @@ Como resultado de la anterior ejecucion de comandos, se obtiene la siguiente ven
 
 <br>
 
-donde se tienen los diferentes elementos del ensamble y el robot en su posición home 
+donde se tienen los diferentes elementos del ensamble y el robot en su posición home.
 
 ## 5. Actividad 2 – Identificación de motores y articulaciones 
+
 
 
 <br>
@@ -269,7 +270,7 @@ Al ejecutar el programa, se abrirá la siguiente ventana de control:
 
 <br>
 
-La interfaz permite controlar cada una de las articulaciones del manipulador mediante controles deslizantes (*sliders*), de forma similar a la ventana del **Joint State Publisher**. Sin embargo, incorpora funcionalidades adicionales, como el botón **`Demo automática`**, el cual ejecuta una secuencia de movimientos predefinida.
+La interfaz permite controlar cada una de las articulaciones del manipulador mediante controles deslizantes (*sliders*), de forma similar a la ventana del **Joint State Publisher**. Sin embargo, incorpora funcionalidades adicionales, como el botón **`Demo automática`**, el cual ejecuta una secuencia de movimientos predefinida o un slider de control de velocidad. Ademas de incorporar las funciones de activación y desactivación del torque.
 
 Durante esta demostración, cada articulación se mueve de manera independiente, recorriendo cinco posiciones diferentes dentro de su rango de operación. Una vez finaliza la secuencia de un eje, este regresa a su posición inicial (0°) antes de continuar con el siguiente, lo que facilita la verificación individual del movimiento de cada articulación y la correcta configuración del modelo.
 
