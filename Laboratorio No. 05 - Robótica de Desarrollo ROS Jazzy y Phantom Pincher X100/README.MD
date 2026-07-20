@@ -539,15 +539,22 @@ El funcionamiento interno del programa comienza obteniendo los valores articular
 
 ## 15. Actividad 12 – Cinemática inversa
 
+
+La **Actividad 12** implementa la cinemática inversa del robot **Phantom X Pincher X100**, permitiendo calcular las configuraciones articulares necesarias para alcanzar una posición cartesiana objetivo definida por las coordenadas **X, Y, Z** y el ángulo de orientación **θ (pitch)**. Además del cálculo matemático, la interfaz valida que las soluciones obtenidas respeten los límites seguros definidos previamente, selecciona automáticamente la trayectoria más conveniente y ejecuta el movimiento del robot tanto en simulación como en el sistema físico.
+
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act12.png" alt="Interfaz de Movimiento simultaneo actividad 12" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act12.png" alt="Interfaz de cinemática inversa actividad 12" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 12.Interfaz de cinemática inversa actividad 12.</b>
+  <b>Figura 12. Interfaz de cinemática inversa actividad 12.</b>
 </div>
 
 <br>
+
+La interfaz está organizada en diferentes secciones para facilitar el cálculo y la ejecución de la cinemática inversa. En la parte superior se encuentra un **botón de parada de emergencia**, que desactiva inmediatamente el torque de los motores. Debajo de este se incluye un menú con **pruebas cartesianas predefinidas**, desde el cual es posible cargar diferentes posiciones de prueba. Posteriormente se ubican los campos para ingresar manualmente las coordenadas **X, Y, Z** y el ángulo **θ**, permitiendo definir cualquier posición objetivo dentro del espacio de trabajo del robot. La interfaz también incorpora un panel de control con botones para activar o desactivar el torque, regresar el manipulador a la posición **Home** y ajustar la velocidad mediante un control deslizante y un cuadro numérico. Finalmente, una consola muestra las soluciones calculadas, las descartadas por exceder los límites de seguridad y el estado de la ejecución del movimiento.
+
+El funcionamiento interno del programa inicia convirtiendo las coordenadas cartesianas al sistema de referencia del robot y calculando el centro de la muñeca para desacoplar la orientación del efector final. A continuación, mediante relaciones trigonométricas y el **teorema del coseno**, se obtienen las dos posibles soluciones de la cinemática inversa (**codo arriba** y **codo abajo**). Cada solución es comparada con los límites seguros definidos en la Actividad 6 y se descartan automáticamente aquellas que superan las restricciones mecánicas. Si existen varias soluciones válidas, el algoritmo selecciona la que requiere el menor desplazamiento desde la configuración actual del robot, logrando un movimiento más eficiente. Finalmente, la configuración elegida se envía al controlador mediante ROS 2 para ejecutar el movimiento de forma suave, mientras la consola informa al usuario sobre el proceso y cualquier condición de error detectada.
 
 ## 16. Actividad 13 – Enseñanza y repetición de poses
 
