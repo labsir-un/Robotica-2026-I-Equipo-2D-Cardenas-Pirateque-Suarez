@@ -563,19 +563,48 @@ El algoritmo convierte las coordenadas cartesianas al modelo del robot y calcula
 
 ## 16. Actividad 13 – Enseñanza y repetición de poses
 
-Para esta actividad se desarrolló un programa en Python que implementa una **interfaz gráfica de usuario (GUI)** para realizar tareas de **enseñanza y repetición de poses (Teach & Play)** del manipulador. La aplicación permite controlar manualmente cada articulación mediante deslizadores, capturar y almacenar las posiciones alcanzadas, reproducir secuencias de movimiento y administrar el torque y la velocidad del robot.
+El objetivo de esta actividad es implementar un sistema de **Teach & Play**, que permita registrar manualmente diferentes configuraciones articulares del robot, almacenarlas en una secuencia y reproducirlas posteriormente de manera automática. Además, se incorporan funciones de control como ajuste de velocidad, activación y desactivación del torque, retorno a la posición HOME, parada de emergencia y almacenamiento permanente de las secuencias mediante archivos YAML.
 
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act13.png" alt="Interfaz de Movimiento simultaneo actividad 12" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act13.png" alt="Interfaz actividad 13" style="border-radius: 5px; width: 700px;">
   <br>
-  <b>Figura 13.Interfaz de aprendizaje actividad 13.</b>
+  <b>Figura XX. Interfaz de enseñanza y repetición de poses de la actividad 13.</b>
 </div>
 
 <br>
 
-Las poses registradas pueden guardarse y cargarse mediante archivos **YAML**, lo que permite conservar y reutilizar diferentes secuencias de movimiento. Durante la reproducción, el robot ejecuta cada pose de forma automática utilizando la función `mover_simultaneo()`, respetando el tiempo de transición definido por el usuario. Además, la interfaz incorpora funciones de seguridad como **Torque ON**, **Torque OFF**, **HOME** y **Parada de Emergencia**.
+### Descripción de la interfaz
+
+La interfaz se divide en las siguientes secciones:
+
+- **Control manual de articulaciones:** permite mover individualmente cada articulación mediante un *slider* y un *Spinbox*, respetando los límites mecánicos definidos para el robot.
+
+- **Configuración de velocidad:** incorpora un control deslizante y un campo numérico para modificar en tiempo real la velocidad de movimiento de los servomotores.
+
+- **Controles del robot:** incluye los botones **Torque ON**, **Torque OFF** e **Ir a HOME**, facilitando la preparación del robot para la enseñanza o la ejecución de movimientos.
+
+- **Registro de poses (Teach):** permite asignar un nombre a la configuración actual y almacenarla dentro de la secuencia de trabajo.
+
+- **Secuencia de poses:** muestra todas las poses registradas y ofrece herramientas para eliminar, limpiar, guardar o cargar secuencias mediante archivos YAML.
+
+- **Reproducción (Playback):** permite definir el tiempo de transición entre poses y ejecutar automáticamente toda la secuencia registrada.
+
+- **Consola de diagnóstico:** informa continuamente el estado del sistema, las operaciones realizadas y posibles mensajes de error.
+
+### Funcionamiento interno del código
+
+El programa está desarrollado sobre **ROS 2** y utiliza la clase `JointSelector` para controlar tanto el robot físico como la simulación.
+
+Su funcionamiento se resume en los siguientes pasos:
+
+- Controla manualmente las articulaciones mediante *sliders* y *Spinbox*, enviando comandos en tiempo real al robot.
+- Permite capturar la posición actual leyendo directamente los valores reales de las articulaciones desde ROS 2.
+- Almacena cada pose junto con un nombre dentro de una lista de secuencias.
+- Guarda y carga dichas secuencias utilizando archivos **YAML**, permitiendo reutilizarlas posteriormente.
+- Reproduce automáticamente todas las poses registradas, realizando transiciones suaves mediante `mover_simultaneo()`.
+- Sincroniza la interfaz con el estado del robot durante la reproducción y permite detener el proceso mediante una parada de emergencia que desactiva inmediatamente el torque.
 
 
 ## 17. Actividad 14 – Trazado de una figura.
