@@ -1046,5 +1046,60 @@ La interfaz está organizada en las siguientes secciones:
 
 
 
-## 19. Video Explicativo
+## 19. Videos Demostrativos
 
+Conforme a los lineamientos de la guía del laboratorio, los videos correspondientes a las actividades evaluables inician con la introducción oficial de LabSIR[cite: 1]. A continuación se presentan los enlaces de sustentación:
+
+### 19.1. Validación Técnica
+Recopilación del movimiento individual, movimiento simultáneo y secuencial, enseñanza y repetición de poses, y el trazado de figuras[cite: 1].
+
+<br>
+<div align="center">
+  <a href="[Insertar_link_de_YouTube_aquí]" target="_blank">
+    <img src="https://img.shields.io/badge/VER_VALIDACIÓN_TÉCNICA-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Validación Técnica">
+  </a>
+</div>
+<br>
+
+### 19.2. Coreografía Robótica
+Ejecución completa, continua y sin cortes de la rutina musical sincronizada (superando el tiempo mínimo de 45 segundos)[cite: 1].
+
+<br>
+<div align="center">
+  <a href="[Insertar_link_de_YouTube_aquí]" target="_blank">
+    <img src="https://img.shields.io/badge/VER_COREOGRAFÍA_ROBÓTICA-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Coreografía Robótica">
+  </a>
+</div>
+<br>
+
+---
+
+## 20. [Bonus] Trabajo con el robot físico
+
+Debido a las restricciones de tiempo, el alcance evaluable de este laboratorio se centró en el entorno de simulación (RViz). Sin embargo, en esta sección se documenta el trabajo adicional y la transferencia de código realizada sobre el hardware real del **Phantom X Pincher X100**. 
+
+Para evidenciar el comportamiento de los nodos de ROS 2 comunicándose directamente con los servomotores Dynamixel físicos, se estructuró un único **Video Bonus**. Este clip recopila de forma dinámica y con música de fondo las pruebas físicas exitosas que complementan el análisis virtual desarrollado en las actividades anteriores.
+
+<br>
+<div align="center">
+  <a href="[Insertar_link_de_YouTube_aquí]" target="_blank">
+    <img src="https://img.shields.io/badge/VER_BONUS_(HARDWARE_FÍSICO)-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Video Bonus">
+  </a>
+</div>
+<br>
+
+---
+
+## 21. Conclusiones individuales
+
+## 21. Conclusiones individuales
+
+**David Felipe Cárdenas Cubides:**
+> * **Análisis de trayectorias:** La implementación de diferentes perfiles de movimiento demostró que la interpolación cúbica simultánea es fundamental para preservar la vida útil de los actuadores físicos, ya que mitiga las vibraciones mecánicas y los picos de aceleración que sí se presentan durante las rutinas secuenciales y de interpolación lineal.
+> * **Diseño de interfaces e integración:** El desarrollo de las GUI interactuando directamente con los nodos de ROS 2 facilitó enormemente la abstracción del control robótico. Sistemas como el *Teach & Play* basado en el registro continuo de archivos YAML comprobaron que una buena interfaz agiliza sustancialmente la programación de tareas repetitivas de paletizado o posicionamiento.
+> * **Sincronización de señales en tiempo real:** La resolución del reto final de coreografía evidenció la flexibilidad estructural de ROS 2 para acoplar librerías de análisis externo (como el procesamiento de energía y frecuencias de audio) con comandos de posición articular, logrando un control dinámico y sostenido a una frecuencia estable de 10 Hz sin desfasar el sistema.
+
+**David Santiago Pirateque Suárez:**
+> * **Modelado cinemático y marcos de referencia:** El cálculo matemático mediante la convención de Denavit-Hartenberg y el desacople cinemático resultó altamente preciso. Sin embargo, el contraste analítico contra RViz subrayó la necesidad imperativa de contemplar los *offsets* geométricos y las transformaciones espaciales fijas declaradas en el URDF del manipulador para empalmar correctamente el modelo teórico con el efector final real.
+> * **Gestión de límites y seguridad mecatrónica:** La programación de validaciones restrictivas previas a la ejecución del movimiento resultó ser el componente de seguridad más crítico del laboratorio. Descartar algorítmicamente posturas matemáticamente válidas pero mecánicamente inviables (como forzar el hombro en configuraciones de *codo abajo* extremas) previno colisiones inminentes y garantizó la integridad de los servomotores Dynamixel.
+> * **Simulación como gemelo digital:** Operar el entorno de desarrollo y visualización sobre Ubuntu 24.04 aislando la lógica de control en RViz permitió depurar errores de código sin arriesgar el hardware. Esta metodología demostró que un nodo de ROS 2 estructurado correctamente en simulación funciona como un gemelo digital efectivo, permitiendo una migración casi directa y confiable hacia las pruebas con el robot físico.
