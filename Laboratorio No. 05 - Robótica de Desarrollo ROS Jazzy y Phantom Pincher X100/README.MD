@@ -123,7 +123,9 @@ Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/
 
 
 
-```mermaidflowchart TD
+```mermaid
+
+flowchart TD
 
     Start(["Inicio"]) --> Prep
 
