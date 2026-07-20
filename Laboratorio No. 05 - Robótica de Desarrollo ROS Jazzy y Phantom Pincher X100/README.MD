@@ -38,9 +38,9 @@
 
 
 
-## 2. Estructura del repositorio
+## 2. Estructura del repositorio y Diagrama de flujo
 
-
+### 2.1. Estructura del repositorio
 
 ```
 Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/
@@ -123,6 +123,7 @@ Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/
 
 
 
+### 2.2. Diagrama de flujo
 ```mermaid
 flowchart TD
 
