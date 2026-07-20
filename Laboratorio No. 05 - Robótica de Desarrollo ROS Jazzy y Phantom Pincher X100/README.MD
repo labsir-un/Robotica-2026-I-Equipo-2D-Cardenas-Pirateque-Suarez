@@ -178,7 +178,12 @@ La ejecución de estos comandos permite:
 * Generar una interfaz gráfica para modificar manualmente los valores de las articulaciones.
 * Abrir la herramienta de visualización RViz, la cual representa el modelo tridimensional del robot y permite verificar que la configuración del manipulador sea correcta.
 
-Como resultado, se obtiene la siguiente ventana de visualización y control:
+
+
+
+## 4. Actividad 1 – Preparación del robot 
+
+Como resultado de la anterior ejecucion de comandos, se obtiene la siguiente ventana de visualización y control:
 
 <br>
 
@@ -190,9 +195,7 @@ Como resultado, se obtiene la siguiente ventana de visualización y control:
 
 <br>
 
-
-## 4. Actividad 1 – Preparación del robot 
-
+donde se tienen los diferentes elementos del ensamble y el robot en su posición home 
 
 ## 5. Actividad 2 – Identificación de motores y articulaciones 
 
