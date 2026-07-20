@@ -609,41 +609,57 @@ Su funcionamiento se resume en los siguientes pasos:
 
 ## 17. Actividad 14 – Trazado de una figura.
 
-Para esta actividad se desarrolló una interfaz gráfica en Python para controlar el trazado cartesiano del robot en RViz. El programa permite dibujar figuras geométricas (triángulo, cuadrado y círculo) e iniciales personalizadas mediante el cálculo de la cinemática inversa (_cinematica_inversa()), la interpolación de trayectorias (_interpolar_segmento()) y el envío de movimientos simultáneos al manipulador mediante mover_simultaneo().
-
-Además, la interfaz incorpora controles de seguridad, como parada de emergencia, detención del trazado, regreso a la posición HOME y limpieza del lienzo de RViz, facilitando la visualización y validación de las trayectorias generadas.
+El objetivo de esta actividad es implementar un sistema capaz de generar trayectorias cartesianas para que el robot trace figuras geométricas e iniciales sobre un plano de trabajo. Para ello se emplea la cinemática inversa para convertir cada punto del recorrido en posiciones articulares, mientras que RViz permite visualizar el trazado en tiempo real mediante marcadores.
 
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act14_Circulo.png" alt="Interfaz de Movimiento simultaneo actividad 14" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act14_Circulo.png" alt="Interfaz actividad 14 - Círculo" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 14.Interfaz y trazado de circulo actividad 14.</b>
+  <b>Figura 14. Interfaz y trazado de un círculo en la actividad 14.</b>
 </div>
-
-<br>
 
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act14_Iniciales.png" alt="Interfaz de Movimiento simultaneo actividad 14" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act14_Iniciales.png" alt="Interfaz actividad 14 - Iniciales" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 14.Interfaz y trazado de iniciales actividad 14.</b>
+  <b>Figura 15. Interfaz y trazado de iniciales en la actividad 14.</b>
 </div>
-
-<br>
-
-
 
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act14_Triangulo.png" alt="Interfaz de Movimiento simultaneo actividad 14" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Interfaz_Act14_Triangulo.png" alt="Interfaz actividad 14 - Triángulo" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 14.Interfaz y trazado de triangulo actividad 14.</b>
+  <b>Figura 16. Interfaz y trazado de un triángulo en la actividad 14.</b>
 </div>
 
 <br>
+
+### Descripción de la interfaz
+
+La interfaz está organizada en las siguientes secciones:
+
+- **Botones de seguridad:** incluyen parada de emergencia, detención del trazado y retorno a la posición HOME.
+- **Configuración del trazado:** permite definir el tiempo de muestreo (*dt*) utilizado durante la interpolación de la trayectoria.
+- **Dibujo geométrico:** incorpora botones para generar automáticamente un triángulo, un cuadrado o un círculo.
+- **Trazado de iniciales:** permite ingresar hasta cinco letras para que el robot las dibuje de forma secuencial.
+- **Consola de trazado:** muestra el progreso del recorrido, los puntos generados y los mensajes de estado del sistema.
+- **Limpiar lienzo:** elimina todos los marcadores publicados en RViz para iniciar un nuevo dibujo.
+
+### Funcionamiento interno del código
+
+El programa utiliza **ROS 2**, **RViz** y la clase `JointSelector` para controlar el robot y visualizar el recorrido.
+
+Su funcionamiento se resume en los siguientes pasos:
+
+- Genera automáticamente los puntos que describen la figura geométrica o las letras seleccionadas.
+- Interpola cada segmento del recorrido para obtener un movimiento continuo y suave.
+- Calcula la cinemática inversa de cada punto cartesiano para obtener los ángulos articulares correspondientes.
+- Envía las posiciones al robot mediante `mover_simultaneo()`, sincronizando el movimiento físico o simulado.
+- Publica marcadores tipo **SPHERE** sobre el tópico `/visualization_marker`, permitiendo observar el trazado en tiempo real dentro de RViz.
+- Implementa levantamiento del "lápiz" entre letras o trayectorias independientes, además de controles de parada, emergencia y retorno automático a HOME.
 
 ## 18. Actividad 15 – Reto final: coreografía robótica
 
