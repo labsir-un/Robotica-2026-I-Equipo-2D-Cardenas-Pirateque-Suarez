@@ -36,7 +36,7 @@
 - Aplicar cinemática directa e inversa validando contra la pose observada en RViz.
 - Programar trayectorias, repetición de poses y una tarea artística (trazado) y una coreografía, todo en simulación.
 
-
+> **Nota sobre el alcance de la entrega:** por restricciones de tiempo, el docente autorizó entregar este laboratorio trabajando únicamente sobre el modelo simulado en RViz. Lo logrado adicionalmente sobre el robot físico se documenta como bonus en la sección **[Bonus] Trabajo con el robot físico**, al final de este documento.
 
 ## 2. Estructura del repositorio y Diagrama de flujo
 
@@ -341,7 +341,7 @@ La ejecución de estos comandos permite:
 
 ## 4. Actividad 1 – Preparación del robot
 
-> **Nota sobre el alcance de la entrega:** por restricciones de tiempo, el docente autorizó entregar este laboratorio trabajando únicamente sobre el modelo simulado en RViz. Lo logrado adicionalmente sobre el robot físico se documenta como bonus en la sección **[Bonus] Trabajo con el robot físico**, al final de este documento.
+*(Trabajo realizado en simulación — ver nota sobre el alcance de la entrega en la sección 1.)*
 
 Como preparación del laboratorio, se cargó la descripción URDF/xacro del Phantom X Pincher X100 (paquete `phantomx_pincher_description`) mediante:
 
