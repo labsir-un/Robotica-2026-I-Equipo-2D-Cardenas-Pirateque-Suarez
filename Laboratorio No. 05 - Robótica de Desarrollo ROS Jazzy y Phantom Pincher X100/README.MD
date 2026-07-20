@@ -517,6 +517,9 @@ Adicionalmente, la interfaz incorpora funciones de seguridad y control, como los
 
 ## 14. Actividad 11 – Cinemática directa
 
+
+El objetivo de esta actividad es calcular la **cinemática directa** del manipulador empleando la convención de **Denavit-Hartenberg (DH)**. A partir de los valores articulares ingresados por el usuario, el programa determina la posición del efector final (**X, Y y Z**) y su orientación mediante los ángulos de **Roll, Pitch y Yaw**, además de ejecutar el movimiento correspondiente en el robot o en la simulación.
+
 <br>
 
 <div align="center">
@@ -526,6 +529,13 @@ Adicionalmente, la interfaz incorpora funciones de seguridad y control, como los
 </div>
 
 <br>
+
+La interfaz está organizada en cuatro secciones principales. La primera permite seleccionar alguna de las configuraciones previamente almacenadas durante la **Actividad 7** para cargarlas automáticamente. La segunda contiene los controles numéricos para ingresar manualmente los valores articulares de la base, hombro, codo, muñeca y pinza, respetando los límites seguros definidos previamente. La tercera incorpora los botones para ejecutar el cálculo de la cinemática directa y regresar el robot a la posición **Home**. Finalmente, la parte inferior muestra los resultados calculados, incluyendo la posición del efector final en **X, Y y Z** y su orientación mediante los ángulos **Roll, Pitch y Yaw**.
+
+El funcionamiento interno del programa comienza obteniendo los valores articulares ingresados por el usuario. Posteriormente, la función `matriz_dh()` construye las matrices homogéneas correspondientes a cada eslabón utilizando los parámetros de Denavit-Hartenberg, mientras que `_calcular_dh()` realiza la multiplicación secuencial de dichas matrices para obtener la transformación homogénea del efector final. Finalmente, la función `extraer_xyz_rpy()` calcula la posición y la orientación del efector final, mostrando los resultados en la interfaz y ejecutando simultáneamente el movimiento del robot mediante la función `_ejecutar_cinematica()`.
+
+
+
 
 ## 15. Actividad 12 – Cinemática inversa
 
