@@ -288,15 +288,33 @@ Durante esta demostración, cada articulación se mueve de manera independiente,
 
 ## 8. Actividad 5 – Calibración de cero y error articular
 
-<br>
+La Actividad 5 consiste en el desarrollo de un asistente gráfico para calibrar el cero mecánico y evaluar el error de posicionamiento de cada articulación del robot **Phantom X Pincher X100**. La aplicación fue desarrollada en **Python**, utilizando **Tkinter** para la interfaz gráfica, **ROS 2** para la comunicación con el robot y **Matplotlib** junto con **NumPy** para el análisis y la generación de gráficas.
+
+La interfaz permite seleccionar la articulación que se desea evaluar, visualizar su posición en tiempo real y ejecutar una rutina automática de calibración basada en cinco posiciones de referencia previamente definidas para cada articulación.
 
 <div align="center">
-  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 5" style="border-radius: 5px; width:600px;">
+  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 5" style="border-radius:5px; width:600px;">
   <br>
-  <b>Figura 5. Interfaz de calibración actividad 5.</b>
+  <b>Figura 5. Interfaz gráfica de la Actividad 5.</b>
 </div>
 
 <br>
+
+La interfaz está organizada en cinco secciones principales:
+
+- **Panel de seguridad**, con los botones de **Emergencia**, **Detener rutina** e **Ir a Home**.
+- **Panel de control**, donde se selecciona la articulación, se visualiza su posición actual y se inicia la prueba automática.
+- **Tabla de resultados**, que registra la posición deseada, la posición medida y el error obtenido en cada punto.
+- **Panel estadístico**, que muestra el error máximo, el error promedio y el desplazamiento del cero.
+- **Consola**, donde se informa el avance de la calibración.
+
+Durante la prueba, el robot recorre automáticamente cinco posiciones de referencia. En cada una se mide el ángulo real mediante el método `leer_posicion()` y se calcula el error articular utilizando la expresión:
+
+\[
+e_q=q_{deseado}-q_{medido}
+\]
+
+Finalizada la rutina, el robot regresa automáticamente a la posición **Home (0°)** y el sistema calcula el **error máximo**, el **error promedio** y el **desplazamiento del cero**, mostrando estos resultados en la interfaz. Además, se genera una gráfica comparando las posiciones deseadas con las posiciones medidas, la cual se almacena automáticamente en la carpeta `graficas_act5` para documentar el proceso de calibración.
 
 
 ## 9. Actividad 6 – Límites seguros
