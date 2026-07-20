@@ -43,73 +43,81 @@
 
 
 ```
-├── README.md                     <- este documento
-├──phantom_ws/
-│   ├── src/
-│   │   ├── phantomx_pincher/                 # Metapaquete: launch de alto nivel
-│   │   │   └── launch/
-│   │   │       ├── fake.launch.py            # MoveIt2 + ros2_control FAKE (RViz)  ← usado en este laboratorio
-│   │   │       └── gz.launch.py              # MoveIt2 + Gazebo (no usado aquí)
-│   │   │
-│   │   ├── phantomx_pincher_description/     # URDF/xacro + mallas STL/DAE del robot
-│   │   │   ├── urdf/phantomx_pincher.urdf.xacro
-│   │   │   ├── meshes/STL/ ...               # Mallas para medición (Actividad 3)
-│   │   │   ├── launch/display.launch.py      # RViz + robot_state_publisher standalone
-│   │   │   └── scripts/                      # Conversión xacro → URDF/SDF
-│   │   │       ├── xacro2urdf.bash
-│   │   │       ├── xacro2sdf.bash
-│   │   │       └── xacro2sdf_direct.bash
-│   │   │
-│   │   ├── phantomx_pincher_bringup/         # Lanzamiento integrado sim/real
-│   │   │   └── launch/phantomx_pincher.launch.py   # arg use_real_robot (true/false)
-│   │   │
-│   │   ├── phantomx_pincher_moveit_config/   # Configuración de MoveIt 2
-│   │   │   ├── config/
-│   │   │   │   ├── joint_limits.yaml
-│   │   │   │   ├── kinematics.yaml
-│   │   │   │   ├── controllers_position.yaml
-│   │   │   │   ├── phantomx_pincher.srdf
-│   │   │   │   └── ompl_planning.yaml
-│   │   │   └── scripts/                      # Conversión xacro → SRDF
-│   │   │       └── xacro2srdf.bash
-│   │   │
-│   │   ├── phantomx_pincher_interfaces/      # Mensajes propios
-│   │   │   └── msg/PoseCommand.msg           # x, y, z, roll, pitch, yaw, cartesian_path
-│   │   │
-│   │   ├── phantomx_pincher_commander_cpp/   # Wrapper en C++ de MoveGroupInterface
-│   │   │   └── src/ (commander, test_moveit) # Traduce PoseCommand → movimientos de MoveIt
-│   │   │
-│   │   ├── phantomx_pincher_demos/           # Ejemplos oficiales del kit (base para varias actividades)
-│   │   │   └── (ex_joint_goal.py, ex_pose_goal.py, ex_gripper.py, ex_servo.py,
-│   │   │        ex_collision_primitive.py, ex_collision_mesh.py,
-│   │   │        demo_pick_and_place.py, demo_observe_scene.py)
-│   │   │
-│   │   ├── pincher_control/                  # Paquete propio: control articular + cinemática
-│   │   │   ├── control_servo.py              # Clase PincherController (DH + IK con roboticstoolbox,
-│   │   │   │                                 #   GUI Tkinter, publica /joint_states)
-│   │   │   └── follow_joint_trajectory_node.py # Puente MoveIt ↔ Dynamixel (solo robot real)
-│   │   │
-│   │   └── pincher_cproyect/                 # Paquete propio: tarea de aplicación
-│   │       └── pincher_cproyect/mover.py     # Nodo "mover": recibe comandos por tópico /Bring
-│   │                                         #   (colores) o teclado, publica PoseCommand,
-│   │                                         #   controla pinza y ventosa (Arduino)
-│   │
-│   └── scripts/                              # Scripts sueltos (no empaquetados) por actividad,
-│       │                                     #   ejecutados directamente con `python3`, 100% simulación
-│       │                                     #   (publican /joint_states, sin Dynamixel real)
-│       ├── joint_selector_act4.py            # Clase JointSelector base (API: habilitar_torque,
-│       │                                     #   mover_articulacion, mover_simultaneo, leer_todas...)
-│       ├── joint_selector_act4_gui.py        # Misma API + GUI Tkinter con sliders por articulación
-│       ├── joint_seletor_act4.py             # (duplicado/variante con GUI; nombre con typo)
-│       ├── act4.py                           # Actividad 4 – movimiento individual (control directo AX-12)
-│       ├── act7.py                           # Actividad 7 – movimiento simultáneo (usa joint_selector_act4)
-│       ├── act8.py                           # Actividad 8 – movimiento secuencial (usa joint_selector_act4_gui)
-│       ├── act9.py                           # Actividad 9 – interpolación lineal/cúbica + gráficas (matplotlib)
-│       ├── act13.py                          # Actividad 13 – enseñanza y repetición de poses (Tkinter + YAML)
-│       ├── act14_draw_shape_phantomx.py      # Actividad 14 – trazado de figura (IK + Marker en RViz)
-│       ├── act15.py                          # Actividad 15 – coreografía (secuencia J1-J4+pinza con timestamps)
-│       └── calibrar_geometria.py             # Diagnóstico de geometría real vía TF (calibración L1-L4)
-└── Images/  
+Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/
+├── README.MD                              # Documento principal de entrega
+├── Images/                                # Capturas de cada interfaz/actividad (usadas en el README)
+│   ├── pincher.png, Rviz.png
+│   ├── Interfaz_Act4.png ... Interfaz_Act15.png
+│   ├── act4.1.png, act4.png, act6.png
+│   └── Interfaz_Act14_Circulo.png / _Cuadrado.png / _Iniciales.png / _Triangulo.png
+│
+└── phantom_ws/
+    ├── mis_actividades/                   # Scripts sueltos por actividad (equivalente a tu "scripts/")
+    │   ├── joint_selector.py              # Clase base (control articular + cinemática, simulación)
+    │   ├── actividad4.py                  # Act. 4 – movimiento individual
+    │   ├── actividad5.py                  # Act. 5 – calibración de cero y error articular
+    │   ├── actividad6.py                  # Act. 6 – límites seguros (calibración manual con torque OFF)
+    │   ├── actividad7.py                  # Act. 7 – movimiento simultáneo
+    │   ├── actividad8.py                  # Act. 8 – movimiento secuencial
+    │   ├── actividad9.py                  # Act. 9 – interpolación lineal/cúbica + gráficas
+    │   ├── actividad10.py                 # Act. 10 – trayectoria sinusoidal
+    │   ├── actividad11.py                 # Act. 11 – cinemática directa (DH)
+    │   ├── actividad12.py                 # Act. 12 – cinemática inversa (codo arriba/abajo)
+    │   ├── actividad13.py                 # Act. 13 – enseñanza y repetición de poses (Teach & Play)
+    │   ├── actividad14.py                 # Act. 14 – trazado de figuras (triángulo/cuadrado/círculo/iniciales)
+    │   ├── actividad15.py                 # Act. 15 – coreografía sincronizada con audio
+    │   ├── analizador_audio.py            # Extrae energía/frecuencia/pulsos de las canciones (librosa)
+    │   ├── dubidubidu.mp3 / pedro.mp3     # Audios de las coreografías
+    │   ├── datos_dubidubidu.csv / datos_pedro.csv   # Parámetros musicales ya procesados
+    │   ├── dubidubidu.png / pedro.png     # Imágenes de referencia de cada canción
+    │   ├── grafica_act9_todas_articulaciones.png
+    │   ├── trayectorias_act9.csv          # Datos exportados de la Actividad 9
+    │   ├── graficas_act5/                 # Gráficas q_deseado vs q_medido por articulación
+    │   │   ├── grafica_error_base.png
+    │   │   ├── grafica_error_hombro.png
+    │   │   ├── grafica_error_codo.png
+    │   │   ├── grafica_error_muneca.png
+    │   │   └── grafica_error_pinza.png
+    │   ├── limites_act6/                  # Salida de la Actividad 6
+    │   │   ├── limites_seguros.json
+    │   │   └── limites_seguros.csv
+    │   ├── yamls/
+    │   │   └── poses_act13.yaml           # Poses guardadas (Teach & Play)
+    │   └── README_Actividad4.md ... README_Actividad15.md / README_JointSelector.md  # notas por actividad
+    │
+    └── src/
+        ├── LICENSE
+        ├── old.md
+        ├── phantomx_pincher/              # Metapaquete: launch de alto nivel
+        │   └── launch/ (fake.launch.py, gz.launch.py)
+        │
+        ├── phantomx_pincher_description/  # URDF/xacro + mallas STL/DAE/collision/visual
+        │   ├── urdf/ (phantomx_pincher.urdf.xacro, *.xacro, *.ros2_control, *.gazebo)
+        │   ├── meshes/ (STL/, DAE/, collision/, visual/)
+        │   ├── launch/ (display.launch.py, view.launch.py, view_gz.launch.py)
+        │   ├── config/initial_joint_positions.yaml
+        │   ├── rviz/view.rviz
+        │   └── phantomx_pincher/ (model.sdf, model.config, thumbnails/)  # export para Gazebo
+        │
+        ├── phantomx_pincher_bringup/      # Lanzamiento integrado sim/real
+        │   ├── launch/phantomx_pincher.launch.py
+        │   └── config/ (controllers_position.yaml, controllers_effort.yaml)
+        │
+        ├── phantomx_pincher_moveit_config/ # Configuración de MoveIt 2
+        │   ├── config/ (joint_limits.yaml, kinematics.yaml, ompl_planning.yaml,
+        │   │            phantomx_pincher.srdf, servo.yaml, servo_real.yaml, ...)
+        │   ├── srdf/ (phantomx_pincher.srdf.xacro, phantomx_pincher.xacro)
+        │   ├── launch/ (move_group.launch.py, move_group_external_control.launch.py)
+        │   ├── scripts/xacro2srdf.bash
+        │   └── rviz/moveit.rviz
+        │
+        ├── pincher_cproyect/              # Paquete propio: tarea de aplicación
+        │   └── pincher_cproyect/mover.py  # Nodo "mover": tópico /Bring → PoseCommand,
+        │                                  #   pinza y ventosa Arduino
+        │                                  #   ⚠️ importa `pincher_control.control_servo`,
+        │                                  #   paquete que NO está presente en este repo
+        │
+        └── ros2                           # (archivo vacío, 0 bytes — no es un paquete)
 
 ```
 
