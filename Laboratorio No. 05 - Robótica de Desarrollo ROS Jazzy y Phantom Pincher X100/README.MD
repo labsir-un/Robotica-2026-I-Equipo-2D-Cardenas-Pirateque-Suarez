@@ -235,7 +235,7 @@ Al ejecutar el programa, se abrirá la siguiente ventana de control:
 <div align="center">
   <img src="Images/Interfaz_Act4.png" alt="Interfaz de control actividad 4" style="border-radius: 5px; width: 500px;">
   <br>
-  <b>Figura 3. Ventana de control.</b>
+  <b>Figura 3. Interfaz de control actividad 4.</b>
 </div>
 
 <br>
@@ -263,7 +263,7 @@ Durante esta demostración, cada articulación se mueve de manera independiente,
 <div align="center">
   <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 5" style="border-radius: 5px; width:500px;">
   <br>
-  <b>Figura 3. Ventana de control.</b>
+  <b>Figura 5. Interfaz de calibración actividad 5.</b>
 </div>
 
 <br>
@@ -279,7 +279,7 @@ para esta actividad se ejecuta el codigo correspondiente que abre una ventana nu
 <div align="center">
   <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 6" style="border-radius: 5px; width: 500px;">
   <br>
-  <b>Figura 3. Ventana de control.</b>
+  <b>Figura 6. Interfaz de calibración actividad 6.</b>
 </div>
 
 <br>
@@ -332,7 +332,7 @@ Al finalizar la secuencia, el manipulador regresa automáticamente a la posició
 <div align="center">
   <img src="Images/Interfaz_Act7.png" alt="Interfaz de Movimiento simultaneo actividad 7" style="border-radius: 5px; width: 500px;">
   <br>
-  <b>Figura 3. Ventana de control.</b>
+  <b>Figura 7. Interfaz de Movimiento simultaneo actividad 7.</b>
 </div>
 
 <br>
@@ -385,9 +385,27 @@ Por lo tanto, el retorno se realiza con la siguiente secuencia:
 
 Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las articulaciones hayan regresado correctamente a la posición HOME, tras lo cual se deshabilita el torque de los servomotores y se finaliza la ejecución del nodo de ROS 2.
 
+<br>
 
+<div align="center">
+  <img src="Images/Interfaz_Act8.png" alt="Interfaz de Movimiento se actividad 8" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 8.Interfaz de Movimiento secuencial actividad 8.</b>
+</div>
+
+<br>
 
 ## 12. Actividad 9 – Interpolación de trayectorias
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act9.png" alt="Interfaz de Movimiento simultaneo actividad 9" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 9.Interfaz de Movimiento simultaneo actividad 9.</b>
+</div>
+
+<br>
 
 ## 13. Actividad 10 – Trayectoria sinusoidal
 
@@ -396,9 +414,9 @@ Para esta actividad se desarrolló un programa en Python que implementa una **in
 <br>
 
 <div align="center">
-  <img src="Images/act10.png" alt="Interfaz gráfica de la Actividad 10" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act10.png" alt="Interfaz de Movimiento simultaneo actividad 10" style="border-radius: 5px; width: 500px;">
   <br>
-  <b>Figura X. Interfaz gráfica para la generación de trayectorias sinusoidales.</b>
+  <b>Figura 10.Interfaz de Movimiento simultaneo actividad 10.</b>
 </div>
 
 <br>
@@ -414,7 +432,19 @@ Durante la ejecución, el programa registra la posición deseada y la posición 
 Adicionalmente, la interfaz incorpora funciones de seguridad y control, como los botones **Torque ON**, **Torque OFF**, **Ir a HOME** y **Parada de Emergencia**, además de verificar automáticamente que la posición central y la amplitud seleccionadas permanezcan dentro de los límites de operación del manipulador antes de ejecutar la trayectoria.
 
 
+
+
 ## 14. Actividad 11 – Cinemática directa
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act11.png" alt="Interfaz de Movimiento simultaneo actividad 11" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 11.Interfaz de Movimiento simultaneo actividad 11.</b>
+</div>
+
+<br>
 
 ## 15. Actividad 12 – Cinemática inversa
 
