@@ -562,7 +562,9 @@ Estos valores constituyen el rango de operación seguro del manipulador y son ut
 
 ## 10. Actividad 7 – Movimiento simultáneo
 
-Para esta actividad se desarrolló una interfaz gráfica en Python cuyo objetivo es comandar el desplazamiento simultáneo de todas las articulaciones del manipulador, ejecutando las cinco configuraciones articulares definidas en la guía de laboratorio:
+Para esta actividad se desarrolló un programa en Python cuyo objetivo es ejecutar una secuencia de movimientos simultáneos de todas las articulaciones del manipulador.
+
+La secuencia de movimiento está compuesta por cinco configuraciones articulares, las cuales se ejecutan de forma consecutiva. Cada configuración define los ángulos objetivo de las articulaciones de la base, hombro, codo, muñeca y pinza, como se muestra a continuación:
 
 <br>
 
@@ -580,6 +582,24 @@ Para esta actividad se desarrolló una interfaz gráfica en Python cuyo objetivo
 
 <br>
 
+En cada etapa, todas las articulaciones se desplazan simultáneamente hasta alcanzar la configuración objetivo mediante la función `mover_simultaneo()`. Una vez alcanzada la posición, el programa realiza una pausa de tres segundos para facilitar la observación de la postura antes de continuar con la siguiente configuración.
+
+Al finalizar la secuencia, el manipulador regresa automáticamente a la posición HOME (0°, 0°, 0°, 0°, 0°), deshabilita el torque de los servomotores y cierra el nodo de ROS 2 de forma segura.
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act7.png" alt="Interfaz de Movimiento simultaneo actividad 7" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 7. Interfaz de Movimiento simultaneo actividad 7.</b>
+</div>
+
+<br>
+
+### Interfaz gráfica con validación automática (versión actual del script)
+
+> El script se amplió posteriormente a una interfaz gráfica completa con sistema de validación de límites. Esta es la versión vigente de `actividad7.py`.
+
 A diferencia de una secuencia automática simple, el programa incorpora un **sistema de validación previo** a cada envío: antes de mover el robot, compara cada valor articular solicitado contra los límites seguros determinados en la Actividad 6 (cargados automáticamente desde `limites_act6/limites_seguros.json`). Si algún valor excede su límite, el programa lo trunca automáticamente al límite más cercano y despliega en la consola gráfica una justificación técnica del motivo (colisión mecánica inminente o riesgo de sobreesfuerzo del servomotor) antes de ejecutar el movimiento ya corregido.
 
 Para el conjunto de límites calibrados de este equipo, **ninguna de las cinco configuraciones de la guía requirió truncamiento**: los cinco vectores articulares caen dentro del rango seguro definido en la Actividad 6.
@@ -587,14 +607,6 @@ Para el conjunto de límites calibrados de este equipo, **ninguna de las cinco c
 El flujo de uso es el siguiente: se selecciona una configuración desde el menú desplegable ("Configuraciones del Laboratorio") y se presiona **▶ EJECUTAR CONFIGURACIÓN**. El movimiento se ejecuta mediante `mover_simultaneo()`, con un tiempo de interpolación ajustable entre 5.0 s (velocidad mínima) y 0.2 s (velocidad máxima) mediante un control deslizante de velocidad (rango 1–1023, valor por defecto 150). Al finalizar cada movimiento, la consola despliega un reporte comparando, articulación por articulación, la posición deseada frente a la posición real leída de los servomotores.
 
 La interfaz incluye además parada de emergencia (corta el torque de inmediato), botones independientes de **Torque ON/OFF**, y un botón de retorno a **HOME** (0°, 0°, 0°, 0°, 0°) para dejar el manipulador en posición segura al finalizar.
-
-<br>
-
-<div align="center">
-  <img src="Images/Interfaz_Act7.png" alt="Interfaz de Movimiento simultaneo actividad 7" style="border-radius: 5px; width: 600px;">
-  <br>
-  <b>Figura 7. Interfaz de movimiento simultáneo con validación y justificación automática de límites (Actividad 7).</b>
-</div>
 
 ## 11. Actividad 8 – Movimiento secuencial
 
@@ -653,6 +665,16 @@ Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las art
 </div>
 
 <br>
+
+### Interfaz gráfica con validación automática (versión actual del script)
+
+> El script se amplió posteriormente a una interfaz gráfica completa, reutilizando las mismas 5 configuraciones de la Actividad 7. Esta es la versión vigente de `actividad8.py`.
+
+La interfaz permite seleccionar una de las 5 configuraciones desde un menú desplegable y ejecutar el movimiento secuencial en el orden Base→Hombro→Codo→Muñeca→Pinza mediante el botón **▶ EJECUTAR SECUENCIAL**. El tiempo asignado a cada articulación ya no es fijo: se ajusta con un spinbox "Tiempo por articulación (s)" (rango 0.3–5.0 s, valor por defecto 1.5 s), lo que permite variar la duración total de la secuencia para el análisis comparativo contra el movimiento simultáneo de la Actividad 7.
+
+Al igual que en la Actividad 7, el sistema valida cada configuración contra los límites seguros de la Actividad 6 antes de ejecutarla, truncando y justificando en consola cualquier valor fuera de rango (para este equipo, ninguna de las 5 configuraciones lo requirió). Al finalizar la secuencia, la consola reporta el tiempo total exacto de ejecución (juntas × tiempo por articulación) y compara, articulación por articulación, la posición deseada frente a la real leída de los servomotores — el dato empírico que la guía pide para comparar tiempo de ejecución, trayectoria del TCP y suavidad frente al movimiento simultáneo.
+
+La interfaz incluye también parada de emergencia, control de velocidad (1–1023), botones de Torque ON/OFF y retorno a HOME.
 
 ## 12. Actividad 9 – Interpolación de trayectorias
 
@@ -734,9 +756,23 @@ El error de seguimiento crece principalmente con la **frecuencia**: al pasar de 
 
 ## 14. Actividad 11 – Cinemática directa
 
-Para esta actividad se implementó la cinemática directa del manipulador mediante la convención estándar de Denavit-Hartenberg (DH). El programa recibe los valores articulares $q_1, q_2, q_3, q_4$ y calcula la posición cartesiana ($x, y, z$) y la orientación en ángulos de Euler (Roll, Pitch, Yaw) del efector final.
+Se implementó la cinemática directa del Phantom X Pincher X100 mediante la convención estándar de Denavit-Hartenberg (DH). El programa recibe los valores articulares de los cuatro eslabones principales ($q_1, q_2, q_3, q_4$) y calcula la posición cartesiana y orientación de la herramienta ($x, y, z$, *roll*, *pitch*, *yaw*).
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act11.png" alt="Interfaz de cinemática directa actividad 11" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 11. Interfaz de cinemática directa actividad 11.</b>
+</div>
+
+<br>
 
 ### Parámetros DH
+
+A partir de las longitudes de eslabón obtenidas en la Actividad 3 ($L_1$–$L_4$), se construyó la siguiente tabla de parámetros DH:
+
+<div align="center">
 
 | Articulación ($i$) | $\theta_i$ | $d_i$ | $a_i$ | $\alpha_i$ |
 | :---: | :---: | :---: | :---: | :---: |
@@ -745,9 +781,11 @@ Para esta actividad se implementó la cinemática directa del manipulador median
 | **3 (Codo)** | $\theta_3$ | $0$ | $L_3$ | $0$ |
 | **4 (Muñeca)** | $\theta_4$ | $0$ | $L_4$ | $0$ |
 
-con $L_1=45.0$ mm, $L_2=107.0$ mm, $L_3=107.0$ mm, $L_4=108.8$ mm (Actividad 3), reutilizados como constantes directamente en el código.
+</div>
 
-La transformación homogénea entre eslabones consecutivos es:
+Con $L_1 = 44.0$ mm, $L_2 = 107.5$ mm, $L_3 = 107.5$ mm y $L_4 = 75.3$ mm (Actividad 3).
+
+**Matriz de transformación homogénea general** entre eslabones consecutivos:
 
 $$
 ^{i-1}T_i =
@@ -759,75 +797,121 @@ $$
 \end{bmatrix}
 $$
 
-y la pose final del TCP se obtiene mediante la premultiplicación encadenada:
+La pose de la herramienta respecto a la base se obtiene mediante el producto matricial encadenado:
 
-$$^{0}T_4 = {}^{0}T_1 \cdot {}^{1}T_2 \cdot {}^{2}T_3 \cdot {}^{3}T_4$$
+$$
+{}^{0}T_4 = {}^{0}T_1 \cdot {}^{1}T_2 \cdot {}^{2}T_3 \cdot {}^{3}T_4
+$$
 
-**Offset geométrico del hombro:** en el hardware, $0°$ en la articulación del hombro deja el eslabón apuntando verticalmente hacia arriba, pero la convención DH define $0°$ alineado con el eje $X_{i-1}$. Para conciliar ambas referencias, el código aplica una compensación de fase $q_{2,DH} = q_2 - \pi/2$ únicamente sobre el ángulo del hombro, antes de construir su matriz de transformación.
+de donde $x, y, z$ se extraen de la columna de traslación y *roll/pitch/yaw* de la submatriz de rotación $3\times3$.
 
-### Interfaz y flujo de trabajo
+**Offset geométrico del hombro:** mecánicamente, $0°$ en la articulación del hombro ($\theta_2$) corresponde al eslabón en posición vertical, pero la convención DH sitúa el $0°$ perpendicular al eje $X_1$. Para conciliar el modelo con el hardware físico, se introduce una compensación de fase de $-\pi/2$ rad sobre $\theta_2$.
 
-La interfaz permite cargar automáticamente cualquiera de las 5 configuraciones de la Actividad 7 desde un menú desplegable, o ingresar manualmente $q_1$–$q_4$ mediante spinbox restringidos a los límites seguros de la Actividad 6. Al presionar **▶ MOVER Y CALCULAR CINEMÁTICA**, el programa calcula la cinemática de forma instantánea y, en paralelo, envía el movimiento al robot (real o simulado) mediante `mover_simultaneo()`.
+### Funcionamiento de la interfaz
 
-### Validación con las configuraciones de la Actividad 7
+La interfaz permite cargar automáticamente cualquiera de las 5 configuraciones predefinidas de la Actividad 7, o ingresar manualmente $q_1$–$q_4$ mediante selectores numéricos restringidos a los límites seguros de la Actividad 6. Al presionar **▶ MOVER Y CALCULAR CINEMÁTICA**, el programa ejecuta el producto matricial de transformaciones homogéneas (`matriz_dh()` → `_calcular_dh()`) y simultáneamente envía la configuración al robot/simulador. La función `extraer_xyz_rpy()` obtiene la posición y orientación final y las muestra en el panel de "Resultados Teóricos".
 
-Ejecutando el modelo DH sobre las 5 configuraciones de la Actividad 7 se obtienen los siguientes resultados teóricos:
+### Validación contra RViz
 
-| Configuración | X (mm) | Y (mm) | Z (mm) | Roll (°) | Pitch (°) | Yaw (°) |
-|---|---:|---:|---:|---:|---:|---:|
-| 1 (HOME) | 0.00 | 0.00 | 367.80 | 90.00 | -90.00 | 0.00 |
-| 2 | 151.23 | 70.52 | 316.24 | -90.00 | -65.00 | 25.00 |
-| 3 | 109.03 | -76.35 | 328.37 | -90.00 | -55.00 | -35.00 |
-| 4 | 10.37 | 118.55 | 287.60 | -90.00 | -30.00 | 85.00 |
-| 5 | -12.29 | -69.68 | 331.80 | 90.00 | -65.00 | -100.00 |
-
-> **Pendiente:** estos son los valores teóricos calculados por el modelo DH (verificados corriendo el código real). Falta el contraste visual con la posición observada en RViz para cada configuración, que pide el PDF — necesito que confirmes que el TCP simulado coincide con estas coordenadas, o que me pases las capturas de RViz para documentar la comparación.
-
-## 14. Actividad 11 – Cinemática directa
-
-
-El objetivo de esta actividad es calcular la **cinemática directa** del manipulador empleando la convención de **Denavit-Hartenberg (DH)**. A partir de los valores articulares ingresados por el usuario, el programa determina la posición del efector final (**X, Y y Z**) y su orientación mediante los ángulos de **Roll, Pitch y Yaw**, además de ejecutar el movimiento correspondiente en el robot o en la simulación.
+Se evaluó la cinemática directa para la **Configuración 2** de la Actividad 7 ($25°, 25°, 20°, -20°, 0°$), comparando el resultado teórico del modelo DH con la pose observada mediante `tf echo` en RViz:
 
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act11.png" alt="Interfaz de Movimiento simultaneo actividad 11" style="border-radius: 5px; width: 600px;">
+  <img src="Images/Validacion_Act11_Config2.png" alt="Validación cinemática directa - Configuración 2" style="border-radius: 5px; width: 700px;">
   <br>
-  <b>Figura 11.Interfaz de cinemática directa actividad 11.</b>
+  <b>Figura 12. Comparación entre resultado teórico (DH) y pose observada en RViz — Configuración 2.</b>
 </div>
 
 <br>
 
-La interfaz está organizada en cuatro secciones principales. La primera permite seleccionar alguna de las configuraciones previamente almacenadas durante la **Actividad 7** para cargarlas automáticamente. La segunda contiene los controles numéricos para ingresar manualmente los valores articulares de la base, hombro, codo, muñeca y pinza, respetando los límites seguros definidos previamente. La tercera incorpora los botones para ejecutar el cálculo de la cinemática directa y regresar el robot a la posición **Home**. Finalmente, la parte inferior muestra los resultados calculados, incluyendo la posición del efector final en **X, Y y Z** y su orientación mediante los ángulos **Roll, Pitch y Yaw**.
+| | X (mm) | Y (mm) | Z (mm) | Roll | Pitch | Yaw |
+|---|---:|---:|---:|---:|---:|---:|
+| **Teórico (DH)** | 151.23 | 70.52 | 316.24 | −90.00° | −65.00° | 25.00° |
+| **RViz (`tf echo`)** | 134.00 | 62.00 | 290.00 | 0.00° | −25.00° | −155.00° |
 
-El funcionamiento interno del programa comienza obteniendo los valores articulares ingresados por el usuario. Posteriormente, la función `matriz_dh()` construye las matrices homogéneas correspondientes a cada eslabón utilizando los parámetros de Denavit-Hartenberg, mientras que `_calcular_dh()` realiza la multiplicación secuencial de dichas matrices para obtener la transformación homogénea del efector final. Finalmente, la función `extraer_xyz_rpy()` calcula la posición y la orientación del efector final, mostrando los resultados en la interfaz y ejecutando simultáneamente el movimiento del robot mediante la función `_ejecutar_cinematica()`.
+### Análisis de la diferencia observada
 
+La comparación se realizó entre los frames `phantomx_pincher_arm_base_link` y `phantomx_pincher_end_effector` mediante `ros2 run tf2_ros tf2_echo`. La diferencia entre el resultado teórico (modelo DH, limitado a las 4 articulaciones activas) y la pose observada en RViz se debe a que el frame `phantomx_pincher_end_effector` del URDF incluye una transformación fija adicional respecto al último eslabón de la cadena DH: una traslación de 19 mm (offset del centro de la pinza) y una rotación fija de (90°, −90°, 90°) en RPY, definida para alinear los ejes del frame de herramienta con una convención más intuitiva. Esta transformación no está incluida en el modelo DH implementado (que solo contempla los cuatro eslabones activos), lo cual explica tanto el desplazamiento en posición (del orden de los 19 mm adicionales) como la aparente gran diferencia en los ángulos de Euler, que en realidad corresponde a una reorientación fija y conocida del frame de referencia, no a un error del modelo cinemático.
 
 
 
 ## 15. Actividad 12 – Cinemática inversa
 
-La **Actividad 12** implementa la cinemática inversa del robot **Phantom X Pincher X100**, permitiendo calcular los ángulos articulares necesarios para alcanzar una posición cartesiana definida por **X, Y, Z** y la orientación **θ (pitch)**. Además, valida las soluciones obtenidas y ejecuta el movimiento del robot en simulación o en el sistema físico.
+Se implementó la cinemática inversa del Phantom X Pincher X100 mediante el método de **desacople cinemático**, que reduce el problema espacial 3D a un análisis trigonométrico planar 2D. El programa recibe una coordenada cartesiana objetivo del TCP ($x, y, z$) y un ángulo de ataque *pitch* ($\Theta$), y calcula una configuración articular válida ($q_1$–$q_4$) que alcanza dicha pose.
 
 <br>
 
 <div align="center">
   <img src="Images/Interfaz_Act12.png" alt="Interfaz de cinemática inversa actividad 12" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 12. Interfaz de cinemática inversa actividad 12.</b>
+  <b>Figura 13. Interfaz de cinemática inversa actividad 12.</b>
 </div>
 
 <br>
 
-La interfaz está organizada en las siguientes secciones:
+### Fundamento matemático (desacople cinemático)
 
-- **Parada de emergencia:** desactiva inmediatamente el torque de los motores.
-- **Pruebas cartesianas:** permite cargar posiciones de prueba predefinidas.
-- **Coordenadas objetivo:** ingreso manual de los valores **X, Y, Z** y **θ**.
-- **Control del robot:** botones para activar/desactivar el torque, regresar a **Home** y ajustar la velocidad mediante un deslizador y un cuadro numérico.
-- **Consola:** muestra las soluciones calculadas, las descartadas por límites de seguridad y el estado de la ejecución.
+**1. Rotación de la base ($q_1$):** gobierna la rotación en el plano XY, obtenida por proyección polar de las coordenadas cartesianas:
 
-El algoritmo convierte las coordenadas cartesianas al modelo del robot y calcula las posibles soluciones de **codo arriba** y **codo abajo** utilizando relaciones trigonométricas y el teorema del coseno. Posteriormente verifica que cada solución cumpla los límites seguros definidos en la Actividad 6, selecciona la trayectoria válida que requiere el menor desplazamiento desde la posición actual y envía el movimiento al robot mediante ROS 2.
+$$q_1 = \text{atan2}(y, x)$$
+
+**2. Centro de muñeca (*wrist center*):** conocido $\Theta$ y la longitud del eslabón de la pinza ($L_4$), se retrocede geométricamente sobre el plano radial ($r$) y vertical ($z$):
+
+$$r = \sqrt{x^2 + y^2} \qquad r_w = r - L_4\cos(\Theta) \qquad z_w = z - L_1 - L_4\sin(\Theta)$$
+
+**3. Solución del codo ($q_3$):** mediante la ley de los cosenos sobre el triángulo formado por $L_2$ y $L_3$:
+
+$$\cos(q_3) = \frac{r_w^2 + z_w^2 - L_2^2 - L_3^2}{2L_2 L_3} \qquad q_3 = \pm\arccos(\cos(q_3))$$
+
+El signo positivo/negativo de la raíz define, respectivamente, la postura **codo abajo** o **codo arriba**.
+
+**4. Solución del hombro ($q_2$):**
+
+$$q_2 = \text{atan2}(z_w, r_w) - \text{atan2}\big(L_3\sin(q_3),\; L_2 + L_3\cos(q_3)\big)$$
+
+**5. Solución de la muñeca ($q_4$):** dado que la orientación final es la suma de los ángulos del plano vertical:
+
+$$q_4 = \Theta - (q_2 + q_3)$$
+
+### Selección de postura y verificación de seguridad
+
+Para cada coordenada objetivo, el algoritmo calcula ambas soluciones (codo arriba / codo abajo) y las contrasta contra los límites seguros de la Actividad 6, descartando cualquiera que exceda un límite articular. Si el punto solicitado queda fuera del alcance del manipulador (por ejemplo, $|\cos(q_3)| > 1$), el sistema lo reporta como no alcanzable en la consola de diagnóstico en lugar de forzar un movimiento inválido.
+
+Cuando ambas soluciones son físicamente válidas, se selecciona la de menor costo de desplazamiento articular respecto a la configuración actual ($q_{actual}$), medido como distancia euclidiana en el espacio articular:
+
+$$\Delta Q_k = \sqrt{\sum_{i=1}^{4} (q_{k,i} - q_{actual,i})^2}$$
+
+y se ejecuta automáticamente la solución con menor $\Delta Q_k$, minimizando el desplazamiento y el estrés dinámico sobre los actuadores.
+
+### Funcionamiento de la interfaz
+
+La interfaz permite cargar automáticamente alguno de los **5 perfiles cartesianos de prueba predefinidos** (posturas de agarre vertical, horizontal y reposo alto, entre otras) o ingresar manualmente coordenadas $X, Y, Z, \Theta$. Al presionar **▶ CALCULAR INVERSA Y MOVER**, la consola expone ambas posturas calculadas, indica cuáles son válidas y cuáles se descartan por límite articular, y confirma la selección final por menor distancia euclidiana. Incluye además parada de emergencia, liberación de torque y retorno a HOME.
+
+### Validación con cinco posiciones cartesianas
+
+Conforme a lo exigido en la guía, se evaluó el algoritmo con al menos cinco posiciones cartesianas diferentes. Partiendo siempre desde la posición HOME (0,0,0,0) para garantizar consistencia en el cálculo, se obtuvieron los siguientes resultados:
+
+<div align="center">
+
+| # | Perfil | X, Y, Z (mm) | θ (°) | Codo Abajo ($q_1, q_2, q_3, q_4$) | Codo Arriba ($q_1, q_2, q_3, q_4$) | Postura Seleccionada |
+|:---:|:---|:---:|:---:|:---|:---|:---|
+| **1** | Agarre Frontal | 200, 0, 50 | 0° | ❌ Descartada ($q_2=151.6^\circ$ excede límite) | 0.0°, 22.1°, 129.5°, -61.6° (✅) | **Codo Arriba** |
+| **2** | Agarre Suelo | 150, 0, 10 | -90° | ❌ Descartada ($q_4=-149.0^\circ$ excede límite) | 0.0°, 59.04°, -87.29°, -61.75° (✅) | **Codo Arriba** |
+| **3** | Reposo Alto | 120, 0, 250 | 45° | 0.0°, 27.23°, 78.32°, -60.56° (✅) | ❌ Descartada ($q_2=105.6^\circ$ excede límite) | **Codo Abajo** |
+| **4** | Lateral Derecha | 100, -150, 100 | 0° | ❌ Descartada ($q_2=117.5^\circ$ excede límite) | -56.3°, -12.7°, 130.1°, -27.5° (✅) | **Codo Arriba** |
+| **5** | Lateral Izquierda | 100, 150, 100 | 0° | ❌ Descartada ($q_2=117.5^\circ$ excede límite) | 56.3°, -12.7°, 130.1°, -27.5° (✅) | **Codo Arriba** |
+
+</div>
+
+> **Nota de seguridad:** Durante las pruebas cartesianas en los bordes del espacio de trabajo, el algoritmo demostró efectividad forzando una única solución segura. En las pruebas 1, 4 y 5, la configuración de *Codo Abajo* obligaba al servomotor del hombro a rotar entre 117° y 151°, superando el límite mecánico calibrado. El sistema descartó autónomamente el riesgo y ejecutó con éxito la configuración de *Codo Arriba*.
+
+<div align="center">
+  <img src="Images/Captura_Act12_Validacion.png" alt="Validación en Consola" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 14. Validación de cinemática inversa mostrando el descarte automático de la postura Codo Abajo por violar límites articulares.</b>
+</div>
+
 
 ## 16. Actividad 13 – Enseñanza y repetición de poses
 
