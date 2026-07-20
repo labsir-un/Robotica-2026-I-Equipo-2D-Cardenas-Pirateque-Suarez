@@ -371,6 +371,27 @@ Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las art
 
 ## 13. Actividad 10 – Trayectoria sinusoidal
 
+Para esta actividad se desarrolló un programa en Python que implementa una **interfaz gráfica de usuario (GUI)** para generar trayectorias sinusoidales en cualquiera de las articulaciones del manipulador. La interfaz permite seleccionar la articulación, definir la posición central ((q_0)), la amplitud, la frecuencia y el tiempo de ejecución de la trayectoria.
+
+<br>
+
+<div align="center">
+  <img src="Images/act10.png" alt="Interfaz gráfica de la Actividad 10" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura X. Interfaz gráfica para la generación de trayectorias sinusoidales.</b>
+</div>
+
+<br>
+
+El movimiento de la articulación se calcula mediante la ecuación:
+
+```text
+q(t)=q_0+A\cdot\sin(2\pi ft)
+```
+
+Durante la ejecución, el programa registra la posición deseada y la posición real de la articulación para generar una gráfica comparativa al finalizar la prueba, en la cual también se calculan el **error máximo** y el **error cuadrático medio (MSE)**.
+
+Adicionalmente, la interfaz incorpora funciones de seguridad y control, como los botones **Torque ON**, **Torque OFF**, **Ir a HOME** y **Parada de Emergencia**, además de verificar automáticamente que la posición central y la amplitud seleccionadas permanezcan dentro de los límites de operación del manipulador antes de ejecutar la trayectoria.
 
 
 ## 14. Actividad 11 – Cinemática directa
