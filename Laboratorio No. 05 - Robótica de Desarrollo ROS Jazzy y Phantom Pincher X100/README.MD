@@ -692,29 +692,46 @@ Las gráficas muestran la evolución de la posición de cada articulación duran
 
 ## 13. Actividad 10 – Trayectoria sinusoidal
 
-Para esta actividad se desarrolló un programa en Python que implementa una **interfaz gráfica de usuario (GUI)** para generar trayectorias sinusoidales en cualquiera de las articulaciones del manipulador. La interfaz permite seleccionar la articulación, definir la posición central ((q_0)), la amplitud, la frecuencia y el tiempo de ejecución de la trayectoria.
+Para esta actividad se desarrolló una interfaz gráfica en Python que comanda una trayectoria sinusoidal sobre una articulación seleccionada, según:
+
+$$q(t) = q_0 + A \sin(2\pi f t)$$
+
+donde $q_0$ es la posición central, $A$ la amplitud, $f$ la frecuencia en Hz y $t$ el tiempo transcurrido.
+
+Antes de ejecutar la prueba, el programa restringe automáticamente los parámetros a los límites seguros de la Actividad 6: al fijar $q_0$, calcula en tiempo real la **amplitud máxima permisible** como la menor distancia entre $q_0$ y cualquiera de los dos límites de la articulación, e impide seleccionar una amplitud mayor. Así es matemáticamente imposible comandar una posición fuera de rango.
+
+Al finalizar cada prueba, el sistema calcula dos índices de desempeño sobre el error instantáneo $e_i = q_{deseado,i} - q_{medido,i}$:
+
+$$E_{max} = \max(|e_i|) \qquad\qquad MSE = \frac{1}{N}\sum_{i=1}^{N}(e_i)^2$$
+
+y genera automáticamente una gráfica comparando posición deseada vs. medida, guardándola como `grafica_act10_{articulación}_q0_{q0}_A_{A}_f_{f}.png`.
+
+La interfaz incluye además parada de emergencia (aborta el bucle e inhabilita el torque de inmediato), control manual de Torque ON/OFF y retorno a HOME.
+
+### Pruebas realizadas (articulación: Codo, $q_0=0°$, $t=8$ s)
+
+| Prueba | Amplitud | Frecuencia | Error Máximo | MSE |
+|---|---:|---:|---:|---:|
+| 1 | 30° | 0.25 Hz | 0.29° | 0.02 |
+| 2 | 30° | 1.0 Hz | 1.17° | 0.41 |
+| 3 | 90° | 0.25 Hz | 0.86° | 0.22 |
+| 4 | 90° | 1.0 Hz | 3.51° | 3.64 |
 
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act10.png" alt="Interfaz de Movimiento simultaneo actividad 10" style="border-radius: 5px; width: 600px;">
+  <img src="Images/grafica_act10_codo_q0_0.0_A_30.0_f_0.25.png" alt="Actividad 10 - Codo A30 f0.25" style="border-radius: 5px; width: 480px;">
+  <img src="Images/grafica_act10_codo_q0_0.0_A_30.0_f_1.0.png" alt="Actividad 10 - Codo A30 f1.0" style="border-radius: 5px; width: 480px;">
   <br>
-  <b>Figura 10.Interfaz de control sinusoidal actividad 10.</b>
+  <img src="Images/grafica_act10_codo_q0_0.0_A_90.0_f_0.25.png" alt="Actividad 10 - Codo A90 f0.25" style="border-radius: 5px; width: 480px;">
+  <img src="Images/grafica_act10_codo_q0_0.0_A_90.0_f_1.0.png" alt="Actividad 10 - Codo A90 f1.0" style="border-radius: 5px; width: 480px;">
+  <br>
+  <b>Figura 10. Trayectoria sinusoidal en el codo para las cuatro combinaciones de amplitud y frecuencia evaluadas.</b>
 </div>
 
 <br>
 
-El movimiento de la articulación se calcula mediante la ecuación:
-
-```text
-q(t)=q_0+A\cdot\sin(2\pi ft)
-```
-
-Durante la ejecución, el programa registra la posición deseada y la posición real de la articulación para generar una gráfica comparativa al finalizar la prueba, en la cual también se calculan el **error máximo** y el **error cuadrático medio (MSE)**.
-
-Adicionalmente, la interfaz incorpora funciones de seguridad y control, como los botones **Torque ON**, **Torque OFF**, **Ir a HOME** y **Parada de Emergencia**, además de verificar automáticamente que la posición central y la amplitud seleccionadas permanezcan dentro de los límites de operación del manipulador antes de ejecutar la trayectoria.
-
-
+El error de seguimiento crece principalmente con la **frecuencia**: al pasar de 0.25 Hz a 1.0 Hz (misma amplitud) el error máximo se multiplica por ~4, mientras que al triplicar la amplitud (misma frecuencia) el error solo se triplica aproximadamente. Esto es consistente con que el error está dominado por la velocidad angular máxima exigida al servomotor ($v_{max}=2\pi f A$), que crece linealmente con ambos parámetros pero de forma más agresiva cuando se combinan (prueba 4, la más exigente, concentra el mayor error de las cuatro).
 
 
 ## 14. Actividad 11 – Cinemática directa
