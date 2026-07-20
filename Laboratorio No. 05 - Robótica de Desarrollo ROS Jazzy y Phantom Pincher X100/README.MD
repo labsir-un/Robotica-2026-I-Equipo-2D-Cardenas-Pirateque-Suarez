@@ -811,7 +811,7 @@ c = 30.0 - (freq * 120.0)
 
 Los cuales va refrescando los valores con una frecuencia de **10 Hz** todo esto dentro de la función  `_hilo_coreografia()`.
 
-Ademas todo esto es controlado desde la siguiente interfaz grafica:
+Ademas, todo esto es controlado desde la siguiente interfaz grafica:
 
 
 <br>
@@ -838,16 +838,3 @@ La interfaz está organizada en las siguientes secciones:
 
 ## 19. Video Explicativo
 
-
-## 20. Conclusiones Individuales
-
-
-
-
-### Conclusiones de [Nombre del Integrante 1]
-* *(Escribe aquí tus conclusiones sobre ROS 2, la cinemática, las dificultades, etc.)*
-* ...
-
-### Conclusiones de [Nombre del Integrante 2]
-* *(Escribe aquí tus conclusiones sobre ROS 2, la cinemática, las dificultades, etc.)*
-* ...
