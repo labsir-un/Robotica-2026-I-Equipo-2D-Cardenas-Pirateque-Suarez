@@ -49,75 +49,57 @@ Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/
 │   ├── pincher.png, Rviz.png
 │   ├── Interfaz_Act4.png ... Interfaz_Act15.png
 │   ├── act4.1.png, act4.png, act6.png
-│   └── Interfaz_Act14_Circulo.png / _Cuadrado.png / _Iniciales.png / _Triangulo.png
+│   ├── Interfaz_Act14_Circulo.png / _Cuadrado.png / _Iniciales.png / _Triangulo.png
+│   └── Interpolacion_Graficas_Act9.png   
 │
 └── phantom_ws/
-    ├── mis_actividades/                   # Scripts sueltos por actividad (equivalente a tu "scripts/")
-    │   ├── joint_selector.py              # Clase base (control articular + cinemática, simulación)
-    │   ├── actividad4.py                  # Act. 4 – movimiento individual
-    │   ├── actividad5.py                  # Act. 5 – calibración de cero y error articular
-    │   ├── actividad6.py                  # Act. 6 – límites seguros (calibración manual con torque OFF)
-    │   ├── actividad7.py                  # Act. 7 – movimiento simultáneo
-    │   ├── actividad8.py                  # Act. 8 – movimiento secuencial
-    │   ├── actividad9.py                  # Act. 9 – interpolación lineal/cúbica + gráficas
-    │   ├── actividad10.py                 # Act. 10 – trayectoria sinusoidal
-    │   ├── actividad11.py                 # Act. 11 – cinemática directa (DH)
-    │   ├── actividad12.py                 # Act. 12 – cinemática inversa (codo arriba/abajo)
-    │   ├── actividad13.py                 # Act. 13 – enseñanza y repetición de poses (Teach & Play)
-    │   ├── actividad14.py                 # Act. 14 – trazado de figuras (triángulo/cuadrado/círculo/iniciales)
-    │   ├── actividad15.py                 # Act. 15 – coreografía sincronizada con audio
-    │   ├── analizador_audio.py            # Extrae energía/frecuencia/pulsos de las canciones (librosa)
-    │   ├── dubidubidu.mp3 / pedro.mp3     # Audios de las coreografías
-    │   ├── datos_dubidubidu.csv / datos_pedro.csv   # Parámetros musicales ya procesados
-    │   ├── dubidubidu.png / pedro.png     # Imágenes de referencia de cada canción
-    │   ├── grafica_act9_todas_articulaciones.png
-    │   ├── trayectorias_act9.csv          # Datos exportados de la Actividad 9
-    │   ├── graficas_act5/                 # Gráficas q_deseado vs q_medido por articulación
-    │   │   ├── grafica_error_base.png
-    │   │   ├── grafica_error_hombro.png
-    │   │   ├── grafica_error_codo.png
-    │   │   ├── grafica_error_muneca.png
-    │   │   └── grafica_error_pinza.png
-    │   ├── limites_act6/                  # Salida de la Actividad 6
-    │   │   ├── limites_seguros.json
-    │   │   └── limites_seguros.csv
-    │   ├── yamls/
-    │   │   └── poses_act13.yaml           # Poses guardadas (Teach & Play)
-    │   └── README_Actividad4.md ... README_Actividad15.md / README_JointSelector.md  # notas por actividad
+    ├── mis_actividades/                   # Sin cambios respecto a la versión anterior
+    │   ├── joint_selector.py, actividad4.py ... actividad15.py
+    │   ├── analizador_audio.py, dubidubidu.mp3/pedro.mp3, datos_*.csv, *.png
+    │   ├── grafica_act9_todas_articulaciones.png, trayectorias_act9.csv
+    │   ├── graficas_act5/ (5 gráficas de error por articulación)
+    │   ├── limites_act6/ (limites_seguros.json, .csv)
+    │   ├── yamls/poses_act13.yaml
+    │   └── README_Actividad4.md ... README_JointSelector.md
     │
     └── src/
-        ├── LICENSE
-        ├── old.md
-        ├── phantomx_pincher/              # Metapaquete: launch de alto nivel
+        │                                 
+        ├── phantomx_pincher/               # Metapaquete: launch de alto nivel
+        │   ├── CMakeLists.txt, package.xml, README.md
         │   └── launch/ (fake.launch.py, gz.launch.py)
         │
-        ├── phantomx_pincher_description/  # URDF/xacro + mallas STL/DAE/collision/visual
-        │   ├── urdf/ (phantomx_pincher.urdf.xacro, *.xacro, *.ros2_control, *.gazebo)
-        │   ├── meshes/ (STL/, DAE/, collision/, visual/)
-        │   ├── launch/ (display.launch.py, view.launch.py, view_gz.launch.py)
-        │   ├── config/initial_joint_positions.yaml
-        │   ├── rviz/view.rviz
-        │   └── phantomx_pincher/ (model.sdf, model.config, thumbnails/)  # export para Gazebo
+        ├── phantomx_pincher_bringup/       # Lanzamiento integrado sim/real
+        │   ├── CMakeLists.txt, package.xml
+        │   ├── config/ (controllers_position.yaml, controllers_effort.yaml)
+        │   └── launch/ (phantomx_pincher.launch.py, readme.md 🆕 con instrucciones use_real_robot:=true/false)
         │
-        ├── phantomx_pincher_bringup/      # Lanzamiento integrado sim/real
-        │   ├── launch/phantomx_pincher.launch.py
-        │   └── config/ (controllers_position.yaml, controllers_effort.yaml)
+        ├── phantomx_pincher_description/   # URDF/xacro + mallas STL/DAE/collision/visual
+        │   ├── urdf/, meshes/ (DAE/, STL/, collision/, visual/), config/, hooks/, launch/, rviz/
+        │   └── phantomx_pincher/ (model.sdf, model.config, thumbnails/ — export para Gazebo)
         │
         ├── phantomx_pincher_moveit_config/ # Configuración de MoveIt 2
-        │   ├── config/ (joint_limits.yaml, kinematics.yaml, ompl_planning.yaml,
-        │   │            phantomx_pincher.srdf, servo.yaml, servo_real.yaml, ...)
-        │   ├── srdf/ (phantomx_pincher.srdf.xacro, phantomx_pincher.xacro)
-        │   ├── launch/ (move_group.launch.py, move_group_external_control.launch.py)
-        │   ├── scripts/xacro2srdf.bash
-        │   └── rviz/moveit.rviz
+        │   ├── config/ (..., + moveit_controller_manager_gripper_command.yaml 🆕,
+        │   │            + moveit_controller_manager_gripper_trajectory.yaml 🆕)
+        │   ├── srdf/, launch/, scripts/xacro2srdf.bash, rviz/moveit.rviz
+        │   └── README.md
         │
-        ├── pincher_cproyect/              # Paquete propio: tarea de aplicación
-        │   └── pincher_cproyect/mover.py  # Nodo "mover": tópico /Bring → PoseCommand,
-        │                                  #   pinza y ventosa Arduino
-        │                                  #   ⚠️ importa `pincher_control.control_servo`,
-        │                                  #   paquete que NO está presente en este repo
+        ├── phantomx_pincher_commander_cpp/ 
+        │   ├── CMakeLists.txt, package.xml
+        │   └── src/ (commander_template.cpp, test_moveit.cpp, readme.md)
         │
-        └── ros2                           # (archivo vacío, 0 bytes — no es un paquete)
+        ├── phantomx_pincher_interfaces/    
+        │   ├── CMakeLists.txt, package.xml
+        │   └── msg/PoseCommand.msg
+        │
+        ├── pincher_control/                
+        │   ├── package.xml, setup.py, setup.cfg
+        │   ├── pincher_control/ (control_servo.py ✅ ahora sí presente, follow_joint_trajectory_node.py,
+        │   │                     template_control_servo.py, readme.md, __init__.py)
+        │   ├── resource/pincher_control
+        │   └── test/ (test_copyright.py, test_flake8.py, test_pep257.py)
+        │
+        │                                  
+        └── ros2                           
 
 ```
 
