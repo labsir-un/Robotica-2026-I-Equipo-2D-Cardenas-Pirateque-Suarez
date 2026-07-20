@@ -321,6 +321,54 @@ Al finalizar la secuencia, el manipulador regresa automáticamente a la posició
 
 ## 11. Actividad 8 – Movimiento secuencial
 
+Para esta actividad se desarrolló un programa en Python cuyo objetivo es ejecutar un **movimiento secuencial** de las articulaciones del manipulador. A diferencia de la actividad anterior, donde todas las articulaciones se desplazaban simultáneamente hasta alcanzar una configuración determinada, en esta práctica cada articulación se mueve de forma independiente siguiendo un orden preestablecido.
+
+Inicialmente, el robot es llevado a la posición **HOME** (0°, 0°, 0°, 0°, 0°) mediante un movimiento simultáneo, garantizando que todas las articulaciones comiencen desde una misma referencia. Posteriormente, se define una configuración objetivo:
+
+```python
+config = {
+    "base": 85.0,
+    "hombro": -20.0,
+    "codo": 55.0,
+    "muneca": 25.0,
+    "pinza": 0.0
+}
+```
+
+La secuencia de movimiento se establece mediante la lista:
+
+```python
+orden = ["base", "hombro", "codo", "muneca", "pinza"]
+```
+
+De esta forma, las articulaciones se desplazan una a una en el siguiente orden:
+
+1. Base → 85°
+2. Hombro → -20°
+3. Codo → 55°
+4. Muñeca → 25°
+5. Pinza → 0°
+
+Cada movimiento se realiza mediante la función `mover_articulacion()`, esperando **1,5 segundos** antes de continuar con la siguiente articulación. Durante la ejecución, el programa muestra en la terminal la articulación que se está moviendo y el ángulo objetivo correspondiente, además de medir el tiempo total empleado para completar la secuencia.
+
+Una vez alcanzada la configuración final, el robot permanece unos segundos en dicha posición para facilitar la observación del resultado. Posteriormente, el manipulador regresa a la posición HOME siguiendo el **orden inverso**, definido en el código como:
+
+```python
+orden_inverso = ["pinza", "muneca", "codo", "hombro", "base"]
+```
+
+Por lo tanto, el retorno se realiza con la siguiente secuencia:
+
+1. Pinza → 0°
+2. Muñeca → 0°
+3. Codo → 0°
+4. Hombro → 0°
+5. Base → 0°
+
+Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las articulaciones hayan regresado correctamente a la posición HOME, tras lo cual se deshabilita el torque de los servomotores y se finaliza la ejecución del nodo de ROS 2.
+
+
+
 ## 12. Actividad 9 – Interpolación de trayectorias
 
 ## 13. Actividad 10 – Trayectoria sinusoidal
