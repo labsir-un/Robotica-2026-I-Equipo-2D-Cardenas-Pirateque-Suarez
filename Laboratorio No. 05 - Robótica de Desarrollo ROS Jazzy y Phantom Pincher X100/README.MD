@@ -157,7 +157,7 @@ Como resultado, se obtiene la siguiente ventana de visualización y control:
 <br>
 
 <div align="center">
-  <img src="Images/Rviz.png" alt="RViz" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Rviz.png" alt="RViz" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 2. Ventana de visualización y control en RViz.</b>
 </div>
@@ -233,7 +233,7 @@ Al ejecutar el programa, se abrirá la siguiente ventana de control:
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act4.png" alt="Interfaz de control actividad 4" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act4.png" alt="Interfaz de control actividad 4" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 3. Interfaz de control actividad 4.</b>
 </div>
@@ -247,7 +247,7 @@ Durante esta demostración, cada articulación se mueve de manera independiente,
 <br>
 
 <div align="center">
-  <img src="Images/act4.1.png" alt="Movimiento por ejes" style="border-radius: 5px; width: 500px;">
+  <img src="Images/act4.1.png" alt="Movimiento por ejes" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 4. Movimiento del robot eje por eje.</b>
 </div>
@@ -261,7 +261,7 @@ Durante esta demostración, cada articulación se mueve de manera independiente,
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 5" style="border-radius: 5px; width:500px;">
+  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 5" style="border-radius: 5px; width:600px;">
   <br>
   <b>Figura 5. Interfaz de calibración actividad 5.</b>
 </div>
@@ -277,7 +277,7 @@ para esta actividad se ejecuta el codigo correspondiente que abre una ventana nu
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 6" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 6" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 6. Interfaz de calibración actividad 6.</b>
 </div>
@@ -330,7 +330,7 @@ Al finalizar la secuencia, el manipulador regresa automáticamente a la posició
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act7.png" alt="Interfaz de Movimiento simultaneo actividad 7" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act7.png" alt="Interfaz de Movimiento simultaneo actividad 7" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 7. Interfaz de Movimiento simultaneo actividad 7.</b>
 </div>
@@ -388,7 +388,7 @@ Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las art
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act8.png" alt="Interfaz de Movimiento se actividad 8" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act8.png" alt="Interfaz de Movimiento se actividad 8" style="border-radius: 5px; width: 600px;">
   <br>
   <b>Figura 8.Interfaz de Movimiento secuencial actividad 8.</b>
 </div>
@@ -400,9 +400,9 @@ Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las art
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act9.png" alt="Interfaz de Movimiento simultaneo actividad 9" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act9.png" alt="Interfaz de Movimiento simultaneo actividad 9" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 9.Interfaz de Movimiento simultaneo actividad 9.</b>
+  <b>Figura 9.Interfaz de interpolación de trayectoria actividad 9.</b>
 </div>
 
 <br>
@@ -414,9 +414,9 @@ Para esta actividad se desarrolló un programa en Python que implementa una **in
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act10.png" alt="Interfaz de Movimiento simultaneo actividad 10" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act10.png" alt="Interfaz de Movimiento simultaneo actividad 10" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 10.Interfaz de Movimiento simultaneo actividad 10.</b>
+  <b>Figura 10.Interfaz de control sinusoidal actividad 10.</b>
 </div>
 
 <br>
@@ -439,14 +439,24 @@ Adicionalmente, la interfaz incorpora funciones de seguridad y control, como los
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act11.png" alt="Interfaz de Movimiento simultaneo actividad 11" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act11.png" alt="Interfaz de Movimiento simultaneo actividad 11" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura 11.Interfaz de Movimiento simultaneo actividad 11.</b>
+  <b>Figura 11.Interfaz de cinemática directa actividad 11.</b>
 </div>
 
 <br>
 
 ## 15. Actividad 12 – Cinemática inversa
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act12.png" alt="Interfaz de Movimiento simultaneo actividad 12" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 12.Interfaz de cinemática inversa actividad 12.</b>
+</div>
+
+<br>
 
 ## 16. Actividad 13 – Enseñanza y repetición de poses
 
@@ -455,9 +465,9 @@ Para esta actividad se desarrolló un programa en Python que implementa una **in
 <br>
 
 <div align="center">
-  <img src="Images/act13.png" alt="Interfaz gráfica de la Actividad 13" style="border-radius: 5px; width: 700px;">
+  <img src="Images/Interfaz_Act12.png" alt="Interfaz de Movimiento simultaneo actividad 12" style="border-radius: 5px; width: 600px;">
   <br>
-  <b>Figura X. Interfaz gráfica para enseñanza y reproducción de poses.</b>
+  <b>Figura 13.Interfaz de aprendizaje actividad 13.</b>
 </div>
 
 <br>
