@@ -1048,10 +1048,10 @@ La interfaz está organizada en las siguientes secciones:
 
 ## 19. Videos Demostrativos
 
-Conforme a los lineamientos de la guía del laboratorio, los videos correspondientes a las actividades evaluables inician con la introducción oficial de LabSIR[cite: 1]. A continuación se presentan los enlaces de sustentación:
+Conforme a los lineamientos de la guía del laboratorio, los videos correspondientes a las actividades evaluables inician con la introducción oficial de LabSIR. A continuación se presentan los enlaces de sustentación:
 
 ### 19.1. Validación Técnica
-Recopilación del movimiento individual, movimiento simultáneo y secuencial, enseñanza y repetición de poses, y el trazado de figuras[cite: 1].
+Recopilación del movimiento individual, movimiento simultáneo y secuencial, enseñanza y repetición de poses, y el trazado de figuras.
 
 <br>
 <div align="center">
@@ -1062,7 +1062,7 @@ Recopilación del movimiento individual, movimiento simultáneo y secuencial, en
 <br>
 
 ### 19.2. Coreografía Robótica
-Ejecución completa, continua y sin cortes de la rutina musical sincronizada (superando el tiempo mínimo de 45 segundos)[cite: 1].
+Ejecución completa, continua y sin cortes de la rutina musical sincronizada (superando el tiempo mínimo de 45 segundos).
 
 <br>
 <div align="center">
@@ -1089,8 +1089,6 @@ Para evidenciar el comportamiento de los nodos de ROS 2 comunicándose directame
 <br>
 
 ---
-
-## 21. Conclusiones individuales
 
 ## 21. Conclusiones individuales
 
