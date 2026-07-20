@@ -400,6 +400,21 @@ Adicionalmente, la interfaz incorpora funciones de seguridad y control, como los
 
 ## 16. Actividad 13 – Enseñanza y repetición de poses
 
+Para esta actividad se desarrolló un programa en Python que implementa una **interfaz gráfica de usuario (GUI)** para realizar tareas de **enseñanza y repetición de poses (Teach & Play)** del manipulador. La aplicación permite controlar manualmente cada articulación mediante deslizadores, capturar y almacenar las posiciones alcanzadas, reproducir secuencias de movimiento y administrar el torque y la velocidad del robot.
+
+<br>
+
+<div align="center">
+  <img src="Images/act13.png" alt="Interfaz gráfica de la Actividad 13" style="border-radius: 5px; width: 700px;">
+  <br>
+  <b>Figura X. Interfaz gráfica para enseñanza y reproducción de poses.</b>
+</div>
+
+<br>
+
+Las poses registradas pueden guardarse y cargarse mediante archivos **YAML**, lo que permite conservar y reutilizar diferentes secuencias de movimiento. Durante la reproducción, el robot ejecuta cada pose de forma automática utilizando la función `mover_simultaneo()`, respetando el tiempo de transición definido por el usuario. Además, la interfaz incorpora funciones de seguridad como **Torque ON**, **Torque OFF**, **HOME** y **Parada de Emergencia**.
+
+
 ## 17. Actividad 14 – Trazado de una figura
 
 ## 18. Actividad 15 – Reto final: coreografía robótica
