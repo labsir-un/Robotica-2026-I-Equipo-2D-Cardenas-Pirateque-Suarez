@@ -373,6 +373,8 @@ Finalmente, se ejecuta un movimiento simultáneo para asegurar que todas las art
 
 ## 13. Actividad 10 – Trayectoria sinusoidal
 
+
+
 ## 14. Actividad 11 – Cinemática directa
 
 ## 15. Actividad 12 – Cinemática inversa
