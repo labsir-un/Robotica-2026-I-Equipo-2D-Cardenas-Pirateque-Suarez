@@ -1055,7 +1055,7 @@ Recopilación del movimiento individual, movimiento simultáneo y secuencial, en
 
 <br>
 <div align="center">
-  <a href="[Insertar_link_de_YouTube_aquí]" target="_blank">
+  <a href="https://youtu.be/A48t1KLzZDM?si=LCfVQ4xWSsECllgt" target="_blank">
     <img src="https://img.shields.io/badge/VER_VALIDACIÓN_TÉCNICA-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Validación Técnica">
   </a>
 </div>
@@ -1066,7 +1066,7 @@ Ejecución completa, continua y sin cortes de la rutina musical sincronizada (su
 
 <br>
 <div align="center">
-  <a href="[Insertar_link_de_YouTube_aquí]" target="_blank">
+  <a href="https://youtu.be/o6iyQebOjjw?si=7CmAMvReRMZWVVGg" target="_blank">
     <img src="https://img.shields.io/badge/VER_COREOGRAFÍA_ROBÓTICA-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Ver Coreografía Robótica">
   </a>
 </div>
