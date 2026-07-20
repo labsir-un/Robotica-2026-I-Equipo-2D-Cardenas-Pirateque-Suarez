@@ -132,8 +132,21 @@ def generate_launch_description():
             "manage_controllers": "false",
             # We want MoveIt RViz
             "enable_rviz": "true",
+            "enable_servo": "false",
         }.items(),
         condition=UnlessCondition(use_real_robot),
+    )
+
+    # -------------------------------------------------------------------------
+    #  NUEVO: Nodo de RViz independiente para no depender de MoveIt
+    # -------------------------------------------------------------------------
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', PathJoinSubstitution([FindPackageShare("phantomx_pincher_moveit_config"), "rviz", "moveit.rviz"])],
+        output='screen',
+        condition=UnlessCondition(use_real_robot)
     )
 
     # -------------------------------------------------------------------------
@@ -145,15 +158,6 @@ def generate_launch_description():
         executable="follow_joint_trajectory",
         name="pincher_follow_joint_trajectory",
         output="screen",
-        # Optional: override defaults if needed
-        # parameters=[{
-        #     "port": "/dev/ttyUSB0",
-        #     "baudrate": 1000000,
-        #     "joint_prefix": "phantomx_pincher_",
-        #     "moving_speed": 200,
-        #     "torque_limit": 400,
-        #     "gripper_id": 5,
-        # }],
         condition=IfCondition(use_real_robot),
     )
 
@@ -179,14 +183,15 @@ def generate_launch_description():
 
         # Common
         robot_state_publisher_node,
-        commander_node,
+        # commander_node,  <-- COMENTADO: Apagamos el nodo C++ que fuerza la pinza a 0
 
         # SIM-only
         ros2_control_node,
         joint_state_broadcaster_spawner,
         arm_controller_spawner,
         gripper_controller_spawner,
-        move_group_sim,
+        # move_group_sim,  <-- COMENTADO: Apagamos MoveIt para que no pelee con nuestro Python
+        rviz_node,         # <-- NUEVO: Lanzamos el visualizador directamente
 
         # REAL-only
         follow_joint_trajectory_node,
