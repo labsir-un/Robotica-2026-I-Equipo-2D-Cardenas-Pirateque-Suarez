@@ -673,9 +673,9 @@ h = -30.0 + (freq * 120.0)
 c = 30.0 - (freq * 120.0)
 ```
 
-mentiene el ritmo con una frecuencia de **10 Hz**  
+Los cuales va refrescando los valores con una frecuencia de **10 Hz** todo esto dentro de la función  `_hilo_coreografia()`.
 
-ademas todo esto es controlado desde una tinterfaz grafica 
+Ademas todo esto es controlado desde la siguiente interfaz grafica:
 
 
 <br>
@@ -687,6 +687,18 @@ ademas todo esto es controlado desde una tinterfaz grafica
 </div>
 
 <br>
+
+La interfaz está organizada en las siguientes secciones:
+
+- **Línea de tiempo:** incorpora controles independientes para la música y el robot, permitiendo desplazarse manualmente a cualquier instante de la coreografía.
+- **Configuración de ejecución:** permite seleccionar entre el modo de simulación en RViz o el modo de robot físico, además de ajustar el desfase temporal entre el audio y el movimiento.
+- **Control de velocidad:** permite modificar la velocidad de los servomotores Dynamixel durante la ejecución de la rutina.
+- **Botones de seguridad:** incluyen parada de emergencia, pausa y reanudación, detención completa de la coreografía y retorno automático a la posición HOME.
+- **Selección de canciones:** presenta dos coreografías predefinidas, **Dubidubidu** y **Pedro (Mapache)**, cada una con su respectiva imagen de referencia.
+- **Monitor cinemático:** muestra en tiempo real las posiciones articulares objetivo (Set) y las posiciones reales del robot (Read), permitiendo supervisar el seguimiento del movimiento.
+- **Consola de eventos:** registra el avance de la coreografía, la letra de la canción, cambios de estado y mensajes de sincronización.
+
+
 
 ## 19. Video Explicativo
 
