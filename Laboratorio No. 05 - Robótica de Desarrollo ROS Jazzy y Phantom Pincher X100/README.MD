@@ -530,6 +530,16 @@ mentiene el ritmo con una frecuencia de **10 Hz**
 ademas todo esto es controlado desde una tinterfaz grafica 
 
 
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act15.png" alt="Interfaz de Movimiento simultaneo actividad 15" style="border-radius: 5px; width: 600px;">
+  <br>
+  <b>Figura 14.Interfaz de coreografia actividad 14.</b>
+</div>
+
+<br>
+
 ## 19. Video Explicativo
 
 
