@@ -264,7 +264,6 @@ flowchart TD
 
 ```
 
----
 
 ## 3. Puesta en marcha 
 
