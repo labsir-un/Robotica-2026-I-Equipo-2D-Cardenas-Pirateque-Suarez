@@ -233,7 +233,7 @@ Al ejecutar el programa, se abrirá la siguiente ventana de control:
 <br>
 
 <div align="center">
-  <img src="Images/Interfaz_Act4.png" alt="Interfaz de control actividad 4" style="border-radius: 5px; width: 400px;">
+  <img src="Images/Interfaz_Act4.png" alt="Interfaz de control actividad 4" style="border-radius: 5px; width: 500px;">
   <br>
   <b>Figura 3. Ventana de control.</b>
 </div>
@@ -258,6 +258,15 @@ Durante esta demostración, cada articulación se mueve de manera independiente,
 
 ## 8. Actividad 5 – Calibración de cero y error articular
 
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 5" style="border-radius: 5px; width:500px;">
+  <br>
+  <b>Figura 3. Ventana de control.</b>
+</div>
+
+<br>
 
 
 ## 9. Actividad 6 – Límites seguros
@@ -268,9 +277,9 @@ para esta actividad se ejecuta el codigo correspondiente que abre una ventana nu
 <br>
 
 <div align="center">
-  <img src="Images/act6.png" alt="Movimiento por ejes" style="border-radius: 5px; width: 500px;">
+  <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 6" style="border-radius: 5px; width: 500px;">
   <br>
-  <b>Figura 4. Limites por eje.</b>
+  <b>Figura 3. Ventana de control.</b>
 </div>
 
 <br>
@@ -316,6 +325,17 @@ La secuencia de movimiento está compuesta por cinco configuraciones articulares
 En cada etapa, todas las articulaciones se desplazan simultáneamente hasta alcanzar la configuración objetivo mediante la función `mover_simultaneo()`. Una vez alcanzada la posición, el programa realiza una pausa de tres segundos para facilitar la observación de la postura antes de continuar con la siguiente configuración.
 
 Al finalizar la secuencia, el manipulador regresa automáticamente a la posición HOME (0°, 0°, 0°, 0°, 0°), deshabilita el torque de los servomotores y cierra el nodo de ROS 2 de forma segura.
+
+
+<br>
+
+<div align="center">
+  <img src="Images/Interfaz_Act7.png" alt="Interfaz de Movimiento simultaneo actividad 7" style="border-radius: 5px; width: 500px;">
+  <br>
+  <b>Figura 3. Ventana de control.</b>
+</div>
+
+<br>
 
 ## 11. Actividad 8 – Movimiento secuencial
 
