@@ -490,35 +490,31 @@ Durante esta demostración, cada articulación se mueve de manera independiente,
 
 ## 8. Actividad 5 – Calibración de cero y error articular
 
-La Actividad 5 consiste en el desarrollo de un asistente gráfico para calibrar el cero mecánico y evaluar el error de posicionamiento de cada articulación del robot **Phantom X Pincher X100**. La aplicación fue desarrollada en **Python**, utilizando **Tkinter** para la interfaz gráfica, **ROS 2** para la comunicación con el robot y **Matplotlib** junto con **NumPy** para el análisis y la generación de gráficas.
+La Actividad 5 consiste en el desarrollo de un asistente gráfico para calibrar el cero mecánico y evaluar el error de posicionamiento de cada articulación del robot **Phantom X Pincher X100**. La aplicación fue desarrollada en **Python**, utilizando **Tkinter** para la interfaz gráfica, **ROS 2** para la comunicación con el robot, y **Matplotlib** junto con **NumPy** para el análisis y la generación de gráficas.
 
-La interfaz permite seleccionar la articulación que se desea evaluar, visualizar su posición en tiempo real y ejecutar una rutina automática de calibración basada en cinco posiciones de referencia previamente definidas para cada articulación.
-
-<div align="center">
+La interfaz permite seleccionar la articulación que se desea evaluar, visualizar su posición en tiempo real y ejecutar una rutina automática de calibración basada en cinco posiciones de referencia previamente definidas para cada articulación.<div align="center">
   <img src="Images/Interfaz_Act5.png" alt="Interfaz de calibración actividad 5" style="border-radius:5px; width:600px;">
   <br>
-  <b>Figura 5. Interfaz gráfica de la Actividad 5.</b>
-</div>
+  <b>Figura 5. Interfaz gráfica de la Actividad 5.</b></div><br>
 
-<br>
+Durante la prueba, el robot recorre automáticamente cinco posiciones de referencia. En cada una se mide el ángulo real y se calcula el error articular utilizando la expresión:
 
-La interfaz está organizada en cinco secciones principales:
+$$e_q = q_{deseado} - q_{medido}$$
 
-- **Panel de seguridad**, con los botones de **Emergencia**, **Detener rutina** e **Ir a Home**.
-- **Panel de control**, donde se selecciona la articulación, se visualiza su posición actual y se inicia la prueba automática.
-- **Tabla de resultados**, que registra la posición deseada, la posición medida y el error obtenido en cada punto.
-- **Panel estadístico**, que muestra el error máximo, el error promedio y el desplazamiento del cero.
-- **Consola**, donde se informa el avance de la calibración.
+Finalizada la rutina, el robot regresa automáticamente a la posición **Home (0°)** y el sistema calcula el **error máximo**, el **error promedio** y el **desplazamiento del cero**, mostrando estos resultados en la interfaz. 
 
-Durante la prueba, el robot recorre automáticamente cinco posiciones de referencia. En cada una se mide el ángulo real mediante el método `leer_posicion()` y se calcula el error articular utilizando la expresión:
+> **Nota sobre la simulación:** Es importante destacar que, al ejecutar esta actividad en un entorno puramente simulado (RViz), el error articular calculado es virtualmente nulo ($e_q = 0$). Esto se debe a que el modelo cinemático ideal alcanza la posición comandada de forma instantánea y con precisión matemática. Si esta misma rutina se implementara sobre el robot físico, las gráficas evidenciarían un error real y medible derivado de la resolución de los *encoders* internos de los servomotores (Dynamixel AX-12A), la holgura mecánica de los engranajes y la dinámica propia del sistema.
 
-\[
-e_q=q_{deseado}-q_{medido}
-\]
+### Gráficas de calibración
+A continuación se presentan las gráficas generadas automáticamente que comparan la posición deseada vs. la medida para cada articulación, evidenciando el comportamiento ideal descrito (error nulo en simulación):<div align="center">
+  <!-- Reemplaza los SRC si las rutas de tus imágenes son distintas -->
+  <img src="phantom_ws/mis_actividades/graficas_act5/grafica_error_base.png" alt="Error Base" width="400px">
+  <img src="phantom_ws/mis_actividades/graficas_act5/grafica_error_hombro.png" alt="Error Hombro" width="400px">
+  <img src="phantom_ws/mis_actividades/graficas_act5/grafica_error_codo.png" alt="Error Codo" width="400px">
+  <img src="phantom_ws/mis_actividades/graficas_act5/grafica_error_muneca.png" alt="Error Muñeca" width="400px">
+  <img src="phantom_ws/mis_actividades/graficas_act5/grafica_error_pinza.png" alt="Error Pinza" width="400px"></div>
 
-Finalizada la rutina, el robot regresa automáticamente a la posición **Home (0°)** y el sistema calcula el **error máximo**, el **error promedio** y el **desplazamiento del cero**, mostrando estos resultados en la interfaz. Además, se genera una gráfica comparando las posiciones deseadas con las posiciones medidas, la cual se almacena automáticamente en la carpeta `graficas_act5` para documentar el proceso de calibración.
-
-
+---
 ## 9. Actividad 6 – Límites seguros
 
 La Actividad 6 tiene como objetivo determinar los límites seguros de operación de cada articulación del robot **Phantom X Pincher X100** mediante un procedimiento de calibración manual. La aplicación fue desarrollada en **Python** utilizando **Tkinter** para la interfaz gráfica y **ROS 2** para la comunicación con el robot a través de la clase `JointSelector`.
@@ -733,6 +729,59 @@ La interfaz incluye además parada de emergencia (aborta el bucle e inhabilita e
 
 El error de seguimiento crece principalmente con la **frecuencia**: al pasar de 0.25 Hz a 1.0 Hz (misma amplitud) el error máximo se multiplica por ~4, mientras que al triplicar la amplitud (misma frecuencia) el error solo se triplica aproximadamente. Esto es consistente con que el error está dominado por la velocidad angular máxima exigida al servomotor ($v_{max}=2\pi f A$), que crece linealmente con ambos parámetros pero de forma más agresiva cuando se combinan (prueba 4, la más exigente, concentra el mayor error de las cuatro).
 
+
+
+
+## 14. Actividad 11 – Cinemática directa
+
+Para esta actividad se implementó la cinemática directa del manipulador mediante la convención estándar de Denavit-Hartenberg (DH). El programa recibe los valores articulares $q_1, q_2, q_3, q_4$ y calcula la posición cartesiana ($x, y, z$) y la orientación en ángulos de Euler (Roll, Pitch, Yaw) del efector final.
+
+### Parámetros DH
+
+| Articulación ($i$) | $\theta_i$ | $d_i$ | $a_i$ | $\alpha_i$ |
+| :---: | :---: | :---: | :---: | :---: |
+| **1 (Base)** | $\theta_1$ | $L_1$ | $0$ | $-\pi/2$ |
+| **2 (Hombro)** | $\theta_2$ | $0$ | $L_2$ | $0$ |
+| **3 (Codo)** | $\theta_3$ | $0$ | $L_3$ | $0$ |
+| **4 (Muñeca)** | $\theta_4$ | $0$ | $L_4$ | $0$ |
+
+con $L_1=45.0$ mm, $L_2=107.0$ mm, $L_3=107.0$ mm, $L_4=108.8$ mm (Actividad 3), reutilizados como constantes directamente en el código.
+
+La transformación homogénea entre eslabones consecutivos es:
+
+$$
+^{i-1}T_i =
+\begin{bmatrix}
+\cos\theta_i & -\sin\theta_i\cos\alpha_i & \sin\theta_i\sin\alpha_i & a_i\cos\theta_i \\
+\sin\theta_i & \cos\theta_i\cos\alpha_i & -\cos\theta_i\sin\alpha_i & a_i\sin\theta_i \\
+0 & \sin\alpha_i & \cos\alpha_i & d_i \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+y la pose final del TCP se obtiene mediante la premultiplicación encadenada:
+
+$$^{0}T_4 = {}^{0}T_1 \cdot {}^{1}T_2 \cdot {}^{2}T_3 \cdot {}^{3}T_4$$
+
+**Offset geométrico del hombro:** en el hardware, $0°$ en la articulación del hombro deja el eslabón apuntando verticalmente hacia arriba, pero la convención DH define $0°$ alineado con el eje $X_{i-1}$. Para conciliar ambas referencias, el código aplica una compensación de fase $q_{2,DH} = q_2 - \pi/2$ únicamente sobre el ángulo del hombro, antes de construir su matriz de transformación.
+
+### Interfaz y flujo de trabajo
+
+La interfaz permite cargar automáticamente cualquiera de las 5 configuraciones de la Actividad 7 desde un menú desplegable, o ingresar manualmente $q_1$–$q_4$ mediante spinbox restringidos a los límites seguros de la Actividad 6. Al presionar **▶ MOVER Y CALCULAR CINEMÁTICA**, el programa calcula la cinemática de forma instantánea y, en paralelo, envía el movimiento al robot (real o simulado) mediante `mover_simultaneo()`.
+
+### Validación con las configuraciones de la Actividad 7
+
+Ejecutando el modelo DH sobre las 5 configuraciones de la Actividad 7 se obtienen los siguientes resultados teóricos:
+
+| Configuración | X (mm) | Y (mm) | Z (mm) | Roll (°) | Pitch (°) | Yaw (°) |
+|---|---:|---:|---:|---:|---:|---:|
+| 1 (HOME) | 0.00 | 0.00 | 367.80 | 90.00 | -90.00 | 0.00 |
+| 2 | 151.23 | 70.52 | 316.24 | -90.00 | -65.00 | 25.00 |
+| 3 | 109.03 | -76.35 | 328.37 | -90.00 | -55.00 | -35.00 |
+| 4 | 10.37 | 118.55 | 287.60 | -90.00 | -30.00 | 85.00 |
+| 5 | -12.29 | -69.68 | 331.80 | 90.00 | -65.00 | -100.00 |
+
+> **Pendiente:** estos son los valores teóricos calculados por el modelo DH (verificados corriendo el código real). Falta el contraste visual con la posición observada en RViz para cada configuración, que pide el PDF — necesito que confirmes que el TCP simulado coincide con estas coordenadas, o que me pases las capturas de RViz para documentar la comparación.
 
 ## 14. Actividad 11 – Cinemática directa
 
