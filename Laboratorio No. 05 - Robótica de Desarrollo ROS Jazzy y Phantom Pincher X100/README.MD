@@ -279,6 +279,16 @@ flowchart TD
     End(["Fin de la actividad ejecutada\n(regresa a Hub o cierra sesion)"])
 ```
 
+### 2.3. Plano de planta
+
+<br>
+<div align="center">
+  <img src="Images/PLANO DE PLANTA.png" alt="RViz" style="border-radius: 5px; width: 600px;">
+</div>
+<br>
+
+[Descargar PDF](Images/PLANO DE PLANTA.pdf)
+
 
 ## 3. Puesta en marcha 
 
