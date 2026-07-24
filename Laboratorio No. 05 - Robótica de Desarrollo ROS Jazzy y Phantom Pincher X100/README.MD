@@ -44,102 +44,108 @@
 
 ```
 Laboratorio No. 05 - Robótica de Desarrollo ROS Jazzy y Phantom Pincher X100/
-├── README.MD                              # Documento principal de entrega
-├── Images/                                # Capturas de cada interfaz/actividad (usadas en el README)
-│   ├── pincher.png, Rviz.png
-│   ├── Interfaz_Act4.png ... Interfaz_Act15.png
-│   ├── act4.1.png, act4.png, act6.png
-│   ├── Interpolacion_Graficas_Act9.png
-│   └── Interfaz_Act14_Circulo.png / _Cuadrado.png / _Iniciales.png / _Triangulo.png
 │
-└── phantom_ws/
-    ├── mis_actividades/                   # Scripts sueltos por actividad
-    │   ├── joint_selector.py              # Clase base (control articular + cinemática, simulación)
-    │   ├── actividad4.py                  # Act. 4 – movimiento individual
-    │   ├── actividad5.py                  # Act. 5 – calibración de cero y error articular
-    │   ├── actividad6.py                  # Act. 6 – límites seguros (calibración manual con torque OFF)
-    │   ├── actividad7.py                  # Act. 7 – movimiento simultáneo
-    │   ├── actividad8.py                  # Act. 8 – movimiento secuencial
-    │   ├── actividad9.py                  # Act. 9 – interpolación lineal/cúbica + gráficas
-    │   ├── actividad10.py                 # Act. 10 – trayectoria sinusoidal
-    │   ├── actividad11.py                 # Act. 11 – cinemática directa (DH)
-    │   ├── actividad12.py                 # Act. 12 – cinemática inversa (codo arriba/abajo)
-    │   ├── actividad13.py                 # Act. 13 – enseñanza y repetición de poses (Teach & Play)
-    │   ├── actividad14.py                 # Act. 14 – trazado de figuras (triángulo/cuadrado/círculo/iniciales)
-    │   ├── actividad15.py                 # Act. 15 – coreografía sincronizada con audio
-    │   ├── analizador_audio.py            # Extrae energía/frecuencia/pulsos de las canciones (librosa)
-    │   ├── dubidubidu.mp3 / pedro.mp3     # Audios de las coreografías
-    │   ├── datos_dubidubidu.csv / datos_pedro.csv   # Parámetros musicales ya procesados
-    │   ├── dubidubidu.png / pedro.png     # Imágenes de referencia de cada canción
-    │   ├── grafica_act9_todas_articulaciones.png
-    │   ├── trayectorias_act9.csv          # Datos exportados de la Actividad 9
-    │   ├── graficas_act5/                 # Gráficas q_deseado vs q_medido por articulación
-    │   │   ├── grafica_error_base.png
-    │   │   ├── grafica_error_hombro.png
-    │   │   ├── grafica_error_codo.png
-    │   │   ├── grafica_error_muneca.png
-    │   │   └── grafica_error_pinza.png
-    │   ├── limites_act6/                  # Salida de la Actividad 6
-    │   │   ├── limites_seguros.json
-    │   │   └── limites_seguros.csv
-    │   ├── yamls/
-    │   │   └── poses_act13.yaml           # Poses guardadas (Teach & Play)
-    │   └── README_Actividad4.md ... README_Actividad15.md / README_JointSelector.md
+├── Images/                                        # Imágenes empleadas en el informe y resultados
+│   ├── Interfaz_Act4.png
+│   ├── Interfaz_Act5.png
+│   ├── Interfaz_Act6.png
+│   ├── Interfaz_Act7.png
+│   ├── Interfaz_Act8.png
+│   ├── Interfaz_Act9.png
+│   ├── Interfaz_Act10.png
+│   ├── Interfaz_Act11.png
+│   ├── Interfaz_Act12.png
+│   ├── Interfaz_Act13.png
+│   ├── Interfaz_Act14_*.png
+│   ├── Interfaz_Act15.png
+│   ├── Rviz.png
+│   ├── pincher.png
+│   └── ...                                       # Gráficas, diagramas DH y capturas adicionales
+│
+└── phantom_ws/                                   # Workspace principal de ROS 2 Jazzy
     │
-    └── src/
-        ├── phantomx_pincher/               # Metapaquete: launch de alto nivel
-        │   ├── CMakeLists.txt
-        │   ├── README.md
+    ├── mis_actividades/                          # Scripts desarrollados durante el laboratorio
+    │   ├── actividad4.py                         # GUI de control manual
+    │   ├── actividad5.py                         # Evaluación de precisión
+    │   ├── actividad6.py                         # Límites articulares
+    │   ├── actividad7.py                         # Movimiento simultáneo
+    │   ├── actividad8.py                         # Movimiento secuencial
+    │   ├── actividad9.py                         # Interpolación de trayectorias
+    │   ├── actividad10.py                        # Movimiento sinusoidal
+    │   ├── actividad11.py                        # Cinemática directa
+    │   ├── actividad12.py                        # Cinemática inversa
+    │   ├── actividad13.py                        # Teach & Play
+    │   ├── actividad14.py                        # Trazado cartesiano en RViz
+    │   ├── actividad15.py                        # Control mediante voz
+    │   │
+    │   ├── README_Actividad4.md
+    │   ├── README_Actividad5.md
+    │   ├── ...
+    │   ├── README_Actividad15.md                 # Documentación de cada actividad
+    │   │
+    │   ├── graficas_act5/                        # Resultados de la Actividad 5
+    │   ├── limites_act6/                         # Límites seguros (CSV y JSON)
+    │   ├── yamls/                                # Configuraciones almacenadas
+    │   ├── trayectorias_act9.csv
+    │   ├── datos_*.csv
+    │   ├── *.mp3
+    │   └── *.png                                # Recursos utilizados por las actividades
+    │
+    └── src/                                     # Paquetes ROS 2 del proyecto
+        │
+        ├── phantomx_pincher/                    # Paquete principal del robot
+        │   ├── launch/
+        │   │   ├── fake.launch.py
+        │   │   └── gz.launch.py
         │   ├── package.xml
-        │   └── launch/ (fake.launch.py, gz.launch.py)
-        │
-        ├── phantomx_pincher_bringup/        # Lanzamiento integrado sim/real
         │   ├── CMakeLists.txt
+        │   └── README.md
+        │
+        ├── phantomx_pincher_bringup/            # Inicialización del robot y controladores
+        │   ├── launch/
+        │   │   └── phantomx_pincher.launch.py
+        │   ├── config/
+        │   │   ├── controllers_position.yaml
+        │   │   └── controllers_effort.yaml
         │   ├── package.xml
-        │   ├── config/ (controllers_position.yaml, controllers_effort.yaml)
-        │   └── launch/ (phantomx_pincher.launch.py, readme.md)
+        │   └── CMakeLists.txt
         │
-        ├── phantomx_pincher_commander_cpp/  # Commander en C++ (control cartesiano vía MoveIt)
-        │   ├── CMakeLists.txt
+        ├── phantomx_pincher_commander_cpp/      # Ejemplos de control en C++
+        │   ├── src/
+        │   │   ├── commander_template.cpp
+        │   │   └── test_moveit.cpp
         │   ├── package.xml
-        │   └── src/ (commander_template.cpp, test_moveit.cpp, readme.md)
+        │   └── CMakeLists.txt
         │
-        ├── phantomx_pincher_description/    # URDF/xacro + mallas STL/DAE/collision/visual
-        │   ├── urdf/ (phantomx_pincher.urdf.xacro, *.xacro, *.ros2_control, *.gazebo)
-        │   ├── meshes/ (STL/, DAE/, collision/, visual/)
-        │   ├── hooks/ (phantomx_pincher_description.dsv.in, .sh.in)
-        │   ├── launch/ (display.launch.py, view.launch.py, view_gz.launch.py)
-        │   ├── config/initial_joint_positions.yaml
-        │   ├── rviz/view.rviz
-        │   └── phantomx_pincher/ (model.sdf, model.config, meshes/, thumbnails/)  # export para Gazebo
-        │
-        ├── phantomx_pincher_interfaces/     # Mensaje personalizado
-        │   ├── CMakeLists.txt
+        ├── phantomx_pincher_description/        # Descripción del robot y recursos de simulación
+        │   ├── urdf/                            # Modelos URDF/Xacro
+        │   ├── meshes/                          # Modelos STL y DAE
+        │   │   ├── STL/
+        │   │   ├── DAE/
+        │   │   ├── collision/
+        │   │   └── visual/
+        │   ├── launch/
+        │   │   ├── display.launch.py
+        │   │   ├── view.launch.py
+        │   │   └── view_gz.launch.py
+        │   ├── config/
+        │   │   └── initial_joint_positions.yaml
+        │   ├── rviz/                            # Configuración de RViz
+        │   ├── hooks/
         │   ├── package.xml
-        │   └── msg/PoseCommand.msg
+        │   └── CMakeLists.txt
         │
-        ├── phantomx_pincher_moveit_config/  # Configuración de MoveIt 2
-        │   ├── CMakeLists.txt
-        │   ├── README.md
+        ├── phantomx_pincher_interfaces/         # Mensajes personalizados del proyecto
+        │   ├── msg/
         │   ├── package.xml
-        │   ├── config/ (joint_limits.yaml, kinematics.yaml, ompl_planning.yaml,
-        │   │            phantomx_pincher.srdf, servo.yaml, servo_real.yaml,
-        │   │            controllers_position.yaml, controllers_effort.yaml,
-        │   │            moveit_controller_manager_gripper_command.yaml,
-        │   │            moveit_controller_manager_gripper_trajectory.yaml)
-        │   ├── srdf/ (phantomx_pincher.srdf.xacro, phantomx_pincher.xacro, phantomx_pincher.srdf)
-        │   ├── launch/ (move_group.launch.py, move_group_external_control.launch.py)
-        │   ├── scripts/xacro2srdf.bash
-        │   └── rviz/moveit.rviz
+        │   └── CMakeLists.txt
         │
-        ├── pincher_control/                 # Nodo de control real del brazo (Dynamixel + trayectorias)
-        │   ├── package.xml, setup.py, setup.cfg
-        │   ├── pincher_control/ (control_servo.py, follow_joint_trajectory_node.py,
-        │   │                     template_control_servo.py, readme.md, __init__.py)
-        │   ├── resource/pincher_control
-        │   └── test/ (test_copyright.py, test_flake8.py, test_pep257.py)
-        │
-        └── ros2                             # (archivo vacío, 0 bytes — no es un paquete)                         
+        └── phantomx_pincher_moveit_config/      # Configuración de MoveIt 2
+            ├── config/
+            ├── launch/
+            ├── srdf/
+            ├── package.xml
+            └── CMakeLists.txt                    
 
 ```
 
