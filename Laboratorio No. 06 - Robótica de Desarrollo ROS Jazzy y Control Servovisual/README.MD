@@ -1,6 +1,8 @@
 # 6. Código fuente comentado: RAPID / Python / SPEL+.
 
-Código fuente utilizado para el desarrollo de la práctica. El programa fue escrito en RAPID y se ejecuta en el controlador IRC5 del robot ABB IRB 140 "Caín". Está organizado en un único módulo (`Module1`) que agrupa la declaración de variables y un conjunto de procedimientos, cada uno responsable de una parte concreta del proceso de recepción, clasificación y almacenamiento de componentes. A continuación se describen las partes más relevantes del código junto con los fragmentos correspondientes.
+Código fuente utilizado para el desarrollo de la práctica. El programa fue escrito en RAPID y se ejecuta en el controlador IRC5 del robot ABB IRB 140 "Caín". Está organizado en un único módulo (`Module1`) que agrupa la declaración de variables y un conjunto de procedimientos, cada uno responsable de una parte concreta del proceso de recepción, clasificación y almacenamiento de componentes.
+
+El archivo completo y comentado puede consultarse en [`Module1_Proyecto_Etapa1.txt`](./Anexos/Module1_Proyecto_Etapa1.txt). A continuación se describen las partes más relevantes del código junto con los fragmentos correspondientes.
 
 ## Variables de posición, herramienta y sistemas de coordenadas
 
